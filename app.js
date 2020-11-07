@@ -50,11 +50,6 @@ app.get("/:newDay", (req, res) => {
             }
         }
     }) 
-    if (process.env.NODE_ENV === "production") {
-        console.log("production");
-        app.use(express.static("client/build"));
-        res.sendFile(path.resolve(__dirname, 'client', "build", "index.html"));
-    };
 })
 
 app.post("/", (req, res) => {
@@ -84,3 +79,9 @@ app.post("/delete", (req, res) => {
     })
 })
 
+if(process.env.NODE_ENV === "production") {
+    //set static folder
+    app.use(express.static("client/build"));
+  
+    app.get("*", (req, res) => res.sendFile(path.resolve(__dirname, 'client', "build", "index.html")));
+  }
