@@ -25,7 +25,7 @@ const AppState = (props) => {
     const getList = async (listName) => {
         const res = await axios.get(
             `/${listName}`, 
-            {list: listName},
+            // {list: listName},
             {"Content-Type": "*/*"}
         )
         dispatch({
