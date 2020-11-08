@@ -31,9 +31,15 @@ const listSchema = {
 
 const List = mongoose.model("List", listSchema);
 
+if(process.env.NODE_ENV === "production") {
+    //set static folder
+    app.use(express.static("client/build"));
+  
+    app.get("/", (req, res) => res.sendFile(path.resolve(__dirname, 'client', "build", "index.html")));
+    app.get("/today", (req, res) => res.sendFile(path.resolve(__dirname, 'client', "build", "index.html")));
+  }
 
-
-app.get("/:listName", (req, res) => {
+app.get("/date/:listName", (req, res) => {
     const newDay = req.params.listName;
     console.log(newDay);
     List.findOne({name: newDay}, (err, foundList) => {
@@ -80,9 +86,3 @@ app.post("/delete", (req, res) => {
     })
 })
 
-if(process.env.NODE_ENV === "production") {
-    //set static folder
-    app.use(express.static("client/build"));
-  
-    app.get("*", (req, res) => res.sendFile(path.resolve(__dirname, 'client', "build", "index.html")));
-  }
