@@ -10,8 +10,8 @@ function App() {
     <AppState>
       <Router>
         <Switch>
-          <Route exact path="/" component={Cover} />
-          <Route exact path="/today" component={Today} />
+          <Route exact path="/cover" component={Cover} />
+          <Route exact path="/" component={Today} />
         </Switch>
       </Router>
     </AppState> 
