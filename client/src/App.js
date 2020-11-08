@@ -11,7 +11,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Cover} />
-          <Route exact path="/today" component={Today} />
+          <Route exact path="/:listName" component={Today} />
         </Switch>
       </Router>
     </AppState> 

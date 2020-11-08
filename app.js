@@ -13,7 +13,7 @@ connectDB();
 app.use(bodyParser.urlencoded({
     extended: true
   }));
-  app.use(bodyParser.json());
+app.use(bodyParser.json());
 app.use(cors());
 app.listen(port,() => console.log("Backend started on port " + port));
 
@@ -38,14 +38,15 @@ if(process.env.NODE_ENV === "production") {
     app.get("/", (req, res) => res.sendFile(path.resolve(__dirname, 'client', "build", "index.html")));
   }
 
-app.get("/today/:listName", (req, res) => {
-    var date = new Date();
-    var options = {day: '2-digit', month: 'short', year: 'numeric'};
-    var resultDate = date.toLocaleDateString('en-US', options)
-    .replace(/,/g, "").replace(/ /g, "-");
-    const listDay = req.params.listName;
-    const newDay = listDay === null ? resultDate : listDay
-    console.log(resultDate);
+app.get("/:listName", (req, res) => {
+   
+    // var date = new Date();
+    // var options = {day: '2-digit', month: 'short', year: 'numeric'};
+    // var resultDate = date.toLocaleDateString('en-US', options)
+    // .replace(/,/g, "").replace(/ /g, "-");
+    const newDay = req.params.listName;
+    // const newDay = listDay === null ? resultDate : listDay
+    console.log(req.params);
     List.findOne({name: newDay}, (err, foundList) => {
         if (!err) {
             if (!foundList) {
