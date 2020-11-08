@@ -37,8 +37,8 @@ li {
   border-radius: 0.5% 2% 2% 0.5%;
   box-shadow: 8px 4px 8px #381a14, 0px 0px 10px 2px #381a14;
   display: grid;
-  grid-template-columns: 10px 25px 500px 66px 59px;
-  grid-template-rows: 60px 20px 320px 278px 35px 34px;
+  grid-template-columns: 10px 25px;
+  grid-template-rows: 60px 20px 320px;
 }
 
 .page {
@@ -47,7 +47,7 @@ li {
   height: 700px;
   margin: 20px auto;
   background-color: #fff4b0;
-  box-shadow: 12px 8px 8px #381a14, 0px 0px 8px 4px #381a1480;
+  box-shadow: 5px 8px 8px #381a14, 0px 0px 8px 4px #381a1480;
   padding: 20px 20px 20px 50px;
   grid-column-start: 2;
   grid-row-start: 1;
@@ -125,8 +125,6 @@ input[type="text"]::placeholder {
 }
 
 .button button.MuiFab-root {
-  /* max-height: 25px;
-  width: 30px; */
   background-color: #d4caa3;
   border: 1px solid #381a14;
 }
@@ -161,7 +159,7 @@ input[type="text"]::placeholder {
 
 .watermark {
   position: relative;
-  opacity: 10%;
+  opacity: 0.1;
   grid-row-start: 2;
   grid-column-start: 3;
   z-index: 0;
@@ -251,6 +249,7 @@ input[type="text"]::placeholder {
   .page {
     grid-template-rows: 100px;
     width: 90%;
+    margin: 10px auto;
     padding: 2px 2px 2px 4%;
   }
 
@@ -289,15 +288,10 @@ input[type="text"]::placeholder {
     top: 23%;
   }
 
-  body.cover {
-    display: flex;
-    height: 100vh;
-  }
-
   .center-div {
     display: block;
     margin: 3% auto;
-    height: 90vh;
+    height: 71vh;
     width: 93%;
     max-width: 700px;
     padding-top: 170px;
@@ -334,8 +328,18 @@ input[type="text"]::placeholder {
   }
 
   .date-label {
+    margin-left: -10px !important;
+    width: 160px;
     padding: 10px 0 0 0;
     grid-column-start: 1;
+  }
+
+  .MuiInput-underline {
+    border-right: 1px solid rgba(0, 0, 0, 0.42);
+  }
+
+  .MuiInput-input {
+    padding-left: 10px !important;
   }
 
   .calendar-icon {
@@ -349,6 +353,12 @@ input[type="text"]::placeholder {
 
   .weather-icon {
     height: 50px;
+  }
+}
+
+@media (max-width: 500px) {
+  .date-label {
+    width: 120px;
   }
 }
 

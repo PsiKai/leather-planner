@@ -3,7 +3,7 @@ import Weather from './Weather';
 import Day from './Day';
 import Datepicker from './Datepicker'
 import Content from './Content'
-// import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
+
 
 const Today = () => {
   return (
@@ -19,7 +19,7 @@ const Today = () => {
             <div className="heading">
               <div className="widget">
                   <Datepicker />
-                  {/* <CalendarTodayIcon className="calendar-icon"/> */}
+                  
                   <Weather/>
               </div>
               <Day />

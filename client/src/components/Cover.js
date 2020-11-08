@@ -1,8 +1,8 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 
 const Cover = () => {
     return (
-    <div>
+    <Fragment>
         <div className="cover">
             <a href="/today">
                 <div className="center-div">
@@ -11,7 +11,7 @@ const Cover = () => {
                 </div>
             </a>
         </div>
-    </div>
+    </Fragment>
     )
 }
 

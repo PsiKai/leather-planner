@@ -1,6 +1,7 @@
 import React, {useContext, Fragment} from 'react';
 import TextField from '@material-ui/core/TextField';
 import AppContext from "../context/AppContext";
+import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 
 const Datepicker = () => {
     const appContext = useContext(AppContext);
@@ -12,14 +13,21 @@ const Datepicker = () => {
         appContext.getList(resultDate)
     }
 
+    const defaultDate = new Date().toISOString().split("T")[0];
+
     return (
         <Fragment>
         <TextField 
             type="date" 
             className="date-label" 
-            onChange={newDay} 
-            placeholder={appContext.date}
+            onChange={newDay}
+            defaultValue={defaultDate} 
+            // placeholder="Select"
+            InputLabelProps={{
+                shrink: true
+            }}
         />
+        {/* <CalendarTodayIcon className="calendar-icon"/> */}
         </Fragment>
     )
 }
