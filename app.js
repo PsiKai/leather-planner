@@ -39,9 +39,13 @@ if(process.env.NODE_ENV === "production") {
   }
 
 app.get("/today/:listName", (req, res) => {
-  
-    const newDay = req.params.listName;
-    console.log(newDay);
+    var date = new Date();
+    var options = {day: '2-digit', month: 'short', year: 'numeric'};
+    var resultDate = date.toLocaleDateString('en-US', options)
+    .replace(/,/g, "").replace(/ /g, "-");
+    const listDay = req.params.listName;
+    const newDay = listDay === null ? resultDate : listDay
+    console.log(resultDate);
     List.findOne({name: newDay}, (err, foundList) => {
         if (!err) {
             if (!foundList) {
