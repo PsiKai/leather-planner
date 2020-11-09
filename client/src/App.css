@@ -272,6 +272,7 @@ input[type="text"]::placeholder {
   .weather-icon {
     height: 75px;
     padding-top: 0;
+    margin-right: 5px;
   }
 
   .binder-rings {
@@ -382,4 +383,5 @@ input[type="text"]::placeholder {
 
 .strikethrough {
   text-decoration: line-through;
+  opacity: 0.5;
 }
