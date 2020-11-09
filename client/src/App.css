@@ -240,6 +240,10 @@ input[type="text"]::placeholder {
     margin: 0;
   }
 
+  ul {
+    padding-left: 15px;
+  }
+
   .position-div {
     display: block;
     width: 100%;
@@ -248,8 +252,8 @@ input[type="text"]::placeholder {
 
   .page {
     grid-template-rows: 100px;
-    width: 90%;
-    margin: 10px auto;
+    width: 93%;
+    margin: 7px auto;
     padding: 2px 2px 2px 4%;
   }
 
@@ -262,11 +266,12 @@ input[type="text"]::placeholder {
 
   .pattern {
     height: 100%;
-    width: 95%;
+    width: 99%;
   }
 
   .weather-icon {
     height: 75px;
+    padding-top: 0;
   }
 
   .binder-rings {
@@ -328,6 +333,7 @@ input[type="text"]::placeholder {
   }
 
   .date-label {
+    margin-top: 3px !important;
     margin-left: -10px !important;
     width: 160px;
     padding: 10px 0 0 0;
@@ -335,11 +341,23 @@ input[type="text"]::placeholder {
   }
 
   .MuiInput-underline {
-    border-right: 1px solid rgba(0, 0, 0, 0.42);
+    background-color: #fff4b0;
+    background-image: url("./images/textured-paper.png");
+    border-radius: 5px;
+    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+      0px 6px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 12px 0px rgba(0, 0, 0, 0.12);
+    /* border-right: 1px solid rgba(0, 0, 0, 0.42);
+    border-top: 1px solid rgba(0, 0, 0, 0.42);
+    border-left: 1px solid rgba(0, 0, 0, 0.42); */
+    border: 1px outset;
   }
 
   .MuiInput-input {
     padding-left: 10px !important;
+  }
+
+  .MuiInput-underline:before {
+    border-bottom: none !important;
   }
 
   .calendar-icon {
@@ -358,7 +376,7 @@ input[type="text"]::placeholder {
 
 @media (max-width: 500px) {
   .date-label {
-    width: 120px;
+    width: 140px;
   }
 }
 

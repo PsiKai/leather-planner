@@ -12,8 +12,12 @@ const Datepicker = () => {
         var resultDate = date.toLocaleDateString('en-US', options).replace(/,/g, "").replace(/ /g, "-");
         appContext.getList(resultDate)
     }
-
-    const defaultDate = new Date().toISOString().split("T")[0];
+    const date = new Date().toLocaleDateString("en-US", 
+                    {day: "2-digit", 
+                    month: "2-digit", 
+                    year: "numeric"
+                    }).split("/");
+    const defaultDate = date[2] + "-" + date[0] + "-" + date[1];
 
     return (
         <Fragment>
