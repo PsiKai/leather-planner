@@ -326,7 +326,6 @@ button.MuiButtonBase-root svg {
 .modal {
   background-image: url("./images/textured-paper.png");
   background-color: #fff4b0 !important;
-  /* repeating-linear-gradient(#fff4b0 0, #fff4b0 34px, blue 35px); */
   max-width: 500px;
   height: fit-content !important;
   padding: 2% 5% !important;
@@ -354,7 +353,6 @@ button.MuiButtonBase-root svg {
 
   ul.list {
     padding-left: 15px;
-    /* list-style-type: circle !important; */
   }
 
   .position-div {
@@ -430,9 +428,6 @@ button.MuiButtonBase-root svg {
     margin-bottom: 50px;
   }
 
-  .modal-close {
-  }
-
   .heading {
     max-height: fit-content;
   }
@@ -448,7 +443,6 @@ button.MuiButtonBase-root svg {
     position: relative;
     display: grid;
     grid-auto-flow: dense;
-    /* grid-template-columns: 1fr, 1fr; */
     text-align: right;
   }
 
