@@ -16,7 +16,7 @@ const Today = (props) => {
   useEffect(() => {
     getUser();
     //eslint-disable-next-line
-  }, [user])
+  }, [])
 
   return (
     <Fragment>
