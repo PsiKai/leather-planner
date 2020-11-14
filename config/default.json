@@ -1,3 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://admin-david:test123@cluster0-6ghui.mongodb.net/dayplannerDB"
+    "mongoURI": "mongodb+srv://admin-david:test123@cluster0-6ghui.mongodb.net/dayplannerDB?retryWrites=true&w=majority",
+    "jwtSecret": "thisisalongsecret"
 }

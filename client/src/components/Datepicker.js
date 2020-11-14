@@ -1,7 +1,7 @@
 import React, {useContext, Fragment} from 'react';
 import TextField from '@material-ui/core/TextField';
 import AppContext from "../context/AppContext";
-import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
+// import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 
 const Datepicker = () => {
     const appContext = useContext(AppContext);

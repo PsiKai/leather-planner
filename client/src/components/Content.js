@@ -15,7 +15,7 @@ const Content = () => {
     return (
       <div className="content">
         <ul 
-          className="list" 
+          className="list browser-default" 
           id="list"
         >
           {items.map((item, index) => {

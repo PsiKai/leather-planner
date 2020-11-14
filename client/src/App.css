@@ -1,3 +1,7 @@
+* {
+  box-sizing: initial !important;
+}
+
 body {
   background-color: #ffc99d;
   background-image: url("./images/wood.png");
@@ -7,7 +11,7 @@ a {
   text-decoration: none;
 }
 
-ul {
+ul.list {
   margin: 0;
   padding-left: 30px;
 }
@@ -15,6 +19,8 @@ ul {
 li {
   text-decoration: none;
   cursor: pointer;
+  list-style-type: initial !important;
+  margin-bottom: 0;
 }
 
 .position-div {
@@ -86,16 +92,29 @@ li {
   position: relative;
 }
 
-.new-item {
-  border: none;
+.heading h1 {
+  font-size: 2.7rem;
+}
+
+.heading h2 {
+  font-size: 1.6rem !important;
+}
+
+input.new-item {
   height: 19px;
   border-radius: 5%;
   font-size: 17px;
   margin-left: 2px;
+  border: none;
 }
 
-input[type="text"] {
-  height: 29px;
+input[type="date"] {
+  margin: 0 !important;
+  border-bottom: none !important;
+}
+
+input[type="text"].new-item {
+  height: 29px !important;
   font-size: 20px;
   max-width: 75%;
   background-color: transparent;
@@ -107,13 +126,15 @@ input[type="text"] {
 
 input[type="text"]:focus {
   outline: none;
-  font-size: 20px;
+  font-size: 20px !important;
   max-width: 75%;
   background-color: transparent;
 }
 
 input[type="text"]::placeholder {
   font-family: "Dancing Script", cursive;
+  font-size: 20px !important;
+  color: grey;
 }
 
 .datepicker {
@@ -127,6 +148,10 @@ input[type="text"]::placeholder {
 .button button.MuiFab-root {
   background-color: #d4caa3;
   border: 1px solid #381a14;
+}
+
+.button svg.MuiSvgIcon-root {
+  margin-top: 0;
 }
 
 .button button:focus {
@@ -170,6 +195,7 @@ input[type="text"]::placeholder {
 .weather {
   text-align: right;
   height: 50px;
+  /* margin-top: 5px; */
 }
 
 .widget {
@@ -178,13 +204,15 @@ input[type="text"]::placeholder {
   flex-direction: column;
   top: 0;
   right: 0;
+  z-index: 3;
 }
 
 .weather-icon {
-  padding-top: 10px;
+  /* padding-top: 10px; */
   height: 50px;
   position: relative;
   z-index: 2;
+  top: -5px;
 }
 
 .temp {
@@ -192,6 +220,37 @@ input[type="text"]::placeholder {
   font-family: "Libre Baskerville", serif;
   position: relative;
   top: -15px;
+}
+
+.user {
+  text-align: right;
+  margin-top: -5px;
+}
+
+label.MuiFormLabel-root {
+  font-family: "Libre Baskerville", serif;
+  color: black;
+  opacity: 1;
+  display: block;
+  margin-top: 5px;
+}
+
+label .MuiSvgIcon-root {
+  position: relative;
+  top: 4px;
+}
+
+.user button.MuiButtonBase-root {
+  margin: 5px -5px;
+  font-family: "Libre Baskerville", serif;
+}
+
+button.MuiButtonBase-root svg {
+  margin-top: -5px;
+}
+
+.MuiInput-underline {
+  height: 30px;
 }
 
 /* cover */
@@ -204,8 +263,7 @@ input[type="text"]::placeholder {
   margin: 40px auto auto;
   display: grid;
   text-align: center;
-  grid-template-rows: 100px;
-  grid-template-columns: auto;
+  grid-template-rows: 100px 300px;
   border-radius: 0.5% 2% 2% 0.5%;
   box-shadow: 8px 4px 8px #381a14, 0px 0px 10px 4px #381a14;
 }
@@ -222,7 +280,7 @@ input[type="text"]::placeholder {
   grid-row-start: 2;
   grid-column-start: 1;
   letter-spacing: -3px;
-  margin-bottom: auto;
+  /* margin-bottom: auto; */
 }
 
 .center-div h1:nth-of-type(n + 1):first-letter {
@@ -233,6 +291,42 @@ input[type="text"]::placeholder {
   padding-top: 90px;
 }
 
+.btn {
+  display: inline;
+  width: 200px;
+  background-color: #371a12 !important;
+  margin: 5px 20px;
+  font-family: "Ubuntu", sans-serif;
+  color: #d4caa3 !important;
+}
+
+.btn:hover {
+  background-color: #d4caa3 !important;
+  color: #371a12 !important;
+}
+
+.cover-btns {
+  grid-row-start: 3;
+}
+
+.modal {
+  background-image: url("./images/textured-paper.png");
+  background-color: #fff4b0 !important;
+  /* repeating-linear-gradient(#fff4b0 0, #fff4b0 34px, blue 35px); */
+  max-width: 500px;
+  height: fit-content !important;
+  padding: 2% 5% !important;
+}
+
+.modal p {
+  line-height: 35px;
+  font-size: 24px;
+  font-family: "Dancing Script", cursive;
+  letter-spacing: 1.5px;
+  word-spacing: 3px;
+  margin: 0;
+}
+
 /* Mobile size */
 
 @media (max-width: 850px) {
@@ -240,8 +334,13 @@ input[type="text"]::placeholder {
     margin: 0;
   }
 
-  ul {
+  .heading h1 {
+    font-size: 2.3rem;
+  }
+
+  ul.list {
     padding-left: 15px;
+    /* list-style-type: circle !important; */
   }
 
   .position-div {
@@ -297,7 +396,7 @@ input[type="text"]::placeholder {
   .center-div {
     display: block;
     margin: 3% auto;
-    height: 71vh;
+    height: 100vh;
     width: 93%;
     max-width: 700px;
     padding-top: 170px;
@@ -311,8 +410,13 @@ input[type="text"]::placeholder {
     margin: auto;
     font-size: 50px;
   }
+
   #line-two {
     padding-top: 0;
+    margin-bottom: 50px;
+  }
+
+  .modal-close {
   }
 
   .heading {
@@ -329,15 +433,15 @@ input[type="text"]::placeholder {
   .widget {
     position: relative;
     display: grid;
-    grid-template-columns: 1fr, 1fr;
+    grid-auto-flow: dense;
+    /* grid-template-columns: 1fr, 1fr; */
     text-align: right;
   }
 
-  .date-label {
+  div.date-label {
     margin-top: 3px !important;
     margin-left: -10px !important;
     width: 160px;
-    padding: 10px 0 0 0;
     grid-column-start: 1;
   }
 
@@ -347,14 +451,13 @@ input[type="text"]::placeholder {
     border-radius: 5px;
     box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
       0px 6px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 12px 0px rgba(0, 0, 0, 0.12);
-    /* border-right: 1px solid rgba(0, 0, 0, 0.42);
-    border-top: 1px solid rgba(0, 0, 0, 0.42);
-    border-left: 1px solid rgba(0, 0, 0, 0.42); */
     border: 1px outset;
+    height: 30px;
   }
 
-  .MuiInput-input {
-    padding-left: 10px !important;
+  input[type="date"].MuiInput-input {
+    height: 25px !important;
+    padding: 5px 0 0 10px !important;
   }
 
   .MuiInput-underline:before {
@@ -372,6 +475,27 @@ input[type="text"]::placeholder {
 
   .weather-icon {
     height: 50px;
+    top: 8px;
+  }
+
+  .temp {
+    top: 0;
+  }
+
+  .user {
+    grid-column-start: 3;
+  }
+
+  label.MuiFormLabelRoot {
+    display: grid;
+  }
+
+  .MuiFormLabelRoot span {
+    grid-column-start: 1;
+  }
+
+  .MuiFormLabelRoot svg {
+    grid-column-start: 2;
   }
 }
 

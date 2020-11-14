@@ -1,11 +1,23 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useContext, useEffect} from 'react';
 import Weather from './Weather';
 import Day from './Day';
 import Datepicker from './Datepicker'
 import Content from './Content'
+import User from './User'
+
+import AuthContext from "../context/AuthContext";
 
 
-const Today = () => {
+const Today = (props) => {
+  const authContext = useContext(AuthContext);
+  const {getUser, user} = authContext;
+
+
+  useEffect(() => {
+    getUser();
+    //eslint-disable-next-line
+  }, [user])
+
   return (
     <Fragment>
       <div className="position-div inside-cover">
@@ -17,10 +29,12 @@ const Today = () => {
           />
           <div className="page">
             <div className="heading">
+          
               <div className="widget">
                   <Datepicker />
-                  
+                  <User />
                   <Weather/>
+          
               </div>
               <Day />
             </div>
@@ -40,6 +54,7 @@ const Today = () => {
         alt="binder rings"
       />
     </div>
+ 
   </Fragment>
   )
 }

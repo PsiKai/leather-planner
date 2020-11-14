@@ -24,6 +24,7 @@ const Input = (props) => {
 
     const create = (e) => {
         e.preventDefault();
+        if (inputText) {
         appContext.setItem(newItem)
         setInputText("");  
         var penNoises = [pen1, pen2];
@@ -32,6 +33,7 @@ const Input = (props) => {
           );
         audio.volume = 0.1;
         audio.play();
+        }
     }
 
     const myStyle = {
@@ -42,11 +44,11 @@ const Input = (props) => {
     };
 
     return (
-        <li>
+        <li className="browser-default">
             <form className="button" onSubmit={create}>
                 <input
                     name="newItem"
-                    className="new-item"
+                    className="new-item browser-default"
                     type="text"
                     placeholder="Plan your day ..."
                     autoComplete="off"
