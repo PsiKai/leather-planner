@@ -28,7 +28,7 @@ const Weather = () => {
     getLocation();
     setInterval(() => {getLocation()}, 60000);
   //eslint-disable-next-line
-  }, []);
+  }, [location]);
 
   
   // const imgURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
