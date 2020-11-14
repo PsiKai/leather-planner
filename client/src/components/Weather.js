@@ -5,9 +5,6 @@ import axios from "axios";
 let apiKey = "3393f6720b7a891184b9256089cba0f9";
 
 const Weather = () => {
-
-  
-  
   const [weather, setWeather] = useState(null);
   const [icon, setIcon] = useState("");
   const [location, setLocation] = useState("");
@@ -20,7 +17,7 @@ const Weather = () => {
 
   const getWeather = async () => {
       const res = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=imperial`
+        `https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=imperial`
       );
       var suffix = res.data.weather[0].icon.slice(2);
       setWeather(Math.round(res.data.main.temp));
@@ -31,7 +28,7 @@ const Weather = () => {
     getLocation();
     setInterval(() => {getLocation()}, 60000);
   //eslint-disable-next-line
-  }, [location]);
+  }, []);
 
   
   // const imgURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
