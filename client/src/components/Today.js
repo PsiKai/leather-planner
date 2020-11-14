@@ -10,7 +10,7 @@ import AuthContext from "../context/AuthContext";
 
 const Today = (props) => {
   const authContext = useContext(AuthContext);
-  const {getUser, user} = authContext;
+  const {getUser} = authContext;
 
 
   useEffect(() => {

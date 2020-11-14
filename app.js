@@ -178,7 +178,6 @@ app.post("/login",
 
 app.get("/date/:listName", auth, (req, res) => {
     const newDay = req.params.listName;
-    console.log(newDay);
     List.findOne({user: req.user.id, name: newDay}, (err, foundList) => {
         if (!err) {
             if (!foundList) {
@@ -206,7 +205,6 @@ app.post("/", auth, (req, res) => {
     })
      List.findOne({"user": req.user.id, "name": listName}, (err, foundList) => {
        if (err) console.log(err);
-       console.log(foundList);
        foundList.items.push(item);
         foundList.save();
         res.send({list: listName, items: [...foundList.items]})

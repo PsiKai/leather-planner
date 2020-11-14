@@ -97,7 +97,7 @@ li {
 }
 
 .heading h2 {
-  font-size: 1.6rem !important;
+  font-size: 1.5rem !important;
 }
 
 input.new-item {
@@ -212,14 +212,14 @@ input[type="text"]::placeholder {
   height: 50px;
   position: relative;
   z-index: 2;
-  top: -5px;
+  top: -2px;
 }
 
 .temp {
   display: inline;
   font-family: "Libre Baskerville", serif;
   position: relative;
-  top: -15px;
+  top: -10px;
 }
 
 .user {
@@ -252,6 +252,20 @@ button.MuiButtonBase-root svg {
 .MuiInput-underline {
   height: 30px;
 }
+
+/* Logout button */
+.user
+  .MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textSizeSmall.MuiButton-sizeSmall {
+  font-size: 1rem !important;
+  line-height: 1.15 !important;
+  text-transform: none !important;
+  letter-spacing: initial !important;
+}
+
+/* .user .MuiSvgIcon-root {
+  position: relative;
+  top: 2px;
+} */
 
 /* cover */
 
