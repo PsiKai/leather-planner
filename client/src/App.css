@@ -359,6 +359,7 @@ button.MuiButtonBase-root svg {
     display: block;
     width: 100%;
     margin: 0;
+    height: 99vh;
   }
 
   .page {
@@ -366,6 +367,9 @@ button.MuiButtonBase-root svg {
     width: 93%;
     margin: 7px auto;
     padding: 2px 2px 2px 4%;
+    height: 98%;
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
 
   .grid-div {
@@ -399,10 +403,10 @@ button.MuiButtonBase-root svg {
   }
 
   .watermark {
-    width: 300px;
+    width: 500px;
     position: absolute;
     right: 1%;
-    top: 23%;
+    top: 10%;
   }
 
   .center-div {
@@ -510,6 +514,13 @@ button.MuiButtonBase-root svg {
 @media (max-width: 500px) {
   .date-label {
     width: 140px;
+  }
+
+  .watermark {
+    width: 250px;
+    position: absolute;
+    right: 1%;
+    top: 23%;
   }
 }
 
