@@ -59,11 +59,17 @@ li {
   grid-row-start: 1;
   display: grid;
   grid-template-rows: 78px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.page::-webkit-scrollbar {
+  display: none;
 }
 
 .pattern {
   grid-row-start: 2;
-  height: 637px;
+  height: 100%;
   width: 100%;
   background-image: url("./images/textured-paper.png"),
     repeating-linear-gradient(#fff4b0 0, #fff4b0 34px, blue 35px);
@@ -171,12 +177,16 @@ input[type="text"]::placeholder {
 /* Images */
 
 .binder-rings {
+  position: relative;
+  z-index: 3;
   height: 280px;
   grid-column-start: 1;
   grid-row-start: 2;
 }
 
 .binder-rings-two {
+  position: relative;
+  z-index: 3;
   height: 280px;
   grid-column-start: 1;
   grid-row-start: 3;
@@ -188,6 +198,8 @@ input[type="text"]::placeholder {
   grid-row-start: 2;
   grid-column-start: 3;
   z-index: 0;
+  right: -30%;
+  top: 100px;
 }
 
 /* weather widget */
@@ -403,7 +415,7 @@ button.MuiButtonBase-root svg {
   }
 
   .watermark {
-    width: 500px;
+    width: 400px;
     position: absolute;
     right: 1%;
     top: 10%;
