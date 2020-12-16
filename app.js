@@ -1,3 +1,5 @@
+//requires and initializes node modules
+
 const express = require("express");
 const router = express.Router();
 const cors = require("cors");
@@ -14,6 +16,7 @@ const auth = require("./middleware/auth");
 const app = express();
 const port = process.env.PORT || 5000;
 
+//connects to mongoDB
 connectDB();
 
 app.use(bodyParser.urlencoded({
@@ -61,6 +64,8 @@ const listSchema = mongoose.Schema({
 
 const List = mongoose.model("List", listSchema);
 
+
+//sets routes for static build in production
 if(process.env.NODE_ENV === "production") {
     //set static folder
     app.use(express.static("client/build"));
@@ -69,6 +74,8 @@ if(process.env.NODE_ENV === "production") {
     app.get("/today", (req, res) => res.sendFile(path.resolve(__dirname, 'client', "build", "index.html")));
   }
 
+
+  //verifies a logged in user to access protected routes
   app.get("/getUser", auth, async (req, res) => {
     try {
       const user = await User.findById(req.user.id).select("-password");
@@ -79,6 +86,7 @@ if(process.env.NODE_ENV === "production") {
     }
   });
  
+  //POST request to register a new user
 app.post("/register",
 [
     body("name", "Name is required").not().isEmpty(),
@@ -130,6 +138,8 @@ app.post("/register",
       }
   })
 
+
+  //logs in user
 app.post("/login",
     [
     body("email", "Please include a valid email").isEmail(),
@@ -176,6 +186,8 @@ app.post("/login",
         }
   })
 
+
+  //GET request to display list from user inputed date
 app.get("/date/:listName", auth, (req, res) => {
     const newDay = req.params.listName;
     List.findOne({user: req.user.id, name: newDay}, (err, foundList) => {
@@ -196,6 +208,7 @@ app.get("/date/:listName", auth, (req, res) => {
     }) 
 })
 
+//adds a new item to the current list
 app.post("/", auth, (req, res) => {
     const itemName = req.body.item;
     const listName = req.body.list
@@ -211,6 +224,8 @@ app.post("/", auth, (req, res) => {
         })
 })
 
+
+//adds style detail to list item to remain crossed-off when page is reloaded
 app.post("/delete", auth, (req, res) => {
     const crossedItem = req.body.item
     const listName = req.body.list
