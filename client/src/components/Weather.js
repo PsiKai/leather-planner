@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 
-let apiKey = "3393f6720b7a891184b9256089cba0f9";
-
 const Weather = () => {
+  let apiKey = process.env.REACT_APP_WEATHER;
+
   const [weather, setWeather] = useState(null);
   const [icon, setIcon] = useState("");
   const [location, setLocation] = useState("");
@@ -37,9 +37,9 @@ const Weather = () => {
     return (
       <div className="weather">
         
-        <h2 className="temp">
+        <h6 className="temp">
           {weather}°
-        </h2>
+        </h6>
         <i className={`weather-icon owf owf-${icon} owf-2x`}></i>
         {/* <img className="weather-icon" src={imgURL} alt="Weather Icon" /> */}
         
