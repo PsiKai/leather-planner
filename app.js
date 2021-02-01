@@ -3,6 +3,7 @@
 const express = require("express");
 const router = express.Router();
 const cors = require("cors");
+const axios = require('axios')
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const path = require("path")
@@ -15,6 +16,10 @@ const auth = require("./middleware/auth");
 
 const app = express();
 const port = process.env.PORT || 5000;
+
+if (process.env.NODE_ENV !== 'production') {
+  require("dotenv").config(); 
+}
 
 //connects to mongoDB
 connectDB();
@@ -125,7 +130,7 @@ app.post("/register",
         }
 
         jwt.sign(
-            payload, config.get("jwtSecret"),
+            payload, process.env.SECRET,
             {expiresIn: 36000},
             (err, token) => {
                 if (err) throw errors;
@@ -239,3 +244,19 @@ app.post("/delete", auth, (req, res) => {
     res.end();
 })
 
+//gets weather
+
+app.post("/weather", async (req, res) => {
+  const apiKey = process.env.WEATHER_API
+  const location = req.body.location.toLowerCase();
+  try {
+    const response = await axios.get(
+      `https://api.openweathermap.org/data/2.5/weather?q=` + location + `&appid=` + apiKey + `&units=imperial`
+    );
+    res.status(response.data.cod).json({weather: response.data})
+  } catch (err) {
+    res.send(err)
+
+  }
+ 
+})

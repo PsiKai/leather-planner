@@ -3,32 +3,43 @@ import axios from "axios";
 
 
 const Weather = () => {
-  let apiKey = process.env.REACT_APP_WEATHER;
+  // let apiKey = process.env.REACT_APP_WEATHER;
 
   const [weather, setWeather] = useState(null);
   const [icon, setIcon] = useState("");
-  const [location, setLocation] = useState("");
+  const [location, setLocation] = useState(null);
 
   const getLocation = async () => {
     const res = await axios.get("https://extreme-ip-lookup.com/json/");
     setLocation(res.data.city);
-    location && getWeather();
+    // location && getWeather();
   };
 
+  useEffect(() => {
+    getWeather()
+  }, [location])
+
+
   const getWeather = async () => {
-      const res = await axios.get(
-        `https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=imperial`
-      );
-      var suffix = res.data.weather[0].icon.slice(2);
-      setWeather(Math.round(res.data.main.temp));
-      setIcon(res.data.weather[0].id + "-" + suffix);
-    };
+    if (location !== null) {
+      try {
+        const res = await axios.post("/weather", {location});
+        console.log(res);
+        var suffix = res.data.weather.weather[0].icon.slice(2);
+        setWeather(Math.round(res.data.weather.main.temp));
+        setIcon(res.data.weather.weather[0].id + "-" + suffix);
+      } catch (error) {
+        console.log(error);
+      } 
+    }
+    
+  };
 
  useEffect(() => {
     getLocation();
     setInterval(() => {getLocation()}, 60000);
   //eslint-disable-next-line
-  }, [location]);
+  }, []);
 
   
   // const imgURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
