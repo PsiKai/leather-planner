@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== 'production') {
+  require("dotenv").config(); 
+}
+
 //requires and initializes node modules
 
 const express = require("express");
@@ -7,19 +11,17 @@ const axios = require('axios')
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const path = require("path")
-const connectDB = require("./config/db");
+const connectDB = require("./db");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const {body, validationResult} = require('express-validator')
-const config = require("config")
+// const config = require("config")
 const auth = require("./middleware/auth");
 
 const app = express();
 const port = process.env.PORT || 5000;
 
-if (process.env.NODE_ENV !== 'production') {
-  require("dotenv").config(); 
-}
+
 
 //connects to mongoDB
 connectDB();
