@@ -178,7 +178,7 @@ app.post("/login",
     
           jwt.sign(
             payload,
-            config.get("jwtSecret"),
+            process.env.SECRET,
             {
               expiresIn: 360000,
             },
