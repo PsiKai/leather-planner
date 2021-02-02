@@ -207,7 +207,54 @@ input[type="text"]::placeholder {
 .weather {
   text-align: right;
   height: 50px;
+  cursor: pointer;
   /* margin-top: 5px; */
+}
+
+.weather-input__wrapper {
+  /* width: 125px; */
+  /* text-align: right; */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.widget .weather-input {
+  /* width: 100px !important; */
+  overflow: visible !important;
+  height: 24px !important;
+  font-family: "Libre Baskerville", serif !important;
+  font-size: 1rem !important;
+  border: none !important;
+  margin: 0 !important;
+  text-align: right !important;
+}
+
+.widget .weather-input::placeholder {
+  font-family: "Libre Baskerville", serif !important;
+  font-size: 1rem !important;
+}
+
+.widget .weather-input:focus {
+  box-shadow: none !important;
+  font-size: 1rem !important;
+  text-indent: 0 !important;
+}
+
+.weather-input__wrapper button {
+  width: 20px;
+  padding: 0;
+  background: inherit;
+  border: none;
+  cursor: pointer;
+}
+
+.weather-input__wrapper button:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.weather-input__wrapper button:focus {
+  background: inherit;
 }
 
 .widget {
@@ -217,11 +264,12 @@ input[type="text"]::placeholder {
   top: 0;
   right: 0;
   z-index: 3;
+  align-items: flex-end;
 }
 
 .weather-icon {
   /* padding-top: 10px; */
-  height: 50px;
+  /* height: 50px; */
   position: relative;
   z-index: 2;
   top: -2px;
@@ -253,7 +301,7 @@ label .MuiSvgIcon-root {
 }
 
 .user button.MuiButtonBase-root {
-  margin: 5px -5px;
+  margin: 5px -5px 0;
   font-family: "Libre Baskerville", serif;
 }
 
@@ -397,7 +445,8 @@ button.MuiButtonBase-root svg {
   }
 
   .weather-icon {
-    height: 75px;
+    /* height: 75px; */
+    height: auto;
     padding-top: 0;
     margin-right: 5px;
   }
@@ -449,7 +498,8 @@ button.MuiButtonBase-root svg {
   }
 
   .date {
-    position: static;
+    position: relative;
+    top: -20px;
     margin-top: 0;
     margin-bottom: 0;
     padding-left: 0;
@@ -467,6 +517,7 @@ button.MuiButtonBase-root svg {
     margin-left: -10px !important;
     width: 160px;
     grid-column-start: 1;
+    top: -15px;
   }
 
   .MuiInput-underline {
@@ -493,17 +544,26 @@ button.MuiButtonBase-root svg {
   }
 
   .weather {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .weather,
+  .weather-input__wrapper {
+    margin-top: 2px;
+    height: 24px;
     position: relative;
-    grid-column-start: 2;
+    grid-column-start: 3;
   }
 
   .weather-icon {
-    height: 50px;
-    top: 8px;
+    /* height: 50px; */
+    top: 1px;
   }
 
   .temp {
     top: 0;
+    margin: 6px 0 0 0;
   }
 
   .user {
