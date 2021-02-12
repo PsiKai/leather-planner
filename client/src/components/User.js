@@ -7,24 +7,24 @@ import FormLabel from '@material-ui/core/FormLabel';
 
 const User = () => {
     const authContext = useContext(AuthContext);
+    const {user, logOut} = authContext;
 
-    const userName = authContext.user && authContext.user.name
+    const userName = user && user.name
 
     const logoff = () => {
-        authContext.logOut();
+        logOut();
       }
       
     return (
         <div className="user">
-        <FormLabel>
-        <span>{userName}</span>
-        <PersonIcon />
-        </FormLabel>
-        <Button size="small" onClick={logoff}>
-        Logout
-        <ExitToAppIcon></ExitToAppIcon>
-        </Button>
-        
+            <FormLabel>
+                <span>{userName}</span>
+                <PersonIcon />
+            </FormLabel>
+            <Button size="small" onClick={logoff}>
+                Logout
+                <ExitToAppIcon></ExitToAppIcon>
+            </Button>
         </div>
     )
 }

@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import CheckIcon from '@material-ui/icons/Check';
 
 
 const Weather = () => {
   // let apiKey = process.env.REACT_APP_WEATHER;
-    
+  const weatherSubmit = useRef()
 
   useEffect(() => {
     var city = localStorage.getItem("city")
     city && setLocation(city)
-    initialWeather();
+    // console.log(weatherSubmit.current);
+    weatherSubmit.current.click();
   }, [])
 
   const [weather, setWeather] = useState(null);
@@ -21,10 +22,6 @@ const Weather = () => {
   //   const res = await axios.get("https://extreme-ip-lookup.com/json/");
   //   setLocation(res.data.city);
   // };
-
-  const initialWeather = () => {
-    getWeather()
-  }
 
   const newLocation = (e) => {
     setLocation(e.target.value)
@@ -86,7 +83,7 @@ const Weather = () => {
         onFocus={(e) => e.target.select()}
       >
       </input>
-      <button type="submit"><CheckIcon /></button>
+      <button ref={weatherSubmit} type="submit" onClick={() => console.log("clicked")}><CheckIcon /></button>
     </form>
   )
 };
