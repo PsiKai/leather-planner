@@ -2,6 +2,7 @@ import React, {useContext, useState} from 'react';
 import AuthContext from "../context/AuthContext";
 
 const LoginModal = () => {
+
     const authContext = useContext(AuthContext);
     const {login} = authContext;
 

@@ -19,6 +19,7 @@ const Cover = (props) => {
      //eslint-disable-next-line
     }, [isAuthenticated, props.history])
 
+
     return (
     <Fragment>
         <div className="cover">

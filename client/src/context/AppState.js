@@ -4,7 +4,7 @@ import AppContext from "./AppContext";
 import AppReducer from "./AppReducer";
 import {
     GET_LIST,
-    SET_ITEM,
+    SET_ITEM
 } from "./types";
 
 const AppState = (props) => {
@@ -20,6 +20,11 @@ const AppState = (props) => {
     }
 
     const [state, dispatch] = useReducer(AppReducer, intitialState);
+
+    //reset date to day after logout
+    const resetDate = () => {
+        getList(resultDate)
+    }
 
     //get list
     const getList = async (listName) => {
@@ -72,7 +77,8 @@ const AppState = (props) => {
                 date: state.date,
                 getList,
                 setItem,
-                crossOff
+                crossOff,
+                resetDate
             }}>
             {props.children}
         </AppContext.Provider>
