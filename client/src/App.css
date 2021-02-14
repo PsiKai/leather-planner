@@ -1,5 +1,5 @@
 * {
-  box-sizing: border-box !important;
+  box-sizing: border-box;
 }
 
 body {
@@ -17,10 +17,7 @@ ul.list {
 }
 
 li {
-  text-decoration: none;
   cursor: pointer;
-  list-style-type: initial !important;
-  margin-bottom: 0;
 }
 
 .position-div {
@@ -47,6 +44,45 @@ li {
   grid-template-rows: 60px 20px 320px;
 }
 
+.heading {
+  max-height: 70px;
+  position: relative;
+}
+
+.date {
+  font-size: 2.7rem;
+  margin-top: 20px;
+  font-family: "Libre Baskerville", serif;
+}
+
+/* Images */
+
+.binder-rings {
+  position: relative;
+  z-index: 3;
+  height: 280px;
+  grid-column-start: 1;
+  grid-row-start: 2;
+}
+
+.binder-rings-two {
+  position: relative;
+  z-index: 3;
+  height: 280px;
+  grid-column-start: 1;
+  grid-row-start: 3;
+}
+
+.watermark {
+  position: relative;
+  opacity: 0.1;
+  grid-row-start: 2;
+  grid-column-start: 3;
+  z-index: 0;
+  right: -30%;
+  top: 100px;
+}
+
 .page {
   background-image: url("./images/textured-paper.png");
   width: 670px;
@@ -54,7 +90,7 @@ li {
   margin: 20px auto;
   background-color: #fff4b0;
   box-shadow: 5px 8px 8px #381a14, 0px 0px 8px 4px #381a1480;
-  padding: 20px 20px 20px 50px;
+  padding: 15px 20px 5px 40px;
   grid-column-start: 2;
   grid-row-start: 1;
   display: grid;
@@ -86,34 +122,6 @@ li {
   position: relative;
 }
 
-.date {
-  padding-left: 10px;
-  margin-top: 20px;
-  margin-bottom: 5px;
-  font-family: "Libre Baskerville", serif;
-}
-
-.heading {
-  max-height: 70px;
-  position: relative;
-}
-
-.heading h1 {
-  font-size: 2.7rem;
-}
-
-.heading h2 {
-  font-size: 1.5rem !important;
-}
-
-input.new-item {
-  height: 19px;
-  border-radius: 5%;
-  font-size: 17px;
-  margin-left: 2px;
-  border: none;
-}
-
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -122,13 +130,8 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: inherit !important;
 }
 
-input[type="date"] {
-  margin: 0 !important;
-  border-bottom: none !important;
-  box-shadow: none !important;
-}
-
 input[type="text"].new-item {
+  width: 85%;
   height: 29px !important;
   font-size: 20px;
   max-width: 75%;
@@ -137,6 +140,7 @@ input[type="text"].new-item {
   text-indent: 4px;
   margin: 0;
   padding: 0;
+  border: none;
 }
 
 input[type="text"]:focus {
@@ -152,25 +156,9 @@ input[type="text"]::placeholder {
   color: grey;
 }
 
-.datepicker {
-  width: 21.1px;
-  height: 21.1px;
-  opacity: 0;
-  z-index: -1;
-  top: 10px;
-}
-
-.button button.MuiFab-root {
+.button button {
   background-color: #d4caa3;
   border: 1px solid #381a14;
-}
-
-.button svg.MuiSvgIcon-root {
-  margin-top: 0;
-}
-
-.button button:focus {
-  outline: 1px;
 }
 
 .button button:hover {
@@ -180,56 +168,41 @@ input[type="text"]::placeholder {
 }
 
 .button span svg {
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
-/* Images */
+/* user and weather widget */
 
-.binder-rings {
+.date-label svg {
   position: relative;
-  z-index: 3;
-  height: 280px;
-  grid-column-start: 1;
-  grid-row-start: 2;
+  right: -4px;
+  font-size: 30px;
+  z-index: -1;
 }
 
-.binder-rings-two {
-  position: relative;
-  z-index: 3;
-  height: 280px;
-  grid-column-start: 1;
-  grid-row-start: 3;
+.date-label input {
+  height: 20px !important;
+  width: 52px !important;
+  opacity: 0;
+  position: absolute;
+  top: 3px;
+  right: -3px;
+  margin: 0 !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
 }
-
-.watermark {
-  position: relative;
-  opacity: 0.1;
-  grid-row-start: 2;
-  grid-column-start: 3;
-  z-index: 0;
-  right: -30%;
-  top: 100px;
-}
-
-/* weather widget */
 
 .weather {
-  text-align: right;
-  height: 50px;
   cursor: pointer;
-  /* margin-top: 5px; */
 }
 
 .weather-input__wrapper {
-  /* width: 125px; */
-  /* text-align: right; */
   display: flex;
   align-items: center;
   justify-content: flex-end;
 }
 
 .widget .weather-input {
-  /* width: 100px !important; */
   overflow: visible !important;
   height: 24px !important;
   font-family: "Libre Baskerville", serif !important;
@@ -247,7 +220,6 @@ input[type="text"]::placeholder {
 .widget .weather-input:focus {
   box-shadow: none !important;
   font-size: 1rem !important;
-  text-indent: 0 !important;
 }
 
 .weather-input__wrapper button {
@@ -270,25 +242,16 @@ input[type="text"]::placeholder {
   position: absolute;
   display: flex;
   flex-direction: column;
-  top: 0;
   right: 0;
   z-index: 3;
   align-items: flex-end;
-}
-
-.weather-icon {
-  /* padding-top: 10px; */
-  /* height: 50px; */
-  position: relative;
-  z-index: 2;
-  top: -2px;
 }
 
 .temp {
   display: inline;
   font-family: "Libre Baskerville", serif;
   position: relative;
-  top: -12px;
+  top: -8px;
 }
 
 .user {
@@ -299,9 +262,7 @@ input[type="text"]::placeholder {
 label.MuiFormLabel-root {
   font-family: "Libre Baskerville", serif;
   color: black;
-  opacity: 1;
   display: block;
-  margin-top: 5px;
 }
 
 label .MuiSvgIcon-root {
@@ -314,27 +275,14 @@ label .MuiSvgIcon-root {
   font-family: "Libre Baskerville", serif;
 }
 
-button.MuiButtonBase-root svg {
-  margin-top: -5px;
-}
-
-.MuiInput-underline {
-  height: 30px;
-}
-
 /* Logout button */
 .user
   .MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textSizeSmall.MuiButton-sizeSmall {
-  font-size: 1rem !important;
-  line-height: 1.15 !important;
-  text-transform: none !important;
-  letter-spacing: initial !important;
+  font-size: 1rem;
+  line-height: 1.15;
+  text-transform: none;
+  letter-spacing: initial;
 }
-
-/* .user .MuiSvgIcon-root {
-  position: relative;
-  top: 2px;
-} */
 
 /* cover */
 
@@ -363,7 +311,6 @@ button.MuiButtonBase-root svg {
   grid-row-start: 2;
   grid-column-start: 1;
   letter-spacing: -3px;
-  /* margin-bottom: auto; */
 }
 
 .center-div h1:nth-of-type(n + 1):first-letter {
@@ -372,6 +319,10 @@ button.MuiButtonBase-root svg {
 
 #line-two {
   padding-top: 90px;
+}
+
+.cover-btns {
+  grid-row-start: 3;
 }
 
 .btn {
@@ -387,10 +338,6 @@ button.MuiButtonBase-root svg {
 .btn:hover {
   background-color: #d4caa3 !important;
   color: #371a12 !important;
-}
-
-.cover-btns {
-  grid-row-start: 3;
 }
 
 .modal {
@@ -412,7 +359,6 @@ button.MuiButtonBase-root svg {
   font-size: 24px;
   font-family: "Dancing Script", cursive;
   letter-spacing: 1.5px;
-  word-spacing: 3px;
   margin: 0;
 }
 
@@ -420,13 +366,9 @@ button.MuiButtonBase-root svg {
   margin-top: 2rem;
 }
 
-/* Mobile size */
+/* Tablet size */
 
 @media (max-width: 850px) {
-  body {
-    margin: 0;
-  }
-
   .heading h1 {
     font-size: 2.3rem;
   }
@@ -446,7 +388,7 @@ button.MuiButtonBase-root svg {
     grid-template-rows: 100px;
     width: 95%;
     margin: 2% auto;
-    padding: 2px 2px 2px 4%;
+    padding: 2px 2% 2px 4%;
     height: 98%;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -464,19 +406,7 @@ button.MuiButtonBase-root svg {
     width: 99%;
   }
 
-  .weather-icon {
-    /* height: 75px; */
-    height: auto;
-    padding-top: 0;
-    margin-right: 5px;
-  }
-
-  .binder-rings {
-    visibility: hidden;
-    position: absolute;
-    top: 0;
-  }
-
+  .binder-rings,
   .binder-rings-two {
     visibility: hidden;
     position: absolute;
@@ -493,7 +423,7 @@ button.MuiButtonBase-root svg {
   .center-div {
     display: block;
     margin: 3% auto;
-    height: 95vh;
+    height: 96vh;
     width: 93%;
     max-width: 700px;
     padding-top: 170px;
@@ -520,7 +450,7 @@ button.MuiButtonBase-root svg {
 
   .date {
     position: relative;
-    top: -1rem;
+    top: -1.5rem;
     margin-top: 0;
     margin-bottom: 0;
     padding-left: 0;
@@ -528,96 +458,54 @@ button.MuiButtonBase-root svg {
 
   .widget {
     position: relative;
-    display: grid;
-    grid-auto-flow: dense;
-    text-align: right;
   }
 
-  div.date-label {
-    margin-top: 3px !important;
-    margin-left: -10px !important;
-    width: 160px;
-    grid-column-start: 1;
-    top: -15px;
+  .date-label svg {
+    position: absolute;
+    top: 5px;
+    left: -14px;
   }
 
-  .MuiInput-underline {
-    background-color: #fff4b0;
-    background-image: url("./images/textured-paper.png");
-    border-radius: 5px;
-    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2),
-      0px 6px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 12px 0px rgba(0, 0, 0, 0.12);
-    border: 1px outset;
-    height: 30px;
-  }
-
-  input[type="date"].MuiInput-input {
-    height: 25px !important;
-    padding: 5px 0 0 10px !important;
-  }
-
-  .MuiInput-underline:before {
-    border-bottom: none !important;
-  }
-
-  .calendar-icon {
-    display: none;
-  }
-
-  .weather {
-    display: flex;
-    justify-content: flex-end;
+  .date-label input {
+    position: absolute;
+    top: 11px;
+    left: -37px;
   }
 
   .weather,
   .weather-input__wrapper {
     margin-top: 2px;
     height: 24px;
-    position: relative;
-    grid-column-start: 3;
-  }
-
-  .weather-icon {
-    /* height: 50px; */
-    top: 1px;
-  }
-
-  .temp {
-    top: 0;
-    margin: 6px 0 0 0;
   }
 
   .user {
-    grid-column-start: 3;
-  }
-
-  label.MuiFormLabelRoot {
-    display: grid;
-  }
-
-  .MuiFormLabelRoot span {
-    grid-column-start: 1;
-  }
-
-  .MuiFormLabelRoot svg {
-    grid-column-start: 2;
+    margin-top: 0;
   }
 }
+
+/* Mobile Size  */
 
 @media (max-width: 500px) {
   .heading {
     padding-right: 0;
   }
 
-  .date-label {
-    width: 140px;
-  }
-
   .watermark {
     width: 250px;
-    position: absolute;
     right: 1%;
     top: 23%;
+  }
+
+  .date-label svg {
+    left: -7px;
+  }
+
+  .date-label input {
+    left: -30px;
+  }
+
+  .input.new-item {
+    max-width: none;
   }
 
   .modal {
@@ -638,4 +526,17 @@ button.MuiButtonBase-root svg {
 .strikethrough {
   text-decoration: line-through;
   opacity: 0.5;
+}
+
+/* Undo materialize native styles  */
+@media only screen and (min-width: 1200px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  html {
+    font-size: 14px;
+  }
 }

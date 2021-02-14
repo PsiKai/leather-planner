@@ -78,7 +78,7 @@ const Weather = () => {
         className="weather-input" 
         type="text" 
         onChange={newLocation} 
-        placeholder="Your Town" 
+        placeholder="Your town" 
         value={location}
         onFocus={(e) => e.target.select()}
       >
