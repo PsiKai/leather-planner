@@ -40,7 +40,8 @@ const LoginModal = () => {
                     <input type="email" name="email" value={email} onChange={onChange} required/>
                     <p>Password</p>
                     <input type="password" name="password" value={password} onChange={onChange} required/>
-                    <input type="submit" value="Login" className="btn modal-close"/>
+                    <button type="submit" className="btn">Login</button>
+                    {/* <input className="modal-close" /> */}
                 </form>
             {/* </div> */}
         </div>

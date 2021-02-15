@@ -20,6 +20,64 @@ li {
   cursor: pointer;
 }
 
+.alert-wrapper {
+  position: absolute;
+  left: 2rem;
+  bottom: 2rem;
+  /* padding: 1rem; */
+  background: #381a14 url("./images/leather.png");
+  box-shadow: 0 0 25px 15px rgba(0, 0, 0, 0.4);
+  border-radius: 0.5rem;
+  z-index: 1000000;
+}
+
+.alert {
+  background: #fff4b0 url("./images/textured-paper.png");
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  margin: 1rem;
+  /* font-size: 24px; */
+  color: #381a14;
+  font-family: "Libre Baskerville", serif;
+}
+
+.alert svg {
+  margin-right: 1rem;
+}
+
+.fadein-enter {
+  opacity: 0;
+  height: 0;
+}
+
+.fadein-enter.fadein-enter-active {
+  opacity: 1;
+  height: 100%;
+  transition: all 400ms ease;
+}
+
+.fadein-enter-done {
+  opacity: 1;
+  height: 100%;
+}
+
+.fadein-exit {
+  opacity: 1;
+  height: 100%;
+}
+
+.fadein-exit.fadein-exit-active {
+  opacity: 0;
+  height: 0;
+  transition: all 400ms ease;
+}
+
+.fadein-exit-done {
+  opacity: 0;
+  height: 0;
+}
+
 .position-div {
   width: 700px;
   margin: 40px auto auto;
@@ -387,7 +445,7 @@ label .MuiSvgIcon-root {
   margin: 0;
 }
 
-.modal .modal-close {
+.modal button {
   margin-top: 2rem;
 }
 
@@ -511,6 +569,20 @@ label .MuiSvgIcon-root {
 /* Mobile Size  */
 
 @media (max-width: 500px) {
+  .alert-wrapper {
+    left: 0.5rem;
+    right: 0.5rem;
+  }
+
+  .alert {
+    margin: 0.5rem;
+    padding: 1rem;
+  }
+
+  .alert svg {
+    margin-right: 0.5rem;
+  }
+
   .heading {
     padding-right: 0;
   }
@@ -570,9 +642,9 @@ label .MuiSvgIcon-root {
     font-size: 1.5rem;
   }
 
-  .modal .modal-close {
+  .modal button {
     display: block !important;
-    margin: 2rem auto;
+    margin: 2rem auto 0;
   }
 }
 

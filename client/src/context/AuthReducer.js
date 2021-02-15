@@ -1,5 +1,12 @@
 
-import { LOGIN_SUCCESS, LOG_OUT, REGISTER_SUCCESS, USER_LOADED } from "./types";
+import { 
+    LOGIN_SUCCESS, 
+    LOG_OUT, 
+    REGISTER_SUCCESS, 
+    USER_LOADED, 
+    SET_ALERT,
+    REMOVE_ALERT 
+} from "./types";
 
 //eslint-disable-next-line
 export default (state, action) => {
@@ -29,6 +36,16 @@ export default (state, action) => {
                 user: null,
                 loading: false,
                 
+            }
+        case SET_ALERT:
+            return {
+                ...state,
+                alerts: [...state.alerts, action.payload]
+            }
+        case REMOVE_ALERT:
+            return {
+                ...state,
+                alerts: state.alerts.filter(alert => alert.id !== action.payload)
             }
         default: 
             return state;

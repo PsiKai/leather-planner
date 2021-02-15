@@ -94,25 +94,27 @@ if(process.env.NODE_ENV === "production") {
  
   //POST request to register a new user
 app.post("/register",
-[
-    body("name", "Name is required").not().isEmpty(),
-    body("email", "Please include a valid email.").isEmail(),
-    body(
-      "password",
-      "Please enter a password with 6 or more characters"
-    ).isLength({ min: 6 }),
-  ], 
-  async(req, res) => {
-      const errors = validationResult(req);
-      if (!errors.isEmpty()) {
-          return res.status(400).json({errors: errors.array()});
-      }
+  // [
+  //   body("name", "Name is required").not().isEmpty(),
+  //   body("email", "Please include a valid email.").isEmail(),
+  //   body(
+  //     "password",
+  //     "Please enter a password with 6 or more characters"
+  //   ).isLength({ min: 6 }),
+  // ], 
+  async (req, res) => {
+      // const errors = validationResult(req);
+      // console.log(!errors.isEmpty());
+      // if (!errors.isEmpty()) {
+      //     return res.status(400).json({msg: errors.array()[0].msg});
+      // }
+
 
       const {name, email, password} = req.body;
       try {
           let user = await User.findOne({email});
           if (user) {
-              return res.status(400).json({msg: "User already exists"})
+              return res.status(400).json({msg: "Email is already registered"})
           }
 
         user = new User({
@@ -160,13 +162,13 @@ app.post("/login",
         try {
           let user = await User.findOne({ email });
           if (!user) {
-            return res.status(400).json({ msg: "invalid credentials" });
+            return res.status(400).json({ msg: "Email or password is incorrect" });
           }
     
           const isMatch = await bcrypt.compare(password, user.password);
     
           if (!isMatch) {
-            return res.status(400).json({ msg: "invalid credentials" });
+            return res.status(400).json({ msg: "Email or password is incorrect" });
           }
     
           const payload = {

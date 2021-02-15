@@ -1,5 +1,6 @@
 import React, {useReducer} from "react";
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 import AuthContext from "./AuthContext";
 import authReducer from "./AuthReducer";
 import setAuthToken from "../utils/setAuthToken"
@@ -7,7 +8,9 @@ import {
     REGISTER_SUCCESS,
     LOGIN_SUCCESS,
     LOG_OUT,
-    USER_LOADED
+    USER_LOADED,
+    SET_ALERT,
+    REMOVE_ALERT
 } from "./types"
 
 const AuthState = (props) => {
@@ -15,7 +18,8 @@ const AuthState = (props) => {
         token: localStorage.getItem("token"),
         isAuthenticated: null,
         user: null,
-        loading: true
+        loading: true,
+        alerts: []
     }
 
     const [state, dispatch] = useReducer(authReducer, initialState)
@@ -50,6 +54,8 @@ const AuthState = (props) => {
             })
             getUser();
         } catch (err) {
+            console.log(err.response);
+            setAlert(err.response.data.msg)
             dispatch({
                 type: LOG_OUT
             })
@@ -70,6 +76,7 @@ const AuthState = (props) => {
             })
             getUser();
         } catch (err) {
+            setAlert(err.response.data.msg)
             dispatch({
                 type: LOG_OUT
             })
@@ -78,6 +85,20 @@ const AuthState = (props) => {
     
     const logOut = () => dispatch({type: LOG_OUT})
 
+    const setAlert = (msg) => {
+        const id = uuidv4();
+        dispatch({
+            type: SET_ALERT,
+            payload: {msg, id}
+        })
+        setTimeout(() => {
+            dispatch({
+                type: REMOVE_ALERT,
+                payload: id
+            })
+        }, 5000)
+    }
+
     return (
         <AuthContext.Provider
             value={{
@@ -85,10 +106,12 @@ const AuthState = (props) => {
                 isAuthenticated: state.isAuthenticated,
                 user: state.user,
                 loading: state.loading,
+                alerts: state.alerts,
                 getUser,
                 register,
                 login,
-                logOut
+                logOut,
+                setAlert
             }}>
                 {props.children}
         </AuthContext.Provider>

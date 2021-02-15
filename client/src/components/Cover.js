@@ -3,10 +3,11 @@ import LoginModal from "./LoginModal"
 import RegisterModal from "./RegisterModal"
 import AuthContext from "../context/AuthContext"
 import M from "materialize-css/dist/js/materialize.min.js";
+import Alert from "../components/Alert"
 
 const Cover = (props) => {
     const authContext = useContext(AuthContext);
-    const {isAuthenticated, token, logOut} = authContext;
+    const {isAuthenticated, token, logOut, setAlert} = authContext;
     
     useEffect(() => {
         if(token) {
@@ -31,11 +32,11 @@ const Cover = (props) => {
                 <button href="#registerModal" className="modal-trigger btn">Register</button>
                 </div>
            </div> 
-           
+          
         </div>
         <LoginModal />
         <RegisterModal />
-
+        <Alert />
     </Fragment>
     )
 }
