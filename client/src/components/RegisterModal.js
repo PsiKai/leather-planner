@@ -3,7 +3,7 @@ import AuthContext from "../context/AuthContext";
 
 const RegisterModal = (props) => {
     const authContext = useContext(AuthContext);
-    const {register, setAlert, alerts} = authContext;
+    const {register, setAlert} = authContext;
 
     const [user, setUser] = useState({
         name: '',

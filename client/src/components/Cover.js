@@ -7,7 +7,7 @@ import Alert from "../components/Alert"
 
 const Cover = (props) => {
     const authContext = useContext(AuthContext);
-    const {isAuthenticated, token, logOut, setAlert} = authContext;
+    const {isAuthenticated, token, logOut} = authContext;
     
     useEffect(() => {
         if(token) {

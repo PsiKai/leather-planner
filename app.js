@@ -195,7 +195,7 @@ app.post("/login",
   })
 
 
-  //GET request to display list from user inputed date
+//GET request to display list from user inputed date
 app.get("/date/:listName", auth, (req, res) => {
     const newDay = req.params.listName;
     List.findOne({user: req.user.id, name: newDay}, (err, foundList) => {
@@ -206,9 +206,9 @@ app.get("/date/:listName", auth, (req, res) => {
                     name: newDay,
                     items: []
                 });
-            list.save();
+              list.save();
 
-            res.send({list: newDay, items: [], date: newDay})
+              res.send({list: newDay, items: [], date: newDay})
             } else {
             res.send({list: newDay, items: foundList.items})
             }
@@ -224,12 +224,12 @@ app.post("/", auth, (req, res) => {
         item: itemName,
         style: ""
     })
-     List.findOne({"user": req.user.id, "name": listName}, (err, foundList) => {
-       if (err) console.log(err);
-       foundList.items.push(item);
+    List.findOne({"user": req.user.id, "name": listName}, (err, foundList) => {
+      if (err) console.log(err);
+        foundList.items.push(item);
         foundList.save();
         res.send({list: listName, items: [...foundList.items]})
-        })
+    })
 })
 
 
@@ -259,7 +259,5 @@ app.post("/weather", async (req, res) => {
     res.status(response.data.cod).json({weather: response.data})
   } catch (err) {
     res.send(err)
-
   }
- 
 })
