@@ -4,6 +4,7 @@ import Day from './Day';
 import Datepicker from './Datepicker'
 import Content from './Content'
 import User from './User'
+import Alert from "../components/Alert"
 
 import AuthContext from "../context/AuthContext";
 
@@ -43,6 +44,7 @@ const Today = (props) => {
           </div>
         </div>
       </div>
+      <Alert />
       <img
         className="binder-rings"
         src="./images/binder-rings.png"
@@ -54,6 +56,8 @@ const Today = (props) => {
         alt="binder rings"
       />
     </div>
+
+    
  
   </Fragment>
   )

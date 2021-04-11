@@ -148,7 +148,10 @@ li {
   height: 735px;
   margin: 20px auto;
   background-color: #fff4b0;
-  box-shadow: 5px 8px 8px #381a14, 0px 0px 8px 4px #381a1480;
+  /* box-shadow: 5px 8px 8px #381a14, 0px 0px 8px 4px #381a1480; */
+  box-shadow: 1px 1px 1px 1px #381a1480, 2px 1px 0 0 #fff4b0,
+    3px 2px 1px 1px #381a1480, 4px 2px 0 0 #fff4b0, 5px 4px 1px 1px #381a1480,
+    6px 4px 0 0 #fff4b0, 2px 2px 16px 8px #381a1480;
   padding: 15px 15px 5px 35px;
   grid-column-start: 2;
   grid-row-start: 1;
@@ -179,6 +182,36 @@ li {
   letter-spacing: 1.5px;
   word-spacing: 3px;
   position: relative;
+}
+
+.list-wrapper svg {
+  position: relative;
+  top: 3px;
+  left: -3px;
+}
+
+.menu {
+  position: absolute;
+  z-index: 2;
+  background: #381a14 url("./images/leather.png");
+  padding: 2px;
+  padding-top: 0;
+  box-shadow: 1px 1px 4px 2px rgba(0, 0, 0, 0.4);
+}
+
+.menu div {
+  background: #fff4b0 url("./images/textured-paper.png");
+  display: flex;
+  align-items: center;
+}
+
+.menu svg {
+  margin: 5px;
+  font-size: 24px;
+}
+
+.menu svg:hover {
+  background: #ccc38c url("./images/textured-paper.png");
 }
 
 input:-webkit-autofill,
@@ -595,6 +628,30 @@ label .MuiSvgIcon-root {
     height: 99%;
   }
 
+  .pattern {
+    background-image: url("./images/textured-paper.png"),
+      repeating-linear-gradient(#fff4b0 0, #fff4b0 32px, blue 33px);
+  }
+
+  .content {
+    line-height: 33px;
+    font-size: 22px;
+    padding-top: 66px;
+  }
+
+  .list li {
+    position: relative;
+  }
+
+  .menu {
+    top: calc(100% + 4px);
+  }
+
+  .menu svg {
+    font-size: 28px;
+    margin: 8px;
+  }
+
   .watermark {
     width: 250px;
     right: 1%;
@@ -625,12 +682,20 @@ label .MuiSvgIcon-root {
     left: -30px;
   } */
 
-  .date {
+  h1.date {
     top: -1.5rem;
+    font-size: 1.9rem;
   }
 
-  .input.new-item {
+  input[type="text"].new-item {
     max-width: none;
+    font-size: 18px !important;
+    height: 25px !important;
+    text-indent: 0;
+  }
+
+  input[type="text"]::placeholder {
+    font-size: 18px !important;
   }
 
   .modal {

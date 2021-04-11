@@ -27,7 +27,7 @@ const Weather = () => {
     notCleared && clearInterval(interval)
     localStorage.setItem("city", location)
     getWeather();
-    interval = setInterval(getWeather, 6000)
+    interval = setInterval(getWeather, 300000)
   }
 
 

@@ -52,7 +52,8 @@ const User = mongoose.model("user", UserSchema)
 
 const itemsSchema = {
     item: String,
-    style: String
+    style: String,
+    moved: Boolean
   };
 
 const Item = mongoose.model("Item", itemsSchema);
@@ -222,7 +223,8 @@ app.post("/", auth, (req, res) => {
     const listName = req.body.list
     const item = new Item ({
         item: itemName,
-        style: ""
+        style: "",
+        moved: false
     })
     List.findOne({"user": req.user.id, "name": listName}, (err, foundList) => {
       if (err) console.log(err);
@@ -230,6 +232,23 @@ app.post("/", auth, (req, res) => {
         foundList.save();
         res.send({list: listName, items: [...foundList.items]})
     })
+})
+
+//edits an existing item in the current list
+app.post("/edit", auth, (req, res) => {
+  const {list, item, oldText} = req.body
+  console.log(list, item, oldText);
+  
+  List.findOneAndUpdate({"user": req.user.id, "name": list, "items.item": oldText}, {"$set": {"items.$.item": item}}, (err, success) => {
+    if (err) {console.log((err));
+    } else {console.log(("items edited"));
+    List.findOne({"user": req.user.id, "name": list}, (err, foundList) => {
+      if (err) console.log(err);
+        res.send({list, items: [...foundList.items]})
+    })
+    }
+  })
+  
 })
 
 
@@ -245,6 +264,45 @@ app.post("/delete", auth, (req, res) => {
         } else {console.log("item updated");}
     })
     res.end();
+})
+
+//moves item to the next day
+app.post("/move", auth, (req, res) => {
+  console.log(req.body);
+  const {list, item, style} = req.body
+  const date = new Date(list)
+  const skipWeekend = () => {
+    if (date.toLocaleDateString("en-US", {weekday: "long"}) === "Friday") {return 3}
+    return 1
+  }
+  var options = {day: '2-digit', month: 'short', year: 'numeric'};
+  const nextDay = new Date(date.setDate(date.getDate() + skipWeekend())).toLocaleDateString("en-US", options).replace(/ /g, "-").replace(/,/g, "")
+
+  List.findOne({"user": req.user.id, "name": nextDay}, (err, foundList) => {
+    if (err) console.log(err);
+    const movedItem = new Item ({item, style, moved: true})
+    if (!foundList) {
+      const list = new List ({
+        user: req.user.id,
+        name: nextDay,
+        items: []
+      });
+      list.items.push(movedItem)
+      list.save();
+      console.log("List created and Item Moved to the next day");
+      
+    } else {
+      foundList.items.push(movedItem)
+      foundList.save()
+      console.log("Item Moved to the next day");
+    }
+    if (date.toLocaleDateString("en-US", {weekday: "long"}) === "Monday") {
+      res.json({msg: "Item was moved to Monday"})
+    } else {
+      res.json({msg: "Item was moved to tomorrow"});
+    }
+  
+  })
 })
 
 //gets weather

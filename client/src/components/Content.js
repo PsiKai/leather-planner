@@ -12,6 +12,7 @@ const Content = () => {
       //eslint-disable-next-line
     }, [list])
 
+
     return (
       <div className="content">
         <ul 
@@ -25,6 +26,7 @@ const Content = () => {
                       content={item.item} 
                       list={list} 
                       style={item.style}
+                      moved={item.moved}
                     />
               }
             )

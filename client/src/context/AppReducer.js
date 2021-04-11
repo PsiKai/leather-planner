@@ -1,6 +1,6 @@
 import {
     GET_LIST,
-    SET_ITEM,
+    SET_ITEM
 } from "./types";
 
 //eslint-disable-next-line

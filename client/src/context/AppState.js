@@ -16,7 +16,8 @@ const AppState = (props) => {
     const intitialState = {
         list: resultDate,
         items: [],
-        date: resultDate
+        date: resultDate,
+        loading: false
     }
 
     const [state, dispatch] = useReducer(AppReducer, intitialState);
@@ -41,14 +42,25 @@ const AppState = (props) => {
 
     //set items
     const setItem = async (inputText) => {
-        const res = await axios.post(
-            "/", 
-            {
-                item: inputText.item, 
-                list: inputText.list
-            }, 
-            {"Content-Type": "*/(*"}
-        );
+        let res
+            !inputText.oldItem ?
+                res = await axios.post(
+                    "/", 
+                    {
+                        item: inputText.item, 
+                        list: inputText.list
+                    }, 
+                    {"Content-Type": "*/*"}
+                ) :
+                res = await axios.post(
+                    "/edit",
+                    {
+                        item: inputText.item, 
+                        list: inputText.list,
+                        oldText: inputText.oldItem
+                    },
+                    {"Content-Type": "*/*"}
+                )
         dispatch({
             type: SET_ITEM,
             payload: res.data
@@ -63,11 +75,18 @@ const AppState = (props) => {
                 item: item.item, 
                 list: item.list, 
                 style: item.style},
-             {
-                "Content-Type": "*/(*"
-            }
+             {"Content-Type": "*/*"}
         )
     }
+
+    // const moveItem = async (item) => {
+    //     const res = await axios.post(
+    //         "/move",
+    //         item,
+    //         {"Content-Type": "*/*"}
+    //     )
+    //     console.log(res.data.msg);
+    // }
   
     return (
         <AppContext.Provider
@@ -75,6 +94,7 @@ const AppState = (props) => {
                 list: state.list,
                 items: state.items,
                 date: state.date,
+                // moveItem,
                 getList,
                 setItem,
                 crossOff,
