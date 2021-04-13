@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import CheckIcon from '@material-ui/icons/Check';
+import SearchIcon from '@material-ui/icons/Search';
+
 let interval
 
 const Weather = () => {
@@ -17,6 +19,7 @@ const Weather = () => {
   const [icon, setIcon] = useState("");
   const [location, setLocation] = useState("");
   const [notCleared, setNotCleared] = useState(false)
+  const [weatherLabel, setWeatherLabel] = useState(false)
 
   const newLocation = (e) => {
     setLocation(e.target.value)
@@ -61,18 +64,24 @@ const Weather = () => {
     );
   }
   return (
-    <form className="weather-input__wrapper" onSubmit={submitCity}>
-      <input
-        className="weather-input"
-        type="text"
-        onChange={newLocation}
-        placeholder="Your town"
-        value={location}
-        onFocus={(e) => e.target.select()}
-      >
-      </input>
-      <button type="submit"><CheckIcon /></button>
-    </form>
+    weatherLabel ?
+      <form className="weather-input__wrapper" onSubmit={submitCity}>
+        <input
+          className="weather-input"
+          type="text"
+          onChange={newLocation}
+          placeholder="City"
+          value={location}
+          onFocus={(e) => e.target.select()}
+          autoFocus
+        >
+        </input>
+        <button type="submit"><CheckIcon /></button>
+      </form>
+      :
+      <button className="get-weather" onClick={() => setWeatherLabel(true)}>Weather <SearchIcon /></button>
+    
+    
   )
 };
 

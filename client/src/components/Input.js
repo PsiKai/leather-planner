@@ -1,5 +1,6 @@
 import React, {useState, useContext, useEffect} from 'react'
 import AddIcon from '@material-ui/icons/Add';
+import SendIcon from '@material-ui/icons/Send';
 import Fab from '@material-ui/core/Fab';
 import pen1 from '../sounds/Pen1.wav';
 import pen2 from '../sounds/Pen2.wav';
@@ -67,7 +68,7 @@ const Input = (props) => {
                     value={inputText}
                     onChange={typing}
                 />
-                <Fab type="submit" style={myStyle}><AddIcon /></Fab>
+                {inputText && <Fab type="submit" style={myStyle}><AddIcon /></Fab>}
             </form>
         </li>
     )
