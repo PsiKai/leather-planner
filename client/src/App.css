@@ -608,6 +608,7 @@ label .MuiSvgIcon-root {
 
   .widget {
     position: relative;
+    height: 100%;
   }
 
   /* .date-label svg {
@@ -648,6 +649,10 @@ label .MuiSvgIcon-root {
 
   .alert svg {
     margin-right: 0.5rem;
+  }
+
+  .widget {
+    height: 95%;
   }
 
   .heading {
