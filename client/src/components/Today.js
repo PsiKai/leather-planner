@@ -39,8 +39,10 @@ const Today = (props) => {
               </div>
               <Day />
             </div>
+            <div className="pattern__wrapper" style={{overflowY: "auto", overflowX: "visible"}}>
           <div className="pattern">
             <Content/>
+          </div>
           </div>
         </div>
       </div>

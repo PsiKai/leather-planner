@@ -114,6 +114,7 @@ li {
   margin-top: 25px;
   font-family: "Libre Baskerville", serif;
   font-weight: 700;
+  background: #fff4b0 url("./images/textured-paper.png");
 }
 
 /* Images */
@@ -160,21 +161,25 @@ li {
   display: grid;
   grid-template-rows: 115px;
   /* grid-template-rows: 78px; */
+}
+
+.pattern__wrapper {
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #381a14 #c9c39f;
   scroll-behavior: smooth;
+  width: 102%;
 }
 
-.page::-webkit-scrollbar {
+.page .pattern__wrapper::-webkit-scrollbar {
   width: 4px;
 }
 
-.page::-webkit-scrollbar-track {
+.page .pattern__wrapper::-webkit-scrollbar-track {
   background: #fff4b0 url("./images/textured-paper.png");
 }
 
-.page::-webkit-scrollbar-thumb {
+.page .pattern__wrapper::-webkit-scrollbar-thumb {
   background: #381a14 url("./images/leather.png");
 }
 
@@ -182,8 +187,8 @@ li {
   position: relative;
   top: -32px;
   grid-row-start: 2;
-  height: 100%;
-  width: 100%;
+  min-height: 100%;
+  width: 98%;
   background-image: url("./images/textured-paper.png"),
     repeating-linear-gradient(#fff4b0 0, #fff4b0 34px, blue 35px);
 }
@@ -335,6 +340,7 @@ input[type="text"]::placeholder {
   align-items: center;
   cursor: pointer;
   margin-top: 2px;
+  height: 24px !important;
 }
 
 .weather-input__wrapper {
@@ -524,7 +530,7 @@ label .MuiSvgIcon-root {
   }
 
   ul.list {
-    padding-left: 15px;
+    padding-left: 22px;
   }
 
   .position-div {
@@ -540,8 +546,8 @@ label .MuiSvgIcon-root {
     margin: 2% auto;
     padding: 5px 5px 2px 25px;
     height: 98%;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    /* overflow-y: scroll;
+    overflow-x: hidden; */
   }
 
   .grid-div {
@@ -551,9 +557,9 @@ label .MuiSvgIcon-root {
     height: 100%;
   }
 
-  .pattern {
-    height: 100%;
-    width: 99%;
+  .pattern__wrapper {
+    /* height: 100%; */
+    width: 100%;
   }
 
   .binder-rings,
@@ -608,7 +614,6 @@ label .MuiSvgIcon-root {
 
   .widget {
     position: relative;
-    height: 100%;
   }
 
   /* .date-label svg {
@@ -651,11 +656,7 @@ label .MuiSvgIcon-root {
     margin-right: 0.5rem;
   }
 
-  .widget {
-    height: 95%;
-  }
-
-  .heading {
+  m .heading {
     padding-right: 0;
   }
 
@@ -667,7 +668,12 @@ label .MuiSvgIcon-root {
     height: 99%;
   }
 
+  .pattern__wrapper {
+    width: 102%;
+  }
+
   .pattern {
+    width: 97%;
     top: 0;
     background-image: url("./images/textured-paper.png"),
       repeating-linear-gradient(#fff4b0 0, #fff4b0 32px, blue 33px);
