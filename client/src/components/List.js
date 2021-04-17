@@ -1,4 +1,4 @@
-import React, {useContext, useState, useRef} from 'react'
+import React, {useContext, useState, useRef, Fragment} from 'react'
 import penCross from '../sounds/penCross1.wav';
 import AppContext from '../context/AppContext';
 import AuthContext from '../context/AuthContext';
@@ -8,6 +8,8 @@ import ForwardIcon from '@material-ui/icons/Forward';
 import StrikethroughSIcon from '@material-ui/icons/StrikethroughS';
 import UndoIcon from '@material-ui/icons/Undo';
 import LabelImportantIcon from '@material-ui/icons/LabelImportant';
+import DeleteIcon from '@material-ui/icons/Delete';
+import {CSSTransition, TransitionGroup} from 'react-transition-group'
 
 
 const List = (props) => {
@@ -16,8 +18,9 @@ const List = (props) => {
     const [menu, setMenu] = useState(false)
     const [edit, setEdit] = useState(false)
     const listItemText = useRef()
-    const {crossOff} = appContext
-    const {moveItem} = authContext
+    const selectedListItem = useRef()
+    const {crossOff, removeItem} = appContext
+    const {moveItem, deleteItem} = authContext
 
     
     const cross = () => {
@@ -48,17 +51,44 @@ const List = (props) => {
         moveItem(item)
     }
 
+    const deleteCurrentItem = async () => {
+        var item = {
+            list: props.list,
+            item: listItemText.current.innerHTML
+        }
+        // deleteItem(item)
+        const status = await deleteItem(item)
+        status === 200 && removeItem(item)
+    }
+
+    const openMenu = (e) => {
+        const style = selectedListItem.current.style
+        setMenu(!menu)
+        menu ? selectedListItem.current.removeAttribute("style") : style.boxShadow = "1px 1px 4px 0 rgba(0, 0, 0, 0.4)"
+    }
+
 
     return (
         !edit ?
-        <li onClick={() => setMenu(!menu)}>
+        <Fragment>
+        {menu && <div className="menu-backdrop" onClick={openMenu}></div>}
+        <li onClick={openMenu} ref={selectedListItem}>
             <div className="list-wrapper">
                 {props.moved && <LabelImportantIcon />}
                 <span ref={listItemText} className={props.style}>{props.content}</span>
             </div>
-            
+            <TransitionGroup>
             {menu && 
-                <div className="menu" style={{opacity: "1"}}>
+                
+                <CSSTransition
+                    classNames="revealmenu"
+                    timeout={200}
+                    key={props.id}
+                    
+                >
+                
+                
+                <div className="menu" >
                     <div>
                         {listItemText.current.classList.contains("strikethrough") ?
                             <UndoIcon onClick={cross}/>
@@ -66,9 +96,15 @@ const List = (props) => {
                             <StrikethroughSIcon onClick={cross}/>}
                         <EditIcon onClick={() => setEdit(true)} />
                         <ForwardIcon onClick={carryOver}/>
+                        <DeleteIcon onClick={deleteCurrentItem} />
                     </div>
-                </div>}
+                </div>
+                </CSSTransition>
+                
+                }
+                </TransitionGroup>
         </li>
+        </Fragment>
         :
         <Input text={props.content} undoEdit={undoEdit}/>
     )

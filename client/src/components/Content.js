@@ -2,10 +2,11 @@ import React, {useContext, useEffect} from 'react'
 import Input from './Input'
 import List from './List';
 import AppContext from "../context/AppContext";
+import { CircularProgress } from '@material-ui/core';
 
 const Content = () => {
     const appContext = useContext(AppContext);
-    const {list, items} = appContext;
+    const {list, items, loading} = appContext;
 
     useEffect(() => {
       appContext.getList(list)
@@ -31,7 +32,7 @@ const Content = () => {
               }
             )
           }
-          <Input list={list}/>
+          {loading ? <CircularProgress/> : <Input list={list}/>}
         </ul>
       </div>
     )

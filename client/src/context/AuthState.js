@@ -13,7 +13,9 @@ import {
     REMOVE_ALERT
 } from "./types"
 
+
 const AuthState = (props) => {
+
     const initialState = {
         token: localStorage.getItem("token"),
         isAuthenticated: null,
@@ -98,6 +100,7 @@ const AuthState = (props) => {
             })
         }, 5000)
     }
+    
 
     const moveItem = async (item) => {
         const res = await axios.post(
@@ -109,6 +112,18 @@ const AuthState = (props) => {
         setAlert(res.data.msg);
     }
 
+
+    const deleteItem = async (item) => {
+        const res = await axios.delete(
+            '/delete',
+            {data: item},
+            // {"Content-Type": "*/*"}
+        )
+        setAlert(res.data.msg)
+
+        return res.status
+    }
+
     return (
         <AuthContext.Provider
             value={{
@@ -117,6 +132,7 @@ const AuthState = (props) => {
                 user: state.user,
                 loading: state.loading,
                 alerts: state.alerts,
+                deleteItem,
                 moveItem,
                 getUser,
                 register,

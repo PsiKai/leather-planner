@@ -4,7 +4,9 @@ import AppContext from "./AppContext";
 import AppReducer from "./AppReducer";
 import {
     GET_LIST,
-    SET_ITEM
+    SET_ITEM,
+    REMOVE_ITEM,
+    SET_LOADING
 } from "./types";
 
 const AppState = (props) => {
@@ -87,6 +89,22 @@ const AppState = (props) => {
     //     )
     //     console.log(res.data.msg);
     // }
+
+    const removeItem = ({item}) => {
+        dispatch({
+            type: REMOVE_ITEM,
+            payload: item
+        })
+    };
+
+    const setLoading = (bool) => {
+        dispatch({
+            type: SET_LOADING,
+            payload: bool
+        })
+    }
+
+
   
     return (
         <AppContext.Provider
@@ -95,6 +113,9 @@ const AppState = (props) => {
                 items: state.items,
                 date: state.date,
                 // moveItem,
+                loading: state.loading,
+                setLoading,
+                removeItem,
                 getList,
                 setItem,
                 crossOff,

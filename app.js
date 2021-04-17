@@ -181,9 +181,7 @@ app.post("/login",
           jwt.sign(
             payload,
             process.env.SECRET,
-            {
-              expiresIn: 360000,
-            },
+            {expiresIn: 360000},
             (err, token) => {
               if (err) throw errors;
               res.json({ token });
@@ -259,28 +257,53 @@ app.post("/delete", auth, (req, res) => {
     const style = req.body.style
     var newStyle = style !== "" ? "strikethrough" : ""
 
-    List.findOneAndUpdate({"user": req.user.id, "name": listName, "items.item": crossedItem}, {"$set": {"items.$.style": newStyle}}, (err, success) => {
+    List.findOneAndUpdate(
+      {"user": req.user.id, "name": listName, "items.item": crossedItem}, 
+      {"$set": {"items.$.style": newStyle}}, 
+      (err, success) => {
         if (err) {console.log(err);
         } else {console.log("item updated");}
     })
     res.end();
 })
 
+
+//Deletes selected item from database
+app.delete("/delete", auth, async (req, res) => {
+  const {list, item} = req.body
+  await List.updateOne(
+    {"user": req.user.id, "name": list}, 
+    {"$pull": {"items": {"item": item}}}, 
+    (err) => {
+      if (err) {
+        console.log(err);
+        res.json({msg: "There was a error deleting this item"})
+      } else {
+        res.json({msg: `Deleted Item ${req.body.item}`})
+      }
+  })
+})
+
+
 //moves item to the next day
 app.post("/move", auth, (req, res) => {
-  console.log(req.body);
+
   const {list, item, style} = req.body
   const date = new Date(list)
+
   const skipWeekend = () => {
     if (date.toLocaleDateString("en-US", {weekday: "long"}) === "Friday") {return 3}
     return 1
   }
+
   var options = {day: '2-digit', month: 'short', year: 'numeric'};
   const nextDay = new Date(date.setDate(date.getDate() + skipWeekend())).toLocaleDateString("en-US", options).replace(/ /g, "-").replace(/,/g, "")
 
   List.findOne({"user": req.user.id, "name": nextDay}, (err, foundList) => {
     if (err) console.log(err);
+
     const movedItem = new Item ({item, style, moved: true})
+
     if (!foundList) {
       const list = new List ({
         user: req.user.id,
@@ -296,10 +319,11 @@ app.post("/move", auth, (req, res) => {
       foundList.save()
       console.log("Item Moved to the next day");
     }
+
     if (date.toLocaleDateString("en-US", {weekday: "long"}) === "Monday") {
-      res.json({msg: "Item was moved to Monday"})
+      res.json({msg: "Item was copied to Monday"})
     } else {
-      res.json({msg: "Item was moved to tomorrow"});
+      res.json({msg: "Item was copied to tomorrow"});
     }
   
   })

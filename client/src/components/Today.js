@@ -46,7 +46,7 @@ const Today = (props) => {
           </div>
         </div>
       </div>
-      <Alert />
+      
       <img
         className="binder-rings"
         src="./images/binder-rings.png"
@@ -57,6 +57,7 @@ const Today = (props) => {
         src="./images/binder-rings.png"
         alt="binder rings"
       />
+      <Alert />
     </div>
 
     

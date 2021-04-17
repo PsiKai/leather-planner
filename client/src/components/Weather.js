@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import AppContext from "../context/AppContext"
 import axios from "axios";
 import CheckIcon from '@material-ui/icons/Check';
 import SearchIcon from '@material-ui/icons/Search';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 let interval
 
 const Weather = () => {
+  const appContext = useContext(AppContext)
+  const {loading, setLoading} = appContext
   // let apiKey = process.env.REACT_APP_WEATHER;
   // const weatherSubmit = useRef()
 
@@ -36,6 +40,7 @@ const Weather = () => {
 
   const getWeather = async () => {
     setNotCleared(true)
+    setLoading(true)
     if (location !== "") {
       setLocation(location.toLowerCase().replace(/ /g, "+"))
       try {
@@ -44,6 +49,7 @@ const Weather = () => {
         var suffix = data.weather[0].icon.slice(2);
         setWeather(Math.round(data.main.temp));
         setIcon(data.weather[0].id + "-" + suffix);
+        setLoading(false)
       } catch (error) {
         console.log(error);
       }
@@ -62,6 +68,14 @@ const Weather = () => {
 
       </div>
     );
+  }
+
+  if (loading) {
+    return (
+      <div className="weather">
+        <CircularProgress style={{width: "18px", height: "18px", color: "black", margin: "4px"}}/>
+      </div>
+    )
   }
   return (
     weatherLabel ?

@@ -18,13 +18,13 @@ ul.list {
 
 li {
   cursor: pointer;
+  transition: box-shadow 200ms ease;
+  position: relative;
 }
 
-.alert-wrapper {
-  position: absolute;
+/* .alert-wrapper {
   left: 2rem;
   bottom: 2rem;
-  /* padding: 1rem; */
   background: #381a14 url("./images/leather.png");
   box-shadow: 0 0 25px 15px rgba(0, 0, 0, 0.4);
   border-radius: 0.5rem;
@@ -37,7 +37,6 @@ li {
   display: flex;
   align-items: center;
   margin: 1rem;
-  /* font-size: 24px; */
   color: #381a14;
   font-family: "Libre Baskerville", serif;
 }
@@ -76,7 +75,7 @@ li {
 .fadein-exit-done {
   opacity: 0;
   height: 0;
-}
+} */
 
 .position-div {
   width: 700px;
@@ -217,13 +216,24 @@ li {
   /* hyphens: auto; */
 }
 
+.menu-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  background: transparent;
+}
+
 .menu {
   position: absolute;
+  /* bottom: -102%; */
   z-index: 2;
   background: #381a14 url("./images/leather.png");
   padding: 2px;
   padding-top: 0;
-  box-shadow: 1px 1px 4px 2px rgba(0, 0, 0, 0.4);
+  box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.4);
 }
 
 .menu div {
@@ -239,6 +249,36 @@ li {
 
 .menu svg:hover {
   background: #ccc38c url("./images/textured-paper.png");
+}
+
+.revealmenu-enter {
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+.revealmenu-enter.revealmenu-enter-active {
+  transform: scaleY(1);
+  /* transform-origin: top; */
+  transition: transform 200ms ease;
+}
+
+.revealmenu-enter-done {
+  transform: scaleY(1);
+}
+
+.revealmenu-exit {
+  transform: scaleY(1);
+  transform-origin: top;
+}
+
+.revealmenu-exit.revealmenu-exit-active {
+  transform: scaleY(0);
+  /* transform-origin: top; */
+  transition: transform 200ms ease;
+}
+
+.revealmenu-exit-done {
+  transform: scaleY(0);
 }
 
 input:-webkit-autofill,
@@ -642,19 +682,25 @@ label .MuiSvgIcon-root {
 /* Mobile Size  */
 
 @media (max-width: 500px) {
-  .alert-wrapper {
+  /* .alert-wrapper {
     left: 0.5rem;
     right: 0.5rem;
+    bottom: 0.5rem;
+  }
+
+  .alert-border {
+    padding: 0.25rem;
   }
 
   .alert {
     margin: 0.5rem;
-    padding: 1rem;
+    padding: 1rem 0.5rem;
+    max-width: calc(100% - 1rem);
   }
 
   .alert svg {
     margin-right: 0.5rem;
-  }
+  } */
 
   m .heading {
     padding-right: 0;
@@ -689,9 +735,9 @@ label .MuiSvgIcon-root {
     position: relative;
   }
 
-  .menu {
+  /* .menu {
     top: calc(100% + 4px);
-  }
+  } */
 
   .menu svg {
     font-size: 28px;

@@ -1,15 +1,16 @@
 import React, {useState, useContext, useEffect} from 'react'
 import AddIcon from '@material-ui/icons/Add';
-import SendIcon from '@material-ui/icons/Send';
+// import SendIcon from '@material-ui/icons/Send';
 import Fab from '@material-ui/core/Fab';
 import pen1 from '../sounds/Pen1.wav';
 import pen2 from '../sounds/Pen2.wav';
 // import Axios from 'axios';
 import AppContext from "../context/AppContext";
+import { SET_LOADING } from '../context/types';
 
 const Input = (props) => {
     const appContext = useContext(AppContext);
-    const {list, setItem} = appContext;
+    const {list, setItem, loading, setLoading} = appContext;
 
     const [inputText, setInputText] = useState("");
     const [editText, setEditText] = useState("");
@@ -34,6 +35,7 @@ const Input = (props) => {
     const create = (e) => {
         e.preventDefault();
         if (inputText) {
+            setLoading(true) 
             setItem(newItem)
             setInputText("");
             setEditText("")
@@ -44,7 +46,8 @@ const Input = (props) => {
             );
             audio.volume = 0.1;
             audio.play();
-            props.undoEdit && props.undoEdit() 
+            props.undoEdit && props.undoEdit()
+            setLoading(false) 
         }
     }
 
