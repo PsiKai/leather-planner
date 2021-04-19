@@ -23,14 +23,8 @@ const Today = (props) => {
     <Fragment>
       <div className="position-div inside-cover">
         <div className="grid-div">
-          <img 
-            src="./images/Bald-Eagle.png" 
-            className="watermark" 
-            alt="watermark"  
-          />
           <div className="page">
             <div className="heading">
-          
               <div className="widget">
                   <Datepicker />
                   <User />
@@ -40,13 +34,17 @@ const Today = (props) => {
               <Day />
             </div>
             <div className="pattern__wrapper" style={{overflowY: "auto", overflowX: "visible"}}>
-          <div className="pattern">
-            <Content/>
-          </div>
+              <div className="pattern">
+                <img 
+                  src="./images/Bald-Eagle.png" 
+                  className="watermark" 
+                  alt="watermark"  
+                />
+                <Content/>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      
       <img
         className="binder-rings"
         src="./images/binder-rings.png"

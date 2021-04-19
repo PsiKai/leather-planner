@@ -22,61 +22,6 @@ li {
   position: relative;
 }
 
-/* .alert-wrapper {
-  left: 2rem;
-  bottom: 2rem;
-  background: #381a14 url("./images/leather.png");
-  box-shadow: 0 0 25px 15px rgba(0, 0, 0, 0.4);
-  border-radius: 0.5rem;
-  z-index: 1000000;
-}
-
-.alert {
-  background: #fff4b0 url("./images/textured-paper.png");
-  padding: 2rem;
-  display: flex;
-  align-items: center;
-  margin: 1rem;
-  color: #381a14;
-  font-family: "Libre Baskerville", serif;
-}
-
-.alert svg {
-  margin-right: 1rem;
-}
-
-.fadein-enter {
-  opacity: 0;
-  height: 0;
-}
-
-.fadein-enter.fadein-enter-active {
-  opacity: 1;
-  height: 100%;
-  transition: all 400ms ease;
-}
-
-.fadein-enter-done {
-  opacity: 1;
-  height: 100%;
-}
-
-.fadein-exit {
-  opacity: 1;
-  height: 100%;
-}
-
-.fadein-exit.fadein-exit-active {
-  opacity: 0;
-  height: 0;
-  transition: all 400ms ease;
-}
-
-.fadein-exit-done {
-  opacity: 0;
-  height: 0;
-} */
-
 .position-div {
   width: 700px;
   margin: 40px auto auto;
@@ -135,13 +80,13 @@ li {
 }
 
 .watermark {
-  position: relative;
+  position: absolute;
   opacity: 0.1;
-  grid-row-start: 2;
+  /* grid-row-start: 2;
   grid-column-start: 3;
-  z-index: 0;
-  right: -30%;
-  top: 100px;
+  z-index: 0; */
+  right: 0;
+  top: 50px;
 }
 
 .page {
@@ -228,7 +173,6 @@ li {
 
 .menu {
   position: absolute;
-  /* bottom: -102%; */
   z-index: 2;
   background: #381a14 url("./images/leather.png");
   padding: 2px;
@@ -258,7 +202,6 @@ li {
 
 .revealmenu-enter.revealmenu-enter-active {
   transform: scaleY(1);
-  /* transform-origin: top; */
   transition: transform 200ms ease;
 }
 
@@ -315,6 +258,10 @@ input[type="text"]::placeholder {
   color: grey;
 }
 
+button:focus {
+  background-color: transparent !important;
+}
+
 .button button {
   background-color: #d4caa3;
   border: 1px solid #381a14;
@@ -328,6 +275,23 @@ input[type="text"]::placeholder {
 
 .button span svg {
   font-size: 1.1rem;
+}
+
+.button-appear-enter {
+  transform: scale(0) !important;
+}
+
+.button-appear-enter-active {
+  transform: scale(1) !important;
+  transition: transform 150ms cubic-bezier(0.44, 1.65, 0.69, 0.815) !important;
+}
+
+/* .button-appear-exit {
+} */
+
+.button-appear-exit-active {
+  transform: rotateZ(360deg) scale(0) !important;
+  transition: transform 350ms ease !important;
 }
 
 /* user and weather widget */
@@ -344,8 +308,8 @@ input[type="text"]::placeholder {
   height: 30px;
   width: 150px;
 
-  top: 3px;
-  right: -3px;
+  /* top: 3px;
+  right: -3px; */
   margin: 0 !important;
   border-bottom: none !important;
   box-shadow: none !important;
@@ -526,7 +490,7 @@ label .MuiSvgIcon-root {
   margin: 5px 20px;
   font-family: "Ubuntu", sans-serif;
   color: #d4caa3 !important;
-  transition: all 150ms ease !important;
+  transition: all 300ms ease !important;
 }
 
 .btn:hover {
@@ -611,7 +575,7 @@ label .MuiSvgIcon-root {
 
   .watermark {
     width: 400px;
-    position: absolute;
+    /* position: absolute; */
     right: 5%;
     top: 10%;
   }
@@ -682,27 +646,7 @@ label .MuiSvgIcon-root {
 /* Mobile Size  */
 
 @media (max-width: 500px) {
-  /* .alert-wrapper {
-    left: 0.5rem;
-    right: 0.5rem;
-    bottom: 0.5rem;
-  }
-
-  .alert-border {
-    padding: 0.25rem;
-  }
-
-  .alert {
-    margin: 0.5rem;
-    padding: 1rem 0.5rem;
-    max-width: calc(100% - 1rem);
-  }
-
-  .alert svg {
-    margin-right: 0.5rem;
-  } */
-
-  m .heading {
+  .heading {
     padding-right: 0;
   }
 
@@ -747,7 +691,7 @@ label .MuiSvgIcon-root {
   .watermark {
     width: 250px;
     right: 1%;
-    top: 23%;
+    top: 10%;
   }
 
   .date-label svg {

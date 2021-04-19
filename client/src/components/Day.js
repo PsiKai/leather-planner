@@ -1,9 +1,18 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect} from 'react'
 import AppContext from "../context/AppContext"
+import pageFlip from "../sounds/page-flip.wav"
 
 const Day = () => {
+
     const appContext = useContext(AppContext);
     const {date} = appContext;
+
+    useEffect(() => {
+        
+        var audio = new Audio(pageFlip);
+        audio.volume = 0.1;
+        audio.play();
+    }, [date])
     
     var dateString = date.replace(/-/g, " ")
     var dayOptions = { weekday: "long" }

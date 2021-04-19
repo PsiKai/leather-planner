@@ -1,5 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import AppContext from "../context/AppContext"
+import AuthContext from "../context/AuthContext"
 import axios from "axios";
 import CheckIcon from '@material-ui/icons/Check';
 import SearchIcon from '@material-ui/icons/Search';
@@ -10,14 +11,15 @@ let interval
 const Weather = () => {
   const appContext = useContext(AppContext)
   const {loading, setLoading} = appContext
-  // let apiKey = process.env.REACT_APP_WEATHER;
-  // const weatherSubmit = useRef()
 
-  // useEffect(() => {
-  //   var city = localStorage.getItem("city")
-  //   city && setLocation(city)
-  //   weatherSubmit.current.click();
-  // }, [])
+  const authContext = useContext(AuthContext)
+  const {setAlert} = authContext
+
+  useEffect(() => {
+    var city = localStorage.getItem("city")
+    city && setLocation(city)
+    // city && submitCity();
+  }, [])
 
   const [weather, setWeather] = useState(null);
   const [icon, setIcon] = useState("");
@@ -30,7 +32,7 @@ const Weather = () => {
   }
 
   let submitCity = (e) => {
-    e.preventDefault();
+    e && e.preventDefault();
     notCleared && clearInterval(interval)
     localStorage.setItem("city", location)
     getWeather();
@@ -42,7 +44,7 @@ const Weather = () => {
     setNotCleared(true)
     setLoading(true)
     if (location !== "") {
-      setLocation(location.toLowerCase().replace(/ /g, "+"))
+      setLocation(location.toLowerCase().replace(/ /g, "+")) 
       try {
         const res = await axios.post("/weather", {location});
         const data = res.data.weather
@@ -52,6 +54,8 @@ const Weather = () => {
         setLoading(false)
       } catch (error) {
         console.log(error);
+        setAlert("There was an error getting the weather")
+        setLoading(false)
       }
     }
 
@@ -93,9 +97,7 @@ const Weather = () => {
         <button type="submit"><CheckIcon /></button>
       </form>
       :
-      <button className="get-weather" onClick={() => setWeatherLabel(true)}>Weather <SearchIcon /></button>
-    
-    
+      <button className="get-weather" onClick={() => setWeatherLabel(true)}>Weather <SearchIcon /></button>  
   )
 };
 

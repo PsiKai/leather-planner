@@ -7,6 +7,7 @@ if (process.env.NODE_ENV !== 'production') {
 const express = require("express");
 const router = express.Router();
 const cors = require("cors");
+const secure = require("ssl-express-www")
 const axios = require('axios')
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -30,6 +31,7 @@ app.use(bodyParser.urlencoded({
   }));
 app.use(bodyParser.json());
 app.use(cors());
+app.use(secure)
 app.listen(port,() => console.log("Backend started on port " + port));
 
 const UserSchema = mongoose.Schema({

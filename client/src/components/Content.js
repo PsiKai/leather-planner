@@ -6,7 +6,7 @@ import { CircularProgress } from '@material-ui/core';
 
 const Content = () => {
     const appContext = useContext(AppContext);
-    const {list, items, loading} = appContext;
+    const {list, items} = appContext;
 
     useEffect(() => {
       appContext.getList(list)
@@ -32,7 +32,7 @@ const Content = () => {
               }
             )
           }
-          {loading ? <CircularProgress/> : <Input list={list}/>}
+          <Input list={list}/>
         </ul>
       </div>
     )
