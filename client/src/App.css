@@ -22,6 +22,17 @@ li {
   position: relative;
 }
 
+/* li::marker {
+  content: "- ";
+  font-family: sans-serif;
+  font-size: 1.3rem;
+  margin-right: 20px;
+} */
+
+.no-bullet-point {
+  list-style: none;
+}
+
 .position-div {
   width: 700px;
   margin: 40px auto auto;
@@ -677,6 +688,10 @@ label .MuiSvgIcon-root {
 
   .list li {
     position: relative;
+  }
+
+  li::marker {
+    font-size: 1rem;
   }
 
   /* .menu {

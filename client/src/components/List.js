@@ -1,4 +1,4 @@
-import React, {useContext, useState, useRef, Fragment} from 'react'
+import React, {useContext, useState, useRef, Fragment, useEffect} from 'react'
 import penCross from '../sounds/penCross1.wav';
 import AppContext from '../context/AppContext';
 import AuthContext from '../context/AuthContext';
@@ -9,6 +9,7 @@ import StrikethroughSIcon from '@material-ui/icons/StrikethroughS';
 import UndoIcon from '@material-ui/icons/Undo';
 import LabelImportantIcon from '@material-ui/icons/LabelImportant';
 import DeleteIcon from '@material-ui/icons/Delete';
+import TurnedInNotIcon from '@material-ui/icons/TurnedInNot';
 import {CSSTransition, TransitionGroup} from 'react-transition-group'
 
 
@@ -24,12 +25,11 @@ const List = ({list, id, moved, style, content}) => {
     const listItemText = useRef()
     const selectedListItem = useRef()
     
-    
     const cross = () => {
         const strike = listItemText.current.classList
         strike.toggle("strikethrough")
         var audio = new Audio(penCross);
-        strike.value === "strikethrough" && audio.play();
+        strike.value && audio.play();
         var item = {
             list: list, 
             item: listItemText.current.innerHTML, 
@@ -70,13 +70,27 @@ const List = ({list, id, moved, style, content}) => {
     }
 
 
+    let flagStyle = {
+        position: "absolute",
+        top: "8px",
+        left: "-26px"
+    }
+
+    
+
     return (
         !edit ?
         <Fragment>
             {menu && <div className="menu-backdrop" onClick={openMenu}></div>}
-            <li onClick={openMenu} ref={selectedListItem}>
+            <li 
+                onClick={openMenu} 
+                ref={selectedListItem} 
+                className={moved ? "no-bullet-point" : ""}
+            >
                 <div className="list-wrapper">
-                    {moved && <LabelImportantIcon />}
+                    {/* {moved && <LabelImportantIcon />} */}
+                    {moved && <TurnedInNotIcon style={flagStyle}/>}
+                    
                     <span ref={listItemText} className={style}>{content}</span>
                 </div>
                 <TransitionGroup>
