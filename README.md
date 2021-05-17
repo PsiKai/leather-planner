@@ -31,4 +31,4 @@ This app includes a weather widget that asks for the user's town to get the weat
 
 ### Hosting
 
-The current version of this application can be found at https://leather-journal.herokuapp.com
+The current version of this application can be found at https://leather-journal.herokuapp.com hosted by heroku.
