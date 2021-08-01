@@ -96,6 +96,30 @@ li {
   background-color: rgba(0, 0, 0, 0.04);
 }
 
+.profile--wrapper {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 130px 1fr;
+  gap: 0 1rem;
+  align-items: baseline;
+}
+
+.profile--info {
+  margin: 0;
+}
+
+.profile--label, .profile--info {
+  font-family: "Libre Baskerville", serif;
+  color: inherit;
+  font-size: 18px;
+}
+
+.profile--label {
+  text-align: right;
+  font-weight: 700;
+}
+
+
 /* Images */
 
 .binder-rings {

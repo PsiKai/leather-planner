@@ -27,9 +27,11 @@ const EditProfile = () => {
                                 alt="watermark"
                             />
                             <div className="content">
-                                <div>
-                                    {name}
-                                    {email}
+                                <div className="profile--wrapper">
+                                    <label className="profile--label" htmlFor="username">Username:</label>
+                                    <p id="username" className="profile--info">{name}</p>
+                                    <label className="profile--label" htmlFor="email">Email:</label>
+                                    <p id="email" className="profile--info">{email}</p>
                                 </div>
                             </div>
                         </div>
