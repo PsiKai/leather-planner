@@ -7,7 +7,7 @@ import AuthContext from "../context/AuthContext"
 const EditProfile = () => {
     const authContext = useContext(AuthContext)
     const { user, getUser } = authContext
-    const { name, email } = user
+    const { name, email } = user ?? {}
 
     const [editName, setEditName] = useState(false)
     const [editEmail, setEditEmail] = useState(false)
