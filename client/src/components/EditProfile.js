@@ -3,18 +3,20 @@ import Alert from "../components/Alert"
 import { Link } from 'react-router-dom'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import AuthContext from "../context/AuthContext"
+import axios from 'axios';
 
 const EditProfile = () => {
     const authContext = useContext(AuthContext)
-    const { user, getUser } = authContext
+    const { user, getUser, setAlert } = authContext
     const { name, email } = user ?? {}
 
     const [editName, setEditName] = useState(false)
     const [editEmail, setEditEmail] = useState(false)
-    const [info, setInfo] = useState({ name, email })
+    const [info, setInfo] = useState({ name, email } ?? {})
 
     useEffect(() => {
         getUser();
+        setInfo({ name, email })
         //eslint-disable-next-line
     }, [])
 
@@ -25,9 +27,18 @@ const EditProfile = () => {
         })
     }
 
-    const submitInfo = (e) => {
+    const submitInfo = async (e) => {
         e.preventDefault()
-        const { name } = e.target[0]
+        const { name, value } = e.target[0]
+        console.log(e.target[0]);
+        try {
+            const res = await axios.patch("/updateUser", { user, name, value })
+            const { msg } = res.data
+            getUser()
+            setAlert(msg)
+        } catch (error) {
+            setAlert(`Error updating ${name}`)
+        }
         name === "name" ? setEditName(false) : setEditEmail(false)
     }
 
@@ -50,7 +61,7 @@ const EditProfile = () => {
                                 alt="watermark"
                             />
                             <div className="content">
-                                {user && <div className="profile--wrapper">
+                                <div className="profile--wrapper">
                                     <label className="profile--label" htmlFor="username">Username:</label>
                                     {editName ?
                                         <form onSubmit={submitInfo}>
@@ -67,7 +78,7 @@ const EditProfile = () => {
                                         </form>
                                         :
                                         <p id="email" className="profile--info" onClick={() => setEditEmail(true)}>{email}</p>}
-                                </div>}
+                                </div>
                             </div>
                         </div>
                     </div>
