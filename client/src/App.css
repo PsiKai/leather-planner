@@ -9,6 +9,7 @@ body {
 
 a {
   text-decoration: none;
+  color: inherit;
 }
 
 ul.list {
@@ -67,6 +68,13 @@ li {
 .date {
   font-size: 2.7rem;
   margin-top: 25px;
+  font-family: "Libre Baskerville", serif;
+  font-weight: 700;
+  background: #fff4b0 url("./images/textured-paper.png");
+}
+
+.profile-heading {
+  font-size: 2.7rem;
   font-family: "Libre Baskerville", serif;
   font-weight: 700;
   background: #fff4b0 url("./images/textured-paper.png");
