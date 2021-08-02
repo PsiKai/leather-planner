@@ -2,8 +2,13 @@ import React, { useContext, useState, useEffect } from 'react'
 import Alert from "../components/Alert"
 import { Link } from 'react-router-dom'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import PersonIcon from '@material-ui/icons/Person';
 import AuthContext from "../context/AuthContext"
 import axios from 'axios';
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
+import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
+import Fab from '@material-ui/core/Fab';
 
 const EditProfile = () => {
     const authContext = useContext(AuthContext)
@@ -13,6 +18,7 @@ const EditProfile = () => {
     const [editName, setEditName] = useState(false)
     const [editEmail, setEditEmail] = useState(false)
     const [info, setInfo] = useState({ name, email } ?? {})
+    const [nameMenu, setNameMenu] = useState(false)
 
     useEffect(() => {
         getUser();
@@ -42,6 +48,13 @@ const EditProfile = () => {
         name === "name" ? setEditName(false) : setEditEmail(false)
     }
 
+    const fabStyle = {
+        maxHeight: "36px",
+        minHeight: "36px",
+        minWidth: "36px",
+        maxWidth: "36px",
+    }
+
     return (
         <div className="position-div inside-cover">
             <div className="grid-div">
@@ -51,7 +64,10 @@ const EditProfile = () => {
                             <ArrowBackIosIcon />
                             Back
                         </Link>
-                        <h1 className="profile-heading">Profile Settings</h1>
+                        <h1 className="profile-heading">
+                            Profile Settings
+                            <PersonIcon />
+                        </h1>
                     </div>
                     <div className="pattern__wrapper" style={{ overflowY: "auto", overflowX: "visible" }}>
                         <div className="pattern" style={{ repeatingLinearGradient: "unset" }}>
@@ -65,16 +81,36 @@ const EditProfile = () => {
                                     <label className="profile--label" htmlFor="username">Username:</label>
                                     {editName ?
                                         <form onSubmit={submitInfo}>
-                                            <input className="browser-default" name="name" type="text" onChange={editInfo} value={info.name}></input>
-                                            <button type="submit">Submit</button>
+                                            <input
+                                                className="new-item browser-default"
+                                                name="name"
+                                                type="text"
+                                                onChange={editInfo}
+                                                value={info.name}
+                                                autoFocus
+                                            />
+                                            <div style={{ position: "absolute" }}>
+                                                <Fab style={fabStyle} type="submit"><CheckCircleOutlineIcon /></Fab>
+                                                <Fab style={fabStyle} onClick={() => setEditName(false)} ><CancelOutlinedIcon /></Fab>
+                                            </div>
                                         </form>
                                         :
-                                        <p id="username" className="profile--info" onClick={() => setEditName(true)}>{name}</p>}
+                                        <p id="username" className="profile--info" onClick={() => { setEditName(true); setNameMenu(true) }}>{name}</p>}
                                     <label className="profile--label" htmlFor="email">Email:</label>
                                     {editEmail ?
                                         <form onSubmit={submitInfo}>
-                                            <input className="browser-default" name="email" type="text" onChange={editInfo} value={info.email}></input>
-                                            <button type="submit">Submit</button>
+                                            <input
+                                                className="new-item browser-default"
+                                                name="email"
+                                                type="text"
+                                                onChange={editInfo}
+                                                value={info.email}
+                                                autoFocus
+                                            />
+                                            <div style={{ position: "absolute" }}>
+                                                <Fab style={fabStyle} type="submit"><CheckCircleOutlineIcon /></Fab>
+                                                <Fab style={fabStyle} onClick={() => setEditEmail(false)} ><CancelOutlinedIcon /></Fab>
+                                            </div>
                                         </form>
                                         :
                                         <p id="email" className="profile--info" onClick={() => setEditEmail(true)}>{email}</p>}

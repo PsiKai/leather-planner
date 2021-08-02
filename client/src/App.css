@@ -81,6 +81,16 @@ li {
   position: absolute;
   bottom: 0;
   margin: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.profile-heading svg {
+  font-size: 5rem;
+  position: relative;
+  bottom: -.5rem;
 }
 
 .profile-nav {
@@ -102,6 +112,43 @@ li {
   grid-template-columns: 130px 1fr;
   gap: 0 1rem;
   align-items: baseline;
+  margin-top: 4px;
+}
+
+.profile--wrapper p {
+  cursor: pointer;
+}
+
+.profile--wrapper > * {
+  margin-bottom: 35px;
+}
+
+.profile--wrapper button {
+  color: inherit;
+  background: inherit;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  line-height: 1;
+  padding: 0;
+  font-size: 0;
+  position: relative;
+  top: -4px;
+}
+
+.profile--wrapper input[type="text"] {
+  display: block;
+  font-family: "Libre Baskerville", serif !important;
+  font-weight: 400 !important;
+  font-size: 18px !important;
+  max-width: 100% !important;
+  letter-spacing: 1.5px;
+  word-spacing: 3px;
+  text-indent: 0 !important;
+}
+
+.profile--wrapper input[type="text"]:focus {
+  font-size: 18px !important;
 }
 
 .profile--info {
@@ -700,6 +747,22 @@ label .MuiSvgIcon-root {
   .user {
     margin-top: 0;
   }
+
+  .profile--wrapper {
+    display: block;
+  }
+  
+  .profile--wrapper > * {
+    margin-bottom: 33px;
+  }
+
+  .profile--wrapper input[type="text"].new-item {
+    height: 33px !important;
+  }
+
+  .profile--wrapper button {
+    top: -8px;
+  }
 }
 
 /* Mobile Size  */
@@ -815,6 +878,7 @@ label .MuiSvgIcon-root {
     display: block !important;
     margin: 2rem auto 0;
   }
+
 }
 
 .strikethrough {
