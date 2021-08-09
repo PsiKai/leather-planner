@@ -37,7 +37,6 @@ const EditProfile = () => {
     const submitInfo = async (e) => {
         e.preventDefault()
         const { name, value } = e.target[0]
-        console.log(e.target[0]);
         try {
             const res = await axios.patch("/updateUser", { user, name, value })
             const { msg } = res.data

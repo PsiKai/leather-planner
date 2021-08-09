@@ -354,9 +354,10 @@ app.post("/weather", async (req, res) => {
 
 app.patch("/updateUser", auth, (req, res) => {
   const { user, name, value } = req.body
+  const { _id } = user
   const set = {}
   set[name] = value
-  User.findOneAndUpdate({ "user": user.id }, { "$set": set }, (err, success) => {
+  User.findOneAndUpdate({ _id }, { "$set": set }, (err, success) => {
     if (err) {
       console.log(err)
       res.json({ msg: `Error updating ${name}` })
