@@ -9,6 +9,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
 import Fab from '@material-ui/core/Fab';
+import PasswordField from './PasswordField';
 
 const EditProfile = () => {
     const authContext = useContext(AuthContext)
@@ -70,7 +71,7 @@ const EditProfile = () => {
                         </h1>
                     </div>
                     <div className="pattern__wrapper" style={{ overflowY: "auto", overflowX: "visible" }}>
-                        <div className="pattern" style={{ repeatingLinearGradient: "unset" }}>
+                        <div className="pattern">
                             <img
                                 src="./images/Bald-Eagle.png"
                                 className="watermark"
@@ -115,6 +116,7 @@ const EditProfile = () => {
                                         :
                                         <p id="email" className="profile--info" onClick={() => setEditEmail(true)}>{email}</p>}
                                 </div>
+                                <PasswordField />
                             </div>
                         </div>
                     </div>

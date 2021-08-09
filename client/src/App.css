@@ -90,7 +90,7 @@ li {
 .profile-heading svg {
   font-size: 5rem;
   position: relative;
-  bottom: -.5rem;
+  bottom: -0.5rem;
 }
 
 .profile-nav {
@@ -99,7 +99,9 @@ li {
   padding: 0.5rem;
   display: inline-flex;
   align-items: center;
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
 .profile-nav:hover {
@@ -136,7 +138,8 @@ li {
   top: -4px;
 }
 
-.profile--wrapper input[type="text"] {
+.profile--wrapper input[type="text"],
+.password-reset input[type="password"] {
   display: block;
   font-family: "Libre Baskerville", serif !important;
   font-weight: 400 !important;
@@ -147,7 +150,8 @@ li {
   text-indent: 0 !important;
 }
 
-.profile--wrapper input[type="text"]:focus {
+.profile--wrapper input[type="text"]:focus,
+.password-reset input[type="password"]:focus {
   font-size: 18px !important;
 }
 
@@ -155,7 +159,8 @@ li {
   margin: 0;
 }
 
-.profile--label, .profile--info {
+.profile--label,
+.profile--info {
   font-family: "Libre Baskerville", serif;
   color: inherit;
   font-size: 18px;
@@ -165,7 +170,6 @@ li {
   text-align: right;
   font-weight: 700;
 }
-
 
 /* Images */
 
@@ -338,7 +342,8 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: inherit !important;
 }
 
-input[type="text"].new-item {
+input[type="text"].new-item,
+.password-reset input[type="password"] {
   width: 85%;
   height: 29px !important;
   font-size: 20px;
@@ -351,14 +356,24 @@ input[type="text"].new-item {
   border: none;
 }
 
-input[type="text"]:focus {
+.password-reset input[type="password"] {
+  margin-left: 1rem;
+  height: 34px !important;
+}
+
+input[type="text"]:focus,
+.password-reset input[type="password"]:focus {
   outline: none;
-  font-size: 20px !important;
   max-width: 75%;
   background-color: transparent;
 }
 
-input[type="text"]::placeholder {
+input[type="text"]:focus {
+  font-size: 20px !important;
+}
+
+input[type="text"]::placeholder,
+.password-reset input[type="password"]::placeholder {
   font-family: "Dancing Script", cursive;
   font-size: 20px !important;
   color: grey;
@@ -751,7 +766,7 @@ label .MuiSvgIcon-root {
   .profile--wrapper {
     display: block;
   }
-  
+
   .profile--wrapper > * {
     margin-bottom: 33px;
   }
@@ -852,6 +867,7 @@ label .MuiSvgIcon-root {
   h1.profile-heading {
     font-size: 1.9rem;
     bottom: -1.5rem;
+    position: relative;
   }
 
   input[type="text"].new-item {
@@ -863,6 +879,10 @@ label .MuiSvgIcon-root {
 
   input[type="text"]::placeholder {
     font-size: 18px !important;
+  }
+
+  .password-reset input[type="password"] {
+    height: 30px !important;
   }
 
   .modal {
@@ -879,6 +899,10 @@ label .MuiSvgIcon-root {
     margin: 2rem auto 0;
   }
 
+  .profile-nav {
+    left: -0.5rem;
+    position: relative;
+  }
 }
 
 .strikethrough {
