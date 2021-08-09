@@ -377,10 +377,12 @@ app.patch("/updatePassword", auth, async (req, res) => {
   const hashNew = await bcrypt.hash(newPass, salt)
 
   if (isMatch) {
-    User.findOneAndUpdate({"user": _id}, { "$set": { password: hashNew}}, (err) => {
+    User.findOneAndUpdate({_id}, { password: hashNew }, (err) => {
       if (err) {
+        console.error(`${dbUser.name} failed to update password field with error: ${err}`)
         res.status(500).json({msg: "There was an error updating you password"})
       } else {
+        console.log(`${dbUser.name} updated password field`);
         res.status(200).json({ msg: "Password successfully updated" })
       }
     })
