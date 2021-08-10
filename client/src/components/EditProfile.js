@@ -5,9 +5,9 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import PersonIcon from '@material-ui/icons/Person';
 import AuthContext from "../context/AuthContext"
 import axios from 'axios';
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
+import EditIcon from '@material-ui/icons/Edit';
 import Fab from '@material-ui/core/Fab';
 import PasswordField from './PasswordField';
 
@@ -26,6 +26,10 @@ const EditProfile = () => {
         setInfo({ name, email })
         //eslint-disable-next-line
     }, [])
+
+    useEffect(() => {
+        setInfo({ name, email })
+    }, [user])
 
     const editInfo = (e) => {
         const { name, value } = e.target
@@ -95,7 +99,7 @@ const EditProfile = () => {
                                             </div>
                                         </form>
                                         :
-                                        <p id="username" className="profile--info" onClick={() => { setEditName(true); setNameMenu(true) }}>{name}</p>}
+                                        <p id="username" className="profile--info" onClick={() => setEditName(true)}>{name} <EditIcon /></p>}
                                     <label className="profile--label" htmlFor="email">Email:</label>
                                     {editEmail ?
                                         <form onSubmit={submitInfo}>
@@ -113,7 +117,7 @@ const EditProfile = () => {
                                             </div>
                                         </form>
                                         :
-                                        <p id="email" className="profile--info" onClick={() => setEditEmail(true)}>{email}</p>}
+                                        <p id="email" className="profile--info" onClick={() => setEditEmail(true)}>{email} <EditIcon /></p>}
                                 </div>
                                 <PasswordField />
                             </div>

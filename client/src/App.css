@@ -136,6 +136,11 @@ li {
   font-size: 0;
   position: relative;
   top: -4px;
+  margin-right: 1rem;
+}
+
+.profile--wrapper button:hover {
+  background-color: #fff4b080;
 }
 
 .profile--wrapper input[type="text"],
@@ -157,6 +162,9 @@ li {
 
 .profile--info {
   margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .profile--label,
@@ -167,25 +175,12 @@ li {
 }
 
 .profile--label {
-  text-align: right;
   font-weight: 700;
 }
 
 button.password--submit {
-  background-color: #fff4b0;
-  outline: none;
-  border: none;
-  box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.4);
-  font-size: 1rem;
-  font-family: "Libre Baskerville", serif;
-  color: #381a14;
   margin-left: 1rem;
-  cursor: pointer;
-  transition: background-color 150ms ease;
-}
-
-button.password--submit:hover {
-  background-color: #fff4b080;
+  margin-top: 1.5rem;
 }
 
 /* Images */
