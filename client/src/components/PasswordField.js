@@ -13,7 +13,6 @@ const PasswordField = () => {
             try {
                 const res = await axios.patch("/updatePassword", {...password, user})
                 setAlert(res.data.msg)
-                setPassword({oldPass: "", newPass: ""})
             } catch (error) {
                 console.log()
                 setAlert(error.response.data.msg)
@@ -21,7 +20,7 @@ const PasswordField = () => {
         } else {
             setAlert("Please enter both password fields")
         }
-        
+        setPassword({oldPass: "", newPass: ""})
     }
     
     const editPassword = (e) => {
@@ -51,7 +50,7 @@ const PasswordField = () => {
                     value={password.newPass}
                     placeholder="New Password"
                 />
-                <button type="submit">Save Changes</button>
+                <button type="submit" class="btn password--submit">Save Password</button>
             </form>
         </div>
     )

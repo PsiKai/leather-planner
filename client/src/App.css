@@ -171,6 +171,23 @@ li {
   font-weight: 700;
 }
 
+button.password--submit {
+  background-color: #fff4b0;
+  outline: none;
+  border: none;
+  box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.4);
+  font-size: 1rem;
+  font-family: "Libre Baskerville", serif;
+  color: #381a14;
+  margin-left: 1rem;
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+button.password--submit:hover {
+  background-color: #fff4b080;
+}
+
 /* Images */
 
 .binder-rings {
@@ -379,9 +396,9 @@ input[type="text"]::placeholder,
   color: grey;
 }
 
-button:focus {
+/* button:focus {
   background-color: transparent !important;
-}
+} */
 
 .button button {
   background-color: #d4caa3;
