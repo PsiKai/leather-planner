@@ -21,7 +21,7 @@ const User = () => {
 
     return (
         <div className="user">
-            <FormLabel>
+            <FormLabel className="user-nav">
                 <Link to="/profile">
                     <span>{userName}</span>
                     <PersonIcon />
