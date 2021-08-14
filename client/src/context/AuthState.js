@@ -29,6 +29,9 @@ const AuthState = (props) => {
     const getUser = async () => {
         if (localStorage.token) {
             setAuthToken(localStorage.token)
+        } else {
+            dispatch({type: LOG_OUT})
+            setAlert("You have been logged out")
         }
         try {
             const res = await axios.get('/getUser')
@@ -38,8 +41,9 @@ const AuthState = (props) => {
                 payload: res.data
             });
         } catch (err) {
-            console.log(err);
-            // dispatch({type: LOG_OUT})
+            dispatch({type: LOG_OUT})
+            setAlert(err.response.data.msg)
+            console.error(err.response, this);
         }
     }
 
@@ -57,7 +61,7 @@ const AuthState = (props) => {
             })
             getUser();
         } catch (err) {
-            console.log(err.response);
+            console.error(err.response);
             setAlert(err.response.data.msg)
             dispatch({
                 type: LOG_OUT

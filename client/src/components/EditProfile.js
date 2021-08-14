@@ -1,15 +1,19 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Alert from "../components/Alert"
 import { Link } from 'react-router-dom'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import PersonIcon from '@material-ui/icons/Person';
+import AuthContext from "../context/AuthContext"
 
 import pageFlip from "../sounds/page-flip.wav"
 import EditInfo from './EditInfo';
 import PasswordField from './PasswordField';
 
 const EditProfile = () => {
-    useEffect(() => {       
+    const authContext = useContext(AuthContext)
+    useEffect(() => {  
+        
+        authContext.getUser();     
         var audio = new Audio(pageFlip);
         audio.volume = 0.1;
         audio.play();

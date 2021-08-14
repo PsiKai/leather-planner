@@ -49,7 +49,7 @@ const PasswordField = () => {
                     value={password.newPass}
                     placeholder="New Password"
                 />
-                <button type="submit" class="btn password--submit">Save Password</button>
+                <button type="submit" className="btn password--submit">Save Password</button>
             </form>
         </div>
     )

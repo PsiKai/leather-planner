@@ -7,7 +7,7 @@ module.exports = function (req, res, next) {
 
   // check if not token
   if (!token) {
-    return res.status(401).json({ msg: "no token, authorization denied" });
+    return res.status(401).json({ msg: "You are not logged in" });
   }
 
   try {
@@ -16,6 +16,6 @@ module.exports = function (req, res, next) {
     req.user = decoded.user;
     next();
   } catch (err) {
-    res.status(401).json({ msg: "token is not valid" });
+    res.status(401).json({ msg: "You have been logged out" });
   }
 };

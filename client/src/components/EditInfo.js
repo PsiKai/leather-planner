@@ -16,7 +16,7 @@ const EditInfo = () => {
     const [info, setInfo] = useState({ name, email } ?? {})
 
     useEffect(() => {
-        getUser();
+        // getUser();
         setInfo({ name, email })
         //eslint-disable-next-line
     }, [])
