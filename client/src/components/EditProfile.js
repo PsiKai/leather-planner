@@ -1,14 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Alert from "../components/Alert"
 import { Link } from 'react-router-dom'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import PersonIcon from '@material-ui/icons/Person';
 
+import pageFlip from "../sounds/page-flip.wav"
 import EditInfo from './EditInfo';
 import PasswordField from './PasswordField';
 
 const EditProfile = () => {
-    
+    useEffect(() => {       
+        var audio = new Audio(pageFlip);
+        audio.volume = 0.1;
+        audio.play();
+        //eslint-disable-next-line
+    }, [])
+
+
     return (
         <div className="position-div inside-cover">
             <div className="grid-div">

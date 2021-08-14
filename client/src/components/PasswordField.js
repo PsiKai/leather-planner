@@ -14,7 +14,6 @@ const PasswordField = () => {
                 const res = await axios.patch("/updatePassword", {...password, user})
                 setAlert(res.data.msg)
             } catch (error) {
-                console.log()
                 setAlert(error.response.data.msg)
             }
         } else {

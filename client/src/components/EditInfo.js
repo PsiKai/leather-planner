@@ -66,12 +66,18 @@ const EditInfo = () => {
                         autoFocus
                     />
                     <div style={{ position: "absolute" }}>
-                        <Fab style={fabStyle} type="submit"><CheckCircleOutlineIcon /></Fab>
-                        <Fab style={fabStyle} onClick={() => setEditName(false)} ><CancelOutlinedIcon /></Fab>
+                        <Fab style={fabStyle} type="submit">
+                            <CheckCircleOutlineIcon />
+                        </Fab>
+                        <Fab style={fabStyle} onClick={() => setEditName(false)}>
+                            <CancelOutlinedIcon />
+                        </Fab>
                     </div>
                 </form>
                 :
-                <p id="username" className="profile--info" onClick={() => setEditName(true)}>{name} <EditIcon /></p>}
+                <p id="username" className="profile--info" onClick={() => setEditName(true)}>
+                    {name} <EditIcon />
+                </p>}
             <label className="profile--label" htmlFor="email">Email:</label>
             {editEmail ?
                 <form onSubmit={submitInfo}>
@@ -84,12 +90,18 @@ const EditInfo = () => {
                         autoFocus
                     />
                     <div style={{ position: "absolute" }}>
-                        <Fab style={fabStyle} type="submit"><CheckCircleOutlineIcon /></Fab>
-                        <Fab style={fabStyle} onClick={() => setEditEmail(false)} ><CancelOutlinedIcon /></Fab>
+                        <Fab style={fabStyle} type="submit">
+                            <CheckCircleOutlineIcon />
+                        </Fab>
+                        <Fab style={fabStyle} onClick={() => setEditEmail(false)} >
+                            <CancelOutlinedIcon />
+                        </Fab>
                     </div>
                 </form>
                 :
-                <p id="email" className="profile--info" onClick={() => setEditEmail(true)}>{email} <EditIcon /></p>}
+                <p id="email" className="profile--info" onClick={() => setEditEmail(true)}>
+                    {email} <EditIcon />
+                </p>}
         </div>
     )
 }
