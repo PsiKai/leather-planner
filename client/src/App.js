@@ -30,7 +30,7 @@ function App() {
           <Switch>
             <PrivateRoute exact path="/today" component={Today} />
             <Route exact path="/" component={Cover} />
-            <Route exact path="/profile" component={EditProfile} />
+            <PrivateRoute exact path="/profile" component={EditProfile} />
           </Switch>
         </Router>
       </AppState>
