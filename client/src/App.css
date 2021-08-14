@@ -903,6 +903,11 @@ label .MuiSvgIcon-root {
     font-size: 18px !important;
   }
 
+  .password-reset {
+    position: relative;
+    top: 32px;
+  }
+
   .password-reset input[type="password"] {
     height: 30px !important;
   }
