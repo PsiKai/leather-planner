@@ -9,6 +9,7 @@ body {
 
 a {
   text-decoration: none;
+  color: inherit;
 }
 
 ul.list {
@@ -70,6 +71,126 @@ li {
   font-family: "Libre Baskerville", serif;
   font-weight: 700;
   background: #fff4b0 url("./images/textured-paper.png");
+}
+
+.profile-heading {
+  font-size: 2.7rem;
+  font-family: "Libre Baskerville", serif;
+  font-weight: 700;
+  background: #fff4b0 url("./images/textured-paper.png");
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.profile-heading svg {
+  font-size: 5rem;
+  position: relative;
+  bottom: -0.5rem;
+}
+
+.profile-nav {
+  font-family: "Libre Baskerville", serif;
+  font-weight: 700;
+  padding: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+.user-nav,
+.profile-nav {
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.user-nav {
+  padding: 0 5px 5px 5px !important;
+  margin: 0 -5px 0;
+}
+
+.profile-nav:hover,
+.user-nav:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.profile--wrapper {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 130px 1fr;
+  gap: 0 1rem;
+  align-items: baseline;
+  margin-top: 4px;
+}
+
+.profile--wrapper p {
+  cursor: pointer;
+}
+
+.profile--wrapper > * {
+  margin-bottom: 35px;
+}
+
+.profile--wrapper button {
+  color: inherit;
+  background: inherit;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  line-height: 1;
+  padding: 0;
+  font-size: 0;
+  position: relative;
+  top: -4px;
+  margin-right: 1rem;
+}
+
+.profile--wrapper button:hover {
+  background-color: #fff4b080;
+}
+
+.profile--wrapper input[type="text"],
+.password-reset input[type="password"] {
+  display: block;
+  font-family: "Libre Baskerville", serif !important;
+  font-weight: 400 !important;
+  font-size: 18px !important;
+  max-width: 100% !important;
+  letter-spacing: 1.5px;
+  word-spacing: 3px;
+  text-indent: 0 !important;
+}
+
+.profile--wrapper input[type="text"]:focus,
+.password-reset input[type="password"]:focus {
+  font-size: 18px !important;
+}
+
+.profile--info {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile--label,
+.profile--info {
+  font-family: "Libre Baskerville", serif;
+  color: inherit;
+  font-size: 18px;
+}
+
+.profile--label {
+  font-weight: 700;
+}
+
+button.password--submit {
+  margin-left: 1rem;
+  margin-top: 1.5rem;
 }
 
 /* Images */
@@ -243,7 +364,8 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: inherit !important;
 }
 
-input[type="text"].new-item {
+input[type="text"].new-item,
+.password-reset input[type="password"] {
   width: 85%;
   height: 29px !important;
   font-size: 20px;
@@ -256,22 +378,32 @@ input[type="text"].new-item {
   border: none;
 }
 
-input[type="text"]:focus {
+.password-reset input[type="password"] {
+  margin-left: 1rem;
+  height: 34px !important;
+}
+
+input[type="text"]:focus,
+.password-reset input[type="password"]:focus {
   outline: none;
-  font-size: 20px !important;
   max-width: 75%;
   background-color: transparent;
 }
 
-input[type="text"]::placeholder {
+input[type="text"]:focus {
+  font-size: 20px !important;
+}
+
+input[type="text"]::placeholder,
+.password-reset input[type="password"]::placeholder {
   font-family: "Dancing Script", cursive;
   font-size: 20px !important;
   color: grey;
 }
 
-button:focus {
+/* button:focus {
   background-color: transparent !important;
-}
+} */
 
 .button button {
   background-color: #d4caa3;
@@ -439,7 +571,7 @@ label .MuiSvgIcon-root {
 }
 
 .user button.MuiButtonBase-root {
-  margin: 5px -5px 0;
+  margin: 0 -5px 0;
   font-family: "Libre Baskerville", serif;
   font-weight: 700;
 }
@@ -652,6 +784,22 @@ label .MuiSvgIcon-root {
   .user {
     margin-top: 0;
   }
+
+  .profile--wrapper {
+    display: block;
+  }
+
+  .profile--wrapper > * {
+    margin-bottom: 33px;
+  }
+
+  .profile--wrapper input[type="text"].new-item {
+    height: 33px !important;
+  }
+
+  .profile--wrapper button {
+    top: -8px;
+  }
 }
 
 /* Mobile Size  */
@@ -738,6 +886,12 @@ label .MuiSvgIcon-root {
     font-size: 1.9rem;
   }
 
+  h1.profile-heading {
+    font-size: 1.9rem;
+    bottom: -1.5rem;
+    position: relative;
+  }
+
   input[type="text"].new-item {
     max-width: none;
     font-size: 18px !important;
@@ -747,6 +901,15 @@ label .MuiSvgIcon-root {
 
   input[type="text"]::placeholder {
     font-size: 18px !important;
+  }
+
+  .password-reset {
+    position: relative;
+    top: 32px;
+  }
+
+  .password-reset input[type="password"] {
+    height: 30px !important;
   }
 
   .modal {
@@ -761,6 +924,11 @@ label .MuiSvgIcon-root {
   .modal button {
     display: block !important;
     margin: 2rem auto 0;
+  }
+
+  .profile-nav {
+    left: -0.5rem;
+    position: relative;
   }
 }
 

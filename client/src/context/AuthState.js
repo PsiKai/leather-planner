@@ -1,4 +1,4 @@
-import React, {useReducer} from "react";
+import React, { useReducer } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import AuthContext from "./AuthContext";
@@ -27,7 +27,7 @@ const AuthState = (props) => {
     const [state, dispatch] = useReducer(authReducer, initialState)
 
     const getUser = async () => {
-        if(localStorage.token) {
+        if (localStorage.token) {
             setAuthToken(localStorage.token)
         }
         try {
@@ -38,7 +38,8 @@ const AuthState = (props) => {
                 payload: res.data
             });
         } catch (err) {
-            dispatch({type: LOG_OUT})
+            console.log(err);
+            // dispatch({type: LOG_OUT})
         }
     }
 
@@ -84,14 +85,14 @@ const AuthState = (props) => {
             })
         }
     }
-    
-    const logOut = () => dispatch({type: LOG_OUT})
+
+    const logOut = () => dispatch({ type: LOG_OUT })
 
     const setAlert = (msg) => {
         const id = uuidv4();
         dispatch({
             type: SET_ALERT,
-            payload: {msg, id}
+            payload: { msg, id }
         })
         setTimeout(() => {
             dispatch({
@@ -100,13 +101,13 @@ const AuthState = (props) => {
             })
         }, 5000)
     }
-    
+
 
     const moveItem = async (item) => {
         const res = await axios.post(
             "/move",
             item,
-            {"Content-Type": "*/*"}
+            { "Content-Type": "*/*" }
         )
         console.log(res.data.msg);
         setAlert(res.data.msg);
@@ -116,7 +117,7 @@ const AuthState = (props) => {
     const deleteItem = async (item) => {
         const res = await axios.delete(
             '/delete',
-            {data: item},
+            { data: item },
             // {"Content-Type": "*/*"}
         )
         setAlert(res.data.msg)
@@ -140,7 +141,7 @@ const AuthState = (props) => {
                 logOut,
                 setAlert
             }}>
-                {props.children}
+            {props.children}
         </AuthContext.Provider>
     )
 }

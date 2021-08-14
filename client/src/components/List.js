@@ -1,4 +1,4 @@
-import React, {useContext, useState, useRef, Fragment, useEffect} from 'react'
+import React, { useContext, useState, useRef, Fragment, useEffect } from 'react'
 import penCross from '../sounds/penCross1.wav';
 import AppContext from '../context/AppContext';
 import AuthContext from '../context/AuthContext';
@@ -10,30 +10,30 @@ import UndoIcon from '@material-ui/icons/Undo';
 import LabelImportantIcon from '@material-ui/icons/LabelImportant';
 import DeleteIcon from '@material-ui/icons/Delete';
 import TurnedInNotIcon from '@material-ui/icons/TurnedInNot';
-import {CSSTransition, TransitionGroup} from 'react-transition-group'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 
-const List = ({list, id, moved, style, content}) => {
+const List = ({ list, id, moved, style, content }) => {
     const appContext = useContext(AppContext);
     const authContext = useContext(AuthContext);
-    const {crossOff, removeItem} = appContext
-    const {moveItem, deleteItem} = authContext
+    const { crossOff, removeItem } = appContext
+    const { moveItem, deleteItem } = authContext
 
     const [menu, setMenu] = useState(false)
     const [edit, setEdit] = useState(false)
 
     const listItemText = useRef()
     const selectedListItem = useRef()
-    
+
     const cross = () => {
         const strike = listItemText.current.classList
         strike.toggle("strikethrough")
         var audio = new Audio(penCross);
         strike.value && audio.play();
         var item = {
-            list: list, 
-            item: listItemText.current.innerHTML, 
-            id: id, 
+            list: list,
+            item: listItemText.current.innerHTML,
+            id: id,
             style: listItemText.current.classList.value
         }
         crossOff(item);
@@ -45,9 +45,9 @@ const List = ({list, id, moved, style, content}) => {
 
     const carryOver = () => {
         var item = {
-            list: list, 
-            item: listItemText.current.innerHTML, 
-            id: id, 
+            list: list,
+            item: listItemText.current.innerHTML,
+            id: id,
             style: listItemText.current.classList.value
         }
         moveItem(item)
@@ -65,7 +65,7 @@ const List = ({list, id, moved, style, content}) => {
     const openMenu = (e) => {
         const style = selectedListItem.current.style
         setMenu(!menu)
-        menu ? selectedListItem.current.removeAttribute("style") : 
+        menu ? selectedListItem.current.removeAttribute("style") :
             style.boxShadow = "1px 1px 4px 0 rgba(0, 0, 0, 0.4)"
     }
 
@@ -76,47 +76,47 @@ const List = ({list, id, moved, style, content}) => {
         left: "-26px"
     }
 
-    
+
 
     return (
         !edit ?
-        <Fragment>
-            {menu && <div className="menu-backdrop" onClick={openMenu}></div>}
-            <li 
-                onClick={openMenu} 
-                ref={selectedListItem} 
-                className={moved ? "no-bullet-point" : ""}
-            >
-                <div className="list-wrapper">
-                    {/* {moved && <LabelImportantIcon />} */}
-                    {moved && <TurnedInNotIcon style={flagStyle}/>}
-                    
-                    <span ref={listItemText} className={style}>{content}</span>
-                </div>
-                <TransitionGroup>
-                    {menu && 
-                        <CSSTransition
-                            classNames="revealmenu"
-                            timeout={200}
-                            key={id}    
-                        >
-                            <div className="menu" >
-                                <div>
-                                    {listItemText.current.classList.contains("strikethrough") ?
-                                        <UndoIcon onClick={cross}/>
-                                        :
-                                        <StrikethroughSIcon onClick={cross}/>}
-                                    <EditIcon onClick={() => setEdit(true)} />
-                                    <ForwardIcon onClick={carryOver}/>
-                                    <DeleteIcon onClick={deleteCurrentItem} />
+            <Fragment>
+                {menu && <div className="menu-backdrop" onClick={openMenu}></div>}
+                <li
+                    onClick={openMenu}
+                    ref={selectedListItem}
+                    className={moved ? "no-bullet-point" : ""}
+                >
+                    <div className="list-wrapper">
+                        {/* {moved && <LabelImportantIcon />} */}
+                        {moved && <TurnedInNotIcon style={flagStyle} />}
+
+                        <span ref={listItemText} className={style}>{content}</span>
+                    </div>
+                    <TransitionGroup>
+                        {menu &&
+                            <CSSTransition
+                                classNames="revealmenu"
+                                timeout={200}
+                                key={id}
+                            >
+                                <div className="menu" >
+                                    <div>
+                                        {listItemText.current.classList.contains("strikethrough") ?
+                                            <UndoIcon onClick={cross} />
+                                            :
+                                            <StrikethroughSIcon onClick={cross} />}
+                                        <EditIcon onClick={() => setEdit(true)} />
+                                        <ForwardIcon onClick={carryOver} />
+                                        <DeleteIcon onClick={deleteCurrentItem} />
+                                    </div>
                                 </div>
-                            </div>
-                        </CSSTransition>}
-                </TransitionGroup>
-            </li>
-        </Fragment>
-        :
-        <Input text={content} undoEdit={undoEdit}/>
+                            </CSSTransition>}
+                    </TransitionGroup>
+                </li>
+            </Fragment>
+            :
+            <Input text={content} undoEdit={undoEdit} />
     )
 }
 
