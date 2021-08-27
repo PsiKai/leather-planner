@@ -438,34 +438,49 @@ input[type="text"]::placeholder,
 }
 
 /* user and weather widget */
+.date-label {
+  /* display: flex; */
+  position: relative;
+  margin-top: 4px;
+  /* gap: 2px; */
+  /* align-items: center; */
+  padding-right: 2px;
+  cursor: pointer;
+  /* margin-bottom: 4px; */
+}
 
 .date-label svg {
-  position: relative;
-  /* right: -4px; */
-  font-size: 30px;
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  font-size: 18px;
   z-index: -1;
-  display: none;
+  /* display: none; */
 }
 
 .date-label input {
-  height: 30px;
+  height: 25px;
   width: 150px;
 
   /* top: 3px;
   right: -3px; */
-  margin: 0 !important;
+  /* margin: 0 !important; */
   border-bottom: none !important;
   box-shadow: none !important;
   background: inherit;
   border: none;
-  text-align: right;
+  text-align: center;
   font-family: "Libre Baskerville", serif;
   font-weight: 400;
   letter-spacing: -0.5px;
+  user-select: none;
+  cursor: pointer;
 }
 
 .date-label input:focus {
   outline: 0;
+  max-width: none;
+  font-size: inherit !important;
 }
 
 .date-label input::placeholder {
@@ -857,7 +872,7 @@ label .MuiSvgIcon-root {
     top: 10%;
   }
 
-  .date-label svg {
+  /* .date-label svg {
     position: absolute;
     top: 5px;
     left: -7px;
@@ -871,7 +886,7 @@ label .MuiSvgIcon-root {
     position: absolute;
     top: 11px;
     left: -30px;
-  }
+  } */
 
   /* .date-label svg {
     left: -7px;
@@ -882,7 +897,7 @@ label .MuiSvgIcon-root {
   } */
 
   h1.date {
-    top: -1.5rem;
+    top: -3.75rem;
     font-size: 1.9rem;
   }
 
