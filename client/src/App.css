@@ -826,10 +826,14 @@ label .MuiSvgIcon-root {
 
   .date {
     position: relative;
-    top: -5rem;
+    top: -4.7rem;
     margin-top: 0;
     margin-bottom: 0;
     padding-left: 0;
+  }
+
+  .date-label {
+    margin-bottom: 0;
   }
 
   .widget {
@@ -930,7 +934,7 @@ label .MuiSvgIcon-root {
   }
 
   h1.date {
-    top: -3.5rem;
+    top: -3.2rem;
     font-size: 1.9rem;
   }
 

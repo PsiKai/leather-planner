@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import AppContext from "../context/AppContext";
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import DatePicker from "react-datepicker"
