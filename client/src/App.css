@@ -63,11 +63,17 @@ li {
   z-index: 1;
   background: #fff4b0 url("./images/textured-paper.png");
   position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
 .date {
+  /* display: inline-block; */
   font-size: 2.7rem;
-  margin-top: 32px;
+  /* margin-top: 32px; */
+  margin: 0;
   font-family: "Libre Baskerville", serif;
   font-weight: 700;
   background: #fff4b0 url("./images/textured-paper.png");
@@ -97,6 +103,9 @@ li {
   font-family: "Libre Baskerville", serif;
   font-weight: 700;
   padding: 0.5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
   display: inline-flex;
   align-items: center;
 }
@@ -608,7 +617,7 @@ input[type="text"]::placeholder,
 }
 
 .widget {
-  position: absolute;
+  /* position: absolute; */
   display: flex;
   flex-direction: column;
   right: 0;
@@ -820,17 +829,16 @@ label .MuiSvgIcon-root {
   }
 
   .heading {
-    max-height: fit-content;
     padding-right: 0.5rem;
   }
 
-  .date {
+  /* .date {
     position: relative;
     top: -0.8rem;
     margin-top: 0;
     margin-bottom: 0;
     padding-left: 0;
-  }
+  } */
 
   .date-label {
     margin-bottom: 0;
@@ -904,9 +912,7 @@ label .MuiSvgIcon-root {
     width: 97%;
     top: 0;
     background-image: url("./images/textured-paper.png"),
-      /* repeating-linear-gradient(#fff4b0 0, #fff4b0 32px, blue 33px); */
-        repeating-linear-gradient(#fff4b0 1px 33px, blue 34px);
-    z-index: 3;
+      repeating-linear-gradient(#fff4b0 1px 33px, blue 34px);
   }
 
   .content {
@@ -939,14 +945,11 @@ label .MuiSvgIcon-root {
   }
 
   h1.date {
-    top: -3.2rem;
     font-size: 1.9rem;
   }
 
   h1.profile-heading {
     font-size: 1.9rem;
-    bottom: -1.5rem;
-    position: relative;
   }
 
   input[type="text"].new-item {
@@ -983,10 +986,10 @@ label .MuiSvgIcon-root {
     margin: 2rem auto 0;
   }
 
-  .profile-nav {
+  /* .profile-nav {
     left: -0.5rem;
     position: relative;
-  }
+  } */
 }
 
 .strikethrough {
