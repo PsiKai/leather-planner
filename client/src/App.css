@@ -261,16 +261,16 @@ button.password--submit {
 
 .pattern {
   position: relative;
-  top: -32px;
+  /* top: -32px; */
   grid-row-start: 2;
   min-height: 100%;
   width: 98%;
   background-image: url("./images/textured-paper.png"),
-    repeating-linear-gradient(#fff4b0 0, #fff4b0 34px, blue 35px);
+    repeating-linear-gradient(#fff4b0 1px 35px, blue 36px);
 }
 
 .content {
-  padding-top: 70px;
+  padding-top: 36px;
   padding-bottom: 24px;
   line-height: 35px;
   font-size: 24px;
@@ -826,7 +826,7 @@ label .MuiSvgIcon-root {
 
   .date {
     position: relative;
-    top: -4.7rem;
+    top: -0.8rem;
     margin-top: 0;
     margin-bottom: 0;
     padding-left: 0;
@@ -849,6 +849,8 @@ label .MuiSvgIcon-root {
 
   .widget {
     position: relative;
+    /* flex-direction: row;
+    justify-content: flex-end; */
   }
 
   .weather,
@@ -859,6 +861,7 @@ label .MuiSvgIcon-root {
 
   .user {
     margin-top: 0;
+    /* display: flex; */
   }
 
   .profile--wrapper {
@@ -901,13 +904,15 @@ label .MuiSvgIcon-root {
     width: 97%;
     top: 0;
     background-image: url("./images/textured-paper.png"),
-      repeating-linear-gradient(#fff4b0 0, #fff4b0 32px, blue 33px);
+      /* repeating-linear-gradient(#fff4b0 0, #fff4b0 32px, blue 33px); */
+        repeating-linear-gradient(#fff4b0 1px 33px, blue 34px);
+    z-index: 3;
   }
 
   .content {
     line-height: 33px;
     font-size: 22px;
-    padding-top: 66px;
+    padding-top: 34px;
   }
 
   .list li {
