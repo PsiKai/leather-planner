@@ -492,7 +492,7 @@ input[type="text"]::placeholder,
 .react-datepicker__triangle {
   right: 11px !important;
   left: unset !important;
-  top: -1px;
+  top: 1px !important;
   transform: none !important;
 }
 
@@ -836,6 +836,17 @@ label .MuiSvgIcon-root {
     margin-bottom: 0;
   }
 
+  .react-datepicker {
+    transform: scale(1.4);
+    transform-origin: top right;
+    right: -2px;
+    top: 2px;
+  }
+
+  .react-datepicker__day {
+    outline: none;
+  }
+
   .widget {
     position: relative;
   }
@@ -920,17 +931,6 @@ label .MuiSvgIcon-root {
     width: 250px;
     right: 1%;
     top: 10%;
-  }
-
-  .react-datepicker {
-    transform: scale(1.4);
-    transform-origin: top right;
-    right: -2px;
-    top: 2px;
-  }
-
-  .react-datepicker__day {
-    outline: none;
   }
 
   h1.date {
