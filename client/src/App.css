@@ -67,7 +67,7 @@ li {
 
 .date {
   font-size: 2.7rem;
-  margin-top: 25px;
+  margin-top: 32px;
   font-family: "Libre Baskerville", serif;
   font-weight: 700;
   background: #fff4b0 url("./images/textured-paper.png");
@@ -439,14 +439,10 @@ input[type="text"]::placeholder,
 
 /* user and weather widget */
 .date-label {
-  /* display: flex; */
   position: relative;
   margin: 4px 0;
-  /* gap: 2px; */
-  /* align-items: center; */
   padding-right: 2px;
   cursor: pointer;
-  /* margin-bottom: 4px; */
 }
 
 .date-label svg {
@@ -455,21 +451,15 @@ input[type="text"]::placeholder,
   top: 2px;
   font-size: 18px;
   z-index: -1;
-  /* display: none; */
 }
 
 .date-label input {
   height: 25px;
   width: 105px;
-
-  /* top: 3px;
-  right: -3px; */
-  /* margin: 0 !important; */
   border-bottom: none !important;
   box-shadow: none !important;
   background: inherit;
   border: none;
-  /* text-align: center; */
   font-family: "Libre Baskerville", serif;
   font-weight: 400;
   letter-spacing: -0.5px;
@@ -504,7 +494,6 @@ input[type="text"]::placeholder,
   left: unset !important;
   top: -1px;
   transform: none !important;
-  /* z-index: 2; */
 }
 
 .react-datepicker__triangle::after {
@@ -550,6 +539,11 @@ input[type="text"]::placeholder,
 
 .react-datepicker__navigation:focus {
   background-color: #381a14cc;
+}
+
+.react-datepicker__day--today {
+  font-weight: 700;
+  font-size: 0.85rem;
 }
 
 .weather {
@@ -842,18 +836,6 @@ label .MuiSvgIcon-root {
     position: relative;
   }
 
-  /* .date-label svg {
-    position: absolute;
-    top: 5px;
-    left: -14px;
-  }
-
-  .date-label input {
-    position: absolute;
-    top: 11px;
-    left: -37px;
-  } */
-
   .weather,
   .weather-input__wrapper {
     margin-top: 2px;
@@ -939,7 +921,6 @@ label .MuiSvgIcon-root {
   .react-datepicker {
     transform: scale(1.4);
     transform-origin: top right;
-
     right: -2px;
     top: 2px;
   }
@@ -948,32 +929,8 @@ label .MuiSvgIcon-root {
     outline: none;
   }
 
-  /* .date-label svg {
-    position: absolute;
-    top: 5px;
-    left: -7px;
-    display: initial;
-  }
-
-  .date-label input {
-    width: 49px;
-    height: 25px;
-    opacity: 0;
-    position: absolute;
-    top: 11px;
-    left: -30px;
-  } */
-
-  /* .date-label svg {
-    left: -7px;
-  }
-
-  .date-label input {
-    left: -30px;
-  } */
-
   h1.date {
-    top: -3.75rem;
+    top: -3.5rem;
     font-size: 1.9rem;
   }
 
