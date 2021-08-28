@@ -38,6 +38,7 @@ const Datepicker = () => {
                 selected={date}
                 onChange={newDay}
                 className={"browser-default"}
+                onFocus={(e) => e.target.blur()}
             /> 
             <CalendarTodayIcon/>
         </div>
