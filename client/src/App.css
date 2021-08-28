@@ -804,8 +804,8 @@ label.MuiFormLabel-root {
   .react-datepicker {
     transform: scale(1.4);
     transform-origin: top right;
-    right: 2px;
-    top: 8px;
+    right: -4px;
+    top: 2px;
   }
 
   .react-datepicker__day {
@@ -896,6 +896,11 @@ label.MuiFormLabel-root {
 
   .date-label svg {
     top: -5px;
+  }
+
+  .react-datepicker {
+    right: 2px;
+    top: 8px;
   }
 
   .page {
