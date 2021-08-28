@@ -67,7 +67,7 @@ li {
 
 .date {
   font-size: 2.7rem;
-  margin-top: 25px;
+  margin-top: 32px;
   font-family: "Libre Baskerville", serif;
   font-weight: 700;
   background: #fff4b0 url("./images/textured-paper.png");
@@ -438,39 +438,112 @@ input[type="text"]::placeholder,
 }
 
 /* user and weather widget */
+.date-label {
+  position: relative;
+  margin: 4px 0;
+  padding-right: 2px;
+  cursor: pointer;
+}
 
 .date-label svg {
-  position: relative;
-  /* right: -4px; */
-  font-size: 30px;
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  font-size: 18px;
   z-index: -1;
-  display: none;
 }
 
 .date-label input {
-  height: 30px;
-  width: 150px;
-
-  /* top: 3px;
-  right: -3px; */
-  margin: 0 !important;
+  height: 25px;
+  width: 105px;
   border-bottom: none !important;
   box-shadow: none !important;
   background: inherit;
   border: none;
-  text-align: right;
   font-family: "Libre Baskerville", serif;
   font-weight: 400;
   letter-spacing: -0.5px;
+  cursor: pointer;
 }
 
 .date-label input:focus {
   outline: 0;
+  max-width: none;
+  font-size: inherit !important;
 }
 
 .date-label input::placeholder {
   font-family: inherit;
   text-align: right;
+}
+
+.react-datepicker-popper {
+  inset: 22px 0 0 auto !important;
+  transform: none !important;
+}
+
+.react-datepicker {
+  font-family: "Libre Baskerville", serif;
+  border: none;
+  background-color: #381a14;
+  background-image: url("./images/leather.png");
+}
+
+.react-datepicker__triangle {
+  right: 11px !important;
+  left: unset !important;
+  top: 1px !important;
+  transform: none !important;
+}
+
+.react-datepicker__triangle::after {
+  border-bottom-color: #381a14cc !important;
+}
+
+.react-datepicker__header {
+  background-color: #381a14;
+  background-image: url("./images/leather.png");
+  border-bottom: none;
+}
+
+.react-datepicker__day:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.react-datepicker__day--selected {
+  background-color: #381a14cc;
+  color: #fff7d9;
+}
+
+.react-datepicker__day--selected:hover {
+  background-color: #381a14;
+}
+
+.react-datepicker__day-name,
+.react-datepicker__current-month {
+  color: #fff7d9 !important;
+}
+
+.react-datepicker__month {
+  background: #fff4b0 url("./images/textured-paper.png");
+  box-shadow: 1px 1px 1px 1px #381a1480, 2px 1px 0 0 #fff4b0;
+}
+
+.react-datepicker__navigation span::before {
+  border-color: #fff7d9;
+}
+
+.react-datepicker__navigation:hover {
+  color: #cec6aa;
+}
+
+.react-datepicker__navigation:focus {
+  background-color: #381a14cc;
+}
+
+.react-datepicker__day--today {
+  font-weight: 700;
+  font-size: 0.85rem;
 }
 
 .weather {
@@ -753,27 +826,30 @@ label .MuiSvgIcon-root {
 
   .date {
     position: relative;
-    top: -5rem;
+    top: -4.7rem;
     margin-top: 0;
     margin-bottom: 0;
     padding-left: 0;
   }
 
+  .date-label {
+    margin-bottom: 0;
+  }
+
+  .react-datepicker {
+    transform: scale(1.4);
+    transform-origin: top right;
+    right: -2px;
+    top: 2px;
+  }
+
+  .react-datepicker__day {
+    outline: none;
+  }
+
   .widget {
     position: relative;
   }
-
-  /* .date-label svg {
-    position: absolute;
-    top: 5px;
-    left: -14px;
-  }
-
-  .date-label input {
-    position: absolute;
-    top: 11px;
-    left: -37px;
-  } */
 
   .weather,
   .weather-input__wrapper {
@@ -857,32 +933,8 @@ label .MuiSvgIcon-root {
     top: 10%;
   }
 
-  .date-label svg {
-    position: absolute;
-    top: 5px;
-    left: -7px;
-    display: initial;
-  }
-
-  .date-label input {
-    width: 49px;
-    height: 25px;
-    opacity: 0;
-    position: absolute;
-    top: 11px;
-    left: -30px;
-  }
-
-  /* .date-label svg {
-    left: -7px;
-  }
-
-  .date-label input {
-    left: -30px;
-  } */
-
   h1.date {
-    top: -1.5rem;
+    top: -3.2rem;
     font-size: 1.9rem;
   }
 
