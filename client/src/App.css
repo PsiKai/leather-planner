@@ -560,7 +560,6 @@ input[type="text"]::placeholder,
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  max-width: fit-content;
 }
 
 .widget .weather-input {
@@ -586,7 +585,6 @@ input[type="text"]::placeholder,
 }
 
 .weather-input__wrapper button {
-  width: 20px;
   padding: 0;
   background: inherit;
   border: none;
@@ -842,6 +840,57 @@ label.MuiFormLabel-root {
 @media (max-width: 500px) {
   .heading {
     padding-right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .widget {
+    display: grid;
+    grid-template-areas: "user calendar" "logout weather";
+    grid-template-rows: 36px 36px;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .widget > * {
+    align-self: center;
+  }
+
+  .widget svg {
+    font-size: 32px;
+  }
+
+  .owf-2x {
+    font-size: 40px;
+  }
+
+  .weather-input__wrapper,
+  .weather,
+  .get-weather {
+    grid-area: weather;
+    justify-self: flex-end;
+  }
+
+  .user-nav {
+    grid-area: user;
+    justify-self: flex-start;
+  }
+
+  .widget > button.MuiButtonBase-root {
+    grid-area: logout;
+    justify-self: flex-start;
+  }
+
+  .date-label {
+    grid-area: calendar;
+    /* max-width: 107px; */
+    justify-self: flex-end;
+    align-self: center;
+    width: 125px;
+  }
+
+  .date-label svg {
+    top: -5px;
   }
 
   .page {
@@ -849,6 +898,7 @@ label.MuiFormLabel-root {
     width: 98%;
     margin: 1% auto;
     height: 99%;
+    grid-template-rows: 130px;
   }
 
   .pattern__wrapper {
