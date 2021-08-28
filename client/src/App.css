@@ -74,7 +74,6 @@ li {
   font-family: "Libre Baskerville", serif;
   font-weight: 700;
   background: #fff4b0 url("./images/textured-paper.png");
-  position: absolute;
   bottom: 0;
   margin: 0;
   display: flex;
@@ -805,8 +804,8 @@ label.MuiFormLabel-root {
   .react-datepicker {
     transform: scale(1.4);
     transform-origin: top right;
-    right: -2px;
-    top: 2px;
+    right: 2px;
+    top: 8px;
   }
 
   .react-datepicker__day {
@@ -838,10 +837,11 @@ label.MuiFormLabel-root {
 /* Mobile Size  */
 
 @media (max-width: 500px) {
-  .heading {
+  .heading.today {
     padding-right: 0;
     flex-direction: column;
     align-items: flex-start;
+    /* gap: 0.75rem; */
   }
 
   .widget {
@@ -876,6 +876,11 @@ label.MuiFormLabel-root {
     justify-self: flex-start;
   }
 
+  .user-nav a,
+  button.MuiButtonBase-root span {
+    flex-direction: row-reverse;
+  }
+
   .widget > button.MuiButtonBase-root {
     grid-area: logout;
     justify-self: flex-start;
@@ -898,7 +903,8 @@ label.MuiFormLabel-root {
     width: 98%;
     margin: 1% auto;
     height: 99%;
-    grid-template-rows: 130px;
+
+    grid-template-rows: 144px;
   }
 
   .pattern__wrapper {

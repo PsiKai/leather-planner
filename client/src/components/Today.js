@@ -24,7 +24,7 @@ const Today = (props) => {
       <div className="position-div inside-cover">
         <div className="grid-div">
           <div className="page">
-            <div className="heading">
+            <div className="heading today">
               <div className="widget">
                   <Datepicker />
                   <User />

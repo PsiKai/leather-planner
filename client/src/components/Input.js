@@ -62,7 +62,7 @@ const Input = ({text, undoEdit}) => {
                     type="text"
                     placeholder="Plan your day ..."
                     autoComplete="off"
-                    autoFocus
+                    // autoFocus
                     value={inputText}
                     onChange={typing}
                 />
