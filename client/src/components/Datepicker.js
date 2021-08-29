@@ -17,7 +17,9 @@ const Datepicker = () => {
 
     return (
         <div className="date-label">
-                {<label htmlFor="date-picker" className="date-picker">{date.toLocaleDateString()}</label>}
+            {<label htmlFor="date-picker" className="date-picker">
+                {date.toLocaleDateString("en-US", {day: '2-digit', month: '2-digit', year: '2-digit'}).replace(/\b0/g, "")}
+            </label>}
             <div>
                 <DatePicker
                     id={"date-picker"} 

@@ -100,7 +100,9 @@ const Weather = () => {
         <button type="submit"><CheckIcon /></button>
       </form>
       :
-      <button className="get-weather" onClick={() => setWeatherLabel(true)}>Weather <SearchIcon /></button>  
+      <button className="get-weather" onClick={() => setWeatherLabel(true)}>
+        <span>Weather</span> <SearchIcon />
+      </button>  
   )
 };
 

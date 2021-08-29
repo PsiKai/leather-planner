@@ -401,6 +401,7 @@ textarea {
   outline: none;
   text-transform: capitalize;
   resize: none;
+  line-height: 1;
 }
 
 .button button {
@@ -903,6 +904,10 @@ label.MuiFormLabel-root {
     flex-direction: column-reverse;
   }
 
+  .get-weather span {
+    line-height: 1;
+  }
+
   .weather-input__wrapper {
     /* gap: 0.5rem; */
     justify-content: start;
@@ -933,17 +938,21 @@ label.MuiFormLabel-root {
 
   .user-nav a {
     height: auto;
-    gap: 2px;
   }
 
   .user-nav a * {
     color: var(--faded);
   }
 
+  .user-nav a svg {
+    transform: scale(1.1);
+  }
+
   .user-nav a,
   button.MuiButtonBase-root span {
     flex-direction: column-reverse;
     text-align: center;
+    line-height: 1;
     /* flex-direction: row-reverse; */
   }
 
@@ -973,18 +982,23 @@ label.MuiFormLabel-root {
 
   .date-label svg {
     /* top: -2px; */
-    font-size: 34px;
+    font-size: 36px;
     position: relative;
+    top: unset;
+    right: unset;
     background: #fff4b0 url("./images/textured-paper.png");
+    transform: scale(0.8);
   }
 
   .date-picker {
     display: initial;
     width: auto;
     font-size: 1rem;
+    line-height: 1;
     font-family: "Libre Baskerville", serif;
     font-weight: 700;
     color: inherit;
+    height: auto;
   }
 
   .date-picker ~ div {
