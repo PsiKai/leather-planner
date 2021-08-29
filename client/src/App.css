@@ -750,15 +750,16 @@ label.MuiFormLabel-root {
   .position-div {
     display: block;
     width: 100%;
-    margin: 0;
+    margin: auto;
     height: 100vh;
+    max-height: 1150px;
   }
 
   .page {
     width: 97%;
     margin: 2% auto;
     padding: 5px 5px 2px 20px;
-    height: 98%;
+    height: 97%;
   }
 
   .grid-div {
