@@ -401,7 +401,7 @@ textarea {
   outline: none;
   text-transform: capitalize;
   resize: none;
-  line-height: 1;
+  line-height: 1.5;
 }
 
 .button button {
@@ -884,6 +884,7 @@ label.MuiFormLabel-root {
     color: var(--faded);
     padding: 0;
     overflow: hidden;
+    line-height: 1;
   }
 
   .widget svg {
