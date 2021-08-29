@@ -859,13 +859,11 @@ label.MuiFormLabel-root {
     padding-right: 0;
     flex-direction: column;
     align-items: flex-start;
-    /* gap: 0.75rem; */
   }
 
   .widget {
     display: grid;
     grid-template-areas: "user logout weather calendar";
-    /* grid-template-rows: 36px 36px; */
     grid-template-columns: repeat(4, 1fr);
     justify-content: space-between;
     align-items: flex-start;
@@ -876,7 +874,6 @@ label.MuiFormLabel-root {
     align-self: flex-start;
     justify-self: center;
     height: auto;
-    /* color: inherit; */
   }
 
   .widget input,
@@ -900,7 +897,6 @@ label.MuiFormLabel-root {
   .weather,
   .get-weather {
     grid-area: weather;
-    /* justify-self: flex-end; */
     color: var(--faded);
     flex-direction: column-reverse;
   }
@@ -910,7 +906,6 @@ label.MuiFormLabel-root {
   }
 
   .weather-input__wrapper {
-    /* gap: 0.5rem; */
     justify-content: start;
     align-content: flex-start;
   }
@@ -924,7 +919,6 @@ label.MuiFormLabel-root {
     word-wrap: break-word;
     height: auto !important;
     width: 100% !important;
-    /* justify-self: flex-start; */
   }
 
   .weather-input:focus {
@@ -954,18 +948,15 @@ label.MuiFormLabel-root {
     flex-direction: column-reverse;
     text-align: center;
     line-height: 1;
-    /* flex-direction: row-reverse; */
   }
 
   .widget > button.MuiButtonBase-root {
     grid-area: logout;
-    /* justify-self: flex-start; */
     color: inherit;
   }
 
   .date-label {
     grid-area: calendar;
-    /* max-width: 107px; */
     justify-self: center;
     align-self: flex-start;
     justify-content: center;
@@ -982,7 +973,6 @@ label.MuiFormLabel-root {
   }
 
   .date-label svg {
-    /* top: -2px; */
     font-size: 36px;
     position: relative;
     top: unset;
@@ -1017,7 +1007,7 @@ label.MuiFormLabel-root {
   }
 
   .react-datepicker__triangle {
-    right: 25px !important;
+    right: 16px !important;
   }
 
   .page {
