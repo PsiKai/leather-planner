@@ -20,7 +20,7 @@ const User = () => {
     }
 
     return (
-        <React.Fragment className="user">
+        <React.Fragment>
             <FormLabel className="user-nav">
                 <Link to="/profile">
                     <span>{userName}</span>

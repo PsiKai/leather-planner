@@ -5,6 +5,7 @@ import axios from "axios";
 import CheckIcon from '@material-ui/icons/Check';
 import SearchIcon from '@material-ui/icons/Search';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import _ from "lodash"
 
 let interval
 
@@ -77,23 +78,28 @@ const Weather = () => {
   if (loading) {
     return (
       <div className="weather">
-        <CircularProgress style={{width: "18px", height: "18px", color: "black", margin: "4px"}}/>
+        <CircularProgress 
+          style={{width: "30px", height: "30px", color: "black", margin: "4px"}} 
+          onClick={() => setLoading(false)}/>
       </div>
     )
   }
   return (
     weatherLabel ?
       <form className="weather-input__wrapper" onSubmit={submitCity}>
-        <input
+        <textarea
           className="weather-input"
           type="text"
           onChange={newLocation}
           placeholder="City"
-          value={location}
-          onFocus={(e) => e.target.select()}
+          value={location.replace(/\+/g, " ")}
+          // onFocus={(e) => e.target.select()}
           autoFocus
+          onKeyDown={(e) => {e.code === "Enter" && submitCity()}}
+          rows="3"
+          spellCheck="false"
         >
-        </input>
+        </textarea>
         <button type="submit"><CheckIcon /></button>
       </form>
       :

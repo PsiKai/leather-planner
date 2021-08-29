@@ -397,6 +397,12 @@ input[type="text"]::placeholder,
   color: grey;
 }
 
+textarea {
+  outline: none;
+  text-transform: capitalize;
+  resize: none;
+}
+
 .button button {
   background-color: #d4caa3;
   border: 1px solid #381a14;
@@ -442,6 +448,10 @@ input[type="text"]::placeholder,
   top: 2px;
   font-size: 18px;
   z-index: -1;
+}
+
+.date-picker {
+  display: none;
 }
 
 .date-label input {
@@ -568,7 +578,7 @@ input[type="text"]::placeholder,
   font-weight: 700;
   border: none !important;
   margin: 0 !important;
-  text-align: right !important;
+  text-align: right;
   height: 24px !important;
 }
 
@@ -576,6 +586,7 @@ input[type="text"]::placeholder,
   font-family: "Libre Baskerville", serif !important;
   font-size: 1rem !important;
   font-weight: 700;
+  color: grey;
 }
 
 .widget .weather-input:focus {
@@ -616,6 +627,7 @@ input[type="text"]::placeholder,
   font-family: "Libre Baskerville", serif;
   font-weight: 700;
   margin: 0;
+  font-size: 1rem;
 }
 
 label.MuiFormLabel-root {
@@ -798,7 +810,7 @@ label.MuiFormLabel-root {
   }
 
   .heading {
-    padding-right: 0.5rem;
+    padding-right: 1rem;
   }
 
   .react-datepicker {
@@ -837,6 +849,10 @@ label.MuiFormLabel-root {
 /* Mobile Size  */
 
 @media (max-width: 500px) {
+  :root {
+    --faded: rgba(2, 2, 2, 0.664);
+  }
+
   .heading.today {
     padding-right: 0;
     flex-direction: column;
@@ -846,61 +862,146 @@ label.MuiFormLabel-root {
 
   .widget {
     display: grid;
-    grid-template-areas: "user calendar" "logout weather";
-    grid-template-rows: 36px 36px;
+    grid-template-areas: "user logout weather calendar";
+    /* grid-template-rows: 36px 36px; */
+    grid-template-columns: repeat(4, 1fr);
     justify-content: space-between;
     align-items: flex-start;
+    color: var(--faded);
   }
 
   .widget > * {
-    align-self: center;
+    align-self: flex-start;
+    justify-self: center;
+    height: auto;
+    /* color: inherit; */
+  }
+
+  .widget input,
+  textarea {
+    color: var(--faded);
+    padding: 0;
+    overflow: hidden;
   }
 
   .widget svg {
-    font-size: 32px;
+    font-size: 36px;
+    color: var(--faded);
   }
 
   .owf-2x {
-    font-size: 40px;
+    font-size: 36px;
   }
 
   .weather-input__wrapper,
   .weather,
   .get-weather {
     grid-area: weather;
-    justify-self: flex-end;
+    /* justify-self: flex-end; */
+    color: var(--faded);
+    flex-direction: column-reverse;
+  }
+
+  .weather-input__wrapper {
+    /* gap: 0.5rem; */
+    justify-content: start;
+    align-content: flex-start;
+  }
+
+  .weather-input__wrapper button {
+    height: 36px;
+  }
+
+  .widget .weather-input {
+    text-align: center !important;
+    word-wrap: break-word;
+    height: auto !important;
+    width: 100% !important;
+    /* justify-self: flex-start; */
+  }
+
+  .weather-input:focus {
+    max-width: none !important;
+    text-align: center !important;
   }
 
   .user-nav {
     grid-area: user;
-    justify-self: flex-start;
+    justify-self: center;
+  }
+
+  .user-nav a {
+    height: auto;
+    gap: 2px;
+  }
+
+  .user-nav a * {
+    color: var(--faded);
   }
 
   .user-nav a,
   button.MuiButtonBase-root span {
-    flex-direction: row-reverse;
+    flex-direction: column-reverse;
+    text-align: center;
+    /* flex-direction: row-reverse; */
   }
 
   .widget > button.MuiButtonBase-root {
     grid-area: logout;
-    justify-self: flex-start;
+    /* justify-self: flex-start; */
+    color: inherit;
   }
 
   .date-label {
     grid-area: calendar;
     /* max-width: 107px; */
-    justify-self: flex-end;
-    align-self: center;
-    width: 125px;
+    justify-self: center;
+    align-self: flex-start;
+    justify-content: center;
+    align-content: space-between;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .date-label input {
+    height: 36px;
+    font-weight: 700;
+    color: transparent;
+    width: 100%;
   }
 
   .date-label svg {
-    top: -5px;
+    /* top: -2px; */
+    font-size: 34px;
+    position: relative;
+    background: #fff4b0 url("./images/textured-paper.png");
+  }
+
+  .date-picker {
+    display: initial;
+    width: auto;
+    font-size: 1rem;
+    font-family: "Libre Baskerville", serif;
+    font-weight: 700;
+    color: inherit;
+  }
+
+  .date-picker ~ div {
+    display: flex;
+    justify-content: center;
+  }
+
+  .react-datepicker-wrapper {
+    position: absolute;
   }
 
   .react-datepicker {
-    right: 2px;
-    top: 8px;
+    right: 8px;
+    top: 32px;
+  }
+
+  .react-datepicker__triangle {
+    right: 25px !important;
   }
 
   .page {

@@ -17,13 +17,17 @@ const Datepicker = () => {
 
     return (
         <div className="date-label">
-            <DatePicker 
-                selected={date}
-                onChange={newDay}
-                className={"browser-default"}
-                onFocus={(e) => e.target.blur()}
-            /> 
-            <CalendarTodayIcon/>
+                {<label htmlFor="date-picker" className="date-picker">{date.toLocaleDateString()}</label>}
+            <div>
+                <DatePicker
+                    id={"date-picker"} 
+                    selected={date}
+                    onChange={newDay}
+                    className={"browser-default"}
+                    onFocus={(e) => e.target.blur()}
+                /> 
+                <CalendarTodayIcon/>
+            </div>
         </div>
     )
 }
