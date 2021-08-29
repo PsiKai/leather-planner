@@ -93,13 +93,10 @@ const Weather = () => {
           onChange={newLocation}
           placeholder="City"
           value={location.replace(/\+/g, " ")}
-          // onFocus={(e) => e.target.select()}
-          autoFocus
           onKeyDown={(e) => {e.code === "Enter" && submitCity()}}
           rows="3"
           spellCheck="false"
-        >
-        </textarea>
+        ></textarea>
         <button type="submit"><CheckIcon /></button>
       </form>
       :
