@@ -23,13 +23,6 @@ li {
   position: relative;
 }
 
-/* li::marker {
-  content: "- ";
-  font-family: sans-serif;
-  font-size: 1.3rem;
-  margin-right: 20px;
-} */
-
 .no-bullet-point {
   list-style: none;
 }
@@ -59,15 +52,18 @@ li {
 }
 
 .heading {
-  /* max-height: 70px; */
   z-index: 1;
   background: #fff4b0 url("./images/textured-paper.png");
   position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
 .date {
   font-size: 2.7rem;
-  margin-top: 32px;
+  margin: 0;
   font-family: "Libre Baskerville", serif;
   font-weight: 700;
   background: #fff4b0 url("./images/textured-paper.png");
@@ -78,7 +74,6 @@ li {
   font-family: "Libre Baskerville", serif;
   font-weight: 700;
   background: #fff4b0 url("./images/textured-paper.png");
-  position: absolute;
   bottom: 0;
   margin: 0;
   display: flex;
@@ -97,6 +92,9 @@ li {
   font-family: "Libre Baskerville", serif;
   font-weight: 700;
   padding: 0.5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
   display: inline-flex;
   align-items: center;
 }
@@ -108,14 +106,20 @@ li {
     border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
-.user-nav {
-  padding: 0 5px 5px 5px !important;
-  margin: 0 -5px 0;
-}
+/* .user-nav {
+  display: flex;
+  align-items: center;
+} */
 
 .profile-nav:hover,
 .user-nav:hover {
   background-color: rgba(0, 0, 0, 0.04);
+}
+
+.user-nav a {
+  height: 24px;
+  display: flex;
+  align-items: center;
 }
 
 .profile--wrapper {
@@ -214,9 +218,6 @@ button.password--submit {
 .watermark {
   position: absolute;
   opacity: 0.1;
-  /* grid-row-start: 2;
-  grid-column-start: 3;
-  z-index: 0; */
   right: 0;
   top: 50px;
 }
@@ -227,16 +228,13 @@ button.password--submit {
   height: 735px;
   margin: 20px auto;
   background-color: #fff4b0;
-  /* box-shadow: 5px 8px 8px #381a14, 0px 0px 8px 4px #381a1480; */
   box-shadow: 1px 1px 1px 1px #381a1480, 2px 1px 0 0 #fff4b0,
     3px 2px 1px 1px #381a1480, 4px 2px 0 0 #fff4b0, 5px 4px 1px 1px #381a1480,
     6px 4px 0 0 #fff4b0, 2px 2px 16px 8px #381a1480;
   padding: 15px 15px 5px 35px;
   grid-column-start: 2;
-  grid-row-start: 1;
   display: grid;
   grid-template-rows: 115px;
-  /* grid-template-rows: 78px; */
 }
 
 .pattern__wrapper {
@@ -261,16 +259,15 @@ button.password--submit {
 
 .pattern {
   position: relative;
-  top: -32px;
   grid-row-start: 2;
   min-height: 100%;
   width: 98%;
   background-image: url("./images/textured-paper.png"),
-    repeating-linear-gradient(#fff4b0 0, #fff4b0 34px, blue 35px);
+    repeating-linear-gradient(#fff4b0 1px 35px, blue 36px);
 }
 
 .content {
-  padding-top: 70px;
+  padding-top: 36px;
   padding-bottom: 24px;
   line-height: 35px;
   font-size: 24px;
@@ -290,7 +287,6 @@ button.password--submit {
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
-  /* hyphens: auto; */
 }
 
 .menu-backdrop {
@@ -401,9 +397,12 @@ input[type="text"]::placeholder,
   color: grey;
 }
 
-/* button:focus {
-  background-color: transparent !important;
-} */
+textarea {
+  outline: none;
+  text-transform: capitalize;
+  resize: none;
+  line-height: 1.5;
+}
 
 .button button {
   background-color: #d4caa3;
@@ -440,8 +439,7 @@ input[type="text"]::placeholder,
 /* user and weather widget */
 .date-label {
   position: relative;
-  margin: 4px 0;
-  padding-right: 2px;
+  padding-right: 2px !important;
   cursor: pointer;
 }
 
@@ -451,6 +449,10 @@ input[type="text"]::placeholder,
   top: 2px;
   font-size: 18px;
   z-index: -1;
+}
+
+.date-picker {
+  display: none;
 }
 
 .date-label input {
@@ -548,6 +550,9 @@ input[type="text"]::placeholder,
 
 .weather {
   cursor: pointer;
+  height: 24px;
+  display: flex;
+  align-items: center;
 }
 
 .get-weather {
@@ -559,8 +564,6 @@ input[type="text"]::placeholder,
   display: flex;
   align-items: center;
   cursor: pointer;
-  margin-top: 2px;
-  height: 24px !important;
 }
 
 .weather-input__wrapper {
@@ -571,19 +574,20 @@ input[type="text"]::placeholder,
 
 .widget .weather-input {
   overflow: visible !important;
-  height: 24px !important;
   font-family: "Libre Baskerville", serif !important;
   font-size: 1rem !important;
   font-weight: 700;
   border: none !important;
   margin: 0 !important;
-  text-align: right !important;
+  text-align: right;
+  height: 24px !important;
 }
 
 .widget .weather-input::placeholder {
   font-family: "Libre Baskerville", serif !important;
   font-size: 1rem !important;
   font-weight: 700;
+  color: grey;
 }
 
 .widget .weather-input:focus {
@@ -592,7 +596,6 @@ input[type="text"]::placeholder,
 }
 
 .weather-input__wrapper button {
-  width: 20px;
   padding: 0;
   background: inherit;
   border: none;
@@ -608,49 +611,41 @@ input[type="text"]::placeholder,
 }
 
 .widget {
-  position: absolute;
   display: flex;
   flex-direction: column;
-  right: 0;
-  z-index: 3;
   align-items: flex-end;
+  align-self: normal;
+  justify-content: space-evenly;
+}
+
+.widget > * {
+  height: 24px;
+  margin: 0;
+  padding: 0;
 }
 
 .temp {
-  display: inline;
   font-family: "Libre Baskerville", serif;
   font-weight: 700;
-  position: relative;
-  top: -8px;
-}
-
-.user {
-  text-align: right;
-  margin-top: -5px;
-  font-family: "Libre Baskerville", serif;
-  font-weight: 700;
+  margin: 0;
+  font-size: 1rem;
 }
 
 label.MuiFormLabel-root {
   font-family: "Libre Baskerville", serif;
   font-weight: 700;
   color: black;
-  display: block;
 }
 
-label .MuiSvgIcon-root {
-  position: relative;
-  top: 4px;
-}
-
-.user button.MuiButtonBase-root {
-  margin: 0 -5px 0;
+.widget button.MuiButtonBase-root {
+  /* margin: 0 -5px 0; */
+  padding: 0;
   font-family: "Libre Baskerville", serif;
   font-weight: 700;
 }
 
 /* Logout button */
-.user
+.widget
   .MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textSizeSmall.MuiButton-sizeSmall {
   font-size: 1rem;
   line-height: 1.15;
@@ -756,18 +751,16 @@ label .MuiSvgIcon-root {
   .position-div {
     display: block;
     width: 100%;
-    margin: 0;
+    margin: auto;
     height: 100vh;
+    max-height: 1150px;
   }
 
   .page {
-    /* grid-template-rows: 100px; */
-    width: 95%;
+    width: 97%;
     margin: 2% auto;
-    padding: 5px 5px 2px 25px;
-    height: 98%;
-    /* overflow-y: scroll;
-    overflow-x: hidden; */
+    padding: 5px 5px 2px 20px;
+    height: 97%;
   }
 
   .grid-div {
@@ -778,7 +771,6 @@ label .MuiSvgIcon-root {
   }
 
   .pattern__wrapper {
-    /* height: 100%; */
     width: 100%;
   }
 
@@ -820,26 +812,13 @@ label .MuiSvgIcon-root {
   }
 
   .heading {
-    max-height: fit-content;
-    padding-right: 0.5rem;
-  }
-
-  .date {
-    position: relative;
-    top: -4.7rem;
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-left: 0;
-  }
-
-  .date-label {
-    margin-bottom: 0;
+    padding-right: 1rem;
   }
 
   .react-datepicker {
     transform: scale(1.4);
     transform-origin: top right;
-    right: -2px;
+    right: -4px;
     top: 2px;
   }
 
@@ -847,19 +826,10 @@ label .MuiSvgIcon-root {
     outline: none;
   }
 
-  .widget {
-    position: relative;
-  }
-
-  .weather,
+  /* .weather,
   .weather-input__wrapper {
-    margin-top: 2px;
     height: 24px;
-  }
-
-  .user {
-    margin-top: 0;
-  }
+  } */
 
   .profile--wrapper {
     display: block;
@@ -881,16 +851,172 @@ label .MuiSvgIcon-root {
 /* Mobile Size  */
 
 @media (max-width: 500px) {
-  .heading {
+  :root {
+    --faded: rgba(2, 2, 2, 0.664);
+  }
+
+  .heading.today {
     padding-right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .widget {
+    display: grid;
+    grid-template-areas: "user logout weather calendar";
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: space-between;
+    align-items: flex-start;
+    color: var(--faded);
+  }
+
+  .widget > * {
+    align-self: flex-start;
+    justify-self: center;
+    height: auto;
+  }
+
+  .widget input,
+  textarea {
+    color: var(--faded);
+    padding: 0;
+    overflow: hidden;
+    line-height: 1;
+  }
+
+  .widget svg {
+    font-size: 36px;
+    color: var(--faded);
+  }
+
+  .owf-2x {
+    font-size: 36px;
+  }
+
+  .weather-input__wrapper,
+  .weather,
+  .get-weather {
+    grid-area: weather;
+    color: var(--faded);
+    flex-direction: column-reverse;
+  }
+
+  .get-weather span {
+    line-height: 1;
+  }
+
+  .weather-input__wrapper {
+    justify-content: start;
+    align-content: flex-start;
+  }
+
+  .weather-input__wrapper button {
+    height: 36px;
+  }
+
+  .widget .weather-input {
+    text-align: center !important;
+    word-wrap: break-word;
+    height: auto !important;
+    width: 100% !important;
+  }
+
+  .weather-input:focus {
+    max-width: none !important;
+    text-align: center !important;
+  }
+
+  .user-nav {
+    grid-area: user;
+    justify-self: center;
+  }
+
+  .user-nav a {
+    height: auto;
+  }
+
+  .user-nav a * {
+    color: var(--faded);
+  }
+
+  .user-nav a svg {
+    transform: scale(1.1);
+  }
+
+  .user-nav a,
+  button.MuiButtonBase-root span {
+    flex-direction: column-reverse;
+    text-align: center;
+    line-height: 1;
+  }
+
+  .widget > button.MuiButtonBase-root {
+    grid-area: logout;
+    color: inherit;
+  }
+
+  .date-label {
+    grid-area: calendar;
+    justify-self: center;
+    align-self: flex-start;
+    justify-content: center;
+    align-content: space-between;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .date-label input {
+    height: 36px;
+    font-weight: 700;
+    color: transparent;
+    width: 100%;
+  }
+
+  .date-label svg {
+    font-size: 36px;
+    position: relative;
+    top: unset;
+    right: unset;
+    background: #fff4b0 url("./images/textured-paper.png");
+    transform: scale(0.8);
+  }
+
+  .date-picker {
+    display: initial;
+    width: auto;
+    font-size: 1rem;
+    line-height: 1;
+    font-family: "Libre Baskerville", serif;
+    font-weight: 700;
+    color: inherit;
+    height: auto;
+  }
+
+  .date-picker ~ div {
+    display: flex;
+    justify-content: center;
+  }
+
+  .react-datepicker-wrapper {
+    position: absolute;
+  }
+
+  .react-datepicker {
+    right: 8px;
+    top: 32px;
+  }
+
+  .react-datepicker__triangle {
+    right: 16px !important;
   }
 
   .page {
-    grid-template-rows: 95px;
-    padding: 5px 5px 2px 15px;
+    padding: 5px 5px 2px 10px;
     width: 98%;
     margin: 1% auto;
     height: 99%;
+
+    grid-template-rows: 144px;
   }
 
   .pattern__wrapper {
@@ -901,13 +1027,13 @@ label .MuiSvgIcon-root {
     width: 97%;
     top: 0;
     background-image: url("./images/textured-paper.png"),
-      repeating-linear-gradient(#fff4b0 0, #fff4b0 32px, blue 33px);
+      repeating-linear-gradient(#fff4b0 1px 33px, blue 34px);
   }
 
   .content {
     line-height: 33px;
     font-size: 22px;
-    padding-top: 66px;
+    padding-top: 34px;
   }
 
   .list li {
@@ -934,14 +1060,11 @@ label .MuiSvgIcon-root {
   }
 
   h1.date {
-    top: -3.2rem;
     font-size: 1.9rem;
   }
 
   h1.profile-heading {
     font-size: 1.9rem;
-    bottom: -1.5rem;
-    position: relative;
   }
 
   input[type="text"].new-item {
@@ -978,10 +1101,10 @@ label .MuiSvgIcon-root {
     margin: 2rem auto 0;
   }
 
-  .profile-nav {
+  /* .profile-nav {
     left: -0.5rem;
     position: relative;
-  }
+  } */
 }
 
 .strikethrough {

@@ -20,7 +20,7 @@ const User = () => {
     }
 
     return (
-        <div className="user">
+        <React.Fragment>
             <FormLabel className="user-nav">
                 <Link to="/profile">
                     <span>{userName}</span>
@@ -31,7 +31,7 @@ const User = () => {
                 Logout
                 <ExitToAppIcon></ExitToAppIcon>
             </Button>
-        </div>
+        </React.Fragment>
     )
 }
 
