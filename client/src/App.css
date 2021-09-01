@@ -489,6 +489,17 @@ textarea {
   border: none;
   background-color: #381a14;
   background-image: url("./images/leather.png");
+  animation: open-calendar 200ms ease forwards;
+  transform-origin: top right;
+}
+
+@keyframes open-calendar {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 
 .react-datepicker__triangle {
@@ -816,10 +827,17 @@ label.MuiFormLabel-root {
   }
 
   .react-datepicker {
-    transform: scale(1.4);
-    transform-origin: top right;
     right: -4px;
     top: 2px;
+  }
+
+  @keyframes open-calendar {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1.4);
+    }
   }
 
   .react-datepicker__day {
