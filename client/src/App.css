@@ -513,6 +513,7 @@ textarea {
   background-image: var(--leather-texture);
   box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.5);
   transform-origin: top right;
+  animation: open-calendar 200ms ease forwards;
 }
 
 @keyframes open-calendar {
@@ -877,11 +878,11 @@ label.MuiFormLabel-root {
   }
 
   .profile--wrapper > * {
-    margin-bottom: 33px;
+    margin-bottom: 36px;
   }
 
   .profile--wrapper input[type="text"].new-item {
-    height: 33px !important;
+    height: 35px !important;
   }
 
   .profile--wrapper button {
@@ -894,6 +895,9 @@ label.MuiFormLabel-root {
 @media (max-width: 500px) {
   :root {
     --faded: rgba(2, 2, 2, 0.664);
+    --paper-line-height: 34px;
+    --paper-line: 33px;
+    --paper-font-size: 24px;
   }
 
   .heading.today {
@@ -1068,13 +1072,16 @@ label.MuiFormLabel-root {
     width: 97%;
     top: 0;
     background-image: url("./images/textured-paper.png"),
-      repeating-linear-gradient(#fff4b0 1px 33px, blue 34px);
+      repeating-linear-gradient(
+        #fff4b0 1px var(--paper-line),
+        blue var(--paper-line-height)
+      );
   }
 
   .content {
-    line-height: 33px;
+    line-height: var(--paper-line);
     font-size: 22px;
-    padding-top: 34px;
+    padding-top: var(--paper-line-height);
   }
 
   .list li {
@@ -1117,6 +1124,14 @@ label.MuiFormLabel-root {
 
   input[type="text"]::placeholder {
     font-size: 18px !important;
+  }
+
+  .profile--wrapper > * {
+    margin-bottom: 33px;
+  }
+
+  .profile--wrapper input[type="text"].new-item {
+    height: 33px !important;
   }
 
   .password-reset {
