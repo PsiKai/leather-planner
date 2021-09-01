@@ -2,9 +2,12 @@
 :root {
   --paper-texture: url("./images/textured-paper.png");
   --paper-color: #fff4b0;
-  --paper-lines: repeating-linear-gradient(#fff4b0 1px 35px, blue 36px);
+  --paper-line-height: 36px;
+  --paper-line: 1px 35px;
+  --paper-font-size: 24px;
   --leather-texture: url("./images/leather.png");
   --leather-color: #381a14;
+  --brown-color: #381a14cc; /* matches leather without texture */
   --wood-texture: url("./images/wood.png");
   --wood-color: #ffc99d;
   --serif-font: "Libre Baskerville", serif;
@@ -17,8 +20,8 @@
 }
 
 body {
-  background-color: #ffc99d;
-  background-image: url("./images/wood.png");
+  background-color: var(--wood-color);
+  background-image: var(--wood-texture);
 }
 
 a {
@@ -54,12 +57,13 @@ li {
 
 .grid-div {
   grid-column-start: 2;
-  background-color: #381a14;
-  background-image: url("./images/leather.png");
+  background-color: var(--leather-color);
+  background-image: var(--leather-texture);
   width: 680px;
   height: 780px;
   border-radius: 0.5% 2% 2% 0.5%;
-  box-shadow: 8px 4px 8px #381a14, 0px 0px 10px 2px #381a14;
+  box-shadow: 8px 4px 8px var(--leather-color),
+    0px 0px 10px 2px var(--leather-color);
   display: grid;
   grid-template-columns: 10px 25px;
   grid-template-rows: 60px 20px 320px;
@@ -67,7 +71,7 @@ li {
 
 .heading {
   z-index: 1;
-  background: #fff4b0 var(--paper-texture);
+  background: var(--paper-color) var(--paper-texture);
   position: relative;
   display: flex;
   flex-direction: row-reverse;
@@ -78,16 +82,16 @@ li {
 .date {
   font-size: 2.7rem;
   margin: 0;
-  font-family: "Libre Baskerville", serif;
+  font-family: var(--serif-font);
   font-weight: 700;
-  background: #fff4b0 var(--paper-texture);
+  background: var(--paper-color) var(--paper-texture);
 }
 
 .profile-heading {
   font-size: 2.7rem;
-  font-family: "Libre Baskerville", serif;
+  font-family: var(--serif-font);
   font-weight: 700;
-  background: #fff4b0 var(--paper-texture);
+  background: var(--paper-color) var(--paper-texture);
   bottom: 0;
   margin: 0;
   display: flex;
@@ -103,7 +107,7 @@ li {
 }
 
 .profile-nav {
-  font-family: "Libre Baskerville", serif;
+  font-family: var(--serif-font);
   font-weight: 700;
   padding: 0.5rem;
   position: absolute;
@@ -174,7 +178,7 @@ li {
 .profile--wrapper input[type="text"],
 .password-reset input[type="password"] {
   display: block;
-  font-family: "Libre Baskerville", serif !important;
+  font-family: var(--serif-font) !important;
   font-weight: 400 !important;
   font-size: 18px !important;
   max-width: 100% !important;
@@ -197,7 +201,7 @@ li {
 
 .profile--label,
 .profile--info {
-  font-family: "Libre Baskerville", serif;
+  font-family: var(--serif-font);
   color: inherit;
   font-size: 18px;
 }
@@ -241,10 +245,11 @@ button.password--submit {
   width: 650px;
   height: 735px;
   margin: 20px auto;
-  background-color: #fff4b0;
-  box-shadow: 1px 1px 1px 1px #381a1480, 2px 1px 0 0 #fff4b0,
-    3px 2px 1px 1px #381a1480, 4px 2px 0 0 #fff4b0, 5px 4px 1px 1px #381a1480,
-    6px 4px 0 0 #fff4b0, 2px 2px 16px 8px #381a1480;
+  background-color: var(--paper-color);
+  box-shadow: 1px 1px 1px 1px #381a1480, 2px 1px 0 0 var(--paper-color),
+    3px 2px 1px 1px #381a1480, 4px 2px 0 0 var(--paper-color),
+    5px 4px 1px 1px #381a1480, 6px 4px 0 0 var(--paper-color),
+    2px 2px 16px 8px #381a1480;
   padding: 15px 15px 5px 35px;
   grid-column-start: 2;
   display: grid;
@@ -254,7 +259,7 @@ button.password--submit {
 .pattern__wrapper {
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: #381a14 #c9c39f;
+  scrollbar-color: var(--leather-color) #c9c39f;
   scroll-behavior: smooth;
   width: 102%;
 }
@@ -264,11 +269,11 @@ button.password--submit {
 }
 
 .page .pattern__wrapper::-webkit-scrollbar-track {
-  background: #fff4b0 var(--paper-texture);
+  background: var(--paper-color) var(--paper-texture);
 }
 
 .page .pattern__wrapper::-webkit-scrollbar-thumb {
-  background: #381a14 url("./images/leather.png");
+  background: var(--leather-color) var(--leather-texture);
 }
 
 .pattern {
@@ -277,15 +282,18 @@ button.password--submit {
   min-height: 100%;
   width: 98%;
   background-image: url("./images/textured-paper.png"),
-    repeating-linear-gradient(#fff4b0 1px 35px, blue 36px);
+    repeating-linear-gradient(
+      #fff4b0 var(--paper-line),
+      blue var(--paper-line-height)
+    );
 }
 
 .content {
-  padding-top: 36px;
-  padding-bottom: 24px;
+  padding-top: var(--paper-line-height);
+  padding-bottom: var(--paper-font-size);
   line-height: 35px;
-  font-size: 24px;
-  font-family: "Dancing Script", cursive;
+  font-size: var(--paper-font-size);
+  font-family: var(--script-font);
   letter-spacing: 1.5px;
   word-spacing: 3px;
   position: relative;
@@ -316,21 +324,21 @@ button.password--submit {
 .menu {
   position: absolute;
   z-index: 2;
-  background: #381a14 url("./images/leather.png");
+  background: var(--leather-color) var(--leather-texture);
   padding: 2px;
   padding-top: 0;
   box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.4);
 }
 
 .menu div {
-  background: #fff4b0 var(--paper-texture);
+  background: var(--paper-color) var(--paper-texture);
   display: flex;
   align-items: center;
 }
 
 .menu svg {
   margin: 5px;
-  font-size: 24px;
+  font-size: var(--paper-font-size);
 }
 
 .menu svg:hover {
@@ -381,7 +389,7 @@ input[type="text"].new-item,
   font-size: 20px;
   max-width: 75%;
   background-color: transparent;
-  font-family: "Dancing Script", cursive;
+  font-family: var(--script-font);
   text-indent: 4px;
   margin: 0;
   padding: 0;
@@ -406,7 +414,7 @@ input[type="text"]:focus {
 
 input[type="text"]::placeholder,
 .password-reset input[type="password"]::placeholder {
-  font-family: "Dancing Script", cursive;
+  font-family: var(--script-font);
   font-size: 20px !important;
   color: grey;
 }
@@ -420,11 +428,11 @@ textarea {
 
 .button button {
   background-color: #d4caa3;
-  border: 1px solid #381a14;
+  border: 1px solid var(--leather-color);
 }
 
 .button button:hover {
-  background-color: #381a14;
+  background-color: var(--leather-color);
   color: #d4caa3;
   cursor: pointer;
 }
@@ -476,7 +484,7 @@ textarea {
   box-shadow: none !important;
   background: inherit;
   border: none;
-  font-family: "Libre Baskerville", serif;
+  font-family: var(--serif-font);
   font-weight: 400;
   letter-spacing: -0.5px;
   cursor: pointer;
@@ -499,11 +507,11 @@ textarea {
 }
 
 .react-datepicker {
-  font-family: "Libre Baskerville", serif;
+  font-family: var(--serif-font);
   border: none;
-  background-color: #381a14;
-  background-image: url("./images/leather.png");
-  animation: open-calendar 200ms ease forwards;
+  background-color: var(--leather-color);
+  background-image: var(--leather-texture);
+  box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.5);
   transform-origin: top right;
 }
 
@@ -524,12 +532,12 @@ textarea {
 }
 
 .react-datepicker__triangle::after {
-  border-bottom-color: #381a14cc !important;
+  border-bottom-color: var(--brown-color) !important;
 }
 
 .react-datepicker__header {
-  background-color: #381a14;
-  background-image: url("./images/leather.png");
+  background-color: var(--leather-color);
+  background-image: var(--leather-texture);
   border-bottom: none;
 }
 
@@ -538,12 +546,12 @@ textarea {
 }
 
 .react-datepicker__day--selected {
-  background-color: #381a14cc;
+  background-color: var(--brown-color);
   color: #fff7d9;
 }
 
 .react-datepicker__day--selected:hover {
-  background-color: #381a14;
+  background-color: var(--leather-color);
 }
 
 .react-datepicker__day-name,
@@ -552,8 +560,8 @@ textarea {
 }
 
 .react-datepicker__month {
-  background: #fff4b0 var(--paper-texture);
-  box-shadow: 1px 1px 1px 1px #381a1480, 2px 1px 0 0 #fff4b0;
+  background: var(--paper-color) var(--paper-texture);
+  box-shadow: 1px 1px 1px 1px #381a1480, 2px 1px 0 0 var(--paper-color);
 }
 
 .react-datepicker__navigation span::before {
@@ -565,7 +573,7 @@ textarea {
 }
 
 .react-datepicker__navigation:focus {
-  background-color: #381a14cc;
+  background-color: var(--brown-color);
 }
 
 .react-datepicker__day--today {
@@ -584,7 +592,7 @@ textarea {
   background: inherit;
   padding: 0;
   border: none;
-  font-family: "Libre Baskerville", serif !important;
+  font-family: var(--serif-font) !important;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -599,7 +607,7 @@ textarea {
 
 .widget .weather-input {
   overflow: visible !important;
-  font-family: "Libre Baskerville", serif !important;
+  font-family: var(--serif-font) !important;
   font-size: 1rem !important;
   font-weight: 700;
   border: none !important;
@@ -609,7 +617,7 @@ textarea {
 }
 
 .widget .weather-input::placeholder {
-  font-family: "Libre Baskerville", serif !important;
+  font-family: var(--serif-font) !important;
   font-size: 1rem !important;
   font-weight: 700;
   color: grey;
@@ -650,14 +658,14 @@ textarea {
 }
 
 .temp {
-  font-family: "Libre Baskerville", serif;
+  font-family: var(--serif-font);
   font-weight: 700;
   margin: 0;
   font-size: 1rem;
 }
 
 label.MuiFormLabel-root {
-  font-family: "Libre Baskerville", serif;
+  font-family: var(--serif-font);
   font-weight: 700;
   color: black;
 }
@@ -665,7 +673,7 @@ label.MuiFormLabel-root {
 .widget button.MuiButtonBase-root {
   /* margin: 0 -5px 0; */
   padding: 0;
-  font-family: "Libre Baskerville", serif;
+  font-family: var(--serif-font);
   font-weight: 700;
 }
 
@@ -681,8 +689,8 @@ label.MuiFormLabel-root {
 /* cover */
 
 .center-div {
-  background-color: #381a14;
-  background-image: url("./images/leather.png");
+  background-color: var(--leather-color);
+  background-image: var(--leather-texture);
   height: 780px;
   width: 680px;
   margin: 40px auto auto;
@@ -690,11 +698,12 @@ label.MuiFormLabel-root {
   text-align: center;
   grid-template-rows: 100px 300px;
   border-radius: 0.5% 2% 2% 0.5%;
-  box-shadow: 8px 4px 8px #381a14, 0px 0px 10px 4px #381a14;
+  box-shadow: 8px 4px 8px var(--leather-color),
+    0px 0px 10px 4px var(--leather-color);
 }
 
 .cover-title {
-  font-family: "Ubuntu", sans-serif;
+  font-family: var(--button-font);
   background-color: #371a12;
   color: transparent;
   text-shadow: 2px 2px 1.5px #ffdc73bf;
@@ -724,7 +733,7 @@ label.MuiFormLabel-root {
   width: 200px;
   background-color: #371a12 !important;
   margin: 5px 20px;
-  font-family: "Ubuntu", sans-serif;
+  font-family: var(--button-font);
   color: #d4caa3 !important;
   transition: all 300ms ease !important;
 }
@@ -736,7 +745,7 @@ label.MuiFormLabel-root {
 
 .modal {
   background-image: var(--paper-texture);
-  background-color: #fff4b0 !important;
+  background-color: var(--paper-color) !important;
   max-width: 500px;
   height: fit-content !important;
   padding: 2% 5% !important;
@@ -744,7 +753,7 @@ label.MuiFormLabel-root {
 
 .modal input:not([type="submit"]),
 .modal input:focus {
-  font-family: "Libre Baskerville", serif;
+  font-family: var(--serif-font);
   letter-spacing: 1px;
   box-shadow: none !important;
   border-bottom: 1px solid #9e9e9e !important;
@@ -752,8 +761,8 @@ label.MuiFormLabel-root {
 
 .modal p {
   line-height: 35px;
-  font-size: 24px;
-  font-family: "Dancing Script", cursive;
+  font-size: var(--paper-font-size);
+  font-family: var(--script-font);
   letter-spacing: 1.5px;
   margin: 0;
 }
@@ -1009,7 +1018,7 @@ label.MuiFormLabel-root {
     position: relative;
     top: unset;
     right: unset;
-    background: #fff4b0 var(--paper-texture);
+    background: var(--paper-color) var(--paper-texture);
     transform: scale(0.8);
   }
 
@@ -1018,7 +1027,7 @@ label.MuiFormLabel-root {
     width: auto;
     font-size: 1rem;
     line-height: 1;
-    font-family: "Libre Baskerville", serif;
+    font-family: var(--serif-font);
     font-weight: 700;
     color: inherit;
     height: auto;
