@@ -1,3 +1,17 @@
+/* Variable Declarations */
+:root {
+  --paper-texture: url("./images/textured-paper.png");
+  --paper-color: #fff4b0;
+  --paper-lines: repeating-linear-gradient(#fff4b0 1px 35px, blue 36px);
+  --leather-texture: url("./images/leather.png");
+  --leather-color: #381a14;
+  --wood-texture: url("./images/wood.png");
+  --wood-color: #ffc99d;
+  --serif-font: "Libre Baskerville", serif;
+  --script-font: "Dancing Script", cursive;
+  --button-font: "Ubuntu", sans-serif;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -53,7 +67,7 @@ li {
 
 .heading {
   z-index: 1;
-  background: #fff4b0 url("./images/textured-paper.png");
+  background: #fff4b0 var(--paper-texture);
   position: relative;
   display: flex;
   flex-direction: row-reverse;
@@ -66,14 +80,14 @@ li {
   margin: 0;
   font-family: "Libre Baskerville", serif;
   font-weight: 700;
-  background: #fff4b0 url("./images/textured-paper.png");
+  background: #fff4b0 var(--paper-texture);
 }
 
 .profile-heading {
   font-size: 2.7rem;
   font-family: "Libre Baskerville", serif;
   font-weight: 700;
-  background: #fff4b0 url("./images/textured-paper.png");
+  background: #fff4b0 var(--paper-texture);
   bottom: 0;
   margin: 0;
   display: flex;
@@ -223,7 +237,7 @@ button.password--submit {
 }
 
 .page {
-  background-image: url("./images/textured-paper.png");
+  background-image: var(--paper-texture);
   width: 650px;
   height: 735px;
   margin: 20px auto;
@@ -250,7 +264,7 @@ button.password--submit {
 }
 
 .page .pattern__wrapper::-webkit-scrollbar-track {
-  background: #fff4b0 url("./images/textured-paper.png");
+  background: #fff4b0 var(--paper-texture);
 }
 
 .page .pattern__wrapper::-webkit-scrollbar-thumb {
@@ -309,7 +323,7 @@ button.password--submit {
 }
 
 .menu div {
-  background: #fff4b0 url("./images/textured-paper.png");
+  background: #fff4b0 var(--paper-texture);
   display: flex;
   align-items: center;
 }
@@ -320,7 +334,7 @@ button.password--submit {
 }
 
 .menu svg:hover {
-  background: #ccc38c url("./images/textured-paper.png");
+  background: #ccc38c var(--paper-texture);
 }
 
 .revealmenu-enter {
@@ -538,7 +552,7 @@ textarea {
 }
 
 .react-datepicker__month {
-  background: #fff4b0 url("./images/textured-paper.png");
+  background: #fff4b0 var(--paper-texture);
   box-shadow: 1px 1px 1px 1px #381a1480, 2px 1px 0 0 #fff4b0;
 }
 
@@ -721,7 +735,7 @@ label.MuiFormLabel-root {
 }
 
 .modal {
-  background-image: url("./images/textured-paper.png");
+  background-image: var(--paper-texture);
   background-color: #fff4b0 !important;
   max-width: 500px;
   height: fit-content !important;
@@ -995,7 +1009,7 @@ label.MuiFormLabel-root {
     position: relative;
     top: unset;
     right: unset;
-    background: #fff4b0 url("./images/textured-paper.png");
+    background: #fff4b0 var(--paper-texture);
     transform: scale(0.8);
   }
 
