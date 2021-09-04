@@ -3,7 +3,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const mongoose = require("mongoose");
-// const config = require("config")
 const mongoURI = process.env.MONGO_URI
 
 const connectDB = async () => {

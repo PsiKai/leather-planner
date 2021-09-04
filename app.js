@@ -12,11 +12,10 @@ const axios = require('axios')
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const path = require("path")
-const connectDB = require("./db");
+const connectDB = require("./db/db");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { body, validationResult } = require('express-validator')
-// const config = require("config")
 const auth = require("./middleware/auth");
 
 const app = express();
@@ -34,44 +33,9 @@ app.use(cors());
 app.use(secure)
 app.listen(port, () => console.log("Backend started on port " + port));
 
-const UserSchema = mongoose.Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  password: {
-    type: String,
-    required: true
-  }
-})
-
-const User = mongoose.model("user", UserSchema)
-
-const itemsSchema = {
-  item: String,
-  style: String,
-  moved: Boolean
-};
-
-const Item = mongoose.model("Item", itemsSchema);
-
-const listSchema = mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "users"
-  },
-  name: {
-    type: String,
-  },
-  items: [itemsSchema]
-});
-
-const List = mongoose.model("List", listSchema);
+const User = require("./db/models/user")
+const List = require("./db/models/list")
+const {Item} = require("./db/models/items")
 
 
 //sets routes for static build in production
@@ -96,24 +60,9 @@ app.get("/getUser", auth, async (req, res) => {
 });
 
 //POST request to register a new user
-app.post("/register",
-  // [
-  //   body("name", "Name is required").not().isEmpty(),
-  //   body("email", "Please include a valid email.").isEmail(),
-  //   body(
-  //     "password",
-  //     "Please enter a password with 6 or more characters"
-  //   ).isLength({ min: 6 }),
-  // ], 
-  async (req, res) => {
-    // const errors = validationResult(req);
-    // console.log(!errors.isEmpty());
-    // if (!errors.isEmpty()) {
-    //     return res.status(400).json({msg: errors.array()[0].msg});
-    // }
-
-
+app.post("/register", async (req, res) => {
     const { name, email, password } = req.body;
+
     try {
       let user = await User.findOne({ email });
       if (user) {
@@ -165,12 +114,14 @@ app.post("/login",
     try {
       let user = await User.findOne({ email });
       if (!user) {
+        console.log("email fail")
         return res.status(400).json({ msg: "Email or password is incorrect" });
       }
 
       const isMatch = await bcrypt.compare(password, user.password);
 
       if (!isMatch) {
+        console.log("password fail");
         return res.status(400).json({ msg: "Email or password is incorrect" });
       }
 
@@ -209,9 +160,10 @@ app.get("/date/:listName", auth, (req, res) => {
         });
         list.save();
 
-        res.send({ list: newDay, items: [], date: newDay })
+        res.send({ list: newDay, items: [], date: newDay, status: "no list found, created" })
       } else {
-        res.send({ list: newDay, items: foundList.items })
+        console.log(foundList);
+        res.send({ list: newDay, items: foundList.items, status: "found a list" })
       }
     }
   })
