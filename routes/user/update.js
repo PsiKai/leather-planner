@@ -16,7 +16,7 @@ router.patch("/", auth, (req, res) => {
         res.status(500).json({ msg: `Error updating username` })
       } else {
         console.log(success)
-        res.status(200).json({ msg: `Successfully updated username`, info: user })
+        res.status(200).json({ msg: `Successfully updated ${name}`, info: user })
       }
     })
 })
