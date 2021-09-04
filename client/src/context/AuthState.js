@@ -34,7 +34,7 @@ const AuthState = (props) => {
             setAlert("You have been logged out")
         }
         try {
-            const res = await axios.get('/getUser')
+            const res = await axios.get('/user/auth')
 
             dispatch({
                 type: USER_LOADED,
@@ -54,7 +54,7 @@ const AuthState = (props) => {
             }
         }
         try {
-            const res = await axios.post("/register", formData, config)
+            const res = await axios.post("/user/register", formData, config)
             dispatch({
                 type: REGISTER_SUCCESS,
                 payload: res.data
@@ -76,7 +76,7 @@ const AuthState = (props) => {
             }
         }
         try {
-            const res = await axios.post("/login", formData, config);
+            const res = await axios.post("/user/login", formData, config);
             dispatch({
                 type: LOGIN_SUCCESS,
                 payload: res.data
@@ -109,7 +109,7 @@ const AuthState = (props) => {
 
     const moveItem = async (item) => {
         const res = await axios.post(
-            "/move",
+            "/item/move",
             item,
             { "Content-Type": "*/*" }
         )
@@ -120,7 +120,7 @@ const AuthState = (props) => {
 
     const deleteItem = async (item) => {
         const res = await axios.delete(
-            '/delete',
+            '/item/delete',
             { data: item },
             // {"Content-Type": "*/*"}
         )

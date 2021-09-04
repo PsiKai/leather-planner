@@ -47,7 +47,7 @@ const Weather = () => {
     if (location !== "") {
       setLocation(location.toLowerCase().replace(/ /g, "+")) 
       try {
-        const res = await axios.post("/weather", {location});
+        const res = await axios.post("/services/weather", {location});
         const data = res.data.weather
         var suffix = data.weather[0].icon.slice(2);
         setWeather(Math.round(data.main.temp));
