@@ -13,10 +13,10 @@ router.patch("/", auth, (req, res) => {
     User.findOneAndUpdate({ _id }, { "$set": set }, (err, success) => {
       if (err) {
         console.log(err)
-        res.json({ msg: `Error updating ${name}` })
+        res.status(500).json({ msg: `Error updating username` })
       } else {
         console.log(success)
-        res.json({ msg: `Successfully Updated ${name}`, info: user })
+        res.status(200).json({ msg: `Successfully updated username`, info: user })
       }
     })
   })

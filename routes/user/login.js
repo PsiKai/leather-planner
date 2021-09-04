@@ -11,14 +11,12 @@ router.post("/", async (req, res) => {
     try {
       let user = await User.findOne({ email });
       if (!user) {
-        console.log("email fail")
         return res.status(400).json({ msg: "Email or password is incorrect" });
       }
 
       const isMatch = await bcrypt.compare(password, user.password);
 
       if (!isMatch) {
-        console.log("password fail");
         return res.status(400).json({ msg: "Email or password is incorrect" });
       }
 

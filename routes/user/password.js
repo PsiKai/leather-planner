@@ -27,10 +27,7 @@ router.patch("/", auth, async (req, res) => {
       })
     } else {
       res.status(400).json({ msg: "Old password does not match"})
-    }
-    
-  
-    
-  })
+    }    
+})
 
 module.exports = router

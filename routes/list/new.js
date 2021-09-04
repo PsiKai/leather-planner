@@ -10,20 +10,15 @@ router.get("/:listName", auth, (req, res) => {
     List.findOne({ user: req.user.id, name: newDay }, (err, foundList) => {
       if (!err) {
         if (!foundList) {
-          const list = new List({
-            user: req.user.id,
-            name: newDay,
-            items: []
-          });
+          const list = new List({ user: req.user.id, name: newDay, items: [] });
           list.save();
   
-          res.send({ list: newDay, items: [], date: newDay, status: "no list found, created" })
+          res.status(201).send({ list: newDay, items: [], date: newDay })
         } else {
-          console.log(foundList);
-          res.send({ list: newDay, items: foundList.items, status: "found a list" })
+          res.status(200).send({ list: newDay, items: foundList.items })
         }
       }
     })
-  })
+})
 
 module.exports = router

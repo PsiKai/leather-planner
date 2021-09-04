@@ -15,9 +15,14 @@ router.post("/", auth, (req, res) => {
       if (date.toLocaleDateString("en-US", { weekday: "long" }) === "Friday") { return 3 }
       return 1
     }
-  
+
     var options = { day: '2-digit', month: 'short', year: 'numeric' };
-    const nextDay = new Date(date.setDate(date.getDate() + skipWeekend())).toLocaleDateString("en-US", options).replace(/ /g, "-").replace(/,/g, "")
+
+    const formatDate = (date) => {
+        return date.toLocaleDateString("en-US", options).replace(/ /g, "-").replace(/,/g, "")
+    }
+  
+    const nextDay = formatDate(new Date(date.setDate(date.getDate() + skipWeekend())))
   
     List.findOne({ "user": req.user.id, "name": nextDay }, (err, foundList) => {
       if (err) console.log(err);
@@ -41,9 +46,9 @@ router.post("/", auth, (req, res) => {
       }
   
       if (date.toLocaleDateString("en-US", { weekday: "long" }) === "Monday") {
-        res.json({ msg: "Item was copied to Monday" })
+        res.status(200).json({ msg: "Item was copied to Monday" })
       } else {
-        res.json({ msg: "Item was copied to tomorrow" });
+        res.status(200).json({ msg: "Item was copied to tomorrow" });
       }
   
     })

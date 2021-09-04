@@ -6,13 +6,11 @@ const auth = require("../../middleware/auth")
 const List = require("../../db/models/list")
 
 router.post("/", auth, (req, res) => {
-    const crossedItem = req.body.item
-    const listName = req.body.list
-    const style = req.body.style
+    const { body: { item, list, style }, user } = req
     var newStyle = style !== "" ? "strikethrough" : ""
   
     List.findOneAndUpdate(
-      { "user": req.user.id, "name": listName, "items.item": crossedItem },
+      { "user": user.id, "name": list, "items.item": item },
       { "$set": { "items.$.style": newStyle } },
       (err, success) => {
         if (err) {

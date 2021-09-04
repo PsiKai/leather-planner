@@ -15,32 +15,24 @@ router.post("/", async (req, res) => {
         return res.status(400).json({ msg: "Email is already registered" })
       }
 
-      user = new User({
-        name,
-        email,
-        password
-      });
+      user = new User({ name, email, password });
 
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(password, salt);
+
       await user.save();
-      const payload = {
-        user: {
-          id: user.id,
-        }
-      }
+
+      const payload = { user: { id: user.id } }
 
       jwt.sign(
-        payload, process.env.SECRET,
-        { expiresIn: 36000 },
-        (err, token) => {
+        payload, process.env.SECRET, { expiresIn: 36000 }, (err, token) => {
           if (err) throw errors;
-          res.json({ token })
+          res.status(201).json({ token })
         }
       )
     } catch (err) {
       console.error(err.message);
-      res.status(500).send("Server error")
+      res.status(500).json({ msg: "There was an error registering user" })
     }
   })
 

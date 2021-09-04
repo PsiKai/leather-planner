@@ -13,9 +13,9 @@ router.delete("/", auth, async (req, res) => {
       (err) => {
         if (err) {
           console.log(err);
-          res.json({ msg: "There was a error deleting this item" })
+          res.status(500).json({ msg: "There was a error deleting this item" })
         } else {
-          res.json({ msg: `Deleted Item ${req.body.item}` })
+          res.status(200).json({ msg: `Deleted: "${item}"` })
         }
       })
   })
