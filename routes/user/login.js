@@ -20,11 +20,7 @@ router.post("/", async (req, res) => {
         return res.status(400).json({ msg: "Email or password is incorrect" });
       }
 
-      const payload = {
-        user: {
-          id: user.id,
-        },
-      };
+      const payload = { user: { id: user.id } };
 
       jwt.sign(
         payload,
@@ -39,6 +35,6 @@ router.post("/", async (req, res) => {
       console.error(err.message);
       res.status(500).send("server error");
     }
-  })
+})
 
 module.exports = router

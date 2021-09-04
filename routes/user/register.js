@@ -34,6 +34,6 @@ router.post("/", async (req, res) => {
       console.error(err.message);
       res.status(500).json({ msg: "There was an error registering user" })
     }
-  })
+})
 
-  module.exports = router
+module.exports = router

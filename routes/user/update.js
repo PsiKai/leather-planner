@@ -19,6 +19,6 @@ router.patch("/", auth, (req, res) => {
         res.status(200).json({ msg: `Successfully updated username`, info: user })
       }
     })
-  })
+})
 
 module.exports = router

@@ -30,11 +30,7 @@ router.post("/", auth, (req, res) => {
       const movedItem = new Item({ item, style, moved: true })
   
       if (!foundList) {
-        const list = new List({
-          user: req.user.id,
-          name: nextDay,
-          items: []
-        });
+        const list = new List({ user: req.user.id, name: nextDay, items: [] });
         list.items.push(movedItem)
         list.save();
         console.log("List created and Item Moved to the next day");
@@ -52,6 +48,6 @@ router.post("/", auth, (req, res) => {
       }
   
     })
-  })
+})
 
 module.exports = router

@@ -18,6 +18,6 @@ router.post("/", auth, (req, res) => {
         } else { console.log("item updated"); }
       })
     res.end();
-  })
+})
 
-  module.exports = router
+module.exports = router

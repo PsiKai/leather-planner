@@ -17,7 +17,8 @@ router.delete("/", auth, async (req, res) => {
         } else {
           res.status(200).json({ msg: `Deleted: "${item}"` })
         }
-      })
-  })
+      }
+    )
+})
 
 module.exports = router
