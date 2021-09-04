@@ -34,7 +34,7 @@ const AuthState = (props) => {
             setAlert("You have been logged out")
         }
         try {
-            const res = await axios.get('/getUser')
+            const res = await axios.get('/user')
 
             dispatch({
                 type: USER_LOADED,

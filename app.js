@@ -49,102 +49,14 @@ if (process.env.NODE_ENV === "production") {
 
 
 //verifies a logged in user to access protected routes
-app.get("/getUser", auth, async (req, res) => {
-  try {
-    const user = await User.findById(req.user.id).select("-password");
-    res.json(user);
-  } catch (err) {
-    console.error(err.message);
-    res.status(500).send("Server error");
-  }
-});
+app.use("/user", require("./routes/user/user"))
 
 //POST request to register a new user
-app.post("/register", async (req, res) => {
-    const { name, email, password } = req.body;
-
-    try {
-      let user = await User.findOne({ email });
-      if (user) {
-        return res.status(400).json({ msg: "Email is already registered" })
-      }
-
-      user = new User({
-        name,
-        email,
-        password
-      });
-
-      const salt = await bcrypt.genSalt(10);
-      user.password = await bcrypt.hash(password, salt);
-      await user.save();
-      const payload = {
-        user: {
-          id: user.id,
-        }
-      }
-
-      jwt.sign(
-        payload, process.env.SECRET,
-        { expiresIn: 36000 },
-        (err, token) => {
-          if (err) throw errors;
-          res.json({ token })
-        }
-      )
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send("Server error")
-    }
-  })
-
+app.use("/register", require("./routes/user/register"))
 
 //logs in user
-app.post("/login",
-  [
-    body("email", "Please include a valid email").isEmail(),
-    body("password", "password is required").exists(),
-  ],
-  async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-    const { email, password } = req.body;
-    try {
-      let user = await User.findOne({ email });
-      if (!user) {
-        console.log("email fail")
-        return res.status(400).json({ msg: "Email or password is incorrect" });
-      }
+app.use("/login", require("./routes/user/login"))
 
-      const isMatch = await bcrypt.compare(password, user.password);
-
-      if (!isMatch) {
-        console.log("password fail");
-        return res.status(400).json({ msg: "Email or password is incorrect" });
-      }
-
-      const payload = {
-        user: {
-          id: user.id,
-        },
-      };
-
-      jwt.sign(
-        payload,
-        process.env.SECRET,
-        { expiresIn: 360000 },
-        (err, token) => {
-          if (err) throw errors;
-          res.json({ token });
-        }
-      );
-    } catch {
-      console.error(err.message);
-      res.status(500).send("server error");
-    }
-  })
 
 
 //GET request to display list from user inputed date
