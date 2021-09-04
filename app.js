@@ -49,13 +49,13 @@ if (process.env.NODE_ENV === "production") {
 
 
 //verifies a logged in user to access protected routes
-app.use("/user", require("./routes/user/user"))
+app.use("/user/auth", require("./routes/user/auth"))
 
 //POST request to register a new user
-app.use("/register", require("./routes/user/register"))
+app.use("/user/register", require("./routes/user/register"))
 
 //logs in user
-app.use("/login", require("./routes/user/login"))
+app.use("/user/login", require("./routes/user/login"))
 
 
 
@@ -82,7 +82,7 @@ app.get("/date/:listName", auth, (req, res) => {
 })
 
 //adds a new item to the current list
-app.post("/", auth, (req, res) => {
+app.post("/item/new", auth, (req, res) => {
   const itemName = req.body.item;
   const listName = req.body.list
   const item = new Item({
@@ -99,7 +99,7 @@ app.post("/", auth, (req, res) => {
 })
 
 //edits an existing item in the current list
-app.post("/edit", auth, (req, res) => {
+app.post("/item/edit", auth, (req, res) => {
   const { list, item, oldText } = req.body
   console.log(list, item, oldText);
 
@@ -119,26 +119,27 @@ app.post("/edit", auth, (req, res) => {
 
 
 //adds style detail to list item to remain crossed-off when page is reloaded
-app.post("/delete", auth, (req, res) => {
-  const crossedItem = req.body.item
-  const listName = req.body.list
-  const style = req.body.style
-  var newStyle = style !== "" ? "strikethrough" : ""
+app.use("/item/crossoff", require("./routes/item/crossoff"))
+// app.post("/item/crossoff", auth, (req, res) => {
+//   const crossedItem = req.body.item
+//   const listName = req.body.list
+//   const style = req.body.style
+//   var newStyle = style !== "" ? "strikethrough" : ""
 
-  List.findOneAndUpdate(
-    { "user": req.user.id, "name": listName, "items.item": crossedItem },
-    { "$set": { "items.$.style": newStyle } },
-    (err, success) => {
-      if (err) {
-        console.log(err);
-      } else { console.log("item updated"); }
-    })
-  res.end();
-})
+//   List.findOneAndUpdate(
+//     { "user": req.user.id, "name": listName, "items.item": crossedItem },
+//     { "$set": { "items.$.style": newStyle } },
+//     (err, success) => {
+//       if (err) {
+//         console.log(err);
+//       } else { console.log("item updated"); }
+//     })
+//   res.end();
+// })
 
 
 //Deletes selected item from database
-app.delete("/delete", auth, async (req, res) => {
+app.delete("/item/delete", auth, async (req, res) => {
   const { list, item } = req.body
   await List.updateOne(
     { "user": req.user.id, "name": list },
@@ -155,7 +156,7 @@ app.delete("/delete", auth, async (req, res) => {
 
 
 //moves item to the next day
-app.post("/move", auth, (req, res) => {
+app.post("/item/move", auth, (req, res) => {
 
   const { list, item, style } = req.body
   const date = new Date(list)
@@ -200,7 +201,7 @@ app.post("/move", auth, (req, res) => {
 
 //gets weather
 
-app.post("/weather", async (req, res) => {
+app.post("/services/weather", async (req, res) => {
   const apiKey = process.env.WEATHER_API
   const location = req.body.location.toLowerCase();
   try {
@@ -216,7 +217,7 @@ app.post("/weather", async (req, res) => {
 
 //Updates user info
 
-app.patch("/updateUser", auth, (req, res) => {
+app.patch("/user/update", auth, (req, res) => {
   const { user, name, value } = req.body
   const { _id } = user
   const set = {}
@@ -233,7 +234,7 @@ app.patch("/updateUser", auth, (req, res) => {
 })
 
 
-app.patch("/updatePassword", auth, async (req, res) => {
+app.patch("/user/password", auth, async (req, res) => {
   const {oldPass, newPass, user} = req.body
   const { _id } = user
   const dbUser = await User.findOne({ _id })

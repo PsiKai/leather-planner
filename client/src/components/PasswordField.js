@@ -11,7 +11,7 @@ const PasswordField = () => {
         e.preventDefault()
         if (password.oldPass && password.newPass) {
             try {
-                const res = await axios.patch("/updatePassword", {...password, user})
+                const res = await axios.patch("/user/password", {...password, user})
                 setAlert(res.data.msg)
             } catch (error) {
                 setAlert(error.response.data.msg)

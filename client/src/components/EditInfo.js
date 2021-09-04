@@ -36,7 +36,7 @@ const EditInfo = () => {
         e.preventDefault()
         const { name, value } = e.target[0]
         try {
-            const res = await axios.patch("/updateUser", { user, name, value })
+            const res = await axios.patch("/user/update", { user, name, value })
             const { msg } = res.data
             getUser()
             setAlert(msg)

@@ -47,7 +47,7 @@ const AppState = (props) => {
         let res
             !inputText.oldItem ?
                 res = await axios.post(
-                    "/", 
+                    "/item/new", 
                     {
                         item: inputText.item, 
                         list: inputText.list
@@ -55,7 +55,7 @@ const AppState = (props) => {
                     {"Content-Type": "*/*"}
                 ) :
                 res = await axios.post(
-                    "/edit",
+                    "/item/edit",
                     {
                         item: inputText.item, 
                         list: inputText.list,
@@ -72,7 +72,7 @@ const AppState = (props) => {
     // set strikethrough
     const crossOff = async (item) => {
          await axios.post(
-             "/delete", 
+             "/item/crossoff", 
              {
                 item: item.item, 
                 list: item.list, 
