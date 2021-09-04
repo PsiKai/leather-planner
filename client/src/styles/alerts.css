@@ -17,12 +17,10 @@
 
 .alert {
   background: #fff4b0 url("../images/textured-paper.png");
-  padding: 2rem;
+  padding: 1rem;
   display: flex;
   align-items: center;
   width: 40ch;
-  /* margin: 1rem; */
-  /* font-size: 24px; */
   color: #381a14;
   font-family: "Libre Baskerville", serif;
   white-space: nowrap;
@@ -30,59 +28,40 @@
 
 .alert svg {
   margin-right: 1rem;
+  font-size: 32px;
 }
 
 .alert span {
-  max-width: 40ch;
   text-overflow: ellipsis;
   overflow: hidden;
 }
 
 .fadein-enter {
-  /* opacity: 0; */
-  /* height: 0; */
-  /* flex-grow: 0.00001; */
   transform: scaleY(0);
   transform-origin: bottom;
 }
 
 .fadein-enter.fadein-enter-active {
-  /* opacity: 1; */
-  /* flex-grow: 1; */
   transform: scaleY(1);
   transform-origin: bottom;
-  /* height: 100%; */
   transition: all 400ms ease;
 }
 
 .fadein-enter-done {
-  /* opacity: 1; */
-  /* height: 100%; */
-  /* flex-grow: 1; */
   transform: scaleY(1);
 }
 
 .fadein-exit {
-  /* opacity: 1; */
-  /* height: 100%; */
-  /* flex-grow: 1; */
   transform: scaleY(1);
   transform-origin: bottom;
 }
 
 .fadein-exit.fadein-exit-active {
-  /* opacity: 0; */
-  /* height: 0; */
-  /* flex-grow: 0.00001; */
   transform: scaleY(0);
-  /* transform-origin: top; */
   transition: all 400ms ease;
 }
 
 .fadein-exit-done {
-  /* opacity: 0; */
-  /* height: 0; */
-  /* flex-grow: 0.00001; */
   transform: scaleY(0);
 }
 

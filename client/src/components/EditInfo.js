@@ -37,11 +37,12 @@ const EditInfo = () => {
         const { name, value } = e.target[0]
         try {
             const res = await axios.patch("/user/update", { user, name, value })
-            const { msg } = res.data
+            const { data: { msg }, status } = res
             getUser()
-            setAlert(msg)
+            setAlert({ status, msg })
         } catch (error) {
-            setAlert(`Error updating ${name}`)
+            const { status } = error.response
+            setAlert({ status, msg: `Error updating ${name}` })
         }
         name === "name" ? setEditName(false) : setEditEmail(false)
     }

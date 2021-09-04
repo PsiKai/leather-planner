@@ -12,12 +12,14 @@ const PasswordField = () => {
         if (password.oldPass && password.newPass) {
             try {
                 const res = await axios.patch("/user/password", {...password, user})
-                setAlert(res.data.msg)
+                const { data: { msg }, status } = res
+                setAlert({ status, msg })
             } catch (error) {
-                setAlert(error.response.data.msg)
+                const { status, data: { msg } } = error.response
+                setAlert({ status, msg })
             }
         } else {
-            setAlert("Please enter both password fields")
+            setAlert({ status: 400, msg: "Please enter both password fields" })
         }
         setPassword({oldPass: "", newPass: ""})
     }
