@@ -55,7 +55,7 @@ const Weather = () => {
         setLoading(false)
       } catch (error) {
         console.log(error);
-        setAlert("There was an error getting the weather")
+        setAlert({ status: 500, msg: "There was an error getting the weather" })
         setLoading(false)
       }
     }

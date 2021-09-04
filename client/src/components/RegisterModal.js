@@ -20,23 +20,27 @@ const RegisterModal = (props) => {
             [e.target.name]: e.target.value
         })
 
+    const validationType = (msg) => {
+        setAlert({ status: 400, msg })
+    }
+
     const onSubmit = (e) => {
         e.preventDefault();
         let validated = true
         if (name.length === 0) {
-            setAlert("Name is required")
+            validationType("Name is required")
             validated = false
         }
         if (email.length === 0 || !email.includes("@")) {
-            setAlert("Valid email is required")
+            validationType("Valid email is required")
             validated = false
         } 
         if (password.length < 6) {
-            setAlert("Password must be 6 or more characters")
+            validationType("Password must be 6 or more characters")
             validated = false
         } 
         if (password !== passwordTwo) {
-            setAlert("Passwords must match")
+            validationType("Passwords must match")
             validated = false
         } 
         if (validated) {

@@ -31,7 +31,7 @@ const AuthState = (props) => {
             setAuthToken(localStorage.token)
         } else {
             dispatch({type: LOG_OUT})
-            setAlert("You have been logged out")
+            setAlert({ status: 401, msg: "You have been logged out" })
         }
         try {
             const res = await axios.get('/user/auth')
@@ -42,7 +42,8 @@ const AuthState = (props) => {
             });
         } catch (err) {
             dispatch({type: LOG_OUT})
-            setAlert(err.response.data.msg)
+            const { data: { msg }, status } = err.response
+            setAlert({ status, msg })
             console.error(err.response, this);
         }
     }
@@ -61,8 +62,8 @@ const AuthState = (props) => {
             })
             getUser();
         } catch (err) {
-            console.error(err.response);
-            setAlert(err.response.data.msg)
+            const { data: { msg }, status } = err.response
+            setAlert({ msg, status })
             dispatch({
                 type: LOG_OUT
             })
@@ -83,7 +84,8 @@ const AuthState = (props) => {
             })
             getUser();
         } catch (err) {
-            setAlert(err.response.data.msg)
+            const { data: { msg }, status } = err.response
+            setAlert({ msg, status })
             dispatch({
                 type: LOG_OUT
             })
@@ -92,11 +94,11 @@ const AuthState = (props) => {
 
     const logOut = () => dispatch({ type: LOG_OUT })
 
-    const setAlert = (msg) => {
+    const setAlert = ({ msg, status }) => {
         const id = uuidv4();
         dispatch({
             type: SET_ALERT,
-            payload: { msg, id }
+            payload: { msg, id, status }
         })
         setTimeout(() => {
             dispatch({
@@ -113,8 +115,8 @@ const AuthState = (props) => {
             item,
             { "Content-Type": "*/*" }
         )
-        console.log(res.data.msg);
-        setAlert(res.data.msg);
+        const { data: { msg }, status } = res
+        setAlert({ msg, status });
     }
 
 
@@ -124,9 +126,10 @@ const AuthState = (props) => {
             { data: item },
             // {"Content-Type": "*/*"}
         )
-        setAlert(res.data.msg)
+        const { data: {msg}, status} = res
+        setAlert({ msg, status })
 
-        return res.status
+        return status
     }
 
     return (

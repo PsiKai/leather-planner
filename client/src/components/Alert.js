@@ -2,26 +2,28 @@ import React, {useContext} from 'react'
 import "../styles/alerts.css"
 import AuthContext from "../context/AuthContext"
 import ErrorIcon from '@material-ui/icons/Error';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import {CSSTransition, TransitionGroup} from "react-transition-group"
 
 const Alert = () => {
     const authContext = useContext(AuthContext);
     const {alerts} = authContext
+    console.log(alerts)
 
     return (
         
         <TransitionGroup className="alert-wrapper">
             {alerts.length > 0 &&
-                alerts.map(alert => (
+                alerts.map(({ msg, id, status=200}) => (
                     <CSSTransition
                         timeout={400}
                         classNames="fadein"
-                        key={alert.id}
+                        key={id}
                     >
                     <div className="alert-border">
-                        <div key={alert.id} className="alert">
-                            <ErrorIcon />
-                            <span>{alert.msg}</span>
+                        <div key={id} className="alert">
+                            {status.toString().includes(2) ? <CheckCircleIcon/> : <ErrorIcon />}
+                            <span>{msg}</span>
                         </div>
                     </div>
                     </CSSTransition>
