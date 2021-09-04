@@ -17,7 +17,7 @@ router.post("/", auth, (req, res) => {
           console.log(err);
         } else { console.log("item updated"); }
       })
-    res.end();
+    res.end()
 })
 
 module.exports = router

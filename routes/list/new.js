@@ -10,8 +10,8 @@ router.get("/:listName", auth, (req, res) => {
     List.findOne({ user: req.user.id, name: newDay }, (err, foundList) => {
       if (!err) {
         if (!foundList) {
-          const list = new List({ user: req.user.id, name: newDay, items: [] });
-          list.save();
+          const list = new List({ user: req.user.id, name: newDay, items: [] })
+          list.save()
   
           res.status(201).send({ list: newDay, items: [], date: newDay })
         } else {
