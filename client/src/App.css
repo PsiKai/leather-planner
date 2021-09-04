@@ -140,6 +140,10 @@ li {
   align-items: center;
 }
 
+.user-nav a span {
+  white-space: nowrap;
+}
+
 .profile--wrapper {
   display: grid;
   grid-template-rows: 1fr 1fr;
@@ -589,6 +593,13 @@ textarea {
   align-items: center;
 }
 
+.weather div[role="progressbar"] {
+  width: 16px !important;
+  height: 16px !important;
+  color: black;
+  margin: 4px;
+}
+
 .get-weather {
   background: inherit;
   padding: 0;
@@ -988,6 +999,10 @@ label.MuiFormLabel-root {
     transform: scale(1.1);
   }
 
+  .user-nav a span {
+    white-space: initial;
+  }
+
   .user-nav a,
   button.MuiButtonBase-root span {
     flex-direction: column-reverse;
@@ -1053,6 +1068,13 @@ label.MuiFormLabel-root {
 
   .react-datepicker__triangle {
     right: 16px !important;
+  }
+
+  .weather div[role="progressbar"] {
+    width: 32px !important;
+    height: 32px !important;
+    color: var(--faded);
+    margin: 5px;
   }
 
   .page {

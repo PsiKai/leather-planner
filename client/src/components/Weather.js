@@ -79,7 +79,7 @@ const Weather = () => {
     return (
       <div className="weather">
         <CircularProgress 
-          style={{width: "30px", height: "30px", color: "black", margin: "4px"}} 
+          // style={{width: "30px", height: "30px", color: "black", margin: "4px"}} 
           onClick={() => setLoading(false)}/>
       </div>
     )
