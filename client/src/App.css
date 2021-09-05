@@ -22,6 +22,7 @@
 body {
   background-color: var(--wood-color);
   background-image: var(--wood-texture);
+  background-blend-mode: color-burn;
 }
 
 a {
