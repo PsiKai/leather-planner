@@ -8,7 +8,6 @@ import {CSSTransition, TransitionGroup} from "react-transition-group"
 const Alert = () => {
     const authContext = useContext(AuthContext);
     const {alerts} = authContext
-    console.log(alerts)
 
     return (
         
@@ -27,7 +26,8 @@ const Alert = () => {
                         </div>
                     </div>
                     </CSSTransition>
-            ))}
+                ))
+            }
         </TransitionGroup>
         
     )
