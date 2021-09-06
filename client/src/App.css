@@ -619,7 +619,6 @@ textarea {
 }
 
 .widget .weather-input {
-  overflow: visible !important;
   font-family: var(--serif-font) !important;
   font-size: 1rem !important;
   font-weight: 700;
@@ -627,6 +626,10 @@ textarea {
   margin: 0 !important;
   text-align: right;
   height: 24px !important;
+}
+
+.widget .weather-input::-webkit-scrollbar {
+  display: none;
 }
 
 .widget .weather-input::placeholder {
