@@ -22,6 +22,7 @@ const EditInfo = () => {
 
     useEffect(() => {
         setInfo({ name, email })
+        //eslint-disable-next-line
     }, [user])
 
     const editInfo = (e) => {
