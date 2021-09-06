@@ -19,9 +19,7 @@ const Weather = () => {
     var city = localStorage.getItem("city")
     city && setLocation(city)
     city && getWeather(city);
-    return () => {
-      clearInterval(interval)
-    }
+    return () => clearInterval(interval)
     //eslint-disable-next-line
   }, [])
 
@@ -43,7 +41,7 @@ const Weather = () => {
 
   const getWeather = async (city) => {
     interval && clearInterval(interval)
-    interval = setInterval(() => getWeather(location), 30000)
+    interval = setInterval(() => getWeather(city), 300000)
     setLoading(true)
     try {
       const res = await axios.post("/services/weather", {city})
@@ -59,9 +57,15 @@ const Weather = () => {
     }
   };
 
+  const resetWeatherSearch = () => {
+    setWeather(null)
+    clearInterval(interval)
+    setWeatherLabel(true)
+  }
+
   if (weather !== null) {
     return (
-      <div className="weather" onClick={() => {setWeather(null); clearInterval(interval)}}>
+      <div className="weather" onClick={resetWeatherSearch}>
         <h6 className="temp">{weather}°</h6>
         <i className={`weather-icon owf owf-${icon} owf-2x`}></i>
       </div>
@@ -92,7 +96,7 @@ const Weather = () => {
         <button type="submit"><CheckIcon /></button>
       </form>
       :
-      <button className="get-weather" onClick={() => {setWeatherLabel(true); clearInterval(interval)}}>
+      <button className="get-weather" onClick={resetWeatherSearch}>
         <span>Weather</span> <SearchIcon />
       </button>  
   )
