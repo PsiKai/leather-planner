@@ -57,9 +57,6 @@ const Today = (props) => {
       />
       <Alert />
     </div>
-
-    
- 
   </Fragment>
   )
 }

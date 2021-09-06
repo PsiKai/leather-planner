@@ -124,7 +124,6 @@ const AuthState = (props) => {
         const res = await axios.delete(
             '/item/delete',
             { data: item },
-            // {"Content-Type": "*/*"}
         )
         const { data: {msg}, status} = res
         setAlert({ msg, status })
