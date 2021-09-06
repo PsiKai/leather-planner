@@ -47,12 +47,12 @@ const Weather = () => {
     setLoading(true)
     try {
       const res = await axios.post("/services/weather", {city})
-      const data = res.data.weather
-      var suffix = data.weather[0].icon.slice(2);
-      setWeather(Math.round(data.main.temp));
-      setIcon(data.weather[0].id + "-" + suffix);
+      const { weather: [ { icon, id } ], main: { temp } } = res.data.weather
+      var suffix = icon.slice(2);
+      setWeather(Math.round(temp));
+      setIcon(id + "-" + suffix);
       setLoading(false)
-      weatherInterval = setInterval(() => getWeather(city), 10000)
+      weatherInterval = setInterval(() => getWeather(city), 300000)
     } catch (error) {
       console.log(error);
       setAlert({ status: 500, msg: "There was an error getting the weather" })
