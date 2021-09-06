@@ -1,13 +1,12 @@
-import React, { useContext, useState, useRef, Fragment, useEffect } from 'react'
-import penCross from '../sounds/penCross1.wav';
-import AppContext from '../context/AppContext';
-import AuthContext from '../context/AuthContext';
+import React, { useContext, useState, useRef, Fragment } from 'react'
+import penCross from '../../../sounds/penCross1.wav';
+import AppContext from '../../../context/application/AppContext';
+import AuthContext from '../../../context/authentication/AuthContext';
 import Input from "./Input"
 import EditIcon from '@material-ui/icons/Edit';
 import ForwardIcon from '@material-ui/icons/Forward';
 import StrikethroughSIcon from '@material-ui/icons/StrikethroughS';
 import UndoIcon from '@material-ui/icons/Undo';
-import LabelImportantIcon from '@material-ui/icons/LabelImportant';
 import DeleteIcon from '@material-ui/icons/Delete';
 import TurnedInNotIcon from '@material-ui/icons/TurnedInNot';
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
@@ -88,7 +87,6 @@ const List = ({ list, id, moved, style, content }) => {
                     className={moved ? "no-bullet-point" : ""}
                 >
                     <div className="list-wrapper">
-                        {/* {moved && <LabelImportantIcon />} */}
                         {moved && <TurnedInNotIcon style={flagStyle} />}
 
                         <span ref={listItemText} className={style}>{content}</span>

@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
-import AuthContext from "../context/AuthContext";
+import AuthContext from "../../context/authentication/AuthContext";
 
-const RegisterModal = (props) => {
+const RegisterModal = () => {
     const authContext = useContext(AuthContext);
     const {register, setAlert} = authContext;
 

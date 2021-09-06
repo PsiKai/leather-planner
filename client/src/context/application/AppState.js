@@ -7,7 +7,7 @@ import {
     SET_ITEM,
     REMOVE_ITEM,
     SET_LOADING
-} from "./types";
+} from "../types/types";
 
 const AppState = (props) => {
     var date = new Date();
@@ -32,8 +32,7 @@ const AppState = (props) => {
     //get list
     const getList = async (listName) => {
         const res = await axios.get(
-            `/list/new/${listName}`, 
-            // {list: listName},
+            `/list/new/${listName}`,
             {"Content-Type": "*/*"}
         )
         dispatch({
@@ -69,7 +68,6 @@ const AppState = (props) => {
         })   
     }
 
-    // set strikethrough
     const crossOff = async (item) => {
          await axios.post(
              "/item/crossoff", 
@@ -80,15 +78,6 @@ const AppState = (props) => {
              {"Content-Type": "*/*"}
         )
     }
-
-    // const moveItem = async (item) => {
-    //     const res = await axios.post(
-    //         "/move",
-    //         item,
-    //         {"Content-Type": "*/*"}
-    //     )
-    //     console.log(res.data.msg);
-    // }
 
     const removeItem = ({item}) => {
         dispatch({
@@ -103,8 +92,6 @@ const AppState = (props) => {
             payload: bool
         })
     }
-
-
   
     return (
         <AppContext.Provider

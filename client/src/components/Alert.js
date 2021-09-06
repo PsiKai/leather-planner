@@ -1,9 +1,11 @@
 import React, {useContext} from 'react'
+import {CSSTransition, TransitionGroup} from "react-transition-group"
+
 import "../styles/alerts.css"
-import AuthContext from "../context/AuthContext"
+import AuthContext from "../context/authentication/AuthContext"
+
 import ErrorIcon from '@material-ui/icons/Error';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import {CSSTransition, TransitionGroup} from "react-transition-group"
 
 const Alert = () => {
     const authContext = useContext(AuthContext);

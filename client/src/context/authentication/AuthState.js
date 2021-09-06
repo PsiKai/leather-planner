@@ -3,7 +3,7 @@ import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import AuthContext from "./AuthContext";
 import authReducer from "./AuthReducer";
-import setAuthToken from "../utils/setAuthToken"
+import setAuthToken from "../../utils/setAuthToken"
 import {
     REGISTER_SUCCESS,
     LOGIN_SUCCESS,
@@ -11,7 +11,7 @@ import {
     USER_LOADED,
     SET_ALERT,
     REMOVE_ALERT
-} from "./types"
+} from "../types/types"
 
 
 const AuthState = (props) => {
@@ -124,7 +124,6 @@ const AuthState = (props) => {
         const res = await axios.delete(
             '/item/delete',
             { data: item },
-            // {"Content-Type": "*/*"}
         )
         const { data: {msg}, status} = res
         setAlert({ msg, status })

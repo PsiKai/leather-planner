@@ -3,7 +3,7 @@ import {
     REMOVE_ITEM,
     SET_ITEM,
     SET_LOADING
-} from "./types";
+} from "../types/types";
 
 //eslint-disable-next-line
 export default (state, action) => {

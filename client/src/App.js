@@ -1,10 +1,10 @@
 import React, { useEffect } from "react"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Today from './components/Today'
-import Cover from "./components/Cover"
-import EditProfile from "./components/EditProfile";
-import AppState from './context/AppState'
-import AuthState from './context/AuthState'
+import Today from './components/day/Today'
+import Cover from "./components/cover/Cover"
+import EditProfile from "./components/profile/EditProfile";
+import AppState from './context/application/AppState'
+import AuthState from './context/authentication/AuthState'
 import setAuthToken from "./utils/setAuthToken"
 import PrivateRoute from "./components/routing/PrivateRoute"
 import 'materialize-css/dist/css/materialize.min.css';

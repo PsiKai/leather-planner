@@ -1,13 +1,15 @@
 import React, { useContext, useEffect } from 'react'
-import Alert from "../components/Alert"
 import { Link } from 'react-router-dom'
+import AuthContext from "../../context/authentication/AuthContext"
+
+import Alert from "../Alert"
+import PasswordField from './PasswordField';
+import EditInfo from './EditInfo';
+
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import PersonIcon from '@material-ui/icons/Person';
-import AuthContext from "../context/AuthContext"
 
-import pageFlip from "../sounds/page-flip.wav"
-import EditInfo from './EditInfo';
-import PasswordField from './PasswordField';
+import pageFlip from "../../sounds/page-flip.wav"
 
 const EditProfile = () => {
     const authContext = useContext(AuthContext)

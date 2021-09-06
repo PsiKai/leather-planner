@@ -1,8 +1,7 @@
 import React, {useContext, useEffect} from 'react'
 import Input from './Input'
 import List from './List';
-import AppContext from "../context/AppContext";
-import { CircularProgress } from '@material-ui/core';
+import AppContext from "../../../context/application/AppContext";
 
 const Content = () => {
     const appContext = useContext(AppContext);
