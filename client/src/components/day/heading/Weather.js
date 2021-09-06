@@ -19,6 +19,9 @@ const Weather = () => {
     var city = localStorage.getItem("city")
     city && setLocation(city)
     // city && submitCity();
+    return () => {
+      setNotCleared(true)
+    }
   }, [])
 
   const [weather, setWeather] = useState(null);
@@ -36,7 +39,7 @@ const Weather = () => {
     notCleared && clearInterval(interval)
     localStorage.setItem("city", location)
     getWeather();
-    interval = setInterval(getWeather, 300000)
+    interval = setInterval(getWeather, 5000)
   }
 
 
@@ -77,7 +80,7 @@ const Weather = () => {
       </div>
     )
   }
-  
+
   return (
     weatherLabel ?
       <form className="weather-input__wrapper" onSubmit={submitCity}>
