@@ -1,7 +1,7 @@
 import React, { useContext, useState, useRef, Fragment, useEffect } from 'react'
-import penCross from '../sounds/penCross1.wav';
-import AppContext from '../context/application/AppContext';
-import AuthContext from '../context/authentication/AuthContext';
+import penCross from '../../../sounds/penCross1.wav';
+import AppContext from '../../../context/application/AppContext';
+import AuthContext from '../../../context/authentication/AuthContext';
 import Input from "./Input"
 import EditIcon from '@material-ui/icons/Edit';
 import ForwardIcon from '@material-ui/icons/Forward';
