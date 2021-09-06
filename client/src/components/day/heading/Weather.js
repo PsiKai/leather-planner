@@ -18,55 +18,50 @@ const Weather = () => {
   useEffect(() => {
     var city = localStorage.getItem("city")
     city && setLocation(city)
-    // city && submitCity();
+    city && getWeather(city);
     return () => {
-      setNotCleared(true)
+      clearInterval(interval)
     }
+    //eslint-disable-next-line
   }, [])
 
   const [weather, setWeather] = useState(null);
   const [icon, setIcon] = useState("");
-  const [location, setLocation] = useState("");
-  const [notCleared, setNotCleared] = useState(false)
+  const [location, setLocation] = useState("")
   const [weatherLabel, setWeatherLabel] = useState(false)
 
   const newLocation = (e) => {
-    setLocation(e.target.value)
+    setLocation(e.target.value.toLowerCase().replace(/ /g, "+"))
   }
 
   let submitCity = (e) => {
-    e && e.preventDefault();
-    notCleared && clearInterval(interval)
+    e && e.preventDefault()
     localStorage.setItem("city", location)
-    getWeather();
-    interval = setInterval(getWeather, 5000)
+    getWeather(location)
   }
 
 
-  const getWeather = async () => {
-    setNotCleared(true)
+  const getWeather = async (city) => {
+    interval && clearInterval(interval)
+    interval = setInterval(() => getWeather(location), 30000)
     setLoading(true)
-    if (location !== "") {
-      setLocation(location.toLowerCase().replace(/ /g, "+")) 
-      try {
-        const res = await axios.post("/services/weather", {location});
-        const data = res.data.weather
-        var suffix = data.weather[0].icon.slice(2);
-        setWeather(Math.round(data.main.temp));
-        setIcon(data.weather[0].id + "-" + suffix);
-        setLoading(false)
-      } catch (error) {
-        console.log(error);
-        setAlert({ status: 500, msg: "There was an error getting the weather" })
-        setLoading(false)
-      }
+    try {
+      const res = await axios.post("/services/weather", {city})
+      const data = res.data.weather
+      var suffix = data.weather[0].icon.slice(2);
+      setWeather(Math.round(data.main.temp));
+      setIcon(data.weather[0].id + "-" + suffix);
+      setLoading(false)
+    } catch (error) {
+      console.log(error);
+      setAlert({ status: 500, msg: "There was an error getting the weather" })
+      setLoading(false)
     }
-
   };
 
   if (weather !== null) {
     return (
-      <div className="weather" onClick={() => setWeather(null)}>
+      <div className="weather" onClick={() => {setWeather(null); clearInterval(interval)}}>
         <h6 className="temp">{weather}°</h6>
         <i className={`weather-icon owf owf-${icon} owf-2x`}></i>
       </div>
@@ -97,7 +92,7 @@ const Weather = () => {
         <button type="submit"><CheckIcon /></button>
       </form>
       :
-      <button className="get-weather" onClick={() => setWeatherLabel(true)}>
+      <button className="get-weather" onClick={() => {setWeatherLabel(true); clearInterval(interval)}}>
         <span>Weather</span> <SearchIcon />
       </button>  
   )
