@@ -7,7 +7,7 @@ import {
     SET_ITEM,
     REMOVE_ITEM,
     SET_LOADING
-} from "./types";
+} from "../types/types";
 
 const AppState = (props) => {
     var date = new Date();

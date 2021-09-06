@@ -3,7 +3,7 @@ import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 import pen1 from '../sounds/Pen1.wav';
 import pen2 from '../sounds/Pen2.wav';
-import AppContext from "../context/AppContext";
+import AppContext from "../context/application/AppContext";
 import {CSSTransition} from "react-transition-group"
 
 const Input = ({text, undoEdit}) => {

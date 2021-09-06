@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import authContext from '../context/AuthContext'
+import authContext from '../context/authentication/AuthContext'
 import axios from "axios"
 
 const PasswordField = () => {

@@ -1,5 +1,5 @@
 import React, {useContext, useEffect} from 'react'
-import AppContext from "../context/AppContext"
+import AppContext from "../context/application/AppContext"
 import pageFlip from "../sounds/page-flip.wav"
 
 const Day = () => {

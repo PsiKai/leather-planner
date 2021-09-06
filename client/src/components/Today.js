@@ -6,7 +6,7 @@ import Content from './Content'
 import User from './User'
 import Alert from "../components/Alert"
 
-import AuthContext from "../context/AuthContext";
+import AuthContext from "../context/authentication/AuthContext";
 
 
 const Today = (props) => {

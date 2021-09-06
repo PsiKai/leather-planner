@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
-import AppContext from "../context/AppContext"
-import AuthContext from "../context/AuthContext"
+import AppContext from "../context/application/AppContext"
+import AuthContext from "../context/authentication/AuthContext"
 import axios from "axios";
 import CheckIcon from '@material-ui/icons/Check';
 import SearchIcon from '@material-ui/icons/Search';

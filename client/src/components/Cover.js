@@ -1,7 +1,7 @@
 import React, {Fragment, useEffect, useContext} from 'react';
 import LoginModal from "./LoginModal"
 import RegisterModal from "./RegisterModal"
-import AuthContext from "../context/AuthContext"
+import AuthContext from "../context/authentication/AuthContext"
 import M from "materialize-css/dist/js/materialize.min.js";
 import Alert from "../components/Alert"
 

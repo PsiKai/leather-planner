@@ -3,7 +3,7 @@ import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
 import EditIcon from '@material-ui/icons/Edit';
 import Fab from '@material-ui/core/Fab';
-import AuthContext from "../context/AuthContext"
+import AuthContext from "../context/authentication/AuthContext"
 import axios from 'axios';
 
 const EditInfo = () => {

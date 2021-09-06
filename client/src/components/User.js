@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Link } from "react-router-dom"
-import AuthContext from "../context/AuthContext";
-import AppContext from "../context/AppContext"
+import AuthContext from "../context/authentication/AuthContext";
+import AppContext from "../context/application/AppContext"
 import PersonIcon from '@material-ui/icons/Person';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Button from '@material-ui/core/Button';
