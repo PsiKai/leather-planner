@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Today from './components/Today'
-import Cover from "./components/Cover"
+import Cover from "./components/cover/Cover"
 import EditProfile from "./components/EditProfile";
 import AppState from './context/application/AppState'
 import AuthState from './context/authentication/AuthState'
