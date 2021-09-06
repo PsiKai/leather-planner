@@ -6,7 +6,7 @@ import CheckIcon from '@material-ui/icons/Check';
 import SearchIcon from '@material-ui/icons/Search';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-let interval
+let weatherInterval
 
 const Weather = () => {
   const appContext = useContext(AppContext)
@@ -17,16 +17,17 @@ const Weather = () => {
 
   useEffect(() => {
     var city = localStorage.getItem("city")
+    console.log(city ? true : false);
     city && setLocation(city)
     city && getWeather(city);
-    return () => clearInterval(interval)
+    return () => clearInterval(weatherInterval)
     //eslint-disable-next-line
   }, [])
 
   const [weather, setWeather] = useState(null);
   const [icon, setIcon] = useState("");
   const [location, setLocation] = useState("")
-  const [weatherLabel, setWeatherLabel] = useState(false)
+  const [weatherSearch, setWeatherSearch] = useState(false)
 
   const newLocation = (e) => {
     setLocation(e.target.value.toLowerCase().replace(/ /g, "+"))
@@ -34,14 +35,15 @@ const Weather = () => {
 
   let submitCity = (e) => {
     e && e.preventDefault()
-    localStorage.setItem("city", location)
-    getWeather(location)
+    if (location !== "" || location !== "/n") {
+      localStorage.setItem("city", location)
+      getWeather(location)
+    }    
   }
 
 
   const getWeather = async (city) => {
-    interval && clearInterval(interval)
-    interval = setInterval(() => getWeather(city), 300000)
+    weatherInterval && clearInterval(weatherInterval)
     setLoading(true)
     try {
       const res = await axios.post("/services/weather", {city})
@@ -50,17 +52,20 @@ const Weather = () => {
       setWeather(Math.round(data.main.temp));
       setIcon(data.weather[0].id + "-" + suffix);
       setLoading(false)
+      weatherInterval = setInterval(() => getWeather(city), 10000)
     } catch (error) {
       console.log(error);
       setAlert({ status: 500, msg: "There was an error getting the weather" })
       setLoading(false)
+      localStorage.setItem("city", "")
+      setLocation("")
     }
   };
 
   const resetWeatherSearch = () => {
     setWeather(null)
-    clearInterval(interval)
-    setWeatherLabel(true)
+    clearInterval(weatherInterval)
+    setWeatherSearch(true)
   }
 
   if (weather !== null) {
@@ -81,7 +86,7 @@ const Weather = () => {
   }
 
   return (
-    weatherLabel ?
+    weatherSearch ?
       <form className="weather-input__wrapper" onSubmit={submitCity}>
         <textarea
           className="weather-input"
