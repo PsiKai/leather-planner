@@ -1,9 +1,9 @@
 import React, {Fragment, useContext, useEffect} from 'react';
-import Weather from '../Weather';
-import Day from '../Day';
-import Datepicker from '../Datepicker'
+import Weather from './heading/Weather';
+import Day from './heading/Day';
+import Datepicker from './heading/Datepicker'
 import Content from './content/Content'
-import User from '../User'
+import User from './heading/User'
 import Alert from "../Alert"
 
 import AuthContext from "../../context/authentication/AuthContext";
