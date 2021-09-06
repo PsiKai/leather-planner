@@ -64,12 +64,8 @@ const Weather = () => {
   if (weather !== null) {
     return (
       <div className="weather" onClick={() => setWeather(null)}>
-
-        <h6 className="temp">
-          {weather}°
-        </h6>
+        <h6 className="temp">{weather}°</h6>
         <i className={`weather-icon owf owf-${icon} owf-2x`}></i>
-
       </div>
     );
   }
@@ -81,6 +77,7 @@ const Weather = () => {
       </div>
     )
   }
+  
   return (
     weatherLabel ?
       <form className="weather-input__wrapper" onSubmit={submitCity}>
