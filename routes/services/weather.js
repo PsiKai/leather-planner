@@ -8,10 +8,10 @@ if (process.env.NODE_ENV !== 'production') {
 
 router.post("/", async (req, res) => {
     const apiKey = process.env.WEATHER_API
-    const location = req.body.location.toLowerCase()
+    const { city } = req.body
     try {
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=` + location + `&appid=` + apiKey + `&units=imperial`
+        `https://api.openweathermap.org/data/2.5/weather?q=` + city + `&appid=` + apiKey + `&units=imperial`
       );
       res.status(response.data.cod).json({ weather: response.data })
     } catch (err) {

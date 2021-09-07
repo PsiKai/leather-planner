@@ -248,8 +248,8 @@ button.password--submit {
 .page {
   background-image: var(--paper-texture);
   width: 650px;
-  height: 735px;
-  margin: 20px auto;
+  height: 751px;
+  margin: 12px auto;
   background-color: var(--paper-color);
   box-shadow: 1px 1px 1px 1px #381a1480, 2px 1px 0 0 var(--paper-color),
     3px 2px 1px 1px #381a1480, 4px 2px 0 0 var(--paper-color),
