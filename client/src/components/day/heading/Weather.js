@@ -2,17 +2,17 @@ import React, { useState, useContext, useEffect } from "react";
 
 import AuthContext from "../../../context/authentication/AuthContext"
 
-import axios from "axios";
+import axios from "axios"
 
-import CheckIcon from '@material-ui/icons/Check';
-import SearchIcon from '@material-ui/icons/Search';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CheckIcon from '@material-ui/icons/Check'
+import SearchIcon from '@material-ui/icons/Search'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 let weatherInterval
 
 const Weather = () => {
-  const [weather, setWeather] = useState(null);
-  const [icon, setIcon] = useState("");
+  const [weather, setWeather] = useState(null)
+  const [icon, setIcon] = useState("")
   const [location, setLocation] = useState("")
   const [weatherSearch, setWeatherSearch] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -23,7 +23,7 @@ const Weather = () => {
   useEffect(() => {
     var city = localStorage.getItem("city")
     city && setLocation(city)
-    city && getWeather(city);
+    city && getWeather(city)
     return () => clearInterval(weatherInterval)
     //eslint-disable-next-line
   }, [])
@@ -48,9 +48,9 @@ const Weather = () => {
     try {
       const res = await axios.post("/services/weather", {city})
       const { weather: [ { icon, id } ], main: { temp } } = res.data.weather
-      var suffix = icon.slice(2);
-      setWeather(Math.round(temp));
-      setIcon(id + "-" + suffix);
+      var suffix = icon.slice(2)
+      setWeather(Math.round(temp))
+      setIcon(id + "-" + suffix)
       setLoading(false)
       weatherInterval = setInterval(() => getWeather(city), 300000)
     } catch (error) {
