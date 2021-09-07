@@ -1,7 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
-import AppContext from "../../../context/application/AppContext"
+
 import AuthContext from "../../../context/authentication/AuthContext"
+
 import axios from "axios";
+
 import CheckIcon from '@material-ui/icons/Check';
 import SearchIcon from '@material-ui/icons/Search';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -9,25 +11,23 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 let weatherInterval
 
 const Weather = () => {
-  const appContext = useContext(AppContext)
-  const {loading, setLoading} = appContext
+  const [weather, setWeather] = useState(null);
+  const [icon, setIcon] = useState("");
+  const [location, setLocation] = useState("")
+  const [weatherSearch, setWeatherSearch] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const authContext = useContext(AuthContext)
   const {setAlert} = authContext
 
   useEffect(() => {
     var city = localStorage.getItem("city")
-    console.log(city ? true : false);
     city && setLocation(city)
     city && getWeather(city);
     return () => clearInterval(weatherInterval)
     //eslint-disable-next-line
   }, [])
 
-  const [weather, setWeather] = useState(null);
-  const [icon, setIcon] = useState("");
-  const [location, setLocation] = useState("")
-  const [weatherSearch, setWeatherSearch] = useState(false)
 
   const newLocation = (e) => {
     setLocation(e.target.value.toLowerCase().replace(/ /g, "+"))
