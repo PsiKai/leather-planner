@@ -95,6 +95,7 @@ const Weather = () => {
           placeholder="City"
           value={location.replace(/\+/g, " ")}
           onKeyDown={(e) => {e.code === "Enter" && submitCity()}}
+          onClick={(e) => e.target.select()}
           rows="3"
           spellCheck="false"
         ></textarea>
