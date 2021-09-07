@@ -6,8 +6,9 @@ const auth = require("../../middleware/auth")
 const List = require("../../db/models/list")
 
 router.post("/", auth, (req, res) => {
-    const { body: { item, list, style }, user } = req
-    var newStyle = style !== "" ? "strikethrough" : ""
+    const { body: { item, list, style, id }, user } = req
+    var newStyle = style ? "strikethrough" : ""
+    console.log(id, newStyle);
   
     List.findOneAndUpdate(
       { "user": user.id, "name": list, "items.item": item },
@@ -21,3 +22,4 @@ router.post("/", auth, (req, res) => {
 })
 
 module.exports = router
+// , "items.$._id": `ObjectId("${id}")`

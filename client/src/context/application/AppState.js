@@ -74,7 +74,9 @@ const AppState = (props) => {
              {
                 item: item.item, 
                 list: item.list, 
-                style: item.style},
+                style: item.style,
+                id: item.id
+            },
              {"Content-Type": "*/*"}
         )
     }
