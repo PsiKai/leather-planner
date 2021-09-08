@@ -15,6 +15,8 @@ const AppState = (props) => {
     var resultDate = date.toLocaleDateString('en-US', options)
     .replace(/,/g, "").replace(/ /g, "-");
 
+    const reqHeaders = {"Content-Type": "*/*"}
+
     const intitialState = {
         list: resultDate,
         items: [],
@@ -33,7 +35,7 @@ const AppState = (props) => {
     const getList = async (listName) => {
         const res = await axios.get(
             `/list/new/${listName}`,
-            {"Content-Type": "*/*"}
+            reqHeaders
         )
         dispatch({
             type: GET_LIST,
@@ -51,7 +53,7 @@ const AppState = (props) => {
                         item: inputText.item, 
                         list: inputText.list
                     }, 
-                    {"Content-Type": "*/*"}
+                    reqHeaders
                 ) :
                 res = await axios.post(
                     "/item/edit",
@@ -60,7 +62,7 @@ const AppState = (props) => {
                         list: inputText.list,
                         oldText: inputText.oldItem
                     },
-                    {"Content-Type": "*/*"}
+                    reqHeaders
                 )
         dispatch({
             type: SET_ITEM,
@@ -69,10 +71,7 @@ const AppState = (props) => {
     }
 
     const crossOff = async (item) => {
-         await axios.post(
-             "/item/crossoff", { item },
-             {"Content-Type": "*/*"}
-        )
+         await axios.post("/item/crossoff", { item }, reqHeaders)
     }
 
     const removeItem = ({item}) => {
