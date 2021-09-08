@@ -12,21 +12,20 @@ const Content = () => {
       //eslint-disable-next-line
     }, [list])
 
-
     return (
       <div className="content">
         <ul 
           className="list browser-default" 
           id="list"
         >
-          {items.map((item, index) => {
+          {items.map(({ item, _id, style, moved}) => {
             return <List 
-                      key={index} 
-                      id={index} 
-                      content={item.item} 
+                      key={_id}
+                      id={_id}
+                      content={item} 
                       list={list} 
-                      style={item.style}
-                      moved={item.moved}
+                      style={style}
+                      moved={moved}
                     />
               }
             )

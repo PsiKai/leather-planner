@@ -29,12 +29,7 @@ const List = ({ list, id, moved, style, content }) => {
         strike.toggle("strikethrough")
         var audio = new Audio(penCross);
         strike.value && audio.play();
-        var item = {
-            list: list,
-            item: listItemText.current.innerHTML,
-            id: id,
-            style: listItemText.current.classList.value
-        }
+        const item = { list, id, style }
         crossOff(item);
     }
 
