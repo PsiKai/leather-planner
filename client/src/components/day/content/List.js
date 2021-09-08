@@ -30,12 +30,7 @@ const List = ({ list, id, moved, style, content }) => {
         var audio = new Audio(penCross);
         strike.value && audio.play();
         console.log(id, style, content);
-        var item = {
-            list: list,
-            item: listItemText.current.innerHTML,
-            id: id,
-            style: listItemText.current.classList.value
-        }
+        const item = { list, id, style }
         crossOff(item);
     }
 

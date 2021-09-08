@@ -70,13 +70,7 @@ const AppState = (props) => {
 
     const crossOff = async (item) => {
          await axios.post(
-             "/item/crossoff", 
-             {
-                item: item.item, 
-                list: item.list, 
-                style: item.style,
-                id: item.id
-            },
+             "/item/crossoff", { item },
              {"Content-Type": "*/*"}
         )
     }
