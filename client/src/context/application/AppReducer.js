@@ -23,12 +23,7 @@ export default (state, action) => {
                 date: action.payload.list
             }
         case REMOVE_ITEM:
-            const reducedItems = state.items.reduce((accum, iterator) => {
-                if (iterator.item !== action.payload) {
-                    accum.push(iterator) 
-                }
-                return accum
-            }, [])
+            const reducedItems = state.items.filter(({_id}) => _id !== action.payload)
 
             return {
                 ...state,

@@ -74,10 +74,10 @@ const AppState = (props) => {
          await axios.post("/item/crossoff", { item }, reqHeaders)
     }
 
-    const removeItem = ({item}) => {
+    const removeItem = (id) => {
         dispatch({
             type: REMOVE_ITEM,
-            payload: item
+            payload: id
         })
     };
 
