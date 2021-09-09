@@ -3,6 +3,9 @@ import penCross from '../../../sounds/penCross1.wav';
 import AppContext from '../../../context/application/AppContext';
 import AuthContext from '../../../context/authentication/AuthContext';
 import Input from "./Input"
+
+import axios from "axios"
+
 import EditIcon from '@material-ui/icons/Edit';
 import ForwardIcon from '@material-ui/icons/Forward';
 import StrikethroughSIcon from '@material-ui/icons/StrikethroughS';
@@ -16,7 +19,7 @@ const List = ({ list, id, moved, style, content }) => {
     const appContext = useContext(AppContext);
     const authContext = useContext(AuthContext);
     const { crossOff, removeItem } = appContext
-    const { moveItem, deleteItem } = authContext
+    const { moveItem, setAlert } = authContext
 
     const [menu, setMenu] = useState(false)
     const [edit, setEdit] = useState(false)
@@ -47,13 +50,17 @@ const List = ({ list, id, moved, style, content }) => {
         moveItem(item)
     }
 
-    const deleteCurrentItem = async () => {
-        var item = {
-            list: list,
-            item: listItemText.current.innerHTML
+    const deleteItem = async () => {
+        const item = { list, id, content }
+        try {
+            const res = await axios.delete('/item/delete', { data: item })
+            const { data: { msg }, status } = res
+            setAlert({ msg, status })
+            removeItem(id)
+        } catch (err) {
+            const { data: { msg }, status} = err.response
+            setAlert({ msg, status })
         }
-        const status = await deleteItem(item)
-        status === 200 && removeItem(item)
     }
 
     const openMenu = (e) => {
@@ -101,7 +108,7 @@ const List = ({ list, id, moved, style, content }) => {
                                             <StrikethroughSIcon onClick={cross} />}
                                         <EditIcon onClick={() => setEdit(true)} />
                                         <ForwardIcon onClick={carryOver} />
-                                        <DeleteIcon onClick={deleteCurrentItem} />
+                                        <DeleteIcon onClick={deleteItem} />
                                     </div>
                                 </div>
                             </CSSTransition>}

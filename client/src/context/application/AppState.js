@@ -74,12 +74,8 @@ const AppState = (props) => {
          await axios.post("/item/crossoff", { item }, reqHeaders)
     }
 
-    const removeItem = ({item}) => {
-        dispatch({
-            type: REMOVE_ITEM,
-            payload: item
-        })
-    };
+    const removeItem = id => dispatch({ type: REMOVE_ITEM, payload: id })
+    
 
     const setLoading = (bool) => {
         dispatch({
