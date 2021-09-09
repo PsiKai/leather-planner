@@ -119,18 +119,6 @@ const AuthState = (props) => {
         setAlert({ msg, status });
     }
 
-
-    // const deleteItem = async (item) => {
-    //     const res = await axios.delete(
-    //         '/item/delete',
-    //         { data: item },
-    //     )
-    //     const { data: {msg}, status} = res
-    //     setAlert({ msg, status })
-
-    //     return status
-    // }
-
     return (
         <AuthContext.Provider
             value={{
@@ -139,7 +127,6 @@ const AuthState = (props) => {
                 user: state.user,
                 loading: state.loading,
                 alerts: state.alerts,
-                // deleteItem,
                 moveItem,
                 getUser,
                 register,

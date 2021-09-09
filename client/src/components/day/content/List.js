@@ -50,18 +50,8 @@ const List = ({ list, id, moved, style, content }) => {
         moveItem(item)
     }
 
-    // const deleteCurrentItem = async () => {
-    //     var item = {
-    //         list: list,
-    //         item: listItemText.current.innerHTML
-    //     }
-    //     const status = await deleteItem(item)
-    //     status === 200 && removeItem(item)
-    // }
-
     const deleteItem = async () => {
         const item = { list, id, content }
-        console.log(item);
         try {
             const res = await axios.delete('/item/delete', { data: item })
             const { data: { msg }, status } = res

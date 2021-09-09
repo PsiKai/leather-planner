@@ -23,11 +23,11 @@ export default (state, action) => {
                 date: action.payload.list
             }
         case REMOVE_ITEM:
-            const reducedItems = state.items.filter(({_id}) => _id !== action.payload)
+            const filteredItems = state.items.filter(({_id}) => _id !== action.payload)
 
             return {
                 ...state,
-                items: reducedItems
+                items: filteredItems
             }
         case SET_LOADING:
             return {
