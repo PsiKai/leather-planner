@@ -18,9 +18,7 @@ export default (state, action) => {
         case SET_ITEM:
             return {
                 ...state,
-                items: action.payload.items,
-                list: action.payload.list,
-                date: action.payload.list
+                items: action.payload.items
             }
         case REMOVE_ITEM:
             const filteredItems = state.items.filter(({_id}) => _id !== action.payload)
