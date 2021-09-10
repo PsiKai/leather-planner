@@ -8,7 +8,7 @@ const { Item } = require("../../db/models/items")
 
 router.post("/", auth, (req, res) => {
 
-    const { list, item, style } = req.body
+    const { list, content, style } = req.body
     const date = new Date(list)
   
     const skipWeekend = () => {
@@ -23,28 +23,42 @@ router.post("/", auth, (req, res) => {
     }
   
     const nextDay = formatDate(new Date(date.setDate(date.getDate() + skipWeekend())))
+
+    const movedDay = (date) => {
+      if (date.toLocaleDateString("en-US", { weekday: "long" }) === "Monday") {
+        return "Item was copied to Monday"
+      } else {
+        return "Item was copied to tomorrow"
+      }
+    }
   
     List.findOne({ "user": req.user.id, "name": nextDay }, (err, foundList) => {
-      if (err) console.log(err)
-  
-      const movedItem = new Item({ item, style, moved: true })
-  
-      if (!foundList) {
-        const list = new List({ user: req.user.id, name: nextDay, items: [] })
-        list.items.push(movedItem)
-        list.save()
-        console.log("List created and Item Moved to the next day")
-  
-      } else {
-        foundList.items.push(movedItem)
-        foundList.save()
-        console.log("Item Moved to the next day")
+      if (err) {
+        console.log(err)
+        res.status(500).json({ msg: "Error moving item" })
       }
   
-      if (date.toLocaleDateString("en-US", { weekday: "long" }) === "Monday") {
-        res.status(200).json({ msg: "Item was copied to Monday" })
+      const movedItem = new Item({ item: content, style, moved: true })
+  
+      if (!foundList) {
+        List.create({ user: req.user.id, name: nextDay, items: [movedItem] }, (err) => {
+          if (err) {
+            res.status(500).json({ msg: "Error moving item" })
+          } else {
+            console.log("List created and Item Moved to the next day")
+            res.status(200).json({ msg: movedDay(date)})
+          }
+        })
+  
       } else {
-        res.status(200).json({ msg: "Item was copied to tomorrow" })
+        List.findOneAndUpdate({ list },
+          { "$push": { items: { movedItem } } },
+          (err) => {
+            if (err) { res.status(500).json({ msg: "Error moving item" }) }
+            console.log("Item Moved to the next day")
+            res.status(200).json({ msg: movedDay(date)})
+          }
+        )
       }
   
     })

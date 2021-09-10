@@ -110,13 +110,13 @@ const AuthState = (props) => {
 
 
     const moveItem = async (item) => {
-        const res = await axios.post(
-            "/item/move",
-            item,
-            { "Content-Type": "*/*" }
-        )
-        const { data: { msg }, status } = res
-        setAlert({ msg, status });
+        // const res = await axios.post(
+        //     "/item/move",
+        //     item,
+        //     { "Content-Type": "*/*" }
+        // )
+        // const { data: { msg }, status } = res
+        // setAlert({ msg, status });
     }
 
     return (
