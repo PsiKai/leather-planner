@@ -37,11 +37,11 @@ router.post("/", auth, (req, res) => {
         console.log(err)
         res.status(500).json({ msg: "Error moving item" })
       }
-  
+
       const movedItem = new Item({ item: content, style, moved: true })
   
       if (!foundList) {
-        List.create({ user: req.user.id, name: nextDay, items: [movedItem] }, (err) => {
+        List.create({ "user": req.user.id, "name": nextDay, "items": movedItem }, (err) => {
           if (err) {
             res.status(500).json({ msg: "Error moving item" })
           } else {
@@ -51,8 +51,8 @@ router.post("/", auth, (req, res) => {
         })
   
       } else {
-        List.findOneAndUpdate({ list },
-          { "$push": { items: { movedItem } } },
+        List.findOneAndUpdate({ "user": req.user.id, "name": nextDay },
+          { $push: { "items": movedItem } },
           (err) => {
             if (err) { res.status(500).json({ msg: "Error moving item" }) }
             console.log("Item Moved to the next day")
