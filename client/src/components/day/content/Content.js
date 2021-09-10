@@ -5,19 +5,16 @@ import AppContext from "../../../context/application/AppContext";
 
 const Content = () => {
     const appContext = useContext(AppContext);
-    const {list, items} = appContext;
+    const { list, items, getList } = appContext;
 
     useEffect(() => {
-      appContext.getList(list)
+      getList(list)
       //eslint-disable-next-line
     }, [list])
 
     return (
       <div className="content">
-        <ul 
-          className="list browser-default" 
-          id="list"
-        >
+        <ul className="list browser-default" id="list">
           {items.map(({ item, _id, style, moved}) => {
             return <List 
                       key={_id}
@@ -27,9 +24,8 @@ const Content = () => {
                       style={style}
                       moved={moved}
                     />
-              }
-            )
-          }
+            }
+          )}
           <Input/>
         </ul>
       </div>

@@ -75,7 +75,6 @@ const AppState = (props) => {
                 list: state.list,
                 items: state.items,
                 date: state.date,
-                // moveItem,
                 loading: state.loading,
                 setLoading,
                 removeItem,

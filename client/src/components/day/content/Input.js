@@ -2,7 +2,6 @@ import React, {useState, useContext, useEffect} from 'react'
 import AppContext from "../../../context/application/AppContext";
 import playAudio from "../../../utils/playAudio"
 
-
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 
@@ -19,10 +18,7 @@ const Input = ({content="", id="", undoEdit}) => {
         //eslint-disable-next-line
     }, [])
 
-    const typing = (e) => {
-        const {value} = e.target;
-        setInputText(value);
-    }
+    const typing = e => setInputText(e.target.value);
 
     const create = (e) => {
         e.preventDefault();

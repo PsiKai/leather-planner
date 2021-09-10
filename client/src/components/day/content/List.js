@@ -80,7 +80,9 @@ const List = ({ list, id, moved, style, content }) => {
 
 
     return (
-        !edit ?
+        edit ?
+            <Input content={content} undoEdit={undoEdit} id={id}/>
+            :
             <Fragment>
                 {menu && <div className="menu-backdrop" onClick={openMenu}></div>}
                 <li
@@ -115,8 +117,6 @@ const List = ({ list, id, moved, style, content }) => {
                     </TransitionGroup>
                 </li>
             </Fragment>
-            :
-            <Input content={content} undoEdit={undoEdit} id={id}/>
     )
 }
 
