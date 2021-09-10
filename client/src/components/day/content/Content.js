@@ -30,7 +30,7 @@ const Content = () => {
               }
             )
           }
-          <Input list={list}/>
+          <Input/>
         </ul>
       </div>
     )

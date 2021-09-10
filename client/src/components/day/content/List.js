@@ -116,7 +116,7 @@ const List = ({ list, id, moved, style, content }) => {
                 </li>
             </Fragment>
             :
-            <Input text={content} undoEdit={undoEdit} />
+            <Input content={content} undoEdit={undoEdit} id={id}/>
     )
 }
 

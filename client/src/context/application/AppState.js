@@ -43,32 +43,17 @@ const AppState = (props) => {
         })
     }
 
-    //set items
-    const setItem = async (inputText) => {
+
+    const setItem = async ({ list, inputText, id }) => {
         let res
-            !inputText.oldItem ?
-                res = await axios.post(
-                    "/item/new", 
-                    {
-                        item: inputText.item, 
-                        list: inputText.list
-                    }, 
-                    reqHeaders
-                ) :
-                res = await axios.post(
-                    "/item/edit",
-                    {
-                        item: inputText.item, 
-                        list: inputText.list,
-                        oldText: inputText.oldItem
-                    },
-                    reqHeaders
-                )
-        dispatch({
-            type: SET_ITEM,
-            payload: res.data
-        })   
+        id ?
+            res = await axios.post("/item/edit", { inputText, list, id }, reqHeaders)
+            :
+            res = await axios.post("/item/new", { inputText, list },  reqHeaders ) 
+        
+        dispatch({ type: SET_ITEM, payload: res.data })   
     }
+
 
     const crossOff = async (item) => {
          await axios.post("/item/crossoff", { item }, reqHeaders)

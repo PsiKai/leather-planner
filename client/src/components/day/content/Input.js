@@ -6,23 +6,23 @@ import pen2 from '../../../sounds/Pen2.wav';
 import AppContext from "../../../context/application/AppContext";
 import {CSSTransition} from "react-transition-group"
 
-const Input = ({text, undoEdit}) => {
+const Input = ({content="", id="", undoEdit}) => {
     const appContext = useContext(AppContext);
     const {list, setItem} = appContext;
 
     const [inputText, setInputText] = useState("");
-    const [editText, setEditText] = useState("");
+    // const [editText, setEditText] = useState("");
 
     useEffect(() => {
-        text && setInputText(text)
-        text && setEditText(text)
-    }, [text])
+        setInputText(content)
+        // text && setEditText(text)
+    }, [])
 
-    let newItem = {
-        list: list,
-        item: inputText,
-        oldItem: editText
-    }
+    // let newItem = {
+    //     list: list,
+    //     item: inputText,
+    //     oldItem: editText
+    // }
 
     const typing = (e) => {
         const {value} = e.target;
@@ -31,10 +31,11 @@ const Input = ({text, undoEdit}) => {
 
     const create = (e) => {
         e.preventDefault();
+        const item = { list, inputText, id }
         if (inputText) {
-            setItem(newItem)
+            setItem(item)
             setInputText("");
-            setEditText("")
+            // setEditText("")
             
             var penNoises = [pen1, pen2];
             var audio = new Audio(
