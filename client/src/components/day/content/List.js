@@ -12,6 +12,7 @@ import StrikethroughSIcon from '@material-ui/icons/StrikethroughS';
 import UndoIcon from '@material-ui/icons/Undo';
 import DeleteIcon from '@material-ui/icons/Delete';
 import TurnedInNotIcon from '@material-ui/icons/TurnedInNot';
+
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 
@@ -50,13 +51,6 @@ const List = ({ list, id, moved, style, content }) => {
             const { data: { msg }, status } = error.response
             setAlert({ msg, status })
         }
-        
-        //     list: list,
-        //     item: listItemText.current.innerHTML,
-        //     id: id,
-        //     style: listItemText.current.classList.value
-        // }
-        // moveItem(item)
     }
 
     const deleteItem = async () => {
