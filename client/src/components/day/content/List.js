@@ -42,7 +42,8 @@ const List = ({ list, id, moved, style, content }) => {
     }
 
     const carryOver = async () => {
-        var item = { list, style, content }
+        const { classList: [value] } = listItemText.current
+        var item = { list, style: value, content }
         try {
             const res = await axios.post("/item/move", item)
             const { data: { msg }, status } = res

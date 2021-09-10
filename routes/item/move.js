@@ -10,7 +10,7 @@ router.post("/", auth, (req, res) => {
 
     const { list, content, style } = req.body
     const date = new Date(list)
-  
+
     const skipWeekend = () => {
       if (date.toLocaleDateString("en-US", { weekday: "long" }) === "Friday") { return 3 }
       return 1
@@ -38,7 +38,7 @@ router.post("/", auth, (req, res) => {
         res.status(500).json({ msg: "Error moving item" })
       }
 
-      const movedItem = new Item({ item: content, style, moved: true })
+      const movedItem = new Item({ item: content, style: style, moved: true })
   
       if (!foundList) {
         List.create({ "user": req.user.id, "name": nextDay, "items": movedItem }, (err) => {
