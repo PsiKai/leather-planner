@@ -1,28 +1,23 @@
 import React, {useState, useContext, useEffect} from 'react'
+import AppContext from "../../../context/application/AppContext";
+import playAudio from "../../../utils/playAudio"
+
+
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
-import pen1 from '../../../sounds/Pen1.wav';
-import pen2 from '../../../sounds/Pen2.wav';
-import AppContext from "../../../context/application/AppContext";
+
 import {CSSTransition} from "react-transition-group"
 
 const Input = ({content="", id="", undoEdit}) => {
     const appContext = useContext(AppContext);
-    const {list, setItem} = appContext;
+    const { list, setItem } = appContext;
 
     const [inputText, setInputText] = useState("");
-    // const [editText, setEditText] = useState("");
 
     useEffect(() => {
         setInputText(content)
-        // text && setEditText(text)
+        //eslint-disable-next-line
     }, [])
-
-    // let newItem = {
-    //     list: list,
-    //     item: inputText,
-    //     oldItem: editText
-    // }
 
     const typing = (e) => {
         const {value} = e.target;
@@ -35,14 +30,7 @@ const Input = ({content="", id="", undoEdit}) => {
         if (inputText) {
             setItem(item)
             setInputText("");
-            // setEditText("")
-            
-            var penNoises = [pen1, pen2];
-            var audio = new Audio(
-                penNoises[Math.floor(Math.random() * penNoises.length)]
-            );
-            audio.volume = 0.1;
-            audio.play();
+            playAudio("write")
             undoEdit && undoEdit()
         }
     }
