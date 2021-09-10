@@ -109,16 +109,6 @@ const AuthState = (props) => {
     }
 
 
-    const moveItem = async (item) => {
-        const res = await axios.post(
-            "/item/move",
-            item,
-            { "Content-Type": "*/*" }
-        )
-        const { data: { msg }, status } = res
-        setAlert({ msg, status });
-    }
-
     return (
         <AuthContext.Provider
             value={{
@@ -127,7 +117,6 @@ const AuthState = (props) => {
                 user: state.user,
                 loading: state.loading,
                 alerts: state.alerts,
-                moveItem,
                 getUser,
                 register,
                 login,

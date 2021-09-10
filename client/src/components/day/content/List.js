@@ -12,6 +12,7 @@ import StrikethroughSIcon from '@material-ui/icons/StrikethroughS';
 import UndoIcon from '@material-ui/icons/Undo';
 import DeleteIcon from '@material-ui/icons/Delete';
 import TurnedInNotIcon from '@material-ui/icons/TurnedInNot';
+
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 
@@ -19,7 +20,7 @@ const List = ({ list, id, moved, style, content }) => {
     const appContext = useContext(AppContext);
     const authContext = useContext(AuthContext);
     const { crossOff, removeItem } = appContext
-    const { moveItem, setAlert } = authContext
+    const { setAlert } = authContext
 
     const [menu, setMenu] = useState(false)
     const [edit, setEdit] = useState(false)
@@ -40,14 +41,16 @@ const List = ({ list, id, moved, style, content }) => {
         setEdit(false)
     }
 
-    const carryOver = () => {
-        var item = {
-            list: list,
-            item: listItemText.current.innerHTML,
-            id: id,
-            style: listItemText.current.classList.value
+    const carryOver = async () => {
+        var item = { list, style, content }
+        try {
+            const res = await axios.post("/item/move", item)
+            const { data: { msg }, status } = res
+            setAlert({ msg, status });
+        } catch (error) {
+            const { data: { msg }, status } = error.response
+            setAlert({ msg, status })
         }
-        moveItem(item)
     }
 
     const deleteItem = async () => {
