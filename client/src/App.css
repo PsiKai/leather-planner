@@ -1,14 +1,14 @@
 /* Variable Declarations */
 :root {
-  --paper-texture: url("./images/textured-paper.png");
+  --paper-texture: url("./images/textured-paper.webp");
   --paper-color: #fff4b0;
   --paper-line-height: 36px;
   --paper-line: 1px 35px;
   --paper-font-size: 24px;
-  --leather-texture: url("./images/leather.png");
+  --leather-texture: url("./images/leather.webp");
   --leather-color: #381a14;
   --brown-color: #381a14cc; /* matches leather without texture */
-  --wood-texture: url("./images/wood.png");
+  --wood-texture: url("./images/wood.webp");
   --wood-color: #b3855f;
   --serif-font: "Libre Baskerville", serif;
   --script-font: "Dancing Script", cursive;
@@ -286,7 +286,7 @@ button.password--submit {
   grid-row-start: 2;
   min-height: 100%;
   width: 98%;
-  background-image: url("./images/textured-paper.png"),
+  background-image: var(--paper-texture),
     repeating-linear-gradient(
       #fff4b0 var(--paper-line),
       blue var(--paper-line-height)
@@ -1097,7 +1097,7 @@ label.MuiFormLabel-root {
   .pattern {
     width: 97%;
     top: 0;
-    background-image: url("./images/textured-paper.png"),
+    background-image: var(--paper-texture),
       repeating-linear-gradient(
         #fff4b0 1px var(--paper-line),
         blue var(--paper-line-height)
