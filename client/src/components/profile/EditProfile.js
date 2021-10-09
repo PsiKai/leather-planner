@@ -40,7 +40,7 @@ const EditProfile = () => {
                     <div className="pattern__wrapper" style={{ overflowY: "auto", overflowX: "visible" }}>
                         <div className="pattern">
                             <img
-                                src="./images/Bald-Eagle.png"
+                                src="./images/Bald-Eagle.webp"
                                 className="watermark"
                                 alt="watermark"
                             />
@@ -54,12 +54,12 @@ const EditProfile = () => {
             </div>
             <img
                 className="binder-rings"
-                src="./images/binder-rings.png"
+                src="./images/binder-rings.webp"
                 alt="binder rings"
             />
             <img
                 className="binder-rings-two"
-                src="./images/binder-rings.png"
+                src="./images/binder-rings.webp"
                 alt="binder rings"
             />
             <Alert />
