@@ -9,16 +9,14 @@ import EditInfo from './EditInfo';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import PersonIcon from '@material-ui/icons/Person';
 
-import pageFlip from "../../sounds/page-flip.wav"
+import playAudio from '../../utils/playAudio';
 
 const EditProfile = () => {
     const authContext = useContext(AuthContext)
+
     useEffect(() => {  
-        
         authContext.getUser();     
-        var audio = new Audio(pageFlip);
-        audio.volume = 0.1;
-        audio.play();
+        playAudio("page")
         //eslint-disable-next-line
     }, [])
 
