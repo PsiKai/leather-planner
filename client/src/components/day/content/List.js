@@ -85,7 +85,7 @@ const List = ({ list, id, moved, style, content }) => {
 
     return (
         edit ?
-            <Input content={content} undoEdit={undoEdit} id={id}/>
+            <Input content={content} undoEdit={undoEdit} id={id} aria-label="Editing list item"/>
             :
             <Fragment>
                 {menu && <div className="menu-backdrop" onClick={openMenu}></div>}
@@ -109,12 +109,12 @@ const List = ({ list, id, moved, style, content }) => {
                                 <div className="menu" >
                                     <div>
                                         {listItemText.current.classList.contains("strikethrough") ?
-                                            <UndoIcon onClick={cross} />
+                                            <UndoIcon onClick={cross} aria-label="Mark as incomplete"/>
                                             :
-                                            <StrikethroughSIcon onClick={cross} />}
-                                        <EditIcon onClick={() => setEdit(true)} />
-                                        <ForwardIcon onClick={carryOver} />
-                                        <DeleteIcon onClick={deleteItem} />
+                                            <StrikethroughSIcon onClick={cross} aria-label="Mark as complete"/>}
+                                        <EditIcon onClick={() => setEdit(true)} aria-label="Edit list item"/>
+                                        <ForwardIcon onClick={carryOver} aria-label="Move list item to next day"/>
+                                        <DeleteIcon onClick={deleteItem} aria-label="Delete list item"/>
                                     </div>
                                 </div>
                             </CSSTransition>}

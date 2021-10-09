@@ -70,7 +70,7 @@ const Weather = () => {
 
   if (weather !== null) {
     return (
-      <div className="weather" onClick={resetWeatherSearch}>
+      <div className="weather" onClick={resetWeatherSearch} aria-label="Current weather">
         <h6 className="temp">{weather}°</h6>
         <i className={`weather-icon owf owf-${icon} owf-2x`}></i>
       </div>
@@ -98,11 +98,12 @@ const Weather = () => {
           onClick={(e) => e.target.select()}
           rows="3"
           spellCheck="false"
+          aria-label="Enter your city to get the weather"
         ></textarea>
         <button type="submit"><CheckIcon /></button>
       </form>
       :
-      <button className="get-weather" onClick={resetWeatherSearch}>
+      <button className="get-weather" onClick={resetWeatherSearch} aria-label="Get your local weather">
         <span>Weather</span> <SearchIcon />
       </button>  
   )
