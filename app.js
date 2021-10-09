@@ -19,12 +19,6 @@ const port = process.env.PORT || 5000;
 app.listen(port, () => console.log("Backend started on port " + port))
 
 
-//sets routes for static build in production
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"))
-
-  app.get("/", (req, res) => res.sendFile(path.resolve(__dirname, 'client', "build", "index.html")))
-}
 
 
 //User Requests
@@ -46,3 +40,10 @@ app.use("/item/move", require("./routes/item/move"))
 
 //Service Requests
 app.use("/services/weather", require("./routes/services/weather"))
+
+//sets routes for static build in production
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"))
+
+  app.get("*", (req, res) => res.sendFile(path.resolve(__dirname, 'client', "build", "index.html")))
+}
