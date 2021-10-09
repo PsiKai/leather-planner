@@ -4,6 +4,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 const express = require("express");
 const secure = require("ssl-express-www")
+const expressStaticGzip = require("express-static-gzip");
 const path = require("path")
 const connectDB = require("./db/db")
 
@@ -43,7 +44,8 @@ app.use("/services/weather", require("./routes/services/weather"))
 
 //sets routes for static build in production
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"))
+  app.use("*", expressStaticGzip("client/build"));
+  // app.use(express.static("client/build"))
 
-  app.get("*", (req, res) => res.sendFile(path.resolve(__dirname, 'client', "build", "index.html")))
+  // app.get("*", (req, res) => res.sendFile(path.resolve(__dirname, 'client', "build", "index.html")))
 }
