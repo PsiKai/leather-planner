@@ -10,13 +10,13 @@
 .alert-border {
   margin: 0.25rem;
   padding: 1rem;
-  background: #381a14 url("../images/leather.png");
+  background: #381a14 url("../images/leather.webp");
   box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.4);
   border-radius: 0.5rem;
 }
 
 .alert {
-  background: #fff4b0 url("../images/textured-paper.png");
+  background: #fff4b0 url("../images/textured-paper.webp");
   padding: 1rem;
   display: flex;
   align-items: center;
