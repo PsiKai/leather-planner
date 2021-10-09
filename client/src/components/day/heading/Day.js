@@ -1,6 +1,6 @@
 import React, {useContext, useEffect} from 'react'
 import AppContext from "../../../context/application/AppContext"
-import pageFlip from "../../../sounds/page-flip.wav"
+import playAudio from '../../../utils/playAudio'
 
 const Day = () => {
 
@@ -8,10 +8,7 @@ const Day = () => {
     const {date} = appContext;
 
     useEffect(() => {
-        
-        var audio = new Audio(pageFlip);
-        audio.volume = 0.1;
-        audio.play();
+        playAudio("page")
     }, [date])
     
     var dateString = date.replace(/-/g, " ")
