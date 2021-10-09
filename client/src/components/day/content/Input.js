@@ -49,6 +49,7 @@ const Input = ({content="", id="", undoEdit}) => {
                     autoComplete="off"
                     value={inputText}
                     onChange={typing}
+                    aria-label="Create list item"
                 />
                 <CSSTransition
                     in={!!inputText}

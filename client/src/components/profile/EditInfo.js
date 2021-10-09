@@ -70,14 +70,14 @@ const EditInfo = () => {
                         <Fab style={fabStyle} type="submit">
                             <CheckCircleOutlineIcon />
                         </Fab>
-                        <Fab style={fabStyle} onClick={() => setEditName(false)}>
+                        <Fab style={fabStyle} onClick={() => setEditName(false)} aria-label="Cancel">
                             <CancelOutlinedIcon />
                         </Fab>
                     </div>
                 </form>
                 :
                 <p id="username" className="profile--info" onClick={() => setEditName(true)}>
-                    {name} <EditIcon />
+                    {name} <EditIcon aria-label="Edit username"/>
                 </p>}
             <label className="profile--label" htmlFor="email">Email:</label>
             {editEmail ?
@@ -94,14 +94,14 @@ const EditInfo = () => {
                         <Fab style={fabStyle} type="submit">
                             <CheckCircleOutlineIcon />
                         </Fab>
-                        <Fab style={fabStyle} onClick={() => setEditEmail(false)} >
+                        <Fab style={fabStyle} onClick={() => setEditEmail(false)} aria-label="Cancel" >
                             <CancelOutlinedIcon />
                         </Fab>
                     </div>
                 </form>
                 :
                 <p id="email" className="profile--info" onClick={() => setEditEmail(true)}>
-                    {email} <EditIcon />
+                    {email} <EditIcon aria-label="Edit email"/>
                 </p>}
         </div>
     )

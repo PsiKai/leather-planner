@@ -27,7 +27,7 @@ const Datepicker = () => {
                     onChange={newDay}
                     className={"browser-default"}
                     onFocus={(e) => e.target.blur()}
-                    ariaLabel="Select a new date"
+                    aria-label="Select a new date"
                 /> 
                 <CalendarTodayIcon/>
             </div>

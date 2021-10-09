@@ -42,6 +42,7 @@ const PasswordField = () => {
                     onChange={editPassword}
                     value={password.oldPass}
                     placeholder="Old Password"
+                    aria-label="Enter old password"
                 />
                 <input
                     className="new-item browser-default"
@@ -50,6 +51,7 @@ const PasswordField = () => {
                     onChange={editPassword}
                     value={password.newPass}
                     placeholder="New Password"
+                    aria-label="Enter new password"
                 />
                 <button type="submit" className="btn password--submit">Save Password</button>
             </form>
