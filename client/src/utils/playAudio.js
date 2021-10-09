@@ -27,9 +27,7 @@ const playAudio = async (action) => {
             default:
                 break;
         }
-    } catch (error) {
-        console.log("failed");
-    }
+    } catch (error) {}
 }
 
 export default playAudio
