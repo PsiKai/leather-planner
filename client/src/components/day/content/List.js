@@ -1,10 +1,11 @@
 import React, { useContext, useState, useRef, Fragment } from 'react'
-import penCross from '../../../sounds/penCross1.wav';
 import AppContext from '../../../context/application/AppContext';
 import AuthContext from '../../../context/authentication/AuthContext';
 import Input from "./Input"
 
 import axios from "axios"
+
+import playAudio from "../../../utils/playAudio"
 
 import EditIcon from '@material-ui/icons/Edit';
 import ForwardIcon from '@material-ui/icons/Forward';
@@ -31,8 +32,7 @@ const List = ({ list, id, moved, style, content }) => {
     const cross = () => {
         const strike = listItemText.current.classList
         strike.toggle("strikethrough")
-        var audio = new Audio(penCross);
-        strike.value && audio.play();
+        strike.value && playAudio("cross")
         const item = { list, id, style }
         crossOff(item);
     }
