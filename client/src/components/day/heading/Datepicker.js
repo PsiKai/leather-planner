@@ -16,7 +16,7 @@ const Datepicker = () => {
     }
 
     return (
-        <div className="date-label">
+        <div className="date-label" aria-label="Select a new date">
             {<label htmlFor="date-picker" className="date-picker">
                 {date.toLocaleDateString("en-US", {day: '2-digit', month: '2-digit', year: '2-digit'}).replace(/\b0/g, "")}
             </label>}
@@ -27,6 +27,7 @@ const Datepicker = () => {
                     onChange={newDay}
                     className={"browser-default"}
                     onFocus={(e) => e.target.blur()}
+                    ariaLabel="Select a new date"
                 /> 
                 <CalendarTodayIcon/>
             </div>
