@@ -7,8 +7,8 @@ import AppState from './context/application/AppState'
 import AuthState from './context/authentication/AuthState'
 import setAuthToken from "./utils/setAuthToken"
 import PrivateRoute from "./components/routing/PrivateRoute"
-import 'materialize-css/dist/css/materialize.min.css';
-import M from "materialize-css/dist/js/materialize.min.js";
+// import 'materialize-css/dist/css/materialize.min.css';
+// import M from "materialize-css/dist/js/materialize.min.js";
 import './App.css';
 
 
@@ -20,7 +20,7 @@ if (localStorage.token) {
 function App() {
   useEffect(() => {
     // Init Materialize JS
-    M.AutoInit();
+    // M.AutoInit();
   })
 
   return (
