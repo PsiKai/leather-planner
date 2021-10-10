@@ -19,6 +19,10 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 14px;
+}
+
 body {
   background-color: var(--wood-color);
   background-image: var(--wood-texture);
@@ -87,6 +91,7 @@ li {
   font-family: var(--serif-font);
   font-weight: 700;
   background: var(--paper-color) var(--paper-texture);
+  line-height: 110%;
 }
 
 .profile-heading {
@@ -100,6 +105,7 @@ li {
   align-items: flex-end;
   justify-content: space-between;
   width: 100%;
+  line-height: 110%;
 }
 
 .profile-heading svg {
@@ -493,7 +499,9 @@ textarea {
   font-family: var(--serif-font);
   font-weight: 400;
   letter-spacing: -0.5px;
+  line-height: 110%;
   cursor: pointer;
+  font-size: 1rem;
 }
 
 .date-label input:focus {
@@ -679,6 +687,7 @@ textarea {
   font-weight: 700;
   margin: 0;
   font-size: 1rem;
+  line-height: 110%;
 }
 
 label.MuiFormLabel-root {
@@ -998,6 +1007,10 @@ label.MuiFormLabel-root {
     --paper-font-size: 24px;
   }
 
+  html {
+    font-size: 14px;
+  }
+
   .heading.today {
     padding-right: 0;
     flex-direction: column;
@@ -1278,7 +1291,7 @@ label.MuiFormLabel-root {
 }
 
 /* Undo materialize native styles  */
-@media only screen and (min-width: 1200px) {
+/* @media only screen and (min-width: 1200px) {
   html {
     font-size: 14px;
   }
@@ -1288,4 +1301,4 @@ label.MuiFormLabel-root {
   html {
     font-size: 14px;
   }
-}
+} */
