@@ -613,6 +613,10 @@ textarea {
   cursor: pointer;
 }
 
+.get-weather span {
+  font-size: 1rem;
+}
+
 .weather-input__wrapper {
   display: flex;
   align-items: center;
