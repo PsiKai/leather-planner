@@ -19,10 +19,15 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 14px;
+}
+
 body {
   background-color: var(--wood-color);
   background-image: var(--wood-texture);
   background-blend-mode: color-burn;
+  margin: 0;
 }
 
 a {
@@ -86,6 +91,7 @@ li {
   font-family: var(--serif-font);
   font-weight: 700;
   background: var(--paper-color) var(--paper-texture);
+  line-height: 110%;
 }
 
 .profile-heading {
@@ -99,6 +105,7 @@ li {
   align-items: flex-end;
   justify-content: space-between;
   width: 100%;
+  line-height: 110%;
 }
 
 .profile-heading svg {
@@ -124,11 +131,6 @@ li {
     box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
     border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
-
-/* .user-nav {
-  display: flex;
-  align-items: center;
-} */
 
 .profile-nav:hover,
 .user-nav:hover {
@@ -371,7 +373,6 @@ button.password--submit {
 
 .revealmenu-exit.revealmenu-exit-active {
   transform: scaleY(0);
-  /* transform-origin: top; */
   transition: transform 200ms ease;
 }
 
@@ -429,6 +430,7 @@ textarea {
   text-transform: capitalize;
   resize: none;
   line-height: 1.5;
+  background-color: transparent;
 }
 
 .button button {
@@ -454,9 +456,6 @@ textarea {
   transform: scale(1) !important;
   transition: transform 150ms cubic-bezier(0.44, 1.65, 0.69, 0.815) !important;
 }
-
-/* .button-appear-exit {
-} */
 
 .button-appear-exit-active {
   transform: rotateZ(360deg) scale(0) !important;
@@ -492,7 +491,9 @@ textarea {
   font-family: var(--serif-font);
   font-weight: 400;
   letter-spacing: -0.5px;
+  line-height: 110%;
   cursor: pointer;
+  font-size: 1rem;
 }
 
 .date-label input:focus {
@@ -678,6 +679,7 @@ textarea {
   font-weight: 700;
   margin: 0;
   font-size: 1rem;
+  line-height: 110%;
 }
 
 label.MuiFormLabel-root {
@@ -687,7 +689,6 @@ label.MuiFormLabel-root {
 }
 
 .widget button.MuiButtonBase-root {
-  /* margin: 0 -5px 0; */
   padding: 0;
   font-family: var(--serif-font);
   font-weight: 700;
@@ -730,6 +731,7 @@ label.MuiFormLabel-root {
   grid-row-start: 2;
   grid-column-start: 1;
   letter-spacing: -3px;
+  line-height: 110%;
 }
 
 .center-div h1:nth-of-type(n + 1):first-letter {
@@ -749,9 +751,19 @@ label.MuiFormLabel-root {
   width: 200px;
   background-color: #371a12 !important;
   margin: 5px 20px;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 0.25rem;
   font-family: var(--button-font);
   color: #d4caa3 !important;
   transition: all 300ms ease !important;
+  text-transform: uppercase;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
 .btn:hover {
@@ -759,12 +771,75 @@ label.MuiFormLabel-root {
   color: #371a12 !important;
 }
 
+.modal-backdrop {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 .modal {
   background-image: var(--paper-texture);
   background-color: var(--paper-color) !important;
   max-width: 500px;
+  width: 90%;
   height: fit-content !important;
   padding: 2% 5% !important;
+  border-radius: 0.25rem;
+}
+
+.modal-content-enter {
+  opacity: 0;
+}
+
+.modal-content-enter > div {
+  transform: scale(0.8) translateY(50px);
+}
+
+.modal-content-enter-active {
+  opacity: 1;
+  transition: opacity 200ms ease;
+}
+
+.modal-content-enter-active > div {
+  transform: scale(1) translateY(100px);
+  transition: all 400ms ease;
+}
+
+.modal-content-enter-done {
+  opacity: 1;
+}
+
+.modal-content-enter-done > div {
+  transform: scale(1) translateY(100px);
+}
+
+.modal-content-exit {
+  opacity: 1;
+}
+
+.modal-content-exit > div {
+  transform: scale(1) translateY(100px);
+}
+
+.modal-content-exit-active {
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.modal-content-exit-active > div {
+  transform: scale(0.8) translateY(50px);
+  transition: all 200ms ease;
+}
+
+.modal-content-exit-done {
+  opacity: 0;
+}
+
+.modal-content-exit-done > div {
+  transform: scale(0.8) translateY(50px);
 }
 
 .modal input:not([type="submit"]),
@@ -772,7 +847,15 @@ label.MuiFormLabel-root {
   font-family: var(--serif-font);
   letter-spacing: 1px;
   box-shadow: none !important;
+  border: none;
   border-bottom: 1px solid #9e9e9e !important;
+  background-color: transparent;
+  outline: none;
+  display: block;
+  width: 100%;
+  margin: 0 0 0.5rem;
+  font-size: 1.125rem;
+  height: 3rem;
 }
 
 .modal p {
@@ -833,7 +916,6 @@ label.MuiFormLabel-root {
 
   .watermark {
     width: 400px;
-    /* position: absolute; */
     right: 5%;
     top: 10%;
   }
@@ -883,11 +965,6 @@ label.MuiFormLabel-root {
     outline: none;
   }
 
-  /* .weather,
-  .weather-input__wrapper {
-    height: 24px;
-  } */
-
   .profile--wrapper {
     display: block;
   }
@@ -913,6 +990,10 @@ label.MuiFormLabel-root {
     --paper-line-height: 34px;
     --paper-line: 33px;
     --paper-font-size: 24px;
+  }
+
+  html {
+    font-size: 14px;
   }
 
   .heading.today {
@@ -1118,10 +1199,6 @@ label.MuiFormLabel-root {
     font-size: 1rem;
   }
 
-  /* .menu {
-    top: calc(100% + 4px);
-  } */
-
   .menu svg {
     font-size: 28px;
     margin: 8px;
@@ -1169,11 +1246,6 @@ label.MuiFormLabel-root {
     height: 30px !important;
   }
 
-  .modal {
-    width: 90% !important;
-    height: fit-content(90vh) !important;
-  }
-
   .modal p {
     font-size: 1.5rem;
   }
@@ -1182,27 +1254,9 @@ label.MuiFormLabel-root {
     display: block !important;
     margin: 2rem auto 0;
   }
-
-  /* .profile-nav {
-    left: -0.5rem;
-    position: relative;
-  } */
 }
 
 .strikethrough {
   text-decoration: line-through;
   opacity: 0.5;
-}
-
-/* Undo materialize native styles  */
-@media only screen and (min-width: 1200px) {
-  html {
-    font-size: 14px;
-  }
-}
-
-@media only screen and (min-width: 992px) {
-  html {
-    font-size: 14px;
-  }
 }

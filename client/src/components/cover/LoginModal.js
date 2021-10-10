@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 import AuthContext from "../../context/authentication/AuthContext";
 
-const LoginModal = () => {
+const LoginModal = ({ openLogin }) => {
 
     const authContext = useContext(AuthContext);
     const { login, setAlert } = authContext;
@@ -34,18 +34,28 @@ const LoginModal = () => {
         if (validated) {
             login({ email, password })
             setUser({ email: '', password: '' })
+            openLogin(false)
+        }
+    }
+
+    const closeModal = (e) => {
+        console.log(e.target.className);
+        if (e.target.className.includes("modal-backdrop")) {
+            openLogin(false)
         }
     }
 
     return (
-        <div id="loginModal" className="modal">
-            <form onSubmit={onSubmit}>
-                <p>Email</p>
-                <input type="email" name="email" value={email} onChange={onChange}/>
-                <p>Password</p>
-                <input type="password" name="password" value={password} onChange={onChange}/>
-                <button type="submit" className="btn">Login</button>
-            </form>
+        <div className="modal-backdrop" onClick={closeModal}>
+            <div id="loginModal" className="modal">
+                <form onSubmit={onSubmit}>
+                    <p>Email</p>
+                    <input type="email" name="email" value={email} onChange={onChange}/>
+                    <p>Password</p>
+                    <input type="password" name="password" value={password} onChange={onChange}/>
+                    <button type="submit" className="btn">Login</button>
+                </form>
+            </div>
         </div>
     )
 }
