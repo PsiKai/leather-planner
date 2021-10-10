@@ -2,7 +2,6 @@ import React, {Fragment, useEffect, useContext, useState} from 'react';
 import LoginModal from "./LoginModal"
 import RegisterModal from "./RegisterModal"
 import AuthContext from "../../context/authentication/AuthContext"
-// import M from "materialize-css/dist/js/materialize.min.js";
 import Alert from "../Alert"
 
 import { CSSTransition } from 'react-transition-group';
@@ -19,8 +18,6 @@ const Cover = (props) => {
         } else {
             logOut();
         }
-            // Init Materialize JS
-            // M.AutoInit();
      //eslint-disable-next-line
     }, [isAuthenticated, props.history])
 

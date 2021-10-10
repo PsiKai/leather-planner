@@ -132,11 +132,6 @@ li {
     border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
-/* .user-nav {
-  display: flex;
-  align-items: center;
-} */
-
 .profile-nav:hover,
 .user-nav:hover {
   background-color: rgba(0, 0, 0, 0.04);
@@ -378,7 +373,6 @@ button.password--submit {
 
 .revealmenu-exit.revealmenu-exit-active {
   transform: scaleY(0);
-  /* transform-origin: top; */
   transition: transform 200ms ease;
 }
 
@@ -436,6 +430,7 @@ textarea {
   text-transform: capitalize;
   resize: none;
   line-height: 1.5;
+  background-color: transparent;
 }
 
 .button button {
@@ -461,9 +456,6 @@ textarea {
   transform: scale(1) !important;
   transition: transform 150ms cubic-bezier(0.44, 1.65, 0.69, 0.815) !important;
 }
-
-/* .button-appear-exit {
-} */
 
 .button-appear-exit-active {
   transform: rotateZ(360deg) scale(0) !important;
@@ -697,7 +689,6 @@ label.MuiFormLabel-root {
 }
 
 .widget button.MuiButtonBase-root {
-  /* margin: 0 -5px 0; */
   padding: 0;
   font-family: var(--serif-font);
   font-weight: 700;
@@ -925,7 +916,6 @@ label.MuiFormLabel-root {
 
   .watermark {
     width: 400px;
-    /* position: absolute; */
     right: 5%;
     top: 10%;
   }
@@ -974,11 +964,6 @@ label.MuiFormLabel-root {
   .react-datepicker__day {
     outline: none;
   }
-
-  /* .weather,
-  .weather-input__wrapper {
-    height: 24px;
-  } */
 
   .profile--wrapper {
     display: block;
@@ -1214,10 +1199,6 @@ label.MuiFormLabel-root {
     font-size: 1rem;
   }
 
-  /* .menu {
-    top: calc(100% + 4px);
-  } */
-
   .menu svg {
     font-size: 28px;
     margin: 8px;
@@ -1265,11 +1246,6 @@ label.MuiFormLabel-root {
     height: 30px !important;
   }
 
-  /* .modal {
-    width: 90% !important;
-    height: fit-content(90vh) !important;
-  } */
-
   .modal p {
     font-size: 1.5rem;
   }
@@ -1278,27 +1254,9 @@ label.MuiFormLabel-root {
     display: block !important;
     margin: 2rem auto 0;
   }
-
-  /* .profile-nav {
-    left: -0.5rem;
-    position: relative;
-  } */
 }
 
 .strikethrough {
   text-decoration: line-through;
   opacity: 0.5;
 }
-
-/* Undo materialize native styles  */
-/* @media only screen and (min-width: 1200px) {
-  html {
-    font-size: 14px;
-  }
-}
-
-@media only screen and (min-width: 992px) {
-  html {
-    font-size: 14px;
-  }
-} */
