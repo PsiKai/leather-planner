@@ -20,7 +20,9 @@ const port = process.env.PORT || 5000;
 app.listen(port, () => console.log("Backend started on port " + port))
 
 
-
+app.get("/robots.txt", (req, res) => {
+  res.sendFile(path.join(__dirname, "/robots.txt"))
+})
 
 //User Requests
 app.use("/user/auth", require("./routes/user/auth"))
