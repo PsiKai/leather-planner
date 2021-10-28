@@ -874,6 +874,18 @@ label.MuiFormLabel-root {
   margin-top: 2rem;
 }
 
+.password-input {
+  position: relative;
+}
+
+.password-input svg {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--leather-color);
+}
+
 /* Tablet size */
 
 @media (max-width: 850px) {

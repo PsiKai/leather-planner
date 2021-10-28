@@ -1,5 +1,8 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useRef} from 'react';
 import AuthContext from "../../context/authentication/AuthContext";
+
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 
 const LoginModal = ({ openLogin }) => {
 
@@ -7,8 +10,10 @@ const LoginModal = ({ openLogin }) => {
     const { login, setAlert } = authContext;
 
     const [user, setUser] = useState({ email: '', password: '' })
-
     const {email, password} = user;
+
+    const [showPassword, setShowPassword] = useState(false)
+    const passwordInput = useRef()
 
     const onChange = (e) =>
         setUser({
@@ -35,14 +40,23 @@ const LoginModal = ({ openLogin }) => {
             login({ email, password })
             setUser({ email: '', password: '' })
             openLogin(false)
+            setShowPassword(false)
+            passwordInput.current.type = "password"
         }
     }
 
     const closeModal = (e) => {
-        console.log(e.target.className);
-        if (e.target.className.includes("modal-backdrop")) {
+        console.log(e.target.classList.contains("modal-backdrop"));
+        if (e.target.classList.contains("modal-backdrop")) {
             openLogin(false)
+            setShowPassword(false)
+            passwordInput.current.type = "password"
         }
+    }
+
+    const revealPassword = (type) => {
+        setShowPassword(!showPassword)
+        passwordInput.current.type = type
     }
 
     return (
@@ -52,7 +66,13 @@ const LoginModal = ({ openLogin }) => {
                     <p>Email</p>
                     <input type="email" name="email" value={email} onChange={onChange}/>
                     <p>Password</p>
-                    <input type="password" name="password" value={password} onChange={onChange}/>
+                    <div className="password-input">
+                        <input type="password" name="password" value={password} onChange={onChange} ref={passwordInput}/>
+                        {showPassword ? 
+                        <VisibilityIcon onClick={() => revealPassword("password")}/>
+                        : 
+                        <VisibilityOffIcon onClick={() => revealPassword("text")}/>}
+                    </div>
                     <button type="submit" className="btn">Login</button>
                 </form>
             </div>
