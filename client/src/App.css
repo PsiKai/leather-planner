@@ -153,7 +153,6 @@ li {
   grid-template-columns: 130px 1fr;
   gap: 0 1rem;
   align-items: baseline;
-  margin-top: 4px;
 }
 
 .profile--wrapper p {
@@ -183,7 +182,7 @@ li {
 }
 
 .profile--wrapper input[type="text"],
-.password-reset input[type="password"] {
+.password-reset input {
   display: block;
   font-family: var(--serif-font) !important;
   font-weight: 400 !important;
@@ -195,8 +194,12 @@ li {
 }
 
 .profile--wrapper input[type="text"]:focus,
-.password-reset input[type="password"]:focus {
+.password-reset input:focus {
   font-size: 18px !important;
+}
+
+.password-reset .password-input {
+  max-width: 350px;
 }
 
 .profile--info {
@@ -388,10 +391,15 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: inherit !important;
 }
 
+.password-reset label {
+  display: inline-block;
+  height: 33px;
+}
+
 input[type="text"].new-item,
-.password-reset input[type="password"] {
+.password-reset input {
   width: 85%;
-  height: 29px !important;
+  height: 29px;
   font-size: 20px;
   max-width: 75%;
   background-color: transparent;
@@ -402,9 +410,20 @@ input[type="text"].new-item,
   border: none;
 }
 
-.password-reset input[type="password"] {
+.password-reset input[type="password"],
+.password-reset input[type="text"] {
   margin-left: 1rem;
-  height: 34px !important;
+  height: 34px;
+  margin-bottom: 1px;
+  padding-top: 6px;
+  font-family: var(--serif-font);
+  font-size: 1rem;
+  max-width: 200px;
+}
+
+.password-reset input[type="text"] {
+  letter-spacing: 1.5px;
+  word-spacing: 3px;
 }
 
 input[type="text"]:focus,
@@ -414,14 +433,14 @@ input[type="text"]:focus,
   background-color: transparent;
 }
 
-input[type="text"]:focus {
+/* input[type="text"]:focus {
   font-size: 20px !important;
-}
+} */
 
 input[type="text"]::placeholder,
 .password-reset input[type="password"]::placeholder {
   font-family: var(--script-font);
-  font-size: 20px !important;
+  font-size: 20px;
   color: grey;
 }
 
@@ -848,6 +867,7 @@ label.MuiFormLabel-root {
 
 .modal input:not([type="submit"]),
 .modal input:focus {
+  border-radius: 0px;
   font-family: var(--serif-font);
   letter-spacing: 1px;
   box-shadow: none !important;
@@ -872,6 +892,18 @@ label.MuiFormLabel-root {
 
 .modal button {
   margin-top: 2rem;
+}
+
+.password-input {
+  position: relative;
+}
+
+.password-input svg {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--leather-color);
 }
 
 /* Tablet size */
@@ -1225,16 +1257,16 @@ label.MuiFormLabel-root {
   input[type="text"].new-item {
     max-width: none;
     font-size: 18px !important;
-    height: 25px !important;
+    height: 25px;
     text-indent: 0;
   }
 
   input[type="text"]::placeholder {
-    font-size: 18px !important;
+    font-size: 18px;
   }
 
   .profile--wrapper > * {
-    margin-bottom: 33px;
+    margin-bottom: 32px;
   }
 
   .profile--wrapper input[type="text"].new-item {
@@ -1246,8 +1278,13 @@ label.MuiFormLabel-root {
     top: 32px;
   }
 
-  .password-reset input[type="password"] {
-    height: 30px !important;
+  .password-reset input {
+    height: 32px !important;
+    /* padding-top: 0 !important; */
+  }
+
+  .password-reset input::placeholder {
+    font-size: 20px;
   }
 
   .modal p {

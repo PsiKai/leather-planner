@@ -1,5 +1,8 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useRef} from 'react';
 import AuthContext from "../../context/authentication/AuthContext";
+
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 
 const RegisterModal = ({ openRegister }) => {
     const authContext = useContext(AuthContext);
@@ -11,8 +14,12 @@ const RegisterModal = ({ openRegister }) => {
         password: '',
         passwordTwo: ''
     })
-
     const {email, password, name, passwordTwo} = user;
+
+    const [showPassword, setShowPassword] = useState(false)
+    const passwordInput = useRef()
+    const [showPasswordTwo, setShowPasswordTwo] = useState(false)
+    const passwordInputTwo = useRef()
 
     const onChange = (e) =>
         setUser({
@@ -57,9 +64,19 @@ const RegisterModal = ({ openRegister }) => {
 
     const closeModal = (e) => {
         console.log(e.target.className);
-        if (e.target.className.includes("modal-backdrop")) {
+        if (e.target.classList.contains("modal-backdrop")) {
             openRegister(false)
         }
+    }
+
+    const revealPassword = (type) => {
+        setShowPassword(!showPassword)
+        passwordInput.current.type = type
+    }
+
+    const revealPasswordTwo = (type) => {
+        setShowPasswordTwo(!showPasswordTwo)
+        passwordInputTwo.current.type = type
     }
 
     return (
@@ -71,8 +88,7 @@ const RegisterModal = ({ openRegister }) => {
                         type="text" 
                         name="name" 
                         value={name} 
-                        onChange={onChange} 
-                        // required 
+                        onChange={onChange}
                         autoComplete="off"
                     />
                     <p>Email</p>
@@ -80,30 +96,40 @@ const RegisterModal = ({ openRegister }) => {
                         type="email" 
                         name="email" 
                         value={email} 
-                        onChange={onChange} 
-                        // required 
+                        onChange={onChange}
                         autoComplete="off"
                     />
                     <p>Password</p>
-                    <input 
-                        type="password" 
-                        name="password" 
-                        value={password} 
-                        onChange={onChange} 
-                        // required 
-                        autoComplete="off"
-                    />
+                    <div className="password-input">
+                        <input 
+                            type="password" 
+                            name="password" 
+                            value={password} 
+                            onChange={onChange}
+                            autoComplete="off"
+                            ref={passwordInput}
+                        />
+                        {showPassword ? 
+                            <VisibilityIcon onClick={() => revealPassword("password")}/>
+                            : 
+                            <VisibilityOffIcon onClick={() => revealPassword("text")}/>}
+                    </div>  
                     <p>Confirm Password</p>
-                    <input 
-                        type="password" 
-                        name="passwordTwo" 
-                        value={passwordTwo} 
-                        onChange={onChange} 
-                        // required 
-                        autoComplete="off"
-                    />
+                    <div className="password-input">
+                        <input 
+                            type="password" 
+                            name="passwordTwo" 
+                            value={passwordTwo} 
+                            onChange={onChange}
+                            autoComplete="off"
+                            ref={passwordInputTwo}
+                        />
+                        {showPasswordTwo ? 
+                            <VisibilityIcon onClick={() => revealPasswordTwo("password")}/>
+                            : 
+                            <VisibilityOffIcon onClick={() => revealPasswordTwo("text")}/>}
+                    </div> 
                     <button type="submit" className="btn">Register</button>
-                    {/* <input className="modal-close" /> */}
                 </form>
             </div>
         </div>
