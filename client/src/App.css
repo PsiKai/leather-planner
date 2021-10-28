@@ -198,6 +198,10 @@ li {
   font-size: 18px !important;
 }
 
+.password-reset .password-input {
+  max-width: 350px;
+}
+
 .profile--info {
   margin: 0;
   display: flex;
@@ -891,7 +895,6 @@ label.MuiFormLabel-root {
 
 .password-input {
   position: relative;
-  max-width: 400px;
 }
 
 .password-input svg {
