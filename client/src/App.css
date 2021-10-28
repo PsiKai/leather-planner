@@ -867,6 +867,7 @@ label.MuiFormLabel-root {
 
 .modal input:not([type="submit"]),
 .modal input:focus {
+  border-radius: 0px;
   font-family: var(--serif-font);
   letter-spacing: 1px;
   box-shadow: none !important;
