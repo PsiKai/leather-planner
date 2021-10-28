@@ -153,7 +153,6 @@ li {
   grid-template-columns: 130px 1fr;
   gap: 0 1rem;
   align-items: baseline;
-  margin-top: 4px;
 }
 
 .profile--wrapper p {
@@ -388,6 +387,11 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: inherit !important;
 }
 
+.password-reset label {
+  display: inline-block;
+  height: 33px;
+}
+
 input[type="text"].new-item,
 .password-reset input[type="password"] {
   width: 85%;
@@ -405,6 +409,8 @@ input[type="text"].new-item,
 .password-reset input[type="password"] {
   margin-left: 1rem;
   height: 34px !important;
+  margin-bottom: 1px;
+  padding-top: 6px;
 }
 
 input[type="text"]:focus,

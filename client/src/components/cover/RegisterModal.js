@@ -88,8 +88,7 @@ const RegisterModal = ({ openRegister }) => {
                         type="text" 
                         name="name" 
                         value={name} 
-                        onChange={onChange} 
-                        // required 
+                        onChange={onChange}
                         autoComplete="off"
                     />
                     <p>Email</p>
@@ -97,8 +96,7 @@ const RegisterModal = ({ openRegister }) => {
                         type="email" 
                         name="email" 
                         value={email} 
-                        onChange={onChange} 
-                        // required 
+                        onChange={onChange}
                         autoComplete="off"
                     />
                     <p>Password</p>
