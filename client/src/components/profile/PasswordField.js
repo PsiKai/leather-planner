@@ -30,6 +30,10 @@ const PasswordField = () => {
             setAlert({ status: 400, msg: "Please enter both password fields" })
         }
         setPassword({oldPass: "", newPass: ""})
+        setShowPassword(false)
+        setShowPasswordTwo(false)
+        passwordInput.current.type = "password"
+        passwordInputTwo.current.type = "password"
     }
     
     const editPassword = (e) => {
