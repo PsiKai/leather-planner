@@ -51,7 +51,7 @@ const List = ({ list, id, moved, style, content, notes }) => {
 
     const carryOver = async () => {
         const { classList: [value] } = listItemText.current
-        var item = { list, style: value, content }
+        var item = { list, style: value, content, notes }
         try {
             const res = await axios.post("/item/move", item)
             const { data: { msg }, status } = res
@@ -91,7 +91,7 @@ const List = ({ list, id, moved, style, content, notes }) => {
 
     let flagStyle = {
         position: "absolute",
-        top: "8px",
+        top: "6px",
         left: "-26px"
     }
 

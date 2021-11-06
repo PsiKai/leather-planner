@@ -316,16 +316,13 @@ button.password--submit {
   word-break: break-word;
 }
 
-.list-wrapper > svg {
+.list-wrapper > span + svg {
   position: relative;
-  z-index: 1;
-  /* right: 5%; */
   float: right;
-  margin-right: 5%;
   top: 4px;
   font-size: 1.875rem;
   transition: transform 200ms ease;
-  opacity: 0.7;
+  opacity: 0.5;
 }
 
 .notes-border {
@@ -353,10 +350,6 @@ button.password--submit {
   text-indent: 1rem;
   font-family: var(--script-font);
   font-size: 1.5rem;
-}
-
-.notes-container input::placeholder {
-  /* tex */
 }
 
 .notes-container input[type="text"]:focus {
@@ -426,7 +419,6 @@ button.password--submit {
   opacity: 0;
 }
 
-/* .revealnotes-exit, */
 .revealnotes-enter-done {
   transform: scaleY(1);
   opacity: 1;
