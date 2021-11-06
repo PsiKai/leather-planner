@@ -364,6 +364,7 @@ button.password--submit {
   text-indent: 2px;
   left: -4px;
   position: relative;
+  font-size: 1.4rem;
 }
 
 .notes-container button {

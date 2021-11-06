@@ -70,6 +70,24 @@ const AppState = (props) => {
         }
     }
 
+    const editNote = async (note) => {
+        try {
+            const res = await axios.patch("/item/notes", { note }, reqHeaders)
+            dispatch({ type: SET_ITEM, payload: res.data })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const deleteNote = async (note) => {
+        try {
+            const res = await axios.patch("/item/notes", { note }, reqHeaders)
+            dispatch({ type: SET_ITEM, payload: res.data })            
+        } catch (error) {
+            console.log(error.response.msg)
+        }
+    }
+
     const setLoading = (bool) => {
         dispatch({
             type: SET_LOADING,
@@ -90,7 +108,9 @@ const AppState = (props) => {
                 setItem,
                 crossOff,
                 resetDate,
-                createNote
+                createNote,
+                editNote,
+                deleteNote
             }}>
             {props.children}
         </AppContext.Provider>

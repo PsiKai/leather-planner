@@ -12,6 +12,7 @@ const Notes = ({ notes, revealNotes, list, id }) => {
 
     const submitNote = (e) => {
         e.preventDefault()
+        if (!newNote) { return }
         const notePayload = { newNote, list, id }
         createNote(notePayload)
         setNewNote("")
@@ -33,7 +34,7 @@ const Notes = ({ notes, revealNotes, list, id }) => {
             <ul className="notes-list">
                 {notes.length ? 
                     notes.map((note, i) => {
-                        return <Note key={i} note={note} /> 
+                        return <Note key={i} note={note} id={id} list={list}/> 
                     })
                     :
                     <li></li>}
