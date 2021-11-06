@@ -2,7 +2,7 @@ import React, { useContext, useState, useRef, Fragment } from 'react'
 import AppContext from '../../../context/application/AppContext';
 import AuthContext from '../../../context/authentication/AuthContext';
 import Input from "./Input"
-import Note from "./Note"
+import Notes from "./Notes"
 
 import axios from "axios"
 
@@ -16,8 +16,11 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import TurnedInNotIcon from '@material-ui/icons/TurnedInNot';
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 import ArrowDropDownCircleOutlinedIcon from '@material-ui/icons/ArrowDropDownCircleOutlined';
+import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
+import NotesIcon from '@material-ui/icons/Notes';
 
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
+// import Notes from '@material-ui/icons/Notes';
 
 
 const List = ({ list, id, moved, style, content, notes }) => {
@@ -29,7 +32,6 @@ const List = ({ list, id, moved, style, content, notes }) => {
     const [menu, setMenu] = useState(false)
     const [edit, setEdit] = useState(false)
     const [showNotes, setShowNotes] = useState(false)
-    const [newNote, setNewNote] = useState("")
     const [notesFlagStyle, setNotesFlagStyle] = useState({})
 
     const listItemText = useRef()
@@ -80,10 +82,6 @@ const List = ({ list, id, moved, style, content, notes }) => {
             style.boxShadow = "1px 1px 4px 0 rgba(0, 0, 0, 0.4)"
     }
 
-    const submitNote = () => {
-        const notePayload = { newNote, list, id }
-        createNote(notePayload)
-    }
 
     const revealNotes = (e) => {
         e.stopPropagation()
@@ -114,24 +112,17 @@ const List = ({ list, id, moved, style, content, notes }) => {
                         {moved && <TurnedInNotIcon style={flagStyle} />}
 
                         <span ref={listItemText} className={style}>{content}</span>
-                        {notes && <ArrowLeftIcon onClick={revealNotes} style={notesFlagStyle}/>}
+                        {notes.length ? 
+                            <FormatListBulletedIcon  onClick={revealNotes}/>
+                            :
+                            <NotesIcon onClick={revealNotes}/>}
                         <CSSTransition
                             in={showNotes}
-                            timeout={30000}
+                            timeout={300}
                             classNames="revealnotes"
                             unmountOnExit
                         >
-                        <div className="notes-container">
-                            <form onSubmit={submitNote}>
-                                <input type="text" onChange={(e) => setNewNote(e.target.value)} value={newNote}/>
-                                <button type="submit">Submit Note</button>
-                            </form>
-                            <ul className="notes-list">
-                                {notes.map((note, i) => {
-                                    return <Note key={i} note={note}/> 
-                                })}
-                            </ul>
-                        </div>
+                            <Notes notes={notes} setShowNotes={setShowNotes} list={list} id={id}/>
                         </CSSTransition>
                     </div>
                     <TransitionGroup>
