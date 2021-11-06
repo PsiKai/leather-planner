@@ -122,7 +122,7 @@ const List = ({ list, id, moved, style, content, notes }) => {
                             classNames="revealnotes"
                             unmountOnExit
                         >
-                            <Notes notes={notes} setShowNotes={setShowNotes} list={list} id={id}/>
+                            <Notes notes={notes} revealNotes={revealNotes} list={list} id={id}/>
                         </CSSTransition>
                     </div>
                     <TransitionGroup>

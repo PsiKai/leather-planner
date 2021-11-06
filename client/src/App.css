@@ -327,7 +327,7 @@ button.password--submit {
 
 .notes-border {
   position: absolute;
-  width: 95%;
+  width: 100%;
   z-index: 3;
   background: var(--leather-color) var(--leather-texture);
   padding: 0.4rem;
@@ -345,6 +345,8 @@ button.password--submit {
 .notes-container input {
   border: none;
   border-bottom: 1px solid #0000ff42;
+  width: calc(100% - 4rem);
+  text-overflow: ellipsis;
   width: 100%;
   background: inherit;
   text-indent: 1rem;

@@ -4,7 +4,7 @@ import Note from "./Note"
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 
-const Notes = ({ notes, setShowNotes, list, id }) => {
+const Notes = ({ notes, revealNotes, list, id }) => {
     const appContext = useContext(AppContext);
     const { createNote } = appContext
     
@@ -28,17 +28,19 @@ const Notes = ({ notes, setShowNotes, list, id }) => {
                     value={newNote}
                     placeholder="Add a note ..."
                     />
-                {/* <button className="btb" type="submit">Submit Note</button> */}
                 <Fab type="submit"><AddIcon /></Fab>
             </form>
             <ul className="notes-list">
-                {notes.map((note, i) => {
-                    return <Note key={i} note={note}/> 
-                })}
+                {notes.length ? 
+                    notes.map((note, i) => {
+                        return <Note key={i} note={note}/> 
+                    })
+                    :
+                    <li></li>}
             </ul>
         </div>
         </div>
-        <div className="menu-backdrop" onClick={() => setShowNotes(false)}></div>
+        <div className="menu-backdrop" onClick={(e) => revealNotes(e)}></div>
     </>
     )
 }
