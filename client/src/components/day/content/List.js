@@ -15,6 +15,7 @@ import UndoIcon from '@material-ui/icons/Undo';
 import DeleteIcon from '@material-ui/icons/Delete';
 import TurnedInNotIcon from '@material-ui/icons/TurnedInNot';
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
+import ArrowDropDownCircleOutlinedIcon from '@material-ui/icons/ArrowDropDownCircleOutlined';
 
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
@@ -114,7 +115,13 @@ const List = ({ list, id, moved, style, content, notes }) => {
 
                         <span ref={listItemText} className={style}>{content}</span>
                         {notes && <ArrowLeftIcon onClick={revealNotes} style={notesFlagStyle}/>}
-                        {showNotes && <div className="notes-container">
+                        <CSSTransition
+                            in={showNotes}
+                            timeout={30000}
+                            classNames="revealnotes"
+                            unmountOnExit
+                        >
+                        <div className="notes-container">
                             <form onSubmit={submitNote}>
                                 <input type="text" onChange={(e) => setNewNote(e.target.value)} value={newNote}/>
                                 <button type="submit">Submit Note</button>
@@ -124,7 +131,8 @@ const List = ({ list, id, moved, style, content, notes }) => {
                                     return <Note key={i} note={note}/> 
                                 })}
                             </ul>
-                        </div>}
+                        </div>
+                        </CSSTransition>
                     </div>
                     <TransitionGroup>
                         {menu &&
