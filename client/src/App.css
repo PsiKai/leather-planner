@@ -384,6 +384,7 @@ button.password--submit {
 
 .notes-list {
   margin-top: 1rem;
+  padding-left: 2rem;
 }
 
 .notes-list li {
@@ -460,6 +461,7 @@ button.password--submit {
   width: 100%;
   z-index: 1;
   background: transparent;
+  cursor: default;
 }
 
 .menu {
@@ -1396,12 +1398,23 @@ label.MuiFormLabel-root {
     font-size: 18px;
   }
 
+  .notes-border {
+    left: -1.5rem;
+    width: calc(100% + 1.5rem);
+  }
+
   .notes-container input {
     text-indent: 0;
+    -webkit-padding-start: 4px;
   }
 
   .notes-container ul {
     padding-left: 1rem;
+  }
+
+  .notes-list input.edit-note {
+    left: -1rem;
+    position: relative;
   }
 
   .profile--wrapper > * {
