@@ -347,20 +347,31 @@ button.password--submit {
   border-bottom: 1px solid #0000ff42;
   width: calc(100% - 4rem);
   text-overflow: ellipsis;
-  width: 100%;
+  /* width: 100%; */
   background: inherit;
   text-indent: 1rem;
   font-family: var(--script-font);
   font-size: 1.5rem;
+  -webkit-appearance: none;
+  border-radius: 0;
 }
 
 .notes-container input[type="text"]:focus {
   max-width: 100%;
 }
 
+.notes-container input.edit-note {
+  text-indent: 2px;
+  left: -4px;
+  position: relative;
+}
+
 .notes-container button {
   position: absolute;
-  right: 1rem;
+  right: 0.5rem;
+  top: 0.5rem;
+  height: 3.5rem;
+  width: 3.5rem;
   background-color: #d4caa3;
   border: 1px solid var(--leather-color);
   transition: background-color 200ms ease;
@@ -378,6 +389,17 @@ button.password--submit {
 .notes-list li {
   font-size: 1.4rem;
   line-height: 120%;
+}
+
+.notes-list > form > button {
+  right: 0;
+  top: unset;
+  border: none;
+  background: transparent;
+}
+
+.notes-list > form > button:first-of-type {
+  right: 3rem;
 }
 
 .notes-border ~ .menu-backdrop {
@@ -1372,6 +1394,14 @@ label.MuiFormLabel-root {
 
   input[type="text"]::placeholder {
     font-size: 18px;
+  }
+
+  .notes-container input {
+    text-indent: 0;
+  }
+
+  .notes-container ul {
+    padding-left: 1rem;
   }
 
   .profile--wrapper > * {

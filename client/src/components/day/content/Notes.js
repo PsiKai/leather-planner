@@ -33,7 +33,7 @@ const Notes = ({ notes, revealNotes, list, id }) => {
             <ul className="notes-list">
                 {notes.length ? 
                     notes.map((note, i) => {
-                        return <Note key={i} note={note}/> 
+                        return <Note key={i} note={note} /> 
                     })
                     :
                     <li></li>}
