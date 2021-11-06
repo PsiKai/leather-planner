@@ -17,7 +17,7 @@ router.post("/", auth, (req, res) => {
         (err, newList) => {
             if (err) {
                 console.log(err);
-                res.status(500).json({ msg: "Error adding item to list" })
+                res.status(500).json({ msg: "Error adding note to list item" })
             }
             res.status(201).send(newList)
         }

@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react'
 import AppContext from '../../../context/application/AppContext';
 import Note from "./Note"
+import AddIcon from '@material-ui/icons/Add';
+import Fab from '@material-ui/core/Fab';
 
 const Notes = ({ notes, setShowNotes, list, id }) => {
     const appContext = useContext(AppContext);
@@ -8,9 +10,11 @@ const Notes = ({ notes, setShowNotes, list, id }) => {
     
     const [newNote, setNewNote] = useState("")
 
-    const submitNote = () => {
+    const submitNote = (e) => {
+        e.preventDefault()
         const notePayload = { newNote, list, id }
         createNote(notePayload)
+        setNewNote("")
     }
 
     return (
@@ -18,8 +22,14 @@ const Notes = ({ notes, setShowNotes, list, id }) => {
         <div className="notes-border">
         <div className="notes-container">
             <form onSubmit={submitNote}>
-                <input type="text" onChange={(e) => setNewNote(e.target.value)} value={newNote}/>
-                <button type="submit">Submit Note</button>
+                <input 
+                    type="text" 
+                    onChange={(e) => setNewNote(e.target.value)} 
+                    value={newNote}
+                    placeholder="Add a note ..."
+                    />
+                {/* <button className="btb" type="submit">Submit Note</button> */}
+                <Fab type="submit"><AddIcon /></Fab>
             </form>
             <ul className="notes-list">
                 {notes.map((note, i) => {

@@ -64,7 +64,7 @@ const AppState = (props) => {
     const createNote = async (note) => {
         try {
             const res = await axios.post("/item/notes", { note }, reqHeaders)
-            console.log(res.data.msg);
+            dispatch({ type: SET_ITEM, payload: res.data })
         } catch (error) {
             console.log(error.response.msg)
         }

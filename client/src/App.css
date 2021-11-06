@@ -4,6 +4,7 @@
   --paper-color: #fff4b0;
   --paper-line-height: 36px;
   --paper-line: 1px 35px;
+  --paper-line-color: #0000ff42;
   --paper-font-size: 24px;
   --leather-texture: url("./images/leather.webp");
   --leather-color: #381a14;
@@ -315,20 +316,16 @@ button.password--submit {
   word-break: break-word;
 }
 
-.list-wrapper svg {
-  position: absolute;
+.list-wrapper > svg {
+  position: relative;
   z-index: 1;
-  right: 5%;
+  /* right: 5%; */
+  float: right;
+  margin-right: 5%;
   top: 4px;
   font-size: 1.875rem;
   transition: transform 200ms ease;
   opacity: 0.7;
-}
-
-.notes-container {
-  background: var(--paper-color) var(--paper-texture);
-  padding: 1rem;
-  box-shadow: 1px 1px 1px 1px #381a1480, 2px 1px 0 0 var(--paper-color);
 }
 
 .notes-border {
@@ -339,6 +336,53 @@ button.password--submit {
   padding: 0.4rem;
   border-radius: 0.5rem;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.notes-container {
+  background: var(--paper-color) var(--paper-texture);
+  padding: 1rem;
+  box-shadow: 1px 1px 1px 1px #381a1480, 2px 1px 0 0 var(--paper-color);
+  position: relative;
+}
+
+.notes-container input {
+  border: none;
+  border-bottom: 1px solid #0000ff42;
+  width: 100%;
+  background: inherit;
+  text-indent: 1rem;
+  font-family: var(--script-font);
+  font-size: 1.5rem;
+}
+
+.notes-container input::placeholder {
+  /* tex */
+}
+
+.notes-container input[type="text"]:focus {
+  max-width: 100%;
+}
+
+.notes-container button {
+  position: absolute;
+  right: 1rem;
+  background-color: #d4caa3;
+  border: 1px solid var(--leather-color);
+  transition: background-color 200ms ease;
+}
+
+.notes-container button:hover,
+.notes-container button:focus {
+  background-color: var(--wood-color);
+}
+
+.notes-list {
+  margin-top: 1rem;
+}
+
+.notes-list li {
+  font-size: 1.4rem;
+  line-height: 120%;
 }
 
 .notes-border ~ .menu-backdrop {
