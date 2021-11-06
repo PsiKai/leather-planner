@@ -14,6 +14,7 @@ import StrikethroughSIcon from '@material-ui/icons/StrikethroughS';
 import UndoIcon from '@material-ui/icons/Undo';
 import DeleteIcon from '@material-ui/icons/Delete';
 import TurnedInNotIcon from '@material-ui/icons/TurnedInNot';
+import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
@@ -26,7 +27,9 @@ const List = ({ list, id, moved, style, content, notes }) => {
 
     const [menu, setMenu] = useState(false)
     const [edit, setEdit] = useState(false)
+    const [showNotes, setShowNotes] = useState(false)
     const [newNote, setNewNote] = useState("")
+    const [notesFlagStyle, setNotesFlagStyle] = useState({})
 
     const listItemText = useRef()
     const selectedListItem = useRef()
@@ -81,6 +84,12 @@ const List = ({ list, id, moved, style, content, notes }) => {
         createNote(notePayload)
     }
 
+    const revealNotes = (e) => {
+        e.stopPropagation()
+        setShowNotes(!showNotes)
+        setNotesFlagStyle({transform: showNotes ? "none": "rotateZ(-90deg)"})
+    }
+
     let flagStyle = {
         position: "absolute",
         top: "8px",
@@ -104,7 +113,8 @@ const List = ({ list, id, moved, style, content, notes }) => {
                         {moved && <TurnedInNotIcon style={flagStyle} />}
 
                         <span ref={listItemText} className={style}>{content}</span>
-                        {notes && <div className="notes-container">
+                        {notes && <ArrowLeftIcon onClick={revealNotes} style={notesFlagStyle}/>}
+                        {showNotes && <div className="notes-container">
                             <form onSubmit={submitNote}>
                                 <input type="text" onChange={(e) => setNewNote(e.target.value)} value={newNote}/>
                                 <button type="submit">Submit Note</button>
