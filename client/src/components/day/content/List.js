@@ -2,6 +2,7 @@ import React, { useContext, useState, useRef, Fragment } from 'react'
 import AppContext from '../../../context/application/AppContext';
 import AuthContext from '../../../context/authentication/AuthContext';
 import Input from "./Input"
+import Note from "./Note"
 
 import axios from "axios"
 
@@ -17,14 +18,15 @@ import TurnedInNotIcon from '@material-ui/icons/TurnedInNot';
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 
-const List = ({ list, id, moved, style, content }) => {
+const List = ({ list, id, moved, style, content, notes }) => {
     const appContext = useContext(AppContext);
     const authContext = useContext(AuthContext);
-    const { crossOff, removeItem } = appContext
+    const { crossOff, removeItem, createNote } = appContext
     const { setAlert } = authContext
 
     const [menu, setMenu] = useState(false)
     const [edit, setEdit] = useState(false)
+    const [newNote, setNewNote] = useState("")
 
     const listItemText = useRef()
     const selectedListItem = useRef()
@@ -74,6 +76,10 @@ const List = ({ list, id, moved, style, content }) => {
             style.boxShadow = "1px 1px 4px 0 rgba(0, 0, 0, 0.4)"
     }
 
+    const submitNote = () => {
+        const notePayload = { newNote, list, id }
+        createNote(notePayload)
+    }
 
     let flagStyle = {
         position: "absolute",
@@ -98,6 +104,17 @@ const List = ({ list, id, moved, style, content }) => {
                         {moved && <TurnedInNotIcon style={flagStyle} />}
 
                         <span ref={listItemText} className={style}>{content}</span>
+                        {notes && <div className="notes-container">
+                            <form onSubmit={submitNote}>
+                                <input type="text" onChange={(e) => setNewNote(e.target.value)} value={newNote}/>
+                                <button type="submit">Submit Note</button>
+                            </form>
+                            <ul className="notes-list">
+                                {notes.map((note, i) => {
+                                    return <Note key={i} note={note}/> 
+                                })}
+                            </ul>
+                        </div>}
                     </div>
                     <TransitionGroup>
                         {menu &&

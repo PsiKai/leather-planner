@@ -1,0 +1,27 @@
+const express = require("express")
+const router = express.Router()
+const ObjectId = require('bson-objectid')
+
+const auth = require("../../middleware/auth")
+
+const List = require("../../db/models/list")
+const { Item } = require("../../db/models/items")
+
+router.post("/", auth, (req, res) => {
+    const { note: { newNote, list, id } } = req.body
+    console.log( newNote, list, id);
+    List.findOneAndUpdate(
+        {"user": req.user.id, "name": list, "items._id": ObjectId(id)},
+        { "$push": { "items.$.notes": newNote } },
+        { new: true },
+        (err, newList) => {
+            if (err) {
+                console.log(err);
+                res.status(500).json({ msg: "Error adding item to list" })
+            }
+            res.status(201).send(newList)
+        }
+    )
+})
+
+module.exports = router

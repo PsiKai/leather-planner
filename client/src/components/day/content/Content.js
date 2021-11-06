@@ -15,7 +15,7 @@ const Content = () => {
     return (
       <div className="content">
         <ul className="list browser-default" id="list">
-          {items.map(({ item, _id, style, moved}) => {
+          {items.map(({ item, _id, style, moved, notes}) => {
             return <List 
                       key={_id}
                       id={_id}
@@ -23,6 +23,7 @@ const Content = () => {
                       list={list} 
                       style={style}
                       moved={moved}
+                      notes={notes}
                     />
             }
           )}

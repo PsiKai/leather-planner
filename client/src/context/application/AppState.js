@@ -61,6 +61,14 @@ const AppState = (props) => {
 
     const removeItem = id => dispatch({ type: REMOVE_ITEM, payload: id })
     
+    const createNote = async (note) => {
+        try {
+            const res = await axios.post("/item/notes", { note }, reqHeaders)
+            console.log(res.data.msg);
+        } catch (error) {
+            console.log(error.response.msg)
+        }
+    }
 
     const setLoading = (bool) => {
         dispatch({
@@ -81,7 +89,8 @@ const AppState = (props) => {
                 getList,
                 setItem,
                 crossOff,
-                resetDate
+                resetDate,
+                createNote
             }}>
             {props.children}
         </AppContext.Provider>
