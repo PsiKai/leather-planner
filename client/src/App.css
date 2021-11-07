@@ -336,24 +336,23 @@ button.password--submit {
 }
 
 .notes-container {
-  background: var(--paper-color) var(--paper-texture);
   padding: 1rem;
+  background: var(--paper-color) var(--paper-texture);
   box-shadow: 1px 1px 1px 1px #381a1480, 2px 1px 0 0 var(--paper-color);
   position: relative;
 }
 
 .notes-container input {
-  border: none;
-  border-bottom: 1px solid #0000ff42;
   width: calc(100% - 4rem);
-  text-overflow: ellipsis;
-  /* width: 100%; */
   background: inherit;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #0000ff42;
+  text-overflow: ellipsis;
   text-indent: 1rem;
   font-family: var(--script-font);
   font-size: 1.5rem;
   -webkit-appearance: none;
-  border-radius: 0;
 }
 
 .notes-container input[type="text"]:focus {

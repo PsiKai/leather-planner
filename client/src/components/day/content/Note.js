@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react'
-
 import AppContext from '../../../context/application/AppContext';
 
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
@@ -40,10 +39,10 @@ const Note = ({ note, list, id }) => {
     editingNote ?
         <form onSubmit={confirmNoteEdit}>
             <input 
-                type="text" 
-                value={newNoteText} 
+                type="text"
+                value={newNoteText}
                 onChange={(e) => setNewNoteText(e.target.value)}
-                className="edit-note" 
+                className="edit-note"
                 onClick={(e) => e.stopPropagation()}
                 autoFocus
             />

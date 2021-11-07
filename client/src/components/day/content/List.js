@@ -14,25 +14,20 @@ import StrikethroughSIcon from '@material-ui/icons/StrikethroughS';
 import UndoIcon from '@material-ui/icons/Undo';
 import DeleteIcon from '@material-ui/icons/Delete';
 import TurnedInNotIcon from '@material-ui/icons/TurnedInNot';
-import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
-import ArrowDropDownCircleOutlinedIcon from '@material-ui/icons/ArrowDropDownCircleOutlined';
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import NotesIcon from '@material-ui/icons/Notes';
 
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
-// import Notes from '@material-ui/icons/Notes';
-
 
 const List = ({ list, id, moved, style, content, notes }) => {
     const appContext = useContext(AppContext);
     const authContext = useContext(AuthContext);
-    const { crossOff, removeItem, createNote } = appContext
+    const { crossOff, removeItem } = appContext
     const { setAlert } = authContext
 
     const [menu, setMenu] = useState(false)
     const [edit, setEdit] = useState(false)
     const [showNotes, setShowNotes] = useState(false)
-    const [notesFlagStyle, setNotesFlagStyle] = useState({})
 
     const listItemText = useRef()
     const selectedListItem = useRef()
@@ -82,11 +77,9 @@ const List = ({ list, id, moved, style, content, notes }) => {
             style.boxShadow = "1px 1px 4px 0 rgba(0, 0, 0, 0.4)"
     }
 
-
     const revealNotes = (e) => {
         e.stopPropagation()
         setShowNotes(!showNotes)
-        setNotesFlagStyle({transform: showNotes ? "none": "rotateZ(-90deg)"})
     }
 
     let flagStyle = {
@@ -94,8 +87,6 @@ const List = ({ list, id, moved, style, content, notes }) => {
         top: "6px",
         left: "-26px"
     }
-
-
 
     return (
         edit ?

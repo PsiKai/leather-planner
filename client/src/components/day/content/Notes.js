@@ -28,7 +28,7 @@ const Notes = ({ notes, revealNotes, list, id }) => {
                     onChange={(e) => setNewNote(e.target.value)} 
                     value={newNote}
                     placeholder="Add a note ..."
-                    />
+                />
                 <Fab type="submit"><AddIcon /></Fab>
             </form>
             <ul className="notes-list">
