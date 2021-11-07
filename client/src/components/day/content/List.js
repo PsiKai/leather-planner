@@ -17,7 +17,7 @@ import TurnedInNotIcon from '@material-ui/icons/TurnedInNot';
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import NotesIcon from '@material-ui/icons/Notes';
 
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import { CSSTransition } from 'react-transition-group'
 
 const List = ({ list, id, moved, style, content, notes }) => {
     const appContext = useContext(AppContext);
@@ -116,26 +116,26 @@ const List = ({ list, id, moved, style, content, notes }) => {
                             <Notes notes={notes} revealNotes={revealNotes} list={list} id={id}/>
                         </CSSTransition>
                     </div>
-                    <TransitionGroup>
-                        {menu &&
-                            <CSSTransition
-                                classNames="revealmenu"
-                                timeout={200}
-                                key={id}
-                            >
-                                <div className="menu" >
-                                    <div>
-                                        {listItemText.current.classList.contains("strikethrough") ?
-                                            <UndoIcon onClick={cross} aria-label="Mark as incomplete"/>
-                                            :
-                                            <StrikethroughSIcon onClick={cross} aria-label="Mark as complete"/>}
-                                        <EditIcon onClick={() => setEdit(true)} aria-label="Edit list item"/>
-                                        <ForwardIcon onClick={carryOver} aria-label="Move list item to next day"/>
-                                        <DeleteIcon onClick={deleteItem} aria-label="Delete list item"/>
-                                    </div>
+                    <div>
+                        <CSSTransition
+                            classNames="revealmenu"
+                            timeout={200}
+                            in={menu}
+                            unmountOnExit
+                        >
+                            <div className="menu" >
+                                <div>
+                                    {listItemText.current && listItemText.current.classList.contains("strikethrough") ?
+                                        <UndoIcon onClick={cross} aria-label="Mark as incomplete"/>
+                                        :
+                                        <StrikethroughSIcon onClick={cross} aria-label="Mark as complete"/>}
+                                    <EditIcon onClick={() => setEdit(true)} aria-label="Edit list item"/>
+                                    <ForwardIcon onClick={carryOver} aria-label="Move list item to next day"/>
+                                    <DeleteIcon onClick={deleteItem} aria-label="Delete list item"/>
                                 </div>
-                            </CSSTransition>}
-                    </TransitionGroup>
+                            </div>
+                        </CSSTransition>
+                    </div>
                 </li>
             </Fragment>
     )
