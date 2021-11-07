@@ -46,18 +46,22 @@ router.patch("/", auth, (req, res) => {
 
 router.delete("/", auth, (req, res) => {
     const { note: { note, list, id } } = req.body
-    // List.findOneAndUpdate(
-    //     {"user": req.user.id, "name": list, "items._id": ObjectId(id)},
-    //     { "$push": { "items.$.notes": newNote } },
-    //     { new: true },
-    //     (err, newList) => {
-    //         if (err) {
-    //             console.log(err);
-    //             res.status(500).json({ msg: "Error adding note to list item" })
-    //         }
-    //         res.status(201).send(newList)
-    //     }
-    // )
+    List.findOneAndUpdate(
+        {"user": req.user.id, "name": list, "items._id": ObjectId(id)},
+        { "$pull": {"items.$[item].notes": note } },
+        { 
+            arrayFilters: [{"note": note}, {"item._id": ObjectId(id)}],
+            new: true 
+        },
+        (err, newList) => {
+            if (err) {
+                console.log(err);
+                res.status(500).json({ msg: "Error adding note to list item" })
+            }
+            console.log(newList);
+            res.status(201).send(newList)
+        }
+    )
 })
 
 module.exports = router

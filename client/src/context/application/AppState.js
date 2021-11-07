@@ -81,7 +81,7 @@ const AppState = (props) => {
 
     const deleteNote = async (note) => {
         try {
-            const res = await axios.patch("/item/notes", { note }, reqHeaders)
+            const res = await axios.delete("/item/notes", { data: note })
             dispatch({ type: SET_ITEM, payload: res.data })            
         } catch (error) {
             console.log(error.response.msg)
