@@ -45,14 +45,11 @@ router.patch("/", auth, (req, res) => {
 })
 
 router.delete("/", auth, (req, res) => {
-    const { note: { note, list, id } } = req.body
+    const { note, list, id } = req.body
     List.findOneAndUpdate(
         {"user": req.user.id, "name": list, "items._id": ObjectId(id)},
-        { "$pull": {"items.$.notes.$[note]": note } },
-        { 
-            arrayFilters: [{"note": note}],
-            new: true 
-        },
+        { "$pull": {"items.$.notes": note } },
+        { new: true },
         (err, newList) => {
             if (err) {
                 console.log(err);
