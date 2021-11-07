@@ -50,7 +50,7 @@ router.delete("/", auth, (req, res) => {
         {"user": req.user.id, "name": list, "items._id": ObjectId(id)},
         { "$pull": {"items.$.notes.$[note]": note } },
         { 
-            arrayFilters: [{"note": note}, {"item._id": ObjectId(id)}],
+            arrayFilters: [{"note": note}],
             new: true 
         },
         (err, newList) => {
