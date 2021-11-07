@@ -48,7 +48,7 @@ router.delete("/", auth, (req, res) => {
     const { note: { note, list, id } } = req.body
     List.findOneAndUpdate(
         {"user": req.user.id, "name": list, "items._id": ObjectId(id)},
-        { "$pull": {"items.$[item].notes": note } },
+        { "$pull": {"items.$.notes.$[note]": note } },
         { 
             arrayFilters: [{"note": note}, {"item._id": ObjectId(id)}],
             new: true 
