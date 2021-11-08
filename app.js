@@ -40,6 +40,7 @@ app.use("/item/edit", require("./routes/item/edit"))
 app.use("/item/crossoff", require("./routes/item/crossoff"))
 app.use("/item/delete", require("./routes/item/delete"))
 app.use("/item/move", require("./routes/item/move"))
+app.use("/item/notes", require("./routes/item/notes"))
 
 //Service Requests
 app.use("/services/weather", require("./routes/services/weather"))
@@ -50,3 +51,6 @@ if (process.env.NODE_ENV === "production") {
 
   app.get("*", (req, res) => res.sendFile(path.resolve(__dirname, 'client', "build", "index.html")))
 }
+
+// DATA MIGRATIONS
+// const { oneDocument, oneUser, allLists } = require("./db/migrations")

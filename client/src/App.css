@@ -4,6 +4,7 @@
   --paper-color: #fff4b0;
   --paper-line-height: 36px;
   --paper-line: 1px 35px;
+  --paper-line-color: #0000ff42;
   --paper-font-size: 24px;
   --leather-texture: url("./images/leather.webp");
   --leather-color: #381a14;
@@ -309,16 +310,175 @@ button.password--submit {
   position: relative;
 }
 
-.list-wrapper svg {
-  position: relative;
-  top: 3px;
-  left: -3px;
+.list-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .list-wrapper span {
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
+}
+
+.list-wrapper > span + svg {
+  position: relative;
+  top: 4px;
+  font-size: 1.875rem;
+  transition: transform 200ms ease;
+  opacity: 0.5;
+}
+
+.notes-border {
+  position: absolute;
+  width: calc(100% + 2rem);
+  top: calc(100% + 1px);
+  left: -2rem;
+  z-index: 3;
+  background: var(--leather-color) var(--leather-texture);
+  padding: 0.4rem 0.5rem 0.5rem 0.4rem;
+  border-radius: 0.5rem;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.notes-container {
+  padding: 1rem;
+  padding-top: 0.5rem;
+  background: var(--paper-color) var(--paper-texture);
+  box-shadow: 1px 1px 1px 1px #381a1480, 2px 1px 0 0 var(--paper-color);
+  position: relative;
+}
+
+.notes-container > form {
+  margin-top: 0.5rem;
+}
+
+.notes-container input {
+  width: calc(100% - 2rem);
+  background: inherit;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #0000ff42;
+  text-overflow: ellipsis;
+  text-indent: 1rem;
+  font-family: var(--script-font);
+  font-size: 1.5rem;
+  -webkit-appearance: none;
+}
+
+.notes-container input[type="text"]:focus {
+  max-width: 100%;
+}
+
+.notes-container input.edit-note {
+  width: calc(100% - 4rem);
+  text-indent: 2px;
+  left: -4px;
+  position: relative;
+  font-size: 1.4rem;
+}
+
+.notes-container button {
+  position: absolute;
+  right: 0.5rem;
+  top: 2.5rem;
+  height: 3.5rem;
+  width: 3.5rem;
+  background-color: #d4caa3;
+  border: 1px solid var(--leather-color);
+  transition: background-color 200ms ease;
+}
+
+.notes-container button:hover,
+.notes-container button:focus {
+  background-color: var(--brown-color);
+  color: var(--paper-color);
+}
+
+.notes-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  padding-left: 2rem;
+}
+
+.notes-list li {
+  font-size: 1.4rem;
+  line-height: 100%;
+  padding: 8px 0;
+}
+
+.notes-list li:hover {
+  box-shadow: 0 1px rgba(0, 0, 0, 0.2);
+}
+
+.notes-list > form > button {
+  right: 0;
+  top: unset;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+.notes-list > form > button:hover,
+.notes-list > form > button:focus {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: unset;
+}
+
+.notes-list > form > button:first-of-type {
+  right: 3rem;
+}
+
+.notes-border ~ .menu-backdrop {
+  z-index: 2;
+}
+
+.revealnotes-enter,
+.revealnotes-exit-done {
+  transform: scaleY(0);
+}
+
+.revealnotes-enter > .notes-container,
+.revealnotes-exit-done > .notes-container {
+  opacity: 0;
+}
+
+.revealnotes-enter-active,
+.revealnotes-exit-active {
+  transform-origin: top;
+  transition: transform 300ms ease;
+}
+
+.revealnotes-enter-active > .notes-container,
+.revealnotes-exit-active > .notes-container {
+  transition: opacity 200ms ease;
+}
+
+.revealnotes-enter-active {
+  transform: scaleY(1);
+}
+
+.revealnotes-enter-active > .notes-container {
+  opacity: 1;
+}
+
+.revealnotes-exit-active {
+  transform: scaleY(0);
+}
+
+.revealnotes-exit-active > .notes-container {
+  opacity: 0;
+}
+
+.revealnotes-enter-done {
+  transform: scaleY(1);
+  opacity: 1;
+}
+
+.revealnotes-enter-done > .notes-container {
+  opacity: 1;
 }
 
 .menu-backdrop {
@@ -329,15 +489,7 @@ button.password--submit {
   width: 100%;
   z-index: 1;
   background: transparent;
-}
-
-.menu {
-  position: absolute;
-  z-index: 2;
-  background: var(--leather-color) var(--leather-texture);
-  padding: 2px;
-  padding-top: 0;
-  box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.4);
+  cursor: default;
 }
 
 .menu div {
@@ -432,10 +584,6 @@ input[type="text"]:focus,
   max-width: 75%;
   background-color: transparent;
 }
-
-/* input[type="text"]:focus {
-  font-size: 20px !important;
-} */
 
 input[type="text"]::placeholder,
 .password-reset input[type="password"]::placeholder {
@@ -943,6 +1091,11 @@ label.MuiFormLabel-root {
     width: 100%;
   }
 
+  .notes-border {
+    left: -1.5rem;
+    width: calc(100% + 1.5rem);
+  }
+
   .binder-rings,
   .binder-rings-two {
     visibility: hidden;
@@ -1265,6 +1418,20 @@ label.MuiFormLabel-root {
     font-size: 18px;
   }
 
+  .notes-container input {
+    text-indent: 0;
+    -webkit-padding-start: 4px;
+  }
+
+  .notes-container ul {
+    padding-left: 1rem;
+  }
+
+  .notes-list input.edit-note {
+    left: -1rem;
+    position: relative;
+  }
+
   .profile--wrapper > * {
     margin-bottom: 32px;
   }
@@ -1280,7 +1447,6 @@ label.MuiFormLabel-root {
 
   .password-reset input {
     height: 32px !important;
-    /* padding-top: 0 !important; */
   }
 
   .password-reset input::placeholder {

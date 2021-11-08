@@ -1,23 +1,21 @@
-import React, { useContext, useState, useRef, Fragment } from 'react'
+import React, { useContext, useState, useRef } from 'react'
 import AppContext from '../../../context/application/AppContext';
 import AuthContext from '../../../context/authentication/AuthContext';
 import Input from "./Input"
+import Notes from "./Notes"
 
 import axios from "axios"
 
 import playAudio from "../../../utils/playAudio"
 
-import EditIcon from '@material-ui/icons/Edit';
-import ForwardIcon from '@material-ui/icons/Forward';
-import StrikethroughSIcon from '@material-ui/icons/StrikethroughS';
-import UndoIcon from '@material-ui/icons/Undo';
-import DeleteIcon from '@material-ui/icons/Delete';
 import TurnedInNotIcon from '@material-ui/icons/TurnedInNot';
+import TurnedInIcon from '@material-ui/icons/TurnedIn';
+import NotesIcon from '@material-ui/icons/Notes';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import { CSSTransition } from 'react-transition-group'
 
-
-const List = ({ list, id, moved, style, content }) => {
+const List = ({ list, id, moved, style, content, notes }) => {
     const appContext = useContext(AppContext);
     const authContext = useContext(AuthContext);
     const { crossOff, removeItem } = appContext
@@ -25,15 +23,16 @@ const List = ({ list, id, moved, style, content }) => {
 
     const [menu, setMenu] = useState(false)
     const [edit, setEdit] = useState(false)
+    const [itemStyle, setItemStyle] = useState(style)
 
     const listItemText = useRef()
-    const selectedListItem = useRef()
 
     const cross = () => {
         const strike = listItemText.current.classList
         strike.toggle("strikethrough")
         strike.value && playAudio("cross")
         const item = { list, id, style }
+        setItemStyle(strike.value)
         crossOff(item);
     }
 
@@ -43,7 +42,7 @@ const List = ({ list, id, moved, style, content }) => {
 
     const carryOver = async () => {
         const { classList: [value] } = listItemText.current
-        var item = { list, style: value, content }
+        var item = { list, style: value, content, notes }
         try {
             const res = await axios.post("/item/move", item)
             const { data: { msg }, status } = res
@@ -68,59 +67,56 @@ const List = ({ list, id, moved, style, content }) => {
     }
 
     const openMenu = (e) => {
-        const style = selectedListItem.current.style
+        e.stopPropagation()
         setMenu(!menu)
-        menu ? selectedListItem.current.removeAttribute("style") :
-            style.boxShadow = "1px 1px 4px 0 rgba(0, 0, 0, 0.4)"
     }
-
 
     let flagStyle = {
         position: "absolute",
-        top: "8px",
+        top: "6px",
         left: "-26px"
     }
-
-
 
     return (
         edit ?
             <Input content={content} undoEdit={undoEdit} id={id} aria-label="Editing list item"/>
             :
-            <Fragment>
-                {menu && <div className="menu-backdrop" onClick={openMenu}></div>}
-                <li
-                    onClick={openMenu}
-                    ref={selectedListItem}
-                    className={moved ? "no-bullet-point" : ""}
-                >
-                    <div className="list-wrapper">
-                        {moved && <TurnedInNotIcon style={flagStyle} />}
+            <li
+                onClick={openMenu}
+                className={moved ? "no-bullet-point" : ""}
+            >
+                <div className="list-wrapper">
+                    {moved && itemStyle ? 
+                        <TurnedInIcon style={{...flagStyle, opacity: "0.6"}} />
+                        :
+                        moved && <TurnedInNotIcon style={flagStyle}/>
+                    }
 
-                        <span ref={listItemText} className={style}>{content}</span>
-                    </div>
-                    <TransitionGroup>
-                        {menu &&
-                            <CSSTransition
-                                classNames="revealmenu"
-                                timeout={200}
-                                key={id}
-                            >
-                                <div className="menu" >
-                                    <div>
-                                        {listItemText.current.classList.contains("strikethrough") ?
-                                            <UndoIcon onClick={cross} aria-label="Mark as incomplete"/>
-                                            :
-                                            <StrikethroughSIcon onClick={cross} aria-label="Mark as complete"/>}
-                                        <EditIcon onClick={() => setEdit(true)} aria-label="Edit list item"/>
-                                        <ForwardIcon onClick={carryOver} aria-label="Move list item to next day"/>
-                                        <DeleteIcon onClick={deleteItem} aria-label="Delete list item"/>
-                                    </div>
-                                </div>
-                            </CSSTransition>}
-                    </TransitionGroup>
-                </li>
-            </Fragment>
+                    <span ref={listItemText} className={style}>{content}</span>
+                    {notes && notes.length ? 
+                        <NotesIcon />
+                        :
+                        <MoreVertIcon />}
+                    <CSSTransition
+                        in={menu}
+                        timeout={300}
+                        classNames="revealnotes"
+                        unmountOnExit
+                    >
+                        <Notes 
+                            notes={notes}
+                            openMenu={openMenu}
+                            list={list} 
+                            id={id}
+                            carryOver={carryOver}
+                            style={itemStyle}
+                            cross={cross}
+                            deleteItem={deleteItem}
+                            setEdit={setEdit}
+                        />
+                    </CSSTransition>
+                </div>
+            </li>
     )
 }
 

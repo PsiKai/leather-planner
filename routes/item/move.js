@@ -8,7 +8,7 @@ const { Item } = require("../../db/models/items")
 
 router.post("/", auth, (req, res) => {
 
-    const { list, content, style } = req.body
+    const { list, content, style, notes } = req.body
     const date = new Date(list)
 
     const skipWeekend = () => {
@@ -38,7 +38,7 @@ router.post("/", auth, (req, res) => {
         res.status(500).json({ msg: "Error moving item" })
       }
 
-      const movedItem = new Item({ item: content, style: style, moved: true })
+      const movedItem = new Item({ item: content, style: style, moved: true, notes })
   
       if (!foundList) {
         List.create({ "user": req.user.id, "name": nextDay, "items": movedItem }, (err) => {

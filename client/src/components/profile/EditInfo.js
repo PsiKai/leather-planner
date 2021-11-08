@@ -1,10 +1,12 @@
 import React, { useEffect, useContext, useState } from 'react'
+import AuthContext from "../../context/authentication/AuthContext"
+
+import axios from 'axios';
+
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
 import EditIcon from '@material-ui/icons/Edit';
 import Fab from '@material-ui/core/Fab';
-import AuthContext from "../../context/authentication/AuthContext"
-import axios from 'axios';
 
 const EditInfo = () => {
     const authContext = useContext(AuthContext)
@@ -53,6 +55,7 @@ const EditInfo = () => {
         minWidth: "36px",
         maxWidth: "36px",
     }
+
     return (
         <div className="profile--wrapper">
             <label className="profile--label" htmlFor="username">Username:</label>
