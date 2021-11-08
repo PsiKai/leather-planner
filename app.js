@@ -53,5 +53,4 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // DATA MIGRATIONS
-// const updateSchema = require("./db/migrations")
-// updateSchema()
+// const { oneDocument, oneUser, allLists } = require("./db/migrations")
