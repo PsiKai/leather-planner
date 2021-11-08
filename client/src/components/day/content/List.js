@@ -9,8 +9,9 @@ import axios from "axios"
 import playAudio from "../../../utils/playAudio"
 
 import TurnedInNotIcon from '@material-ui/icons/TurnedInNot';
-import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
+import TurnedInIcon from '@material-ui/icons/TurnedIn';
 import NotesIcon from '@material-ui/icons/Notes';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import { CSSTransition } from 'react-transition-group'
 
@@ -85,13 +86,17 @@ const List = ({ list, id, moved, style, content, notes }) => {
                 className={moved ? "no-bullet-point" : ""}
             >
                 <div className="list-wrapper">
-                    {moved && <TurnedInNotIcon style={flagStyle} />}
+                    {moved && itemStyle ? 
+                        <TurnedInIcon style={{...flagStyle, opacity: "0.6"}} />
+                        :
+                        moved && <TurnedInNotIcon style={flagStyle}/>
+                    }
 
                     <span ref={listItemText} className={style}>{content}</span>
                     {notes && notes.length ? 
-                        <FormatListBulletedIcon />
+                        <NotesIcon />
                         :
-                        <NotesIcon />}
+                        <MoreVertIcon />}
                     <CSSTransition
                         in={menu}
                         timeout={300}
