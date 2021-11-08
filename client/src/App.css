@@ -331,6 +331,7 @@ button.password--submit {
   z-index: 3;
   background: var(--leather-color) var(--leather-texture);
   padding: 0.4rem;
+  padding-bottom: 0.5rem;
   border-radius: 0.5rem;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
 }
@@ -344,7 +345,7 @@ button.password--submit {
 }
 
 .notes-container input {
-  width: calc(100% - 4rem);
+  width: calc(100% - 2rem);
   background: inherit;
   border: none;
   border-radius: 0;
@@ -361,6 +362,7 @@ button.password--submit {
 }
 
 .notes-container input.edit-note {
+  width: calc(100% - 4rem);
   text-indent: 2px;
   left: -4px;
   position: relative;
@@ -370,7 +372,7 @@ button.password--submit {
 .notes-container button {
   position: absolute;
   right: 0.5rem;
-  top: 0.5rem;
+  top: 2.5rem;
   height: 3.5rem;
   width: 3.5rem;
   background-color: #d4caa3;
@@ -390,7 +392,8 @@ button.password--submit {
 
 .notes-list li {
   font-size: 1.4rem;
-  line-height: 120%;
+  line-height: 100%;
+  margin-bottom: 16px;
 }
 
 .notes-list > form > button {
