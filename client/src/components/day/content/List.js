@@ -8,11 +8,11 @@ import axios from "axios"
 
 import playAudio from "../../../utils/playAudio"
 
-import EditIcon from '@material-ui/icons/Edit';
-import ForwardIcon from '@material-ui/icons/Forward';
-import StrikethroughSIcon from '@material-ui/icons/StrikethroughS';
-import UndoIcon from '@material-ui/icons/Undo';
-import DeleteIcon from '@material-ui/icons/Delete';
+// import EditIcon from '@material-ui/icons/Edit';
+// import ForwardIcon from '@material-ui/icons/Forward';
+// import StrikethroughSIcon from '@material-ui/icons/StrikethroughS';
+// import UndoIcon from '@material-ui/icons/Undo';
+// import DeleteIcon from '@material-ui/icons/Delete';
 import TurnedInNotIcon from '@material-ui/icons/TurnedInNot';
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import NotesIcon from '@material-ui/icons/Notes';
@@ -27,7 +27,8 @@ const List = ({ list, id, moved, style, content, notes }) => {
 
     const [menu, setMenu] = useState(false)
     const [edit, setEdit] = useState(false)
-    const [showNotes, setShowNotes] = useState(false)
+    const [itemStyle, setItemStyle] = useState(style)
+    // const [showNotes, setShowNotes] = useState(false)
 
     const listItemText = useRef()
     const selectedListItem = useRef()
@@ -37,6 +38,7 @@ const List = ({ list, id, moved, style, content, notes }) => {
         strike.toggle("strikethrough")
         strike.value && playAudio("cross")
         const item = { list, id, style }
+        setItemStyle(strike.value)
         crossOff(item);
     }
 
@@ -71,16 +73,21 @@ const List = ({ list, id, moved, style, content, notes }) => {
     }
 
     const openMenu = (e) => {
-        const style = selectedListItem.current.style
-        setMenu(!menu)
-        menu ? selectedListItem.current.removeAttribute("style") :
-            style.boxShadow = "1px 1px 4px 0 rgba(0, 0, 0, 0.4)"
+        e.stopPropagation()
+        // console.log(e.target, e.currentTarget, e);
+        // if (e.target === e.currentTarget) {
+        // if (e.currentTarget.classList.contains("menu-backdrop") || e.currentTarget.classList.contains("list-item")) {
+            setMenu(!menu)
+        // }
+        // const style = selectedListItem.current.style
+        // menu ? selectedListItem.current.removeAttribute("style") :
+        //     style.boxShadow = "1px 1px 4px 0 rgba(0, 0, 0, 0.4)"
     }
 
-    const revealNotes = (e) => {
-        e.stopPropagation()
-        setShowNotes(!showNotes)
-    }
+    // const revealNotes = (e) => {
+    //     e.stopPropagation()
+    //     setShowNotes(!showNotes)
+    // }
 
     let flagStyle = {
         position: "absolute",
@@ -93,30 +100,42 @@ const List = ({ list, id, moved, style, content, notes }) => {
             <Input content={content} undoEdit={undoEdit} id={id} aria-label="Editing list item"/>
             :
             <Fragment>
-                {menu && <div className="menu-backdrop" onClick={openMenu}></div>}
+                {/* {menu && <div className="menu-backdrop" onClick={openMenu}></div>} */}
                 <li
                     onClick={openMenu}
                     ref={selectedListItem}
-                    className={moved ? "no-bullet-point" : ""}
+                    className={moved ? "no-bullet-point list-item" : "list-item"}
                 >
                     <div className="list-wrapper">
                         {moved && <TurnedInNotIcon style={flagStyle} />}
 
                         <span ref={listItemText} className={style}>{content}</span>
                         {notes.length ? 
-                            <FormatListBulletedIcon  onClick={revealNotes}/>
+                            <FormatListBulletedIcon />
                             :
-                            <NotesIcon onClick={revealNotes}/>}
+                            <NotesIcon />}
                         <CSSTransition
-                            in={showNotes}
+                            in={menu}
                             timeout={300}
                             classNames="revealnotes"
                             unmountOnExit
                         >
-                            <Notes notes={notes} revealNotes={revealNotes} list={list} id={id}/>
+                            <Notes 
+                                notes={notes} 
+                                // revealNotes={revealNotes}
+                                openMenu={openMenu}
+                                list={list} 
+                                id={id}
+                                carryOver={carryOver}
+                                // listItemText={listItemText}
+                                style={itemStyle}
+                                cross={cross}
+                                deleteItem={deleteItem}
+                                setEdit={setEdit}
+                            />
                         </CSSTransition>
                     </div>
-                    <div>
+                    {/* <div>
                         <CSSTransition
                             classNames="revealmenu"
                             timeout={200}
@@ -135,7 +154,7 @@ const List = ({ list, id, moved, style, content, notes }) => {
                                 </div>
                             </div>
                         </CSSTransition>
-                    </div>
+                    </div> */}
                 </li>
             </Fragment>
     )

@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react'
 import AppContext from '../../../context/application/AppContext';
 import Note from "./Note"
+import Menu from "./Menu"
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 
-const Notes = ({ notes, revealNotes, list, id }) => {
+const Notes = ({ notes, openMenu, list, id, ...rest }) => {
     const appContext = useContext(AppContext);
     const { createNote } = appContext
     
@@ -20,8 +21,9 @@ const Notes = ({ notes, revealNotes, list, id }) => {
 
     return (
     <>
-        <div className="notes-border">
+        <div className="notes-border" onClick={(e) => e.stopPropagation()}>
         <div className="notes-container">
+        <Menu {...rest}/>
             <form onSubmit={submitNote}>
                 <input 
                     type="text" 
@@ -41,7 +43,7 @@ const Notes = ({ notes, revealNotes, list, id }) => {
             </ul>
         </div>
         </div>
-        <div className="menu-backdrop" onClick={(e) => revealNotes(e)}></div>
+        <div className="menu-backdrop" onClick={(e) => openMenu(e)}></div>
     </>
     )
 }

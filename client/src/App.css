@@ -337,6 +337,7 @@ button.password--submit {
 
 .notes-container {
   padding: 1rem;
+  padding-top: 0.5rem;
   background: var(--paper-color) var(--paper-texture);
   box-shadow: 1px 1px 1px 1px #381a1480, 2px 1px 0 0 var(--paper-color);
   position: relative;
@@ -465,12 +466,12 @@ button.password--submit {
 }
 
 .menu {
-  position: absolute;
-  z-index: 2;
-  background: var(--leather-color) var(--leather-texture);
-  padding: 2px;
-  padding-top: 0;
-  box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.4);
+  /* position: absolute; */
+  /* z-index: 2; */
+  /* background: var(--leather-color) var(--leather-texture); */
+  /* padding: 2px; */
+  /* padding-top: 0; */
+  /* box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.4); */
 }
 
 .menu div {

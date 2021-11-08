@@ -13,8 +13,6 @@ const Note = ({ note, list, id }) => {
 
     const confirmNoteEdit = (e) => {
         e.preventDefault()
-        console.log(newNoteText);
-        console.log(note, list, id);
         const noteObj = {note, list, id, newNoteText}
         newNoteText ?
             editNote(noteObj)
