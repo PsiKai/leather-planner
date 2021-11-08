@@ -465,15 +465,6 @@ button.password--submit {
   cursor: default;
 }
 
-.menu {
-  /* position: absolute; */
-  /* z-index: 2; */
-  /* background: var(--leather-color) var(--leather-texture); */
-  /* padding: 2px; */
-  /* padding-top: 0; */
-  /* box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.4); */
-}
-
 .menu div {
   background: var(--paper-color) var(--paper-texture);
   display: flex;

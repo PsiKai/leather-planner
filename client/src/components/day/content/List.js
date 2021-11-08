@@ -8,11 +8,6 @@ import axios from "axios"
 
 import playAudio from "../../../utils/playAudio"
 
-// import EditIcon from '@material-ui/icons/Edit';
-// import ForwardIcon from '@material-ui/icons/Forward';
-// import StrikethroughSIcon from '@material-ui/icons/StrikethroughS';
-// import UndoIcon from '@material-ui/icons/Undo';
-// import DeleteIcon from '@material-ui/icons/Delete';
 import TurnedInNotIcon from '@material-ui/icons/TurnedInNot';
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import NotesIcon from '@material-ui/icons/Notes';
@@ -28,7 +23,6 @@ const List = ({ list, id, moved, style, content, notes }) => {
     const [menu, setMenu] = useState(false)
     const [edit, setEdit] = useState(false)
     const [itemStyle, setItemStyle] = useState(style)
-    // const [showNotes, setShowNotes] = useState(false)
 
     const listItemText = useRef()
     const selectedListItem = useRef()
@@ -74,20 +68,8 @@ const List = ({ list, id, moved, style, content, notes }) => {
 
     const openMenu = (e) => {
         e.stopPropagation()
-        // console.log(e.target, e.currentTarget, e);
-        // if (e.target === e.currentTarget) {
-        // if (e.currentTarget.classList.contains("menu-backdrop") || e.currentTarget.classList.contains("list-item")) {
-            setMenu(!menu)
-        // }
-        // const style = selectedListItem.current.style
-        // menu ? selectedListItem.current.removeAttribute("style") :
-        //     style.boxShadow = "1px 1px 4px 0 rgba(0, 0, 0, 0.4)"
+        setMenu(!menu)
     }
-
-    // const revealNotes = (e) => {
-    //     e.stopPropagation()
-    //     setShowNotes(!showNotes)
-    // }
 
     let flagStyle = {
         position: "absolute",
@@ -100,11 +82,10 @@ const List = ({ list, id, moved, style, content, notes }) => {
             <Input content={content} undoEdit={undoEdit} id={id} aria-label="Editing list item"/>
             :
             <Fragment>
-                {/* {menu && <div className="menu-backdrop" onClick={openMenu}></div>} */}
                 <li
                     onClick={openMenu}
                     ref={selectedListItem}
-                    className={moved ? "no-bullet-point list-item" : "list-item"}
+                    className={moved ? "no-bullet-point" : ""}
                 >
                     <div className="list-wrapper">
                         {moved && <TurnedInNotIcon style={flagStyle} />}
@@ -121,13 +102,11 @@ const List = ({ list, id, moved, style, content, notes }) => {
                             unmountOnExit
                         >
                             <Notes 
-                                notes={notes} 
-                                // revealNotes={revealNotes}
+                                notes={notes}
                                 openMenu={openMenu}
                                 list={list} 
                                 id={id}
                                 carryOver={carryOver}
-                                // listItemText={listItemText}
                                 style={itemStyle}
                                 cross={cross}
                                 deleteItem={deleteItem}
@@ -135,26 +114,6 @@ const List = ({ list, id, moved, style, content, notes }) => {
                             />
                         </CSSTransition>
                     </div>
-                    {/* <div>
-                        <CSSTransition
-                            classNames="revealmenu"
-                            timeout={200}
-                            in={menu}
-                            unmountOnExit
-                        >
-                            <div className="menu" >
-                                <div>
-                                    {listItemText.current && listItemText.current.classList.contains("strikethrough") ?
-                                        <UndoIcon onClick={cross} aria-label="Mark as incomplete"/>
-                                        :
-                                        <StrikethroughSIcon onClick={cross} aria-label="Mark as complete"/>}
-                                    <EditIcon onClick={() => setEdit(true)} aria-label="Edit list item"/>
-                                    <ForwardIcon onClick={carryOver} aria-label="Move list item to next day"/>
-                                    <DeleteIcon onClick={deleteItem} aria-label="Delete list item"/>
-                                </div>
-                            </div>
-                        </CSSTransition>
-                    </div> */}
                 </li>
             </Fragment>
     )
