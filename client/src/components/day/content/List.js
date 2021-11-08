@@ -88,7 +88,7 @@ const List = ({ list, id, moved, style, content, notes }) => {
                     {moved && <TurnedInNotIcon style={flagStyle} />}
 
                     <span ref={listItemText} className={style}>{content}</span>
-                    {notes.length ? 
+                    {notes && notes.length ? 
                         <FormatListBulletedIcon />
                         :
                         <NotesIcon />}
