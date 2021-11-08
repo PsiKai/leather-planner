@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef, Fragment } from 'react'
+import React, { useContext, useState, useRef } from 'react'
 import AppContext from '../../../context/application/AppContext';
 import AuthContext from '../../../context/authentication/AuthContext';
 import Input from "./Input"
@@ -25,7 +25,6 @@ const List = ({ list, id, moved, style, content, notes }) => {
     const [itemStyle, setItemStyle] = useState(style)
 
     const listItemText = useRef()
-    const selectedListItem = useRef()
 
     const cross = () => {
         const strike = listItemText.current.classList
@@ -81,41 +80,38 @@ const List = ({ list, id, moved, style, content, notes }) => {
         edit ?
             <Input content={content} undoEdit={undoEdit} id={id} aria-label="Editing list item"/>
             :
-            <Fragment>
-                <li
-                    onClick={openMenu}
-                    ref={selectedListItem}
-                    className={moved ? "no-bullet-point" : ""}
-                >
-                    <div className="list-wrapper">
-                        {moved && <TurnedInNotIcon style={flagStyle} />}
+            <li
+                onClick={openMenu}
+                className={moved ? "no-bullet-point" : ""}
+            >
+                <div className="list-wrapper">
+                    {moved && <TurnedInNotIcon style={flagStyle} />}
 
-                        <span ref={listItemText} className={style}>{content}</span>
-                        {notes.length ? 
-                            <FormatListBulletedIcon />
-                            :
-                            <NotesIcon />}
-                        <CSSTransition
-                            in={menu}
-                            timeout={300}
-                            classNames="revealnotes"
-                            unmountOnExit
-                        >
-                            <Notes 
-                                notes={notes}
-                                openMenu={openMenu}
-                                list={list} 
-                                id={id}
-                                carryOver={carryOver}
-                                style={itemStyle}
-                                cross={cross}
-                                deleteItem={deleteItem}
-                                setEdit={setEdit}
-                            />
-                        </CSSTransition>
-                    </div>
-                </li>
-            </Fragment>
+                    <span ref={listItemText} className={style}>{content}</span>
+                    {notes.length ? 
+                        <FormatListBulletedIcon />
+                        :
+                        <NotesIcon />}
+                    <CSSTransition
+                        in={menu}
+                        timeout={300}
+                        classNames="revealnotes"
+                        unmountOnExit
+                    >
+                        <Notes 
+                            notes={notes}
+                            openMenu={openMenu}
+                            list={list} 
+                            id={id}
+                            carryOver={carryOver}
+                            style={itemStyle}
+                            cross={cross}
+                            deleteItem={deleteItem}
+                            setEdit={setEdit}
+                        />
+                    </CSSTransition>
+                </div>
+            </li>
     )
 }
 
