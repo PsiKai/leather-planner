@@ -35,7 +35,7 @@ router.patch("/", auth, (req, res) => {
         (err, newList) => {
             if (err) {
                 console.log(err);
-                res.status(500).json({ msg: "Error adding note to list item" })
+                res.status(500).json({ msg: "Error editing note on list item" })
             }
             res.status(201).send(newList)
         }
@@ -51,7 +51,7 @@ router.delete("/", auth, (req, res) => {
         (err, newList) => {
             if (err) {
                 console.log(err);
-                res.status(500).json({ msg: "Error adding note to list item" })
+                res.status(500).json({ msg: "Error deleting note from list item" })
             }
             res.status(201).send(newList)
         }

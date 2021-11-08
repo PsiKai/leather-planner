@@ -406,7 +406,6 @@ button.password--submit {
 .notes-list li {
   font-size: 1.4rem;
   line-height: 100%;
-  /* margin: 8px 0; */
   padding: 8px 0;
 }
 
@@ -585,10 +584,6 @@ input[type="text"]:focus,
   max-width: 75%;
   background-color: transparent;
 }
-
-/* input[type="text"]:focus {
-  font-size: 20px !important;
-} */
 
 input[type="text"]::placeholder,
 .password-reset input[type="password"]::placeholder {
@@ -1452,7 +1447,6 @@ label.MuiFormLabel-root {
 
   .password-reset input {
     height: 32px !important;
-    /* padding-top: 0 !important; */
   }
 
   .password-reset input::placeholder {

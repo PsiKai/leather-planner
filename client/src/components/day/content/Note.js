@@ -29,7 +29,6 @@ const Note = ({ note, list, id }) => {
     }
 
     const changeEditing = (e) => {
-        e.stopPropagation()
         setEditingNote(!editingNote)
     }
 
@@ -41,7 +40,6 @@ const Note = ({ note, list, id }) => {
                 value={newNoteText}
                 onChange={(e) => setNewNoteText(e.target.value)}
                 className="edit-note"
-                onClick={(e) => e.stopPropagation()}
                 autoFocus
             />
             <Fab style={fabStyle} type="submit">
