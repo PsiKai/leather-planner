@@ -310,6 +310,12 @@ button.password--submit {
   position: relative;
 }
 
+.list-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
 .list-wrapper span {
   overflow-wrap: break-word;
   word-wrap: break-word;
@@ -318,7 +324,6 @@ button.password--submit {
 
 .list-wrapper > span + svg {
   position: relative;
-  float: right;
   top: 4px;
   font-size: 1.875rem;
   transition: transform 200ms ease;
@@ -328,11 +333,11 @@ button.password--submit {
 .notes-border {
   position: absolute;
   width: calc(100% + 2rem);
+  top: calc(100% + 1px);
   left: -2rem;
   z-index: 3;
   background: var(--leather-color) var(--leather-texture);
-  padding: 0.4rem;
-  padding-bottom: 0.5rem;
+  padding: 0.4rem 0.5rem 0.5rem 0.4rem;
   border-radius: 0.5rem;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);
 }
@@ -343,6 +348,10 @@ button.password--submit {
   background: var(--paper-color) var(--paper-texture);
   box-shadow: 1px 1px 1px 1px #381a1480, 2px 1px 0 0 var(--paper-color);
   position: relative;
+}
+
+.notes-container > form {
+  margin-top: 0.5rem;
 }
 
 .notes-container input {
@@ -383,10 +392,13 @@ button.password--submit {
 
 .notes-container button:hover,
 .notes-container button:focus {
-  background-color: var(--wood-color);
+  background-color: var(--brown-color);
+  color: var(--paper-color);
 }
 
 .notes-list {
+  display: flex;
+  flex-direction: column;
   margin-top: 1rem;
   padding-left: 2rem;
 }
@@ -394,7 +406,12 @@ button.password--submit {
 .notes-list li {
   font-size: 1.4rem;
   line-height: 100%;
-  margin-bottom: 16px;
+  /* margin: 8px 0; */
+  padding: 8px 0;
+}
+
+.notes-list li:hover {
+  box-shadow: 0 1px rgba(0, 0, 0, 0.2);
 }
 
 .notes-list > form > button {
@@ -402,6 +419,13 @@ button.password--submit {
   top: unset;
   border: none;
   background: transparent;
+  box-shadow: none;
+}
+
+.notes-list > form > button:hover,
+.notes-list > form > button:focus {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: unset;
 }
 
 .notes-list > form > button:first-of-type {
