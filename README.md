@@ -47,4 +47,4 @@ Users can login or register their account (for free!), and will then be redirect
 
 ### Hosting
 
-The current version of this application is live and can be found at https://leather-journal.herokuapp.com hosted by Heroku.
+The current version of this application is live and can be found at https://leather-journal.herokuapp.com
