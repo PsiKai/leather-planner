@@ -326,7 +326,11 @@ button.password--submit {
   position: relative;
   top: 4px;
   font-size: 1.875rem;
-  transition: transform 200ms ease;
+  transition: opacity 200ms ease;
+  opacity: 0;
+}
+
+.list > li:hover > .list-wrapper > span + svg {
   opacity: 0.5;
 }
 
@@ -356,6 +360,7 @@ button.password--submit {
 
 .notes-container input {
   width: calc(100% - 2rem);
+  padding-right: 2rem;
   background: inherit;
   border: none;
   border-radius: 0;
@@ -373,6 +378,7 @@ button.password--submit {
 
 .notes-container input.edit-note {
   width: calc(100% - 4rem);
+  padding: 0;
   text-indent: 2px;
   left: -4px;
   position: relative;
@@ -409,12 +415,21 @@ button.password--submit {
   padding: 8px 0;
 }
 
-.notes-list li:hover {
-  box-shadow: 0 1px rgba(0, 0, 0, 0.2);
+.notes-list li:hover > svg {
+  opacity: 0.7;
+}
+
+.notes-list li > svg {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  opacity: 0;
+  transition: opacity 200ms ease;
 }
 
 .notes-list > form > button {
-  right: 0;
+  right: 0.25rem;
   top: unset;
   border: none;
   background: transparent;

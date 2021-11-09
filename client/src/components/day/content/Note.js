@@ -3,6 +3,7 @@ import AppContext from '../../../context/application/AppContext';
 
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
+import EditIcon from '@material-ui/icons/Edit';
 import Fab from '@material-ui/core/Fab';
 
 const Note = ({ note, list, id }) => {
@@ -50,7 +51,10 @@ const Note = ({ note, list, id }) => {
             </Fab>
         </form>
         :
-        <li onClick={changeEditing}>{note}</li>
+        <li onClick={changeEditing}>
+            {note}
+            <EditIcon />
+        </li>
     )
 }
 
