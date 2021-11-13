@@ -671,11 +671,13 @@ textarea {
   background: inherit;
   border: none;
   font-family: var(--serif-font);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.5px;
   line-height: 110%;
   cursor: pointer;
   font-size: 1rem;
+  text-align: right;
+  padding-right: 24px;
 }
 
 .date-label input:focus {
@@ -807,12 +809,13 @@ textarea {
 
 .widget .weather-input {
   font-family: var(--serif-font) !important;
-  font-size: 1rem !important;
+  font-size: 1rem;
   font-weight: 700;
   border: none !important;
   margin: 0 !important;
   text-align: right;
   height: 24px !important;
+  max-width: 150px;
 }
 
 .widget .weather-input::-webkit-scrollbar {
@@ -821,7 +824,7 @@ textarea {
 
 .widget .weather-input::placeholder {
   font-family: var(--serif-font) !important;
-  font-size: 1rem !important;
+  font-size: 1rem;
   font-weight: 700;
   color: grey;
 }
@@ -1148,7 +1151,7 @@ label.MuiFormLabel-root {
   }
 
   .heading {
-    padding-right: 1rem;
+    padding-right: 0.875rem;
   }
 
   .react-datepicker {
