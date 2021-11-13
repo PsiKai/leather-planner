@@ -671,11 +671,13 @@ textarea {
   background: inherit;
   border: none;
   font-family: var(--serif-font);
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: -0.5px;
   line-height: 110%;
   cursor: pointer;
   font-size: 1rem;
+  text-align: right;
+  padding-right: 22px;
 }
 
 .date-label input:focus {
@@ -807,12 +809,13 @@ textarea {
 
 .widget .weather-input {
   font-family: var(--serif-font) !important;
-  font-size: 1rem !important;
+  font-size: 1rem;
   font-weight: 700;
   border: none !important;
   margin: 0 !important;
   text-align: right;
   height: 24px !important;
+  max-width: 150px;
 }
 
 .widget .weather-input::-webkit-scrollbar {
@@ -821,14 +824,14 @@ textarea {
 
 .widget .weather-input::placeholder {
   font-family: var(--serif-font) !important;
-  font-size: 1rem !important;
+  font-size: 1rem;
   font-weight: 700;
   color: grey;
 }
 
 .widget .weather-input:focus {
-  box-shadow: none !important;
-  font-size: 1rem !important;
+  box-shadow: none;
+  font-size: 1rem;
 }
 
 .weather-input__wrapper button {
@@ -887,6 +890,10 @@ label.MuiFormLabel-root {
   line-height: 1.15;
   text-transform: none;
   letter-spacing: initial;
+}
+
+.MuiButton-label {
+  gap: 0 2px;
 }
 
 /* cover */
@@ -1148,7 +1155,7 @@ label.MuiFormLabel-root {
   }
 
   .heading {
-    padding-right: 1rem;
+    padding-right: 0.875rem;
   }
 
   .react-datepicker {
@@ -1248,6 +1255,7 @@ label.MuiFormLabel-root {
 
   .get-weather span {
     line-height: 1;
+    font-size: 0.875rem;
   }
 
   .weather-input__wrapper {
@@ -1264,6 +1272,13 @@ label.MuiFormLabel-root {
     word-wrap: break-word;
     height: auto !important;
     width: 100% !important;
+    font-size: 0.875rem;
+  }
+
+  .widget .weather-input::placeholder,
+  .widget .weather-input:focus,
+  .temp {
+    font-size: 0.875rem;
   }
 
   .weather-input:focus {
@@ -1297,6 +1312,7 @@ label.MuiFormLabel-root {
     flex-direction: column-reverse;
     text-align: center;
     line-height: 1;
+    font-size: 0.875rem;
   }
 
   .widget > button.MuiButtonBase-root {
@@ -1333,7 +1349,7 @@ label.MuiFormLabel-root {
   .date-picker {
     display: initial;
     width: auto;
-    font-size: 1rem;
+    font-size: 0.875rem;
     line-height: 1;
     font-family: var(--serif-font);
     font-weight: 700;
@@ -1356,7 +1372,7 @@ label.MuiFormLabel-root {
   }
 
   .react-datepicker__triangle {
-    right: 16px !important;
+    right: 14px !important;
   }
 
   .weather div[role="progressbar"] {
