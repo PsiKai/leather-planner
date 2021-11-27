@@ -4,9 +4,7 @@ import AuthContext from "../../context/authentication/AuthContext"
 
 const AdminRoute = ({component: Component, ...rest}) => {
     const authContext = useContext(AuthContext);
-    const { isAdmin, user, loading } = authContext;
-
-    console.log(isAdmin, user);
+    const { isAdmin, loading } = authContext;
 
     return (
         <Route 
