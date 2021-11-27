@@ -58,5 +58,5 @@ if (process.env.NODE_ENV === "production") {
 // USER ANALYTICS
 const { getAllUsers, createdAt } = require("./db/migrations/userData")
 // getAllUsers()
-createdAt('611083d8baed4458d8dcd273')
+// createdAt()
 

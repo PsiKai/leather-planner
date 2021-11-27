@@ -16,15 +16,15 @@ const UserSchema = mongoose.Schema({
     },
     createdAt: {
       type: Date,
-      // default: () => Date.now(),
-      // immutable: true
+      default: () => Date.now(),
+      immutable: true
     },
     updatedAt: Date
   })
 
-  UserSchema.pre('save', function (next) {
-    this.createdAt = Date.now()
-    next()
-  })
+  // UserSchema.pre('save', function (next) {
+  //   this.createdAt = Date.now()
+  //   next()
+  // })
 
   module.exports = mongoose.model("User", UserSchema)
