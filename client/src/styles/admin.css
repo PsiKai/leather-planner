@@ -12,6 +12,10 @@
   text-align: left;
 }
 
+.user-dashboard > tbody > tr:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
 .loading {
   /* text-align: center; */
   margin-top: 2rem;
