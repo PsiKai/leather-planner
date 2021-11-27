@@ -60,8 +60,10 @@ if (process.env.NODE_ENV === "production") {
 // const { oneDocument, oneUser, allLists } = require("./db/migrations")
 
 // USER ANALYTICS
-const { getAllUsers, createdAt, makeAdmin } = require("./db/migrations/userData")
+const { getAllUsers, createdAt, makeAdmin, addLogins, addSingleLogin } = require("./db/migrations/userData")
 // makeAdmin()
+// addLogins()
 // getAllUsers()
+// addSingleLogin()
 // createdAt()
 

@@ -22,8 +22,10 @@ router.post("/", async (req, res) => {
 
       const payload = { user: { id: user.id } }
 
-      jwt.sign(payload, process.env.SECRET, { expiresIn: 360000 }, (err, token) => {
+      jwt.sign(payload, process.env.SECRET, { expiresIn: 360000 }, async (err, token) => {
           if (err) throw errors
+          user.logins += 1
+          await user.save()
           res.json({ token })
         }
       )

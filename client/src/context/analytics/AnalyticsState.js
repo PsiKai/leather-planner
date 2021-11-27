@@ -20,7 +20,7 @@ const AnalyticsState = (props) => {
     const getAllUsers = async () => {
         try {
             const res = await axios.get('/admin/users')
-            console.log(res.data);
+            // console.table(res.data);
             dispatch({
                 type: GET_USERS,
                 payload: res.data

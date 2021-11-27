@@ -10,16 +10,12 @@ router.get("/", async (req, res) => {
       const users = await User.find({ }).lean()
       users.forEach(async (user) => {
         const lists = await List.where("user").equals(user._id)
-        // user = {...user.toObject(), lists}
-        // console.log({...user, lists: lists.length});
         usersWithLists.push({...user, lists})
         if (usersWithLists.length === users.length) {
+          // console.log(usersWithLists);
           res.json(usersWithLists)
         }
-        // console.log(user, lists.length);
       })
-      // console.log(usersWithLists);
-      // res.json(usersWithLists)
     } catch (err) {
       console.error(err.message)
       res.status(500).json({ msg: err.message })

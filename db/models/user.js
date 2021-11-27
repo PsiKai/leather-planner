@@ -23,6 +23,10 @@ const UserSchema = mongoose.Schema({
     admin: {
       type: Boolean,
       default: false
+    },
+    logins: {
+      type: Number,
+      default: 1
     }
   })
 
