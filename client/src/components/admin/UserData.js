@@ -15,7 +15,7 @@ const UserData = () => {
     // }, [users])
 
     return (
-        <table>
+        <table className="user-dashboard">
             <thead>
                 <tr>
                     <th>User Name</th>
@@ -24,14 +24,16 @@ const UserData = () => {
                     <th>Total Lists</th>
                 </tr>
             </thead>
+            <tbody>
             {users && users.map(user => (
                 <tr key={user._id}>
                     <td>{user.name}</td>
-                    <td>{user.updatedAt && new Date(user.updatedAt).toLocaleDateString()}</td>
+                    <td>{user.updatedAt ? new Date(user.updatedAt).toLocaleDateString() : "--"}</td>
                     <td>{user.createdAt && new Date(user.createdAt).toLocaleDateString()}</td>
-                    {/* <td>{user.lists.length}</td> */}
+                    <td>{user.lists.length}</td>
                 </tr>
             ))}
+            </tbody>
         </table>
     )
 }

@@ -2,7 +2,6 @@ const List = require("../models/list")
 const { Item } = require("../models/items")
 const User = require('../models/user')
 const ObjectId = require("bson-objectid")
-const user = require("../models/user")
 
 
 module.exports = {

@@ -2,3 +2,12 @@
   right: 0;
   left: unset;
 }
+
+.user-dashboard {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.user-dashboard th {
+  text-align: left;
+}
