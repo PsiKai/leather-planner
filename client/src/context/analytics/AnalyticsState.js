@@ -13,10 +13,16 @@ const AnalyticsState = (props) => {
     const [state, dispatch] = useReducer(AnalyticsReducer, intitialState);
 
     const getAllUsers = async () => {
-        dispatch({
-            type: GET_USERS,
-            payload: []
-        })
+        try {
+            const users = await axios.get('/admin/users')
+            dispatch({
+                type: GET_USERS,
+                payload: users
+            })
+        } catch (error) {
+            const { msg, status } = error.response
+            setAlert(status, msg)
+        }
     }
 
     return (
