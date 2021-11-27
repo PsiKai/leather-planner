@@ -18,7 +18,7 @@ module.exports = {
     },
 
     // Update created at fields to first list date
-    createdAt: async (id) => {
+    createdAt: async () => {
         try {
             const users = await User.find({ })
             users.forEach(async (user) => {
@@ -33,6 +33,18 @@ module.exports = {
                 user.save()
             })
 
+        } catch (error) {
+            console.log(error.message)
+        }
+    },
+
+    // Make one user an admin
+    makeAdmin: async () => {
+        try {
+            const user = await User.findOne({ _id: ObjectId("611083d8baed4458d8dcd273") })
+            user.admin = true
+            user.save()
+            console.log(user);
         } catch (error) {
             console.log(error.message)
         }
