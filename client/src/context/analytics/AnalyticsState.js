@@ -1,12 +1,16 @@
-import React, {useReducer} from 'react';
+import React, {useReducer, useContext} from 'react';
 import axios from 'axios';
 import AnalyticsContext from "./AnalyticsContext";
+import AuthContext from "../authentication/AuthContext";
 import AnalyticsReducer from "./AnalyticsReducer";
 import {
     GET_USERS
 } from "../types/types";
 
 const AnalyticsState = (props) => {
+    const authContext = useContext(AuthContext)
+    const { setAlert } = authContext
+
     const intitialState = {
         user: []
     }
@@ -14,10 +18,10 @@ const AnalyticsState = (props) => {
 
     const getAllUsers = async () => {
         try {
-            const users = await axios.get('/admin/users')
+            const res = await axios.get('/admin/users')
             dispatch({
                 type: GET_USERS,
-                payload: users
+                payload: res.data
             })
         } catch (error) {
             const { msg, status } = error.response

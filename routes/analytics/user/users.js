@@ -1,9 +1,9 @@
 const express = require("express")
 const router = express.Router()
 
-const User = require("../../db/models/user")
+const User = require("../../../db/models/user")
 
-router.get("/", auth, async (req, res) => {
+router.get("/", async (req, res) => {
     try {
       const users = await User.find({ })
       res.json(users)

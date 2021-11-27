@@ -6,6 +6,7 @@ import "../../styles/admin.css"
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import Alert from "../Alert"
+import UserData from "./UserData"
 
 const UserAnalytics = () => {
     const authContext = useContext(AuthContext);
@@ -29,9 +30,9 @@ const UserAnalytics = () => {
                                 Hello Admin
                                 <SupervisorAccountIcon />
                             </h1>
-                            <div>
-
-                            </div>
+                        </div>
+                        <div>
+                            <UserData />
                         </div>
                     </div>
                 </div>
