@@ -1387,8 +1387,7 @@ label.MuiFormLabel-root {
     width: 98%;
     margin: 1% auto;
     height: 99%;
-
-    grid-template-rows: 144px;
+    grid-template-rows: 130px;
   }
 
   .pattern__wrapper {
