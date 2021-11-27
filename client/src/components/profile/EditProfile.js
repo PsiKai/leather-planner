@@ -30,6 +30,11 @@ const EditProfile = () => {
                             <ArrowBackIosIcon />
                             Back
                         </Link>
+                        {authContext.isAdmin && 
+                            <Link className="admin-nav" to="/admin">
+                                Admin
+                            </Link>
+                        }
                         <h1 className="profile-heading">
                             Profile Settings
                             <PersonIcon />
