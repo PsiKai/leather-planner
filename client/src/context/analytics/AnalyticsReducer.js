@@ -8,7 +8,8 @@ export default (state, action) => {
         case GET_USERS:
             return {
                 ...state,
-                users: action.payload
+                users: action.payload,
+                loading: false
             }
         default:
             return state

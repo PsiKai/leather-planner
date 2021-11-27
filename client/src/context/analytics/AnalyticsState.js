@@ -12,7 +12,8 @@ const AnalyticsState = (props) => {
     const { setAlert } = authContext
 
     const intitialState = {
-        users: []
+        users: [],
+        loading: true
     }
     const [state, dispatch] = useReducer(AnalyticsReducer, intitialState);
 
@@ -34,6 +35,7 @@ const AnalyticsState = (props) => {
         <AnalyticsContext.Provider
             value={{
                 users: state.users,
+                loading: state.loading,
                 getAllUsers
             }}>
             {props.children}

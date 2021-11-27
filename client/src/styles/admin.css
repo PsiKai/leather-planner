@@ -11,3 +11,17 @@
 .user-dashboard th {
   text-align: left;
 }
+
+.loading {
+  /* text-align: center; */
+  margin-top: 2rem;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading svg {
+  color: black;
+  display: block;
+}

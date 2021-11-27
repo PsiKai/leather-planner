@@ -27,7 +27,7 @@ const UserAnalytics = () => {
                                 Back
                             </Link>
                             <h1 className="profile-heading">
-                                Hello Admin
+                                User Data
                                 <SupervisorAccountIcon />
                             </h1>
                         </div>
