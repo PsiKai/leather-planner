@@ -13,7 +13,18 @@ const UserSchema = mongoose.Schema({
     password: {
       type: String,
       required: true
-    }
+    },
+    createdAt: {
+      type: Date,
+      // default: () => Date.now(),
+      // immutable: true
+    },
+    updatedAt: Date
+  })
+
+  UserSchema.pre('save', function (next) {
+    this.createdAt = Date.now()
+    next()
   })
 
   module.exports = mongoose.model("User", UserSchema)

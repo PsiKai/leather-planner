@@ -16,7 +16,7 @@ router.patch("/", auth, async (req, res) => {
     const hashNew = await bcrypt.hash(newPass, salt)
   
     if (isMatch) {
-      User.findOneAndUpdate({_id}, { password: hashNew }, (err) => {
+      User.findOneAndUpdate({_id}, { password: hashNew, updatedAt: Date.now() }, (err) => {
         if (err) {
           console.error(`${dbUser.name} failed to update password field with error: ${err}`)
           res.status(500).json({msg: "There was an error updating you password"})
