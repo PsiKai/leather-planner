@@ -25,6 +25,7 @@ router.post("/", async (req, res) => {
       jwt.sign(payload, process.env.SECRET, { expiresIn: 360000 }, async (err, token) => {
           if (err) throw errors
           user.logins += 1
+          user.lastLogin = new Date()
           await user.save()
           res.json({ token })
         }

@@ -45,7 +45,6 @@ app.use("/item/notes", require("./routes/item/notes"))
 // Admin Requests
 app.use("/admin/users", require("./routes/analytics/user/users"))
 
-
 //Service Requests
 app.use("/services/weather", require("./routes/services/weather"))
 
@@ -60,10 +59,4 @@ if (process.env.NODE_ENV === "production") {
 // const { oneDocument, oneUser, allLists } = require("./db/migrations")
 
 // USER ANALYTICS
-const { getAllUsers, createdAt, makeAdmin, addLogins, addSingleLogin } = require("./db/migrations/userData")
-// makeAdmin()
-// addLogins()
-// getAllUsers()
-// addSingleLogin()
-// createdAt()
-
+// const { getAllUsers, createdAt, makeAdmin, addLogins, addSingleLogin } = require("./db/migrations/userData")

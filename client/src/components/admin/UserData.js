@@ -9,6 +9,7 @@ const UserData = () => {
 
     useEffect(() => {
         getAllUsers()
+        //eslint-disable-next-line
     }, [])
 
     const listAverage = (lists) => {
@@ -23,7 +24,7 @@ const UserData = () => {
                     <tr>
                         <th>User Name</th>
                         <th>Logins</th>
-                        <th>Last Updated</th>
+                        <th>Last Login</th>
                         <th>Created Account</th>
                         <th>Total Lists</th>
                         <th>Avg. List Size</th>
@@ -34,7 +35,7 @@ const UserData = () => {
                     <tr key={user._id}>
                         <td>{user.name}</td>
                         <td>{user.logins}</td>
-                        <td>{user.updatedAt ? new Date(user.updatedAt).toLocaleDateString() : "--"}</td>
+                        <td>{new Date(user.lastLogin).toLocaleDateString()}</td>
                         <td>{user.createdAt && new Date(user.createdAt).toLocaleDateString()}</td>
                         <td>{user.lists.length}</td>
                         <td>{listAverage(user.lists) || "--"}</td>

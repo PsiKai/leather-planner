@@ -14,6 +14,7 @@ const UserAnalytics = () => {
 
     useEffect(() => {
         getUser()
+        //eslint-disable-next-line
     }, [])
 
     return (

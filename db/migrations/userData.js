@@ -20,16 +20,16 @@ module.exports = {
     // Update created at fields to first list date
     createdAt: async () => {
         try {
-            const users = await User.find({ }).lean()
+            const users = await User.find({ })
             users.forEach(async (user) => {
                 const lists = await List.find({ user: user._id })
                 const earliestList = lists.reduce((earliest, list) => {
                     let date = new Date(list.name)
-                    if (date < earliest) {earliest = date}
+                    if (date > earliest && date < new Date()) {earliest = date}
                     return earliest
-                }, new Date())
-                user.createdAt = earliestList
-                console.log(user, earliestList)
+                }, new Date("Jun-01-2020"))
+                user.lastLogin = earliestList
+                // console.log(user, earliestList)
                 user.save()
             })
 

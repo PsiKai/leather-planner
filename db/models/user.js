@@ -27,7 +27,8 @@ const UserSchema = mongoose.Schema({
     logins: {
       type: Number,
       default: 1
-    }
+    },
+    lastLogin: Date
   })
 
   module.exports = mongoose.model("User", UserSchema)
