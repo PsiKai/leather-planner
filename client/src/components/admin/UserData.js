@@ -37,7 +37,7 @@ const UserData = () => {
                         <td>{user.logins}</td>
                         <td>{new Date(user.lastLogin).toLocaleDateString()}</td>
                         <td>{user.createdAt && new Date(user.createdAt).toLocaleDateString()}</td>
-                        <td>{user.lists.length}</td>
+                        <td>{user.lists.length || "--"}</td>
                         <td>{listAverage(user.lists) || "--"}</td>
                     </tr>
                 ))}
