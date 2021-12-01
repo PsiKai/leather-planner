@@ -5,7 +5,7 @@ import AnalyticsContext from '../../context/analytics/AnalyticsContext';
 
 const UserData = () => {
     const analyticsContext = useContext(AnalyticsContext)
-    const { getAllUsers, users, loading, createUserSnapshot } = analyticsContext
+    const { getAllUsers, users, loading, createUserSnapshot, latestSnapshot } = analyticsContext
 
     useEffect(() => {
         getAllUsers()
@@ -29,6 +29,13 @@ const UserData = () => {
         return total ? (total / lists.length).toFixed(1) : null
     }
 
+    const tableData = (key, value, index) =>  {
+        // console.log(latestSnapshot.userData[index][key]);
+        const updated = latestSnapshot.userData[index][key] === value ?
+            "" : "updated"
+        return <td className={updated}>{value}</td>
+    }
+
     return (
         !loading ?
             <table className="user-dashboard">
@@ -43,11 +50,14 @@ const UserData = () => {
                     </tr>
                 </thead>
                 <tbody>
-                {users && users.map(user => (
+                {users && users.map((user, i) => (
                     <tr key={user._id}>
-                        <td>{user.name}</td>
-                        <td>{user.logins}</td>
-                        <td>{new Date(user.lastLogin).toLocaleDateString()}</td>
+                        {tableData("name", user.name, i)}
+                        {/* <td>{user.name}</td> */}
+                        {tableData("logins", user.logins, i)}
+                        {tableData("lastLogin", new Date(user.lastLogin).toLocaleDateString(), i)}
+                        {/* <td>{user.logins}</td> */}
+                        {/* <td>{new Date(user.lastLogin).toLocaleDateString()}</td> */}
                         <td>{user.createdAt && new Date(user.createdAt).toLocaleDateString()}</td>
                         <td>{user.lists.length || "--"}</td>
                         <td>{listAverage(user.lists) || "--"}</td>

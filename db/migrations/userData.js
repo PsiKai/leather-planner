@@ -75,11 +75,12 @@ module.exports = {
 
     getLatestSnapshot: async () => {
         try {
-            const snapshots = await UserSnapshot.find()
-            console.log(snapshots);
-            snapshots.forEach(snap => {
-                snap.userData.forEach(s => {console.log(s);})
-            })
+            const snapshots = await UserSnapshot.findOne().sort({$natural: -1}).limit(1).lean()
+            // console.log(snapshots);
+            return snapshots
+            // snapshots.forEach(snap => {
+            //     snap.userData.forEach(s => {console.log(s);})
+            // })
         } catch (error) {
             console.log(error.message)
         }

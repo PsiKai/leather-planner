@@ -13,6 +13,7 @@ const AnalyticsState = (props) => {
 
     const intitialState = {
         users: [],
+        lastestSnapshot: {},
         loading: true
     }
     const [state, dispatch] = useReducer(AnalyticsReducer, intitialState);
@@ -20,14 +21,15 @@ const AnalyticsState = (props) => {
     const getAllUsers = async () => {
         try {
             const res = await axios.get('/admin/users')
-            // console.table(res.data);
+            console.log(res.data);
             dispatch({
                 type: GET_USERS,
                 payload: res.data
             })
         } catch (error) {
             const { msg, status } = error.response
-            setAlert(status, msg)
+            setAlert({msg, status})
+            // console.log(error);
         }
     }
 
@@ -45,6 +47,7 @@ const AnalyticsState = (props) => {
             value={{
                 users: state.users,
                 loading: state.loading,
+                latestSnapshot: state.latestSnapshot,
                 getAllUsers,
                 createUserSnapshot
             }}>
