@@ -2,7 +2,7 @@ const List = require("../models/list")
 const { Item } = require("../models/items")
 const User = require('../models/user')
 const ObjectId = require("bson-objectid")
-const user = require("../models/user")
+const UserSnapshot = require("../models/userSnapshot")
 
 
 module.exports = {
@@ -70,6 +70,26 @@ module.exports = {
             user.save()
         } catch (error) {
             console.log(error.message)
+        }
+    },
+
+    getLatestSnapshot: async () => {
+        try {
+            const snapshots = await UserSnapshot.find()
+            console.log(snapshots);
+            snapshots.forEach(snap => {
+                snap.userData.forEach(s => {console.log(s);})
+            })
+        } catch (error) {
+            console.log(error.message)
+        }
+    },
+
+    deleteSnaphots: async () => {
+        try {
+            await UserSnapshot.deleteMany({ })
+        } catch (error) {
+            
         }
     }
 

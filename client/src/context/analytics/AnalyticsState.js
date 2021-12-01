@@ -31,12 +31,22 @@ const AnalyticsState = (props) => {
         }
     }
 
+    const createUserSnapshot = async (userData) => {
+        try {
+            const res = await axios.post('/admin/users', userData)
+            console.log(res.data.msg);
+        } catch (error) {
+            console.log(error.response.msg)
+        }
+    }
+
     return (
         <AnalyticsContext.Provider
             value={{
                 users: state.users,
                 loading: state.loading,
-                getAllUsers
+                getAllUsers,
+                createUserSnapshot
             }}>
             {props.children}
         </AnalyticsContext.Provider>

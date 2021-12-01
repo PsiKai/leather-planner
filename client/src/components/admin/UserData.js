@@ -5,12 +5,24 @@ import AnalyticsContext from '../../context/analytics/AnalyticsContext';
 
 const UserData = () => {
     const analyticsContext = useContext(AnalyticsContext)
-    const { getAllUsers, users, loading } = analyticsContext
+    const { getAllUsers, users, loading, createUserSnapshot } = analyticsContext
 
     useEffect(() => {
         getAllUsers()
         //eslint-disable-next-line
     }, [])
+
+    useEffect(() => {
+        if (!loading) {
+            const currentData = users.map(user => {
+                const { _id, name, logins, lastLogin, lists } = user
+                return {
+                    _id, name, logins, lastLogin, totalLists: lists.length
+                }
+            })
+            createUserSnapshot(currentData)
+        }
+    }, [users, createUserSnapshot, loading])
 
     const listAverage = (lists) => {
         const total = lists.reduce((length, list) => length += list.items.length, 0)
