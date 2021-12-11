@@ -1,4 +1,4 @@
-import React, {useReducer, useContext} from 'react';
+import React, { useReducer } from 'react';
 import axios from 'axios';
 import AnalyticsContext from "./AnalyticsContext";
 import AnalyticsReducer from "./AnalyticsReducer";
@@ -18,7 +18,6 @@ const AnalyticsState = (props) => {
     const getAllUsers = async () => {
         try {
             const res = await axios.get('/admin/users')
-            console.log(res.data);
             dispatch({
                 type: GET_USERS,
                 payload: res.data
@@ -30,8 +29,7 @@ const AnalyticsState = (props) => {
 
     const createUserSnapshot = async (userData) => {
         try {
-            const res = await axios.post('/admin/users', userData)
-            console.log(res.data.msg);
+            await axios.post('/admin/users', userData)
         } catch (error) {
             console.log(error.response.msg)
         }
