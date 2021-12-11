@@ -3,11 +3,13 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Today from './components/day/Today'
 import Cover from "./components/cover/Cover"
 import EditProfile from "./components/profile/EditProfile";
+import UserAnalytics from "./components/admin/UserAnalytics";
 import AppState from './context/application/AppState'
 import AuthState from './context/authentication/AuthState'
 import setAuthToken from "./utils/setAuthToken"
 import PrivateRoute from "./components/routing/PrivateRoute"
 import './App.css';
+import AdminRoute from "./components/routing/AdminRoute";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -23,6 +25,7 @@ function App() {
             <PrivateRoute exact path="/today" component={Today} />
             <Route exact path="/" component={Cover} />
             <PrivateRoute exact path="/profile" component={EditProfile} />
+            <AdminRoute exact path="/admin" component={UserAnalytics} />
           </Switch>
         </Router>
       </AppState>

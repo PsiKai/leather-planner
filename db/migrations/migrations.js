@@ -1,5 +1,5 @@
-const List = require("./models/list")
-const { Item } = require("./models/items")
+const List = require("../models/list")
+const { Item } = require("../models/items")
 const ObjectId = require("bson-objectid")
 
 const updateSchema = {

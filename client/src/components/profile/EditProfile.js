@@ -8,6 +8,7 @@ import EditInfo from './EditInfo';
 
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import PersonIcon from '@material-ui/icons/Person';
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount'
 
 import playAudio from '../../utils/playAudio';
 
@@ -30,6 +31,12 @@ const EditProfile = () => {
                             <ArrowBackIosIcon />
                             Back
                         </Link>
+                        {authContext.isAdmin && 
+                            <Link className="profile-nav admin" to="/admin">
+                                Admin
+                                <SupervisorAccountIcon />
+                            </Link>
+                        }
                         <h1 className="profile-heading">
                             Profile Settings
                             <PersonIcon />

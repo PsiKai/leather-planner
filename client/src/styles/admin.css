@@ -1,0 +1,34 @@
+.admin.profile-nav {
+  right: 0;
+  left: unset;
+}
+
+.user-dashboard {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.user-dashboard th {
+  text-align: left;
+}
+
+.user-dashboard > tbody > tr:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.loading {
+  margin-top: 2rem;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading svg {
+  color: black;
+  display: block;
+}
+
+.updated {
+  color: rgb(199, 53, 0);
+}

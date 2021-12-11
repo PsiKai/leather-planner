@@ -42,6 +42,9 @@ app.use("/item/delete", require("./routes/item/delete"))
 app.use("/item/move", require("./routes/item/move"))
 app.use("/item/notes", require("./routes/item/notes"))
 
+// Admin Requests
+app.use("/admin/users", require("./routes/analytics/user/users"))
+
 //Service Requests
 app.use("/services/weather", require("./routes/services/weather"))
 
@@ -54,3 +57,8 @@ if (process.env.NODE_ENV === "production") {
 
 // DATA MIGRATIONS
 // const { oneDocument, oneUser, allLists } = require("./db/migrations")
+
+// USER ANALYTICS
+const { getAllUsers, createdAt, makeAdmin, addLogins, addSingleLogin, getLatestSnapshot, deleteSnaphots } = require("./db/migrations/userData")
+// console.log(getLatestSnapshot())
+// deleteSnaphots()

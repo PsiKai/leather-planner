@@ -46,7 +46,6 @@ const LoginModal = ({ openLogin }) => {
     }
 
     const closeModal = (e) => {
-        console.log(e.target.classList.contains("modal-backdrop"));
         if (e.target.classList.contains("modal-backdrop")) {
             openLogin(false)
             setShowPassword(false)
