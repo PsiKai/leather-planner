@@ -1,15 +1,12 @@
 import React, {useReducer, useContext} from 'react';
 import axios from 'axios';
 import AnalyticsContext from "./AnalyticsContext";
-import AuthContext from "../authentication/AuthContext";
 import AnalyticsReducer from "./AnalyticsReducer";
 import {
     GET_USERS
 } from "../types/types";
 
 const AnalyticsState = (props) => {
-    const authContext = useContext(AuthContext)
-    const { setAlert } = authContext
 
     const intitialState = {
         users: [],
@@ -27,9 +24,7 @@ const AnalyticsState = (props) => {
                 payload: res.data
             })
         } catch (error) {
-            const { msg, status } = error.response
-            setAlert({msg, status})
-            // console.log(error);
+            console.log(error);
         }
     }
 

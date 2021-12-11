@@ -30,10 +30,15 @@ const UserData = () => {
     }
 
     const tableData = (key, value, index) =>  {
-        // console.log(latestSnapshot.userData[index][key]);
         const updated = latestSnapshot.userData[index][key] === value ?
             "" : "updated"
         return <td className={updated}>{value}</td>
+    }
+
+    const listSizeChange = (newLength, i) => {
+        const updated = latestSnapshot.userData[i].totalLists === newLength ?
+            "" : "updated"
+        return <td className={updated}>{newLength}</td>
     }
 
     return (
@@ -53,13 +58,10 @@ const UserData = () => {
                 {users && users.map((user, i) => (
                     <tr key={user._id}>
                         {tableData("name", user.name, i)}
-                        {/* <td>{user.name}</td> */}
                         {tableData("logins", user.logins, i)}
                         {tableData("lastLogin", new Date(user.lastLogin).toLocaleDateString(), i)}
-                        {/* <td>{user.logins}</td> */}
-                        {/* <td>{new Date(user.lastLogin).toLocaleDateString()}</td> */}
                         <td>{user.createdAt && new Date(user.createdAt).toLocaleDateString()}</td>
-                        <td>{user.lists.length || "--"}</td>
+                        {listSizeChange(user.lists.length, i)}
                         <td>{listAverage(user.lists) || "--"}</td>
                     </tr>
                 ))}
