@@ -35,12 +35,6 @@ const UserData = () => {
         return <td className={updated}>{value}</td>
     }
 
-    const listSizeChange = (newLength, i) => {
-        const updated = latestSnapshot.userData[i].totalLists === newLength ?
-            "" : "updated"
-        return <td className={updated}>{newLength}</td>
-    }
-
     const dateComparison = (newDate, i) => {
         const updated = latestSnapshot.userData[i].lastLogin === newDate ?
             "" : "updated"
@@ -67,7 +61,7 @@ const UserData = () => {
                         {tableData("logins", user.logins, i)}
                         {dateComparison(user.lastLogin, i)}
                         <td>{user.createdAt && new Date(user.createdAt).toLocaleDateString()}</td>
-                        {listSizeChange(user.lists.length, i)}
+                        {tableData("totalLists", user.lists.length, i)}
                         <td>{listAverage(user.lists) || "--"}</td>
                     </tr>
                 ))}
