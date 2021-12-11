@@ -6,17 +6,18 @@ const User = require("../../../db/models/user")
 const UserSnapshot = require("../../../db/models/userSnapshot")
 
 const { getLatestSnapshot } = require("../../../db/migrations/userData")
+const { documentSort } = require("../../../utils/sorting")
 
 router.get("/", async (req, res) => {
     try {
       let usersWithLists = []
-      const users = await User.find({ }).lean()
+      let users = await User.find({ }).lean()
       const lastSnapshot = await getLatestSnapshot()
       users.forEach(async (user) => {
         const lists = await List.where("user").equals(user._id)
         usersWithLists.push({...user, lists})
         if (usersWithLists.length === users.length) {
-          console.log(lastSnapshot);
+          documentSort(usersWithLists)
           res.json({usersWithLists, lastSnapshot})
         }
       })
