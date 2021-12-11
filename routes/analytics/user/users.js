@@ -18,6 +18,8 @@ router.get("/", async (req, res) => {
         usersWithLists.push({...user, lists})
         if (usersWithLists.length === users.length) {
           documentSort(usersWithLists)
+          documentSort(lastSnapshot.userData)
+          // console.log(last);
           res.json({usersWithLists, lastSnapshot})
         }
       })
