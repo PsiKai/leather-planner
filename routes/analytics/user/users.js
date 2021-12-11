@@ -19,7 +19,6 @@ router.get("/", async (req, res) => {
         if (usersWithLists.length === users.length) {
           documentSort(usersWithLists)
           documentSort(lastSnapshot.userData)
-          // console.log(last);
           res.json({usersWithLists, lastSnapshot})
         }
       })
