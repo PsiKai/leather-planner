@@ -16,9 +16,7 @@ const UserData = () => {
         if (!loading) {
             const currentData = users.map(user => {
                 const { _id, name, logins, lastLogin, lists } = user
-                return {
-                    _id, name, logins, lastLogin, totalLists: lists.length
-                }
+                return { _id, name, logins, lastLogin, totalLists: lists.length }
             })
             createUserSnapshot(currentData)
         }
@@ -26,22 +24,23 @@ const UserData = () => {
 
     const listAverage = (lists) => {
         const total = lists.reduce((length, list) => length += list.items.length, 0)
-        return total ? (total / lists.length).toFixed(1) : null
+        const average = total ? (total / lists.length).toFixed(1) : "---"
+        return <td className='number'>{average}</td>
     }
 
-    const tableData = (key, value, index) =>  {
-        const updated = latestSnapshot.userData?.[index]?.[key] === value ?
-            "" : "updated"
+    const tableData = (key, value, i) =>  {
+        const updated = isUpdated(key, value, i)
         return <td className={`${updated} ${typeof(value)}`}>{value}</td>
     }
 
-    const dateComparison = (newDate, i) => {
-        const updated = latestSnapshot.userData[i]?.lastLogin === newDate ?
-            "" : "updated"
-        return <td className={`${updated} date-of`}>{new Date(newDate).toLocaleDateString('en-US', dateOptions)}</td>
+    const dateComparison = (key, newDate, i) => {
+        const updated = isUpdated(key, newDate, i)
+        return <td className={`${updated} date-of`}>{formattedDate(newDate)}</td>
     }
 
     const dateOptions = { month: '2-digit', day: '2-digit', year: 'numeric' }
+    const formattedDate = (date) => new Date(date).toLocaleDateString('en-US', dateOptions)
+    const isUpdated = (key, value, i) => latestSnapshot.userData[i]?.[key] === value ? "" : "updated"
 
     return (
         !loading ?
@@ -57,22 +56,20 @@ const UserData = () => {
                     </tr>
                 </thead>
                 <tbody>
-                {users && users.map((user, i) => (
-                    <tr key={user._id}>
-                        {tableData("name", user.name, i)}
-                        <td className='date-of'>{user.createdAt && new Date(user.createdAt).toLocaleDateString('en-US', dateOptions)}</td>
-                        {dateComparison(user.lastLogin, i)}
-                        {tableData("logins", user.logins, i)}
-                        {tableData("totalLists", user.lists.length, i)}
-                        <td className='number'>{listAverage(user.lists) || "---"}</td>
-                    </tr>
-                ))}
+                    {users?.map((user, i) => (
+                        <tr key={user._id}>
+                            {tableData("name", user.name, i)}
+                            {dateComparison("createdAt", user.createdAt, i)}
+                            {dateComparison("lastLogin", user.lastLogin, i)}
+                            {tableData("logins", user.logins, i)}
+                            {tableData("totalLists", user.lists.length, i)}
+                            {listAverage(user.lists)}
+                        </tr>
+                    ))}
                 </tbody>
             </table>
             :
-            <div className="loading">
-                <CircularProgress/>
-            </div>
+            <div className="loading"><CircularProgress/></div>
     )
 }
 
