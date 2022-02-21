@@ -8,14 +8,41 @@
   margin-top: 2rem;
   table-layout: fixed;
   font-family: monospace;
+  overflow-y: auto;
+  height: 85%;
 }
 
 .user-dashboard th {
   font-family: var(--serif-font);
+  white-space: nowrap;
+  table-layout: fixed;
+}
+
+.user-dashboard > tbody::-webkit-scrollbar,
+.user-dashboard th::-webkit-scrollbar,
+.user-dashboard > tbody td::-webkit-scrollbar {
+  display: none;
+}
+
+.user-dashboard > tbody {
+  display: block;
+  overflow-y: scroll;
+  height: 85%;
+}
+
+.user-dashboard tr {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
 }
 
 .user-dashboard > tbody > tr:nth-child(odd) {
   background-color: rgba(0, 0, 0, 0.05);
+}
+
+.user-dashboard > tbody td {
+  overflow: scroll;
+  white-space: nowrap;
 }
 
 .loading {

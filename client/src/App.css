@@ -1099,7 +1099,7 @@ label.MuiFormLabel-root {
     width: 97%;
     margin: 2% auto;
     padding: 5px 5px 2px 20px;
-    height: 97%;
+    height: 96%;
   }
 
   .grid-div {
@@ -1386,7 +1386,7 @@ label.MuiFormLabel-root {
     padding: 5px 5px 2px 10px;
     width: 98%;
     margin: 1% auto;
-    height: 99%;
+    height: 98%;
     grid-template-rows: 130px;
   }
 
