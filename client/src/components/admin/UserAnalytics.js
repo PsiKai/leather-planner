@@ -32,9 +32,7 @@ const UserAnalytics = () => {
                                 <SupervisorAccountIcon />
                             </h1>
                         </div>
-                        <div>
-                            <UserData />
-                        </div>
+                        <UserData />
                     </div>
                 </div>
                 <img

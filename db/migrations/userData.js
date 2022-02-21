@@ -39,9 +39,9 @@ module.exports = {
     },
 
     // Make one user an admin
-    makeAdmin: async () => {
+    makeAdmin: async (id) => {
         try {
-            const user = await User.findOne({ _id: ObjectId("") })
+            const user = await User.findOne({ _id: ObjectId(id) })
             user.admin = true
             user.save()
             console.log(user);
@@ -91,6 +91,22 @@ module.exports = {
             await UserSnapshot.deleteMany({ })
         } catch (error) {
             
+        }
+    },
+
+    createLastLogin: async (id) => {
+        try {
+            const user = await User.findOne( {_id: ObjectId(id) })
+            if (user.logins === 1) {
+                user.lastLogin = user.createdAt
+            } else {
+                const lastList = await List.findOne({ user: user._id })
+                user.lastLogin = new Date(lastList.name)
+            }
+            console.log(user);
+            await user.save()
+        } catch (err) {
+            console.log(err.message);           
         }
     }
 

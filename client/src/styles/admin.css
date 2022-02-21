@@ -6,14 +6,43 @@
 .user-dashboard {
   width: 100%;
   margin-top: 2rem;
+  table-layout: fixed;
+  font-family: monospace;
+  overflow-y: auto;
+  height: 85%;
 }
 
 .user-dashboard th {
-  text-align: left;
+  font-family: var(--serif-font);
+  white-space: nowrap;
+  table-layout: fixed;
+}
+
+.user-dashboard > tbody::-webkit-scrollbar,
+.user-dashboard th::-webkit-scrollbar,
+.user-dashboard > tbody td::-webkit-scrollbar {
+  display: none;
+}
+
+.user-dashboard > tbody {
+  display: block;
+  overflow-y: scroll;
+  height: 85%;
+}
+
+.user-dashboard tr {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
 }
 
 .user-dashboard > tbody > tr:nth-child(odd) {
   background-color: rgba(0, 0, 0, 0.05);
+}
+
+.user-dashboard > tbody td {
+  overflow: scroll;
+  white-space: nowrap;
 }
 
 .loading {
@@ -29,6 +58,25 @@
   display: block;
 }
 
+.string {
+  text-align: left;
+}
+
 .updated {
   color: rgb(199, 53, 0);
+}
+
+.date-of {
+  text-align: center;
+}
+
+.number {
+  width: 12%;
+  text-align: right;
+}
+
+@media (max-width: 450px) {
+  .user-dashboard {
+    font-size: 0.75rem;
+  }
 }
