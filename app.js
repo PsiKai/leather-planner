@@ -59,6 +59,8 @@ if (process.env.NODE_ENV === "production") {
 // const { oneDocument, oneUser, allLists } = require("./db/migrations")
 
 // USER ANALYTICS
-const { getAllUsers, createdAt, makeAdmin, addLogins, addSingleLogin, getLatestSnapshot, deleteSnaphots } = require("./db/migrations/userData")
+const { getAllUsers, createdAt, makeAdmin, addLogins, addSingleLogin, getLatestSnapshot, deleteSnaphots, createLastLogin } = require("./db/migrations/userData")
 // console.log(getLatestSnapshot())
 // deleteSnaphots()
+// createLastLogin("")
+// makeAdmin("")
