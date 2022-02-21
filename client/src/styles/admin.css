@@ -6,10 +6,12 @@
 .user-dashboard {
   width: 100%;
   margin-top: 2rem;
+  table-layout: fixed;
+  font-family: monospace;
 }
 
 .user-dashboard th {
-  text-align: left;
+  font-family: var(--serif-font);
 }
 
 .user-dashboard > tbody > tr:nth-child(odd) {
@@ -29,6 +31,25 @@
   display: block;
 }
 
+.string {
+  text-align: left;
+}
+
 .updated {
   color: rgb(199, 53, 0);
+}
+
+.date-of {
+  text-align: center;
+}
+
+.number {
+  width: 12%;
+  text-align: right;
+}
+
+@media (max-width: 450px) {
+  .user-dashboard {
+    font-size: 0.75rem;
+  }
 }
