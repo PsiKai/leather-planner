@@ -127,6 +127,7 @@ li {
 }
 
 .user-nav,
+.date-label,
 .profile-nav {
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
     box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
@@ -134,6 +135,7 @@ li {
 }
 
 .profile-nav:hover,
+.date-label:hover,
 .user-nav:hover {
   background-color: rgba(0, 0, 0, 0.04);
 }
@@ -645,132 +647,6 @@ textarea {
 }
 
 /* user and weather widget */
-.date-label {
-  position: relative;
-  padding-right: 2px !important;
-  cursor: pointer;
-}
-
-.date-label svg {
-  position: absolute;
-  right: 2px;
-  top: 2px;
-  font-size: 18px;
-  z-index: -1;
-}
-
-.date-picker {
-  display: none;
-}
-
-.date-label input {
-  height: 25px;
-  width: 105px;
-  border-bottom: none !important;
-  box-shadow: none !important;
-  background: inherit;
-  border: none;
-  font-family: var(--serif-font);
-  font-weight: 700;
-  letter-spacing: -0.5px;
-  line-height: 110%;
-  cursor: pointer;
-  font-size: 1rem;
-  text-align: right;
-  padding-right: 22px;
-}
-
-.date-label input:focus {
-  outline: 0;
-  max-width: none;
-  font-size: inherit !important;
-}
-
-.date-label input::placeholder {
-  font-family: inherit;
-  text-align: right;
-}
-
-.react-datepicker-popper {
-  inset: 22px 0 0 auto !important;
-  transform: none !important;
-}
-
-.react-datepicker {
-  font-family: var(--serif-font);
-  border: none;
-  background-color: var(--leather-color);
-  background-image: var(--leather-texture);
-  box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.5);
-  transform-origin: top right;
-  animation: open-calendar 200ms ease forwards;
-}
-
-@keyframes open-calendar {
-  from {
-    transform: scale(0);
-  }
-  to {
-    transform: scale(1);
-  }
-}
-
-.react-datepicker__triangle {
-  right: 11px !important;
-  left: unset !important;
-  top: 1px !important;
-  transform: none !important;
-}
-
-.react-datepicker__triangle::after {
-  border-bottom-color: var(--brown-color) !important;
-}
-
-.react-datepicker__header {
-  background-color: var(--leather-color);
-  background-image: var(--leather-texture);
-  border-bottom: none;
-}
-
-.react-datepicker__day:hover {
-  background-color: rgba(0, 0, 0, 0.08);
-}
-
-.react-datepicker__day--selected {
-  background-color: var(--brown-color);
-  color: #fff7d9;
-}
-
-.react-datepicker__day--selected:hover {
-  background-color: var(--leather-color);
-}
-
-.react-datepicker__day-name,
-.react-datepicker__current-month {
-  color: #fff7d9 !important;
-}
-
-.react-datepicker__month {
-  background: var(--paper-color) var(--paper-texture);
-  box-shadow: 1px 1px 1px 1px #381a1480, 2px 1px 0 0 var(--paper-color);
-}
-
-.react-datepicker__navigation span::before {
-  border-color: #fff7d9;
-}
-
-.react-datepicker__navigation:hover {
-  color: #cec6aa;
-}
-
-.react-datepicker__navigation:focus {
-  background-color: var(--brown-color);
-}
-
-.react-datepicker__day--today {
-  font-weight: 700;
-  font-size: 0.85rem;
-}
 
 .weather {
   cursor: pointer;
@@ -1158,24 +1034,6 @@ label.MuiFormLabel-root {
     padding-right: 0.875rem;
   }
 
-  .react-datepicker {
-    right: -4px;
-    top: 2px;
-  }
-
-  @keyframes open-calendar {
-    from {
-      transform: scale(0);
-    }
-    to {
-      transform: scale(1.4);
-    }
-  }
-
-  .react-datepicker__day {
-    outline: none;
-  }
-
   .profile--wrapper {
     display: block;
   }
@@ -1318,61 +1176,6 @@ label.MuiFormLabel-root {
   .widget > button.MuiButtonBase-root {
     grid-area: logout;
     color: inherit;
-  }
-
-  .date-label {
-    grid-area: calendar;
-    justify-self: center;
-    align-self: flex-start;
-    justify-content: center;
-    align-content: space-between;
-    display: flex;
-    flex-direction: column-reverse;
-  }
-
-  .date-label input {
-    height: 36px;
-    font-weight: 700;
-    color: transparent;
-    width: 100%;
-  }
-
-  .date-label svg {
-    font-size: 24px;
-    position: relative;
-    top: unset;
-    right: unset;
-    background: var(--paper-color) var(--paper-texture);
-    transform: scale(0.8);
-  }
-
-  .date-picker {
-    display: initial;
-    width: auto;
-    font-size: 0.875rem;
-    line-height: 1;
-    font-family: var(--serif-font);
-    font-weight: 700;
-    color: inherit;
-    height: auto;
-  }
-
-  .date-picker ~ div {
-    display: flex;
-    justify-content: center;
-  }
-
-  .react-datepicker-wrapper {
-    position: absolute;
-  }
-
-  .react-datepicker {
-    right: 8px;
-    top: 32px;
-  }
-
-  .react-datepicker__triangle {
-    right: 14px !important;
   }
 
   .weather div[role="progressbar"] {
