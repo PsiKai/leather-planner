@@ -735,8 +735,7 @@ textarea {
 
 .widget > * {
   height: 24px;
-  margin: 0;
-  padding: 0;
+  /* margin: 0; */
 }
 
 .temp {
@@ -1072,18 +1071,14 @@ label.MuiFormLabel-root {
   }
 
   .widget {
-    display: grid;
-    grid-template-areas: "user logout weather calendar";
-    grid-template-columns: repeat(4, 1fr);
-    justify-content: space-between;
     align-items: flex-start;
+    flex-direction: row-reverse;
     color: var(--faded);
   }
 
   .widget > * {
-    align-self: flex-start;
-    justify-self: center;
     height: auto;
+    flex-basis: 25%;
   }
 
   .widget input,
@@ -1106,7 +1101,6 @@ label.MuiFormLabel-root {
   .weather-input__wrapper,
   .weather,
   .get-weather {
-    grid-area: weather;
     color: var(--faded);
     flex-direction: column-reverse;
   }
@@ -1145,7 +1139,6 @@ label.MuiFormLabel-root {
   }
 
   .user-nav {
-    grid-area: user;
     justify-self: center;
   }
 
@@ -1155,10 +1148,6 @@ label.MuiFormLabel-root {
 
   .user-nav a * {
     color: var(--faded);
-  }
-
-  .user-nav a svg {
-    /* transform: scale(1.1); */
   }
 
   .user-nav a span {
@@ -1174,7 +1163,6 @@ label.MuiFormLabel-root {
   }
 
   .widget > button.MuiButtonBase-root {
-    grid-area: logout;
     color: inherit;
   }
 
