@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import AppContext from "../../../context/application/AppContext";
-import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
+import TodayOutlinedIcon from '@material-ui/icons/TodayOutlined';
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css";
 import "../../../styles/date-picker.css"
@@ -21,7 +21,7 @@ const Datepicker = () => {
             <label htmlFor="date-picker" className="date-picker">
                 {date.toLocaleDateString("en-US", {day: 'numeric', month: 'numeric', year: '2-digit'})}
             </label>
-            <CalendarTodayIcon/>
+            <TodayOutlinedIcon/>
             <DatePicker
                 id={"date-picker"}
                 selected={date}
@@ -29,6 +29,8 @@ const Datepicker = () => {
                 className={"browser-default"}
                 onFocus={(e) => e.target.blur()}
                 aria-label="Select a new date"
+                showPopperArrow={false}
+                todayButton="Go To Today"
             />
         </div>
     )
