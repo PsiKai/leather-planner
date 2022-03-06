@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react';
 import AppContext from "../../../context/application/AppContext";
-import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
+import TodayOutlinedIcon from '@material-ui/icons/TodayOutlined';
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css";
+import "../../../styles/date-picker.css"
 
 const Datepicker = () => {
     const appContext = useContext(AppContext);
@@ -17,20 +18,20 @@ const Datepicker = () => {
 
     return (
         <div className="date-label" aria-label="Select a new date">
-            {<label htmlFor="date-picker" className="date-picker">
-                {date.toLocaleDateString("en-US", {day: '2-digit', month: '2-digit', year: '2-digit'}).replace(/\b0/g, "")}
-            </label>}
-            <div>
-                <DatePicker
-                    id={"date-picker"} 
-                    selected={date}
-                    onChange={newDay}
-                    className={"browser-default"}
-                    onFocus={(e) => e.target.blur()}
-                    aria-label="Select a new date"
-                /> 
-                <CalendarTodayIcon/>
-            </div>
+            <label htmlFor="date-picker" className="date-picker">
+                {date.toLocaleDateString("en-US", {day: 'numeric', month: 'numeric', year: '2-digit'})}
+            </label>
+            <TodayOutlinedIcon/>
+            <DatePicker
+                id={"date-picker"}
+                selected={date}
+                onChange={newDay}
+                className={"browser-default"}
+                onFocus={(e) => e.target.blur()}
+                aria-label="Select a new date"
+                showPopperArrow={false}
+                todayButton="Go To Today"
+            />
         </div>
     )
 }
