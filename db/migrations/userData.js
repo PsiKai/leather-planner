@@ -5,13 +5,14 @@ const ObjectId = require("bson-objectid")
 const UserSnapshot = require("../models/userSnapshot")
 
 
-module.exports = {
+const userData = {
 
     // Get all users
     getAllUsers: async () => {
         try {
             const users = await User.find({ }).lean()
-            console.log(users)
+            console.table(users)
+            return users
         } catch (error) {
             console.log(error.message)
         }
@@ -108,6 +109,22 @@ module.exports = {
         } catch (err) {
             console.log(err.message);           
         }
+    },
+
+    oneList: async (id) => {
+        const user = await User.findById(`${id}`)
+        console.log(user)
+    },
+
+    findAndCreateLastLogin: async () => {
+        let users = await userData.getAllUsers()
+        users = users.filter(user => user.lastLogin === undefined)
+        console.table(users);
+        users.forEach(async (user) => {
+            await userData.createLastLogin(user._id)
+        })
     }
 
 }
+
+module.exports = userData
