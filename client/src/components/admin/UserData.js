@@ -34,13 +34,14 @@ const UserData = () => {
     }
 
     const dateComparison = (key, newDate, i) => {
-        const updated = isUpdated(key, newDate, i)
+        const updated = key === "createdAt" ? isNewUser(i) : isUpdated(key, newDate, i)
         return <td className={`${updated} date-of`}>{formattedDate(newDate)}</td>
     }
 
     const dateOptions = { month: '2-digit', day: '2-digit', year: 'numeric' }
     const formattedDate = (date) => new Date(date).toLocaleDateString('en-US', dateOptions)
     const isUpdated = (key, value, i) => latestSnapshot.userData[i]?.[key] === value ? "" : "updated"
+    const isNewUser = (i) => latestSnapshot.userData[i] ? "" : "updated"
 
     return (
         !loading ?
