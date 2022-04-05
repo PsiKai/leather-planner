@@ -33,6 +33,7 @@ app.use("/user/password", require("./routes/user/password"))
 
 //List Requests
 app.use("/list/new", require("./routes/list/new"))
+app.use("/list/month", require("./routes/list/month"))
 
 //Item Requests
 app.use("/item/new", require("./routes/item/new"))
