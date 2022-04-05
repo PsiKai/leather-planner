@@ -14,7 +14,7 @@ const Cover = (props) => {
     
     useEffect(() => {
         if(token) {
-            props.history.push("/today")
+            props.history.push("/planner/day")
         } else {
             logOut();
         }

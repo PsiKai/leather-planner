@@ -27,7 +27,7 @@ const EditProfile = () => {
             <div className="grid-div">
                 <div className="page">
                     <div className="heading">
-                        <Link className="profile-nav" to="/today">
+                        <Link className="profile-nav" to="/planner/day">
                             <ArrowBackIosIcon />
                             Back
                         </Link>

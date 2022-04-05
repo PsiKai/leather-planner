@@ -1,0 +1,5 @@
+.monthly-viewer {
+    position: relative;
+    width: 98%;
+    background: var(--paper-texture), linear-gradient( blue, var(--paper-color) 1px);
+}
