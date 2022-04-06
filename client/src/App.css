@@ -770,6 +770,23 @@ label.MuiFormLabel-root {
   gap: 0 2px;
 }
 
+.planner-toggle__wrapper {
+  position: absolute;
+  right: 0;
+  height: var(--paper-line-height);
+  display: flex;
+  align-items: center;
+  z-index: 2;
+}
+
+.planner-toggle__wrapper > a {
+  padding: calc(var(--paper-line-height) / 4);
+}
+
+.planner-toggle {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
 /* cover */
 
 .center-div {

@@ -123,7 +123,9 @@ const AuthState = (props) => {
                 register,
                 login,
                 logOut,
-                setAlert
+                setAlert,
+                state,
+                dispatch
             }}>
             {props.children}
         </AuthContext.Provider>

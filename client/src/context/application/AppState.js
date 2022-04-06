@@ -21,7 +21,8 @@ const AppState = (props) => {
         list: resultDate,
         items: [],
         date: resultDate,
-        loading: false
+        loading: false,
+        monthlyLists: []
     }
 
     const [state, dispatch] = useReducer(AppReducer, intitialState);
@@ -110,7 +111,9 @@ const AppState = (props) => {
                 resetDate,
                 createNote,
                 editNote,
-                deleteNote
+                deleteNote,
+                state,
+                dispatch
             }}>
             {props.children}
         </AppContext.Provider>

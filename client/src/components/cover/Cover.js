@@ -8,18 +8,14 @@ import { CSSTransition } from 'react-transition-group';
 
 const Cover = (props) => {
     const authContext = useContext(AuthContext);
-    const {isAuthenticated, token, logOut} = authContext;
+    const { dispatch, state: { token } } = authContext;
     const [login, openLogin] = useState(false)
     const [register, openRegister] = useState(false)
     
     useEffect(() => {
-        if(token) {
-            props.history.push("/today")
-        } else {
-            logOut();
-        }
-     //eslint-disable-next-line
-    }, [isAuthenticated, props.history])
+        if (token) props.history.push("/planner/day")
+        else dispatch({ type: "LOG_OUT" })
+    }, [props.history, dispatch, token])
 
 
     return (
