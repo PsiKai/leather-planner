@@ -18,7 +18,9 @@ const Month = () => {
   return (
     <div className='monthly-viewer'>
       <div className='planner-toggle__wrapper'>
-        <NavLink activeClassName="planner-toggle" to="/planner/day">Day <ViewDayOutlinedIcon /></NavLink>
+        <NavLink activeClassName="planner-toggle" to="/planner/day">
+          Day <ViewDayOutlinedIcon />
+        </NavLink>
       </div>
       <div className='content'>
         <ul>
