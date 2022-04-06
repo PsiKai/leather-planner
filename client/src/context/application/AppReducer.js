@@ -32,6 +32,11 @@ export default (state, action) => {
                 ...state,
                 loading: action.payload
             }
+        case "SET_MONTH":
+            return {
+                ...state,
+                monthlyLists: action.payload
+            }
         default:
             return state;
     }

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import "../../../styles/monthly.css"
 import ViewDayOutlinedIcon from '@material-ui/icons/ViewDayOutlined';
@@ -6,17 +6,13 @@ import axios from 'axios';
 import AppContext from '../../../context/application/AppContext';
 
 const Month = () => {
-  const { list } = useContext(AppContext)
-  const [monthlyLists, setMonthlyLists] = useState([])
+  const { dispatch, state: { list, monthlyLists } } = useContext(AppContext)
 
   useEffect(() => {
-    try {
-      axios.get(`/list/month/${list}`)
-        .then(res => setMonthlyLists(res.data.lists))
-    } catch (error) {
-      console.log(error)
-    }
-  }, [])
+    axios.get(`/list/month/${list}`)
+      .then(res => dispatch({ type: "SET_MONTH", payload: res.data.lists }))
+      .catch(console.error)
+  }, [list, dispatch])
 
 
   return (
@@ -28,7 +24,7 @@ const Month = () => {
         <ul>
           {monthlyLists.length ?
             monthlyLists.map(list => (
-              <li>{list.name}</li>
+              <li key={list._id} >{list.name}</li>
             ))
             :
             "Loading..."
