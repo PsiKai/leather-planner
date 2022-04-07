@@ -8,12 +8,10 @@ import {
     REMOVE_ITEM,
     SET_LOADING
 } from "../types/types";
+import { getFormattedDate } from '../../utils/dates';
 
 const AppState = (props) => {
-    var date = new Date();
-    var options = {day: '2-digit', month: 'short', year: 'numeric'};
-    var resultDate = date.toLocaleDateString('en-US', options)
-    .replace(/,/g, "").replace(/ /g, "-");
+    var resultDate = getFormattedDate()
 
     const reqHeaders = {"Content-Type": "*/*"}
 

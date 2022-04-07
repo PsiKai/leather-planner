@@ -1,19 +1,27 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import AppContext from "../../../context/application/AppContext";
+import axios from 'axios';
 import TodayOutlinedIcon from '@material-ui/icons/TodayOutlined';
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css";
 import "../../../styles/date-picker.css"
+import { getFormattedDate } from "../../../utils/dates"
 
 const Datepicker = () => {
-    const appContext = useContext(AppContext);
-    const [date, setDate] = useState(new Date())
+    const { state: { list }, dispatch } = useContext(AppContext);
+    const [date, setDate] = useState(new Date(list))
 
-    const newDay = (e) => {
+    useEffect(() => setDate(new Date(list)), [list])
+
+    const newDay = async (e) => {
         setDate(e)
-        var options = {day: '2-digit', month: 'short', year: 'numeric'};
-        var resultDate = e.toLocaleDateString('en-US', options).replace(/,/g, "").replace(/ /g, "-");
-        appContext.getList(resultDate)
+        try {
+            const res = await axios.get(`/list/new/${getFormattedDate(e)}`)
+            dispatch({ type: "GET_LIST", payload: res.data })
+        } catch (error) {
+            console.log(error)
+            setDate(new Date(list))
+        }
     }
 
     return (

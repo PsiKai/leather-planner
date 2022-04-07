@@ -3,3 +3,55 @@
     width: 98%;
     background: var(--paper-texture), linear-gradient( blue, var(--paper-color) 1px);
 }
+
+.month__wrapper {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    font-family: var(--serif-font);
+    font-size: 1rem;
+    line-height: 1;
+    gap: 1px;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.month__cell {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    outline: 1px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    padding-top: 2rem;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    cursor: pointer;
+    /* justify-content: center; */
+}
+
+.month__cell::-webkit-scrollbar {
+    display: none;
+}
+
+.month__cell:first-of-type {
+    grid-column-start: var(--start);
+}
+
+.month__cell svg {
+    font-size: 1rem;
+    color: var(--leather-color);
+    opacity: 0.8;
+}
+
+.month__date {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    font-size: 0.75rem;
+}
+
+.weekday-label {
+    text-align: center;
+    height: 2rem;
+}
+

@@ -6,17 +6,17 @@ import CalendarViewDayOutlinedIcon from '@material-ui/icons/CalendarViewDayOutli
 const Daily = () => {
   return (
     <div className="pattern">
-        <div className='planner-toggle__wrapper'>
-            <NavLink activeClassName="planner-toggle" to="/planner/month">
-                Month <CalendarViewDayOutlinedIcon />
-            </NavLink>
-        </div>
         <img 
             src="../../images/Bald-Eagle.webp" 
             className="watermark" 
             alt="watermark"  
         />
         <Content />
+        <div className='planner-toggle__wrapper'>
+            <NavLink activeClassName="planner-toggle" to="/planner/month">
+                <CalendarViewDayOutlinedIcon />
+            </NavLink>
+        </div>
     </div>
   )
 }
