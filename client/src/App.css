@@ -69,8 +69,7 @@ li {
   width: 680px;
   height: 780px;
   border-radius: 0.5% 2% 2% 0.5%;
-  box-shadow: 8px 4px 8px var(--leather-color),
-    0px 0px 10px 2px var(--leather-color);
+  box-shadow: 8px 4px 8px var(--leather-color), 0px 0px 10px 2px var(--leather-color);
   display: grid;
   grid-template-columns: 10px 25px;
   grid-template-rows: 60px 20px 320px;
@@ -129,8 +128,7 @@ li {
 .user-nav,
 .date-label,
 .profile-nav {
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
     border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
@@ -259,10 +257,8 @@ button.password--submit {
   height: 751px;
   margin: 12px auto;
   background-color: var(--paper-color);
-  box-shadow: 1px 1px 1px 1px #381a1480, 2px 1px 0 0 var(--paper-color),
-    3px 2px 1px 1px #381a1480, 4px 2px 0 0 var(--paper-color),
-    5px 4px 1px 1px #381a1480, 6px 4px 0 0 var(--paper-color),
-    2px 2px 16px 8px #381a1480;
+  box-shadow: 1px 1px 1px 1px #381a1480, 2px 1px 0 0 var(--paper-color), 3px 2px 1px 1px #381a1480, 4px 2px 0 0 var(--paper-color),
+    5px 4px 1px 1px #381a1480, 6px 4px 0 0 var(--paper-color), 2px 2px 16px 8px #381a1480;
   padding: 15px 15px 5px 35px;
   grid-column-start: 2;
   display: grid;
@@ -294,11 +290,7 @@ button.password--submit {
   grid-row-start: 2;
   min-height: 100%;
   width: 98%;
-  background-image: var(--paper-texture),
-    repeating-linear-gradient(
-      #fff4b0 var(--paper-line),
-      blue var(--paper-line-height)
-    );
+  background-image: var(--paper-texture), repeating-linear-gradient(#fff4b0 var(--paper-line), blue var(--paper-line-height));
 }
 
 .content {
@@ -758,8 +750,7 @@ label.MuiFormLabel-root {
 }
 
 /* Logout button */
-.widget
-  .MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textSizeSmall.MuiButton-sizeSmall {
+.widget .MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textSizeSmall.MuiButton-sizeSmall {
   font-size: 1rem;
   line-height: 1.15;
   text-transform: none;
@@ -777,7 +768,6 @@ label.MuiFormLabel-root {
   height: var(--paper-line-height);
   display: flex;
   align-items: center;
-  z-index: 2;
 }
 
 /* cover */
@@ -792,8 +782,7 @@ label.MuiFormLabel-root {
   text-align: center;
   grid-template-rows: 100px 300px;
   border-radius: 0.5% 2% 2% 0.5%;
-  box-shadow: 8px 4px 8px var(--leather-color),
-    0px 0px 10px 4px var(--leather-color);
+  box-shadow: 8px 4px 8px var(--leather-color), 0px 0px 10px 4px var(--leather-color);
 }
 
 .cover-title {
@@ -839,8 +828,7 @@ label.MuiFormLabel-root {
   line-height: 1;
   cursor: pointer;
   letter-spacing: 0.5px;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
 .btn:hover {
@@ -1197,11 +1185,7 @@ label.MuiFormLabel-root {
   .pattern {
     width: 97%;
     top: 0;
-    background-image: var(--paper-texture),
-      repeating-linear-gradient(
-        #fff4b0 1px var(--paper-line),
-        blue var(--paper-line-height)
-      );
+    background-image: var(--paper-texture), repeating-linear-gradient(#fff4b0 1px var(--paper-line), blue var(--paper-line-height));
   }
 
   .content {

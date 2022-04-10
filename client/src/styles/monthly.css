@@ -1,57 +1,101 @@
 .monthly-viewer {
-    position: relative;
-    width: 98%;
-    background: var(--paper-texture), linear-gradient( blue, var(--paper-color) 1px);
+  position: relative;
+  width: 98%;
+  background: var(--paper-texture), linear-gradient(blue, var(--paper-color) 1px);
 }
 
 .month__wrapper {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    font-family: var(--serif-font);
-    font-size: 1rem;
-    line-height: 1;
-    gap: 1px;
-    width: 95%;
-    margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  font-family: var(--serif-font);
+  font-size: 1rem;
+  line-height: 1;
+  gap: 1px;
+  width: calc(100% - 1px);
+  margin: 0 auto;
 }
 
 .month__cell {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    outline: 1px solid black;
-    display: flex;
-    flex-wrap: wrap;
-    position: relative;
-    padding-top: 2rem;
-    overflow-y: scroll;
-    scrollbar-width: none;
-    cursor: pointer;
-    /* justify-content: center; */
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  outline: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  align-items: flex-end;
+  justify-content: flex-end;
+  position: relative;
+  padding-top: 2rem;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  cursor: pointer;
+  padding: 1rem;
+  /* justify-content: center; */
 }
 
 .month__cell::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .month__cell:first-of-type {
-    grid-column-start: var(--start);
+  grid-column-start: var(--start);
 }
 
 .month__cell svg {
-    font-size: 1rem;
-    color: var(--leather-color);
-    opacity: 0.8;
+  /* font-size: 1rem; */
+  /* color: var(--leather-color); */
+  opacity: 0.8;
 }
 
 .month__date {
-    position: absolute;
-    top: 0.5rem;
-    left: 0.5rem;
-    font-size: 0.75rem;
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.month__date.today {
+  color: var(--paper-color);
+  z-index: 1;
+  aspect-ratio: 1 / 1;
+  display: inline-block;
+  height: 100%;
+}
+
+.month__date.today::before {
+  content: "";
+  background-color: var(--leather-color);
+  width: calc(100% + 0.5rem);
+  height: calc(100% + 0.5rem);
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  top: 0.5rem;
+  left: 0.5rem;
+  transform: translate(-75%, -75%);
 }
 
 .weekday-label {
-    text-align: center;
-    height: 2rem;
+  text-align: center;
+  height: 2rem;
 }
 
+.month__cell--items {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  font-family: var(--button-font);
+}
+
+.month__cell--items > * {
+  align-self: center;
+}
+
+@media (max-width: 500px) {
+  .month__wrapper {
+    width: calc(100% - 2px);
+  }
+
+  .month__cell {
+    padding: 0.25rem;
+  }
+}

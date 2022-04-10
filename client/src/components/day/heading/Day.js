@@ -1,25 +1,18 @@
-import React, {useContext, useEffect} from 'react'
+import React, { useContext, useEffect } from "react"
 import AppContext from "../../../context/application/AppContext"
-import playAudio from '../../../utils/playAudio'
+import playAudio from "../../../utils/playAudio"
+import { getWeekday, getPrintedDate } from "../../../utils/dates"
 
 const Day = () => {
+  const { date } = useContext(AppContext)
 
-    const appContext = useContext(AppContext);
-    const {date} = appContext;
+  useEffect(() => playAudio("page"), [date])
 
-    useEffect(() => {
-        playAudio("page")
-    }, [date])
-    
-    var dateString = date.replace(/-/g, " ")
-    var dayOptions = { weekday: "long" }
-    var dateOptions = { month: "long", day: "numeric", year: "numeric" }; 
-    var day = new Date(dateString).toLocaleDateString("en-US", dayOptions);
-    var fullDate = new Date(dateString).toLocaleDateString("en-US", dateOptions)
-    
-    return (
-        <h1 className="date">{day} <br/> {fullDate}</h1>
-    )
+  return (
+    <h1 className="date">
+      {getWeekday(date)} <br /> {getPrintedDate(date)}
+    </h1>
+  )
 }
 
 export default Day

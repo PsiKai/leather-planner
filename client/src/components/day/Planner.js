@@ -1,24 +1,22 @@
-import React, {Fragment, useContext, useEffect} from 'react';
-import { Route } from 'react-router-dom'
+import React, { Fragment, useContext, useEffect } from "react"
+import { Route } from "react-router-dom"
 
-import Weather from './heading/Weather';
-import Day from './heading/Day';
-import Datepicker from './heading/Datepicker'
-import User from './heading/User'
-import Daily from './views/Daily'
-import Month from './views/Month';
+import Weather from "./heading/Weather"
+import Day from "./heading/Day"
+import Datepicker from "./heading/Datepicker"
+import User from "./heading/User"
+import Daily from "./views/Daily"
+import Month from "./views/Month"
 import Alert from "../Alert"
 
-import AuthContext from "../../context/authentication/AuthContext";
-
+import AuthContext from "../../context/authentication/AuthContext"
 
 const Planner = () => {
-  const authContext = useContext(AuthContext);
-  const {getUser} = authContext;
-
+  const authContext = useContext(AuthContext)
+  const { getUser } = authContext
 
   useEffect(() => {
-    getUser();
+    getUser()
     //eslint-disable-next-line
   }, [])
 
@@ -31,30 +29,33 @@ const Planner = () => {
               <div className="widget">
                 <Datepicker />
                 <User />
-                <Weather/>
+                <Weather />
               </div>
               <Day />
             </div>
-            <div className="pattern__wrapper" style={{overflowY: "auto", overflowX: "visible"}}>
-                <Route path="/planner/day" component={Daily} />
-                <Route path="/planner/month" component={Month} />
+            <div
+              className="pattern__wrapper"
+              style={{ overflowY: "auto", overflowX: "visible" }}
+            >
+              <Route path="/planner/day" component={Daily} />
+              <Route path="/planner/month" component={Month} />
             </div>
           </div>
         </div>
-      <img
-        className="binder-rings"
-        src="../images/binder-rings.webp"
-        alt="binder rings"
-      />
-      <img
-        className="binder-rings-two"
-        src="../images/binder-rings.webp"
-        alt="binder rings"
-      />
-      <Alert />
-    </div>
-  </Fragment>
+        <img
+          className="binder-rings"
+          src="../images/binder-rings.webp"
+          alt="binder rings"
+        />
+        <img
+          className="binder-rings-two"
+          src="../images/binder-rings.webp"
+          alt="binder rings"
+        />
+        <Alert />
+      </div>
+    </Fragment>
   )
 }
 
-export default Planner;
+export default Planner
