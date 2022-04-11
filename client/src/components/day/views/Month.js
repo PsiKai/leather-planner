@@ -1,9 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
-import { NavLink } from "react-router-dom"
 import axios from "axios"
 import AppContext from "../../../context/application/AppContext"
 
-import ViewDayOutlinedIcon from "@material-ui/icons/ViewDayOutlined"
 import { CircularProgress } from "@material-ui/core"
 import TurnedInNotIcon from "@material-ui/icons/TurnedInNot"
 import TurnedInIcon from "@material-ui/icons/TurnedIn"
@@ -17,7 +15,7 @@ import "../../../styles/monthly.css"
 const Month = props => {
   const {
     dispatch,
-    state: { list, monthlyLists },
+    state: { list, monthlyLists, items },
   } = useContext(AppContext)
   const [daysInMonth, setDaysInMonth] = useState([])
   const [current, setCurrent] = useState()
@@ -53,7 +51,7 @@ const Month = props => {
     try {
       const res = await axios.get(`/list/new/${listName}`)
       dispatch({ type: "GET_LIST", payload: res.data })
-      props.history.push("/planner/day")
+      // props.history.push("/planner/day")
     } catch (error) {
       console.log(error)
     }
@@ -108,11 +106,16 @@ const Month = props => {
           ) : (
             <CircularProgress />
           )}
-        </div>
-        <div className="planner-toggle__wrapper">
-          <NavLink activeClassName="planner-toggle" to="/planner/day">
-            <ViewDayOutlinedIcon />
-          </NavLink>
+          <div className="month__cell--preview">
+            <ul>
+              {items.length ? <h3>{list}</h3> : null}
+              {items?.map(item => (
+                <li className={item.style} key={item._id}>
+                  {item.item}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </div>

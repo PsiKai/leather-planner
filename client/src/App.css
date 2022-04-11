@@ -83,6 +83,29 @@ li {
   flex-direction: row-reverse;
   justify-content: space-between;
   align-items: flex-end;
+  height: 115px;
+}
+
+.heading.day .date > span {
+  display: block;
+}
+
+.heading.month {
+  height: auto;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 2;
+}
+
+.heading.month .widget {
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.heading.month .date {
+  font-size: 1.2rem;
+  align-self: flex-start;
 }
 
 .date {
@@ -106,6 +129,7 @@ li {
   justify-content: space-between;
   width: 100%;
   line-height: 110%;
+  height: 100%;
 }
 
 .profile-heading svg {
@@ -262,7 +286,7 @@ button.password--submit {
   padding: 15px 15px 5px 35px;
   grid-column-start: 2;
   display: grid;
-  grid-template-rows: 115px;
+  grid-template-rows: max-content auto;
 }
 
 .pattern__wrapper {
@@ -763,11 +787,11 @@ label.MuiFormLabel-root {
 
 .planner-toggle__wrapper {
   position: absolute;
-  right: 0;
+  left: 0;
   top: 0;
-  height: var(--paper-line-height);
+  /* height: var(--paper-line-height);
   display: flex;
-  align-items: center;
+  align-items: center; */
 }
 
 /* cover */
@@ -1061,10 +1085,28 @@ label.MuiFormLabel-root {
     font-size: 14px;
   }
 
-  .heading.today {
+  .heading {
     padding-right: 0;
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .heading.month,
+  .heading.day,
+  .heading {
+    height: 130px;
+  }
+
+  .heading.month .date > span {
+    display: block;
+  }
+
+  .heading.month .widget {
+    gap: 0;
+  }
+
+  .heading.month .date {
+    font-size: 1.9rem;
   }
 
   .widget {
@@ -1175,7 +1217,7 @@ label.MuiFormLabel-root {
     width: 98%;
     margin: 1% auto;
     height: 98%;
-    grid-template-rows: 130px;
+    /* grid-template-rows: 130px; */
   }
 
   .pattern__wrapper {

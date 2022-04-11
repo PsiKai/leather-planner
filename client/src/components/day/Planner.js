@@ -5,13 +5,14 @@ import Weather from "./heading/Weather"
 import Day from "./heading/Day"
 import Datepicker from "./heading/Datepicker"
 import User from "./heading/User"
+import PlannerNavigation from "./heading/PlannerNavigation"
 import Daily from "./views/Daily"
 import Month from "./views/Month"
 import Alert from "../Alert"
 
 import AuthContext from "../../context/authentication/AuthContext"
 
-const Planner = () => {
+const Planner = props => {
   const authContext = useContext(AuthContext)
   const { getUser } = authContext
 
@@ -25,33 +26,23 @@ const Planner = () => {
       <div className="position-div inside-cover">
         <div className="grid-div">
           <div className="page">
-            <div className="heading today">
+            <div className={`heading ${props.location.pathname.split("/")[2]}`}>
               <div className="widget">
                 <Datepicker />
                 <User />
                 <Weather />
               </div>
               <Day />
+              <PlannerNavigation {...props} />
             </div>
-            <div
-              className="pattern__wrapper"
-              style={{ overflowY: "auto", overflowX: "visible" }}
-            >
+            <div className="pattern__wrapper" style={{ overflowY: "auto", overflowX: "visible" }}>
               <Route path="/planner/day" component={Daily} />
               <Route path="/planner/month" component={Month} />
             </div>
           </div>
         </div>
-        <img
-          className="binder-rings"
-          src="../images/binder-rings.webp"
-          alt="binder rings"
-        />
-        <img
-          className="binder-rings-two"
-          src="../images/binder-rings.webp"
-          alt="binder rings"
-        />
+        <img className="binder-rings" src="../images/binder-rings.webp" alt="binder rings" />
+        <img className="binder-rings-two" src="../images/binder-rings.webp" alt="binder rings" />
         <Alert />
       </div>
     </Fragment>
