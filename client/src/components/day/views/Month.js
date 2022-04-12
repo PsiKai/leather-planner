@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import axios from "axios"
+import { CSSTransition } from "react-transition-group"
 import AppContext from "../../../context/application/AppContext"
 
 import { CircularProgress } from "@material-ui/core"
@@ -9,23 +10,31 @@ import CheckBoxOutlineBlankOutlinedIcon from "@material-ui/icons/CheckBoxOutline
 import CheckBoxOutlinedIcon from "@material-ui/icons/CheckBoxOutlined"
 
 import { getFormattedDate, shortWeekdays, getDaysInMonth, getFirstDay } from "../../../utils/dates"
+import playAudio from "../../../utils/playAudio"
 
 import "../../../styles/monthly.css"
 
-const Month = props => {
+const Month = () => {
   const {
     dispatch,
     state: { list, monthlyLists, items },
   } = useContext(AppContext)
   const [daysInMonth, setDaysInMonth] = useState([])
   const [current, setCurrent] = useState()
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => playAudio("page"), [])
 
   useEffect(() => {
-    axios
-      .get(`/list/month/${list}`)
-      .then(res => dispatch({ type: "SET_MONTH", payload: res.data.lists }))
-      .catch(console.error)
-  }, [list, dispatch])
+    setLoading(true)
+    if (splitListName(monthlyLists[0].name).month !== splitListName(list).month) {
+      axios
+        .get(`/list/month/${list}`)
+        .then(res => dispatch({ type: "SET_MONTH", payload: res.data.lists }))
+        .catch(console.error)
+    }
+    setLoading(false)
+  }, [list, dispatch, monthlyLists])
 
   useEffect(() => {
     const date = new Date(list)
@@ -44,6 +53,7 @@ const Month = props => {
   }, [monthlyLists, list])
 
   const goToSelectedDate = async e => {
+    setLoading(true)
     const selectedSquare = e.currentTarget.getAttribute("data-date")
     const day = splitListName(selectedSquare).day || selectedSquare
     const dateConstruct = `${current.year} ${current.month + 1} ${day.padStart(2, "0")}`
@@ -51,10 +61,10 @@ const Month = props => {
     try {
       const res = await axios.get(`/list/new/${listName}`)
       dispatch({ type: "GET_LIST", payload: res.data })
-      // props.history.push("/planner/day")
     } catch (error) {
       console.log(error)
     }
+    setLoading(false)
   }
 
   const renderItems = items => {
@@ -94,7 +104,7 @@ const Month = props => {
                 style={i === 0 ? { "--start": `${getFirstDay(current.year, current.month)}` } : {}}
                 onClick={goToSelectedDate}
               >
-                <span className={`month__date ${i + 1 === current.day ? "today" : ""}`}>{i + 1}</span>
+                <span className={`month__date ${i + 1 === current.day && !loading ? "today" : ""}`}>{i + 1}</span>
                 {renderItems(day.items)}
                 {/* {day.items?.map(item => {
                   let Icon = item.style === "strikethrough" ? TurnedInIcon : TurnedInNotIcon
@@ -106,16 +116,18 @@ const Month = props => {
           ) : (
             <CircularProgress />
           )}
-          <div className="month__cell--preview">
-            <ul>
-              {items.length ? <h3>{list}</h3> : null}
-              {items?.map(item => (
-                <li className={item.style} key={item._id}>
-                  {item.item}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <CSSTransition in={items.length && !loading} timeout={200} classNames="modal-content" unmountOnExit>
+            <div className="month__cell--preview">
+              <ul className="items__preview--list">
+                {items.length ? <h3>{list}</h3> : null}
+                {items?.map(item => (
+                  <li className={item.style} key={item._id}>
+                    {item.item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </CSSTransition>
         </div>
       </div>
     </div>

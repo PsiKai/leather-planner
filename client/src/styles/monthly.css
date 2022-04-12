@@ -97,15 +97,43 @@
 .month__cell--preview {
   grid-row: 7 / span 2;
   grid-column: 3 / span 5;
-  /* padding: 1rem; */
-  overflow: auto;
+  padding: 0.5rem;
   aspect-ratio: 5 / 2;
+  margin: 0.5rem;
   /* grid-row: span 2; */
   /* grid-column: span 5; */
+  background: var(--leather-color) var(--leather-texture);
+  box-shadow: 5px 5px 10px rgb(0, 0, 0, 0.4);
 }
 
-.month__cell--preview::-webkit-scrollbar {
-  width: 0;
+.month__cell--preview h3 {
+  /* margin: 0; */
+  /* position: sticky;
+  top: 1em;
+  background: var(--paper-color) var(--paper-texture);
+  z-index: 1; */
+}
+
+.items__preview--list {
+  overflow: auto;
+  background: var(--paper-color) var(--paper-texture);
+  margin: 0;
+  height: 100%;
+  scrollbar-width: thin;
+  scrollbar-color: var(--leather-color) #c9c39f;
+  box-shadow: 1px 1px 1px 1px #381a1480, 2px 1px 0 0 var(--paper-color), 3px 2px 1px 1px #381a1480;
+}
+
+.items__preview--list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.items__preview--list::-webkit-scrollbar-track {
+  background: var(--paper-color) var(--paper-texture);
+}
+
+.items__preview--list::-webkit-scrollbar-thumb {
+  background: var(--leather-color) var(--leather-texture);
 }
 
 @media (max-width: 500px) {
@@ -115,5 +143,11 @@
 
   .month__cell {
     padding: 0.25rem;
+  }
+
+  .month__cell--preview {
+    grid-row: 8;
+    grid-column: 1 / span 7;
+    aspect-ratio: unset;
   }
 }
