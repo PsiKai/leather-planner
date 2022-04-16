@@ -1,24 +1,23 @@
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== "production") {
   require("dotenv").config()
 }
 
-const express = require("express");
+const express = require("express")
 const secure = require("ssl-express-www")
-const expressStaticGzip = require("express-static-gzip");
+const expressStaticGzip = require("express-static-gzip")
 const path = require("path")
 const connectDB = require("./db/db")
 
 const app = express()
 
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(secure)
 
 connectDB()
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5000
 app.listen(port, () => console.log("Backend started on port " + port))
-
 
 app.get("/robots.txt", (req, res) => {
   res.sendFile(path.join(__dirname, "/robots.txt"))
@@ -51,7 +50,10 @@ app.use("/services/weather", require("./routes/services/weather"))
 
 //sets routes for static build in production
 if (process.env.NODE_ENV === "production") {
-  app.use(expressStaticGzip(path.resolve(__dirname, 'client', "build")))
+  app.use(expressStaticGzip(path.resolve(__dirname, "client", "build"), { maxAge: 90 * 24 * 60 * 60 * 1000 }))
 
-  app.get("*", (req, res) => res.sendFile(path.resolve(__dirname, 'client', "build", "index.html")))
+  app.get("*", (req, res) => {
+    res.setHeader("Cache-Control", "no-cache, max-age=0")
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+  })
 }
