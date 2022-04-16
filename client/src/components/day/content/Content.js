@@ -6,9 +6,13 @@ import playAudio from "../../../utils/playAudio"
 
 const Content = () => {
   const appContext = useContext(AppContext)
-  const { list, items } = appContext
+  const { list, items, getList } = appContext
 
-  useEffect(() => playAudio("page"), [list])
+  useEffect(() => {
+    playAudio("page")
+    getList(list)
+    //eslint-disable-next-line
+  }, [list])
 
   return (
     <div className="content">

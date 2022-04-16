@@ -1,6 +1,8 @@
 .date-label {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  min-width: 90px;
 }
 
 .date-picker {
@@ -75,7 +77,7 @@
 .react-datepicker__navigation {
   border-radius: 0.3rem;
   height: 28px;
-} 
+}
 
 .react-datepicker__navigation span::before {
   border-color: #fff7d9;
@@ -131,6 +133,7 @@
   .date-picker {
     font-size: 0.875rem;
     margin-right: 0;
+    line-height: 1;
   }
 
   .react-datepicker {

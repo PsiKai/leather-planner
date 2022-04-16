@@ -746,7 +746,7 @@ textarea {
   flex-direction: column;
   align-items: flex-end;
   align-self: normal;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .widget > * {
@@ -1170,6 +1170,7 @@ label.MuiFormLabel-root {
   .widget .weather-input:focus,
   .temp {
     font-size: 0.875rem;
+    line-height: 1;
   }
 
   .weather-input:focus {
