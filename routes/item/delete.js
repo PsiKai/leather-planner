@@ -7,15 +7,14 @@ const auth = require("../../middleware/auth")
 const List = require("../../db/models/list")
 
 router.delete("/", auth, async (req, res) => {
-  const { list, id, content } = req.body
+  const { list, id, item } = req.body
   try {
     const newList = await List.findOneAndUpdate(
       { user: req.user.id, name: list },
       { $pull: { items: { _id: ObjectId(id) } } },
       { new: true }
     )
-    console.log(newList)
-    res.status(200).json({ msg: `Deleted: "${content}"`, newList })
+    res.status(200).json({ msg: `Deleted: "${item}"`, newList })
   } catch (error) {
     console.error(error)
     res.status(500).json({ msg: "There was an error deleting this item" })

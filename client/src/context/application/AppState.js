@@ -91,7 +91,6 @@ const AppState = props => {
       dispatch({ type: "UPDATE_MONTH", payload: list })
     } else {
       const month = await axios.get(`/list/month/${list.name}`)
-      console.log(month)
       dispatch({ type: "SET_MONTH", payload: month.data.lists })
     }
   }

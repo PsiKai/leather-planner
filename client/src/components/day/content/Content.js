@@ -18,7 +18,7 @@ const Content = () => {
     <div className="content">
       <ul className="list browser-default" id="list">
         {items.map(({ item, _id, style, moved, notes }) => {
-          return <List key={_id} id={_id} content={item} list={list} style={style} moved={moved} notes={notes} />
+          return <List key={_id} id={_id} item={item} list={list} style={style} moved={moved} notes={notes} />
         })}
         <Input />
       </ul>

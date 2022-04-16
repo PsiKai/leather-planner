@@ -26,6 +26,8 @@ const dateHelpers = {
   getLocaleDate: (date, options, locale = "en-US") => new Date(date).toLocaleDateString(locale, options),
 
   getFirstDay: (year, month) => new Date(year, month, 1).getDay() + 1,
+
+  datePlusDays: (date, days) => new Date(date.setDate(date.getDate() + days)),
 }
 
 module.exports = dateHelpers

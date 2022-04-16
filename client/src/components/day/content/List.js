@@ -15,11 +15,9 @@ import MoreVertIcon from "@material-ui/icons/MoreVert"
 
 import { CSSTransition } from "react-transition-group"
 
-const List = ({ list, id, moved, style, content, notes }) => {
-  const appContext = useContext(AppContext)
-  const authContext = useContext(AuthContext)
-  const { crossOff, removeItem, dispatch, updateMonth } = appContext
-  const { setAlert } = authContext
+const List = ({ list, id, moved, style, item, notes }) => {
+  const { crossOff, dispatch, updateMonth } = useContext(AppContext)
+  const { setAlert } = useContext(AuthContext)
 
   const [menu, setMenu] = useState(false)
   const [edit, setEdit] = useState(false)
@@ -44,9 +42,9 @@ const List = ({ list, id, moved, style, content, notes }) => {
     const {
       classList: [value],
     } = listItemText.current
-    var item = { list, style: value, content, notes }
+    var itemToMove = { list, style: value, item, notes }
     try {
-      const res = await axios.post("/item/move", item)
+      const res = await axios.post("/item/move", itemToMove)
       const {
         data: { msg, newList },
         status,
@@ -63,9 +61,9 @@ const List = ({ list, id, moved, style, content, notes }) => {
   }
 
   const deleteItem = async () => {
-    const item = { list, id, content }
+    const itemToDelete = { list, id, item }
     try {
-      const res = await axios.delete("/item/delete", { data: item })
+      const res = await axios.delete("/item/delete", { data: itemToDelete })
       const {
         data: { msg, newList },
         status,
@@ -94,16 +92,16 @@ const List = ({ list, id, moved, style, content, notes }) => {
   }
 
   return edit ? (
-    <Input content={content} undoEdit={undoEdit} id={id} aria-label="Editing list item" />
+    <Input content={item} undoEdit={undoEdit} id={id} aria-label="Editing list item" />
   ) : (
     <li onClick={openMenu} className={moved ? "no-bullet-point" : ""}>
       <div className="list-wrapper">
         {moved && itemStyle ? <TurnedInIcon style={{ ...flagStyle, opacity: "0.6" }} /> : moved && <TurnedInNotIcon style={flagStyle} />}
 
         <span ref={listItemText} className={style}>
-          {content}
+          {item}
         </span>
-        {notes && notes.length ? <NotesIcon /> : <MoreVertIcon />}
+        {notes?.length ? <NotesIcon /> : <MoreVertIcon />}
         <CSSTransition in={menu} timeout={300} classNames="revealnotes" unmountOnExit>
           <Notes
             notes={notes}
