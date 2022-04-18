@@ -123,6 +123,15 @@ const userData = {
         users.forEach(async (user) => {
             await userData.createLastLogin(user._id)
         })
+    },
+
+    getAllListsForUser: async (_id) => {
+        try {
+            const lists = await List.find({ user: _id }).lean()
+            console.table(lists)
+        } catch (error) {
+            console.log(error.message)
+        }
     }
 
 }

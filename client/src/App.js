@@ -1,6 +1,6 @@
 import React from "react"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Today from './components/day/Today'
+import Planner from './components/day/Planner'
 import Cover from "./components/cover/Cover"
 import EditProfile from "./components/profile/EditProfile";
 import UserAnalytics from "./components/admin/UserAnalytics";
@@ -22,7 +22,7 @@ function App() {
       <AppState>
         <Router>
           <Switch>
-            <PrivateRoute exact path="/today" component={Today} />
+            <PrivateRoute path="/planner" component={Planner} />
             <Route exact path="/" component={Cover} />
             <PrivateRoute exact path="/profile" component={EditProfile} />
             <AdminRoute exact path="/admin" component={UserAnalytics} />

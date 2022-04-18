@@ -10,5 +10,7 @@ module.exports = {
                 }
             }
         }
-    }
+    },
+
+    sortListsByDate: (a, b) => new Date(a.name) - new Date(b.name)
 }
