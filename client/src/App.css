@@ -1233,13 +1233,8 @@ label.MuiFormLabel-root {
     /* grid-template-rows: 130px; */
   }
 
-  .pattern__wrapper {
-    /* width: 102%; */
-  }
-
   .pattern {
     width: 100%;
-    /* top: 0; */
     background-image: var(--paper-texture), repeating-linear-gradient(#fff4b0 1px var(--paper-line), blue var(--paper-line-height));
   }
 

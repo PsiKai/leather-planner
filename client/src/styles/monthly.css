@@ -1,7 +1,6 @@
 .monthly-viewer {
   position: relative;
   width: 98%;
-  /* background: var(--paper-texture), linear-gradient(blue, var(--paper-color) 1px); */
 }
 
 .month__wrapper {
@@ -26,7 +25,6 @@
   outline: 1px solid black;
   display: flex;
   flex-direction: column;
-  /* flex-wrap: wrap; */
   align-items: flex-end;
   justify-content: flex-end;
   position: relative;
@@ -35,7 +33,6 @@
   scrollbar-width: none;
   cursor: pointer;
   padding: 1rem;
-  /* justify-content: center; */
 }
 
 .month__cell::-webkit-scrollbar {
@@ -47,8 +44,6 @@
 }
 
 .month__cell svg {
-  /* font-size: 1rem; */
-  /* color: var(--leather-color); */
   opacity: 0.8;
 }
 
@@ -145,7 +140,7 @@
     font-size: 0.875rem;
   }
 
-  .month__wrapper {
+  .month .month__wrapper {
     width: calc(100% - 2px);
   }
 
