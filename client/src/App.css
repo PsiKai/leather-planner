@@ -95,6 +95,7 @@ li {
   flex-direction: column;
   gap: 0.5rem;
   z-index: 2;
+  background: var(--paper-texture), linear-gradient(var(--paper-color) calc(100% - 1px), blue);
 }
 
 .heading.month .widget {
@@ -113,7 +114,7 @@ li {
   margin: 0;
   font-family: var(--serif-font);
   font-weight: 700;
-  background: var(--paper-color) var(--paper-texture);
+  /* background: var(--paper-color) var(--paper-texture); */
   line-height: 110%;
 }
 
@@ -403,7 +404,7 @@ button.password--submit {
   font-size: 1.4rem;
 }
 
-.notes-container button {
+.notes-container .add-note--button {
   position: absolute;
   right: 0.5rem;
   top: 2.5rem;
@@ -414,8 +415,8 @@ button.password--submit {
   transition: background-color 200ms ease;
 }
 
-.notes-container button:hover,
-.notes-container button:focus {
+.notes-container .add-note--button:hover,
+.notes-container .add-note--button:focus {
   background-color: var(--brown-color);
   color: var(--paper-color);
 }
@@ -531,13 +532,23 @@ button.password--submit {
   align-items: center;
 }
 
+.menu-action-button {
+  padding: 0;
+  background: transparent;
+  border: none;
+  display: flex;
+  cursor: pointer;
+}
+
 .menu svg {
   margin: 5px;
   font-size: var(--paper-font-size);
 }
 
-.menu svg:hover {
+.menu-action-button:hover,
+.menu-action-button:focus {
   background: #ccc38c var(--paper-texture);
+  outline: none;
 }
 
 .revealmenu-enter {
@@ -789,9 +800,6 @@ label.MuiFormLabel-root {
   position: absolute;
   left: 0;
   top: 0;
-  /* height: var(--paper-line-height);
-  display: flex;
-  align-items: center; */
 }
 
 /* cover */
@@ -994,7 +1002,7 @@ label.MuiFormLabel-root {
   .page {
     width: 97%;
     margin: 2% auto;
-    padding: 5px 5px 2px 20px;
+    padding: 10px 5px 2px 20px;
     height: 96%;
   }
 
@@ -1106,7 +1114,7 @@ label.MuiFormLabel-root {
   }
 
   .heading.month .date {
-    font-size: 1.9rem;
+    font-size: 1.6rem;
   }
 
   .widget {
@@ -1213,21 +1221,25 @@ label.MuiFormLabel-root {
     margin: 5px;
   }
 
+  .planner-toggle__wrapper {
+    inset: auto 0.5rem 0 auto;
+  }
+
   .page {
     padding: 5px 5px 2px 10px;
-    width: 98%;
-    margin: 1% auto;
-    height: 98%;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    margin: 2px;
     /* grid-template-rows: 130px; */
   }
 
   .pattern__wrapper {
-    width: 102%;
+    /* width: 102%; */
   }
 
   .pattern {
-    width: 97%;
-    top: 0;
+    width: 100%;
+    /* top: 0; */
     background-image: var(--paper-texture), repeating-linear-gradient(#fff4b0 1px var(--paper-line), blue var(--paper-line-height));
   }
 
@@ -1257,7 +1269,7 @@ label.MuiFormLabel-root {
   }
 
   h1.date {
-    font-size: 1.9rem;
+    font-size: 1.6rem;
   }
 
   h1.profile-heading {

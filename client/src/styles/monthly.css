@@ -1,7 +1,7 @@
 .monthly-viewer {
   position: relative;
   width: 98%;
-  background: var(--paper-texture), linear-gradient(blue, var(--paper-color) 1px);
+  /* background: var(--paper-texture), linear-gradient(blue, var(--paper-color) 1px); */
 }
 
 .month__wrapper {
@@ -17,6 +17,7 @@
 
 .monthly-viewer .content {
   padding-bottom: 0;
+  letter-spacing: unset;
 }
 
 .month__cell {
@@ -30,7 +31,7 @@
   justify-content: flex-end;
   position: relative;
   padding-top: 2rem;
-  overflow-y: scroll;
+  overflow: hidden;
   scrollbar-width: none;
   cursor: pointer;
   padding: 1rem;
@@ -140,12 +141,21 @@
 }
 
 @media (max-width: 500px) {
+  .weekday-label {
+    font-size: 0.875rem;
+  }
+
   .month__wrapper {
     width: calc(100% - 2px);
   }
 
   .month__cell {
     padding: 0.25rem;
+  }
+
+  .month__date {
+    top: 0.25rem;
+    left: 0.25rem;
   }
 
   .month__cell--preview {

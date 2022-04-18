@@ -46,6 +46,11 @@ export default (state, action) => {
         ...state,
         monthlyLists,
       }
+    case "CLEAR_MONTH":
+      return {
+        ...state,
+        monthlyLists: [],
+      }
     default:
       return state
   }

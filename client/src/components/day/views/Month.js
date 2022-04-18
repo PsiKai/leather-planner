@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from "react"
+import React, { useCallback, useContext, useEffect, useLayoutEffect, useState } from "react"
 import axios from "axios"
 import { CSSTransition } from "react-transition-group"
 import AppContext from "../../../context/application/AppContext"
@@ -23,6 +23,7 @@ const Month = () => {
   useEffect(() => playAudio("page"), [])
 
   const buildNewMonth = useCallback(() => {
+    console.log("building month")
     const date = new Date(list)
     const days = getDaysInMonth(date.getFullYear(), date.getMonth() + 1)
     setCurrent({ month: date.getMonth(), year: date.getFullYear(), day: date.getDate() })
@@ -38,7 +39,7 @@ const Month = () => {
     setDaysInMonth(month)
   }, [monthlyLists, list])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setLoading(true)
     if (!monthlyLists.length || splitListName(monthlyLists[0].name).month !== splitListName(list).month) {
       axios
@@ -46,7 +47,7 @@ const Month = () => {
         .then(res => dispatch({ type: "SET_MONTH", payload: res.data.lists }))
         .catch(console.error)
     }
-    if (monthlyLists) buildNewMonth()
+    buildNewMonth()
     setLoading(false)
   }, [list, dispatch, monthlyLists, buildNewMonth])
 
@@ -54,22 +55,6 @@ const Month = () => {
     const [m, d, y] = name.split(/(?:-0|-)/)
     return { month: m, day: d, year: y }
   }
-
-  // useEffect(() => {
-  //   const date = new Date(list)
-  //   const days = getDaysInMonth(date.getFullYear(), date.getMonth() + 1)
-  //   setCurrent({ month: date.getMonth(), year: date.getFullYear(), day: date.getDate() })
-  //   let month = []
-  //   for (let i = 0; i < days; i++) {
-  //     const foundList = monthlyLists.find(list => {
-  //       const { day } = splitListName(list.name)
-  //       return +day === i + 1
-  //     })
-  //     month.push(foundList || i + 1)
-  //   }
-
-  //   setDaysInMonth(month)
-  // }, [monthlyLists, list])
 
   const goToSelectedDate = async e => {
     setLoading(true)
