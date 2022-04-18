@@ -69,8 +69,7 @@ li {
   width: 680px;
   height: 780px;
   border-radius: 0.5% 2% 2% 0.5%;
-  box-shadow: 8px 4px 8px var(--leather-color),
-    0px 0px 10px 2px var(--leather-color);
+  box-shadow: 8px 4px 8px var(--leather-color), 0px 0px 10px 2px var(--leather-color);
   display: grid;
   grid-template-columns: 10px 25px;
   grid-template-rows: 60px 20px 320px;
@@ -84,6 +83,30 @@ li {
   flex-direction: row-reverse;
   justify-content: space-between;
   align-items: flex-end;
+  height: 115px;
+}
+
+.heading.day .date > span {
+  display: block;
+}
+
+.heading.month {
+  height: auto;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 2;
+  background: var(--paper-texture), linear-gradient(var(--paper-color) calc(100% - 1px), blue);
+}
+
+.heading.month .widget {
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.heading.month .date {
+  font-size: 1.2rem;
+  align-self: flex-start;
 }
 
 .date {
@@ -91,7 +114,7 @@ li {
   margin: 0;
   font-family: var(--serif-font);
   font-weight: 700;
-  background: var(--paper-color) var(--paper-texture);
+  /* background: var(--paper-color) var(--paper-texture); */
   line-height: 110%;
 }
 
@@ -107,6 +130,7 @@ li {
   justify-content: space-between;
   width: 100%;
   line-height: 110%;
+  height: 100%;
 }
 
 .profile-heading svg {
@@ -129,8 +153,7 @@ li {
 .user-nav,
 .date-label,
 .profile-nav {
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
     border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
@@ -259,14 +282,12 @@ button.password--submit {
   height: 751px;
   margin: 12px auto;
   background-color: var(--paper-color);
-  box-shadow: 1px 1px 1px 1px #381a1480, 2px 1px 0 0 var(--paper-color),
-    3px 2px 1px 1px #381a1480, 4px 2px 0 0 var(--paper-color),
-    5px 4px 1px 1px #381a1480, 6px 4px 0 0 var(--paper-color),
-    2px 2px 16px 8px #381a1480;
+  box-shadow: 1px 1px 1px 1px #381a1480, 2px 1px 0 0 var(--paper-color), 3px 2px 1px 1px #381a1480, 4px 2px 0 0 var(--paper-color),
+    5px 4px 1px 1px #381a1480, 6px 4px 0 0 var(--paper-color), 2px 2px 16px 8px #381a1480;
   padding: 15px 15px 5px 35px;
   grid-column-start: 2;
   display: grid;
-  grid-template-rows: 115px;
+  grid-template-rows: max-content auto;
 }
 
 .pattern__wrapper {
@@ -294,11 +315,7 @@ button.password--submit {
   grid-row-start: 2;
   min-height: 100%;
   width: 98%;
-  background-image: var(--paper-texture),
-    repeating-linear-gradient(
-      #fff4b0 var(--paper-line),
-      blue var(--paper-line-height)
-    );
+  background-image: var(--paper-texture), repeating-linear-gradient(#fff4b0 var(--paper-line), blue var(--paper-line-height));
 }
 
 .content {
@@ -387,7 +404,7 @@ button.password--submit {
   font-size: 1.4rem;
 }
 
-.notes-container button {
+.notes-container .add-note--button {
   position: absolute;
   right: 0.5rem;
   top: 2.5rem;
@@ -398,8 +415,8 @@ button.password--submit {
   transition: background-color 200ms ease;
 }
 
-.notes-container button:hover,
-.notes-container button:focus {
+.notes-container .add-note--button:hover,
+.notes-container .add-note--button:focus {
   background-color: var(--brown-color);
   color: var(--paper-color);
 }
@@ -515,13 +532,23 @@ button.password--submit {
   align-items: center;
 }
 
+.menu-action-button {
+  padding: 0;
+  background: transparent;
+  border: none;
+  display: flex;
+  cursor: pointer;
+}
+
 .menu svg {
   margin: 5px;
   font-size: var(--paper-font-size);
 }
 
-.menu svg:hover {
+.menu-action-button:hover,
+.menu-action-button:focus {
   background: #ccc38c var(--paper-texture);
+  outline: none;
 }
 
 .revealmenu-enter {
@@ -730,7 +757,7 @@ textarea {
   flex-direction: column;
   align-items: flex-end;
   align-self: normal;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .widget > * {
@@ -758,8 +785,7 @@ label.MuiFormLabel-root {
 }
 
 /* Logout button */
-.widget
-  .MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textSizeSmall.MuiButton-sizeSmall {
+.widget .MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textSizeSmall.MuiButton-sizeSmall {
   font-size: 1rem;
   line-height: 1.15;
   text-transform: none;
@@ -772,19 +798,8 @@ label.MuiFormLabel-root {
 
 .planner-toggle__wrapper {
   position: absolute;
-  right: 0;
-  height: var(--paper-line-height);
-  display: flex;
-  align-items: center;
-  z-index: 2;
-}
-
-.planner-toggle__wrapper > a {
-  padding: calc(var(--paper-line-height) / 4);
-}
-
-.planner-toggle {
-  background-color: rgba(0, 0, 0, 0.04);
+  left: 0;
+  top: 0;
 }
 
 /* cover */
@@ -799,8 +814,7 @@ label.MuiFormLabel-root {
   text-align: center;
   grid-template-rows: 100px 300px;
   border-radius: 0.5% 2% 2% 0.5%;
-  box-shadow: 8px 4px 8px var(--leather-color),
-    0px 0px 10px 4px var(--leather-color);
+  box-shadow: 8px 4px 8px var(--leather-color), 0px 0px 10px 4px var(--leather-color);
 }
 
 .cover-title {
@@ -846,8 +860,7 @@ label.MuiFormLabel-root {
   line-height: 1;
   cursor: pointer;
   letter-spacing: 0.5px;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 
 .btn:hover {
@@ -989,7 +1002,7 @@ label.MuiFormLabel-root {
   .page {
     width: 97%;
     margin: 2% auto;
-    padding: 5px 5px 2px 20px;
+    padding: 10px 5px 2px 20px;
     height: 96%;
   }
 
@@ -1080,10 +1093,28 @@ label.MuiFormLabel-root {
     font-size: 14px;
   }
 
-  .heading.today {
+  .heading {
     padding-right: 0;
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .heading.month,
+  .heading.day,
+  .heading {
+    height: 130px;
+  }
+
+  .heading.month .date > span {
+    display: block;
+  }
+
+  .heading.month .widget {
+    gap: 0;
+  }
+
+  .heading.month .date {
+    font-size: 1.6rem;
   }
 
   .widget {
@@ -1147,6 +1178,7 @@ label.MuiFormLabel-root {
   .widget .weather-input:focus,
   .temp {
     font-size: 0.875rem;
+    line-height: 1;
   }
 
   .weather-input:focus {
@@ -1189,26 +1221,21 @@ label.MuiFormLabel-root {
     margin: 5px;
   }
 
-  .page {
-    padding: 5px 5px 2px 10px;
-    width: 98%;
-    margin: 1% auto;
-    height: 98%;
-    grid-template-rows: 130px;
+  .planner-toggle__wrapper {
+    inset: auto 0.5rem 0 auto;
   }
 
-  .pattern__wrapper {
-    width: 102%;
+  .page {
+    padding: 5px 5px 2px 10px;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    margin: 2px;
+    /* grid-template-rows: 130px; */
   }
 
   .pattern {
-    width: 97%;
-    top: 0;
-    background-image: var(--paper-texture),
-      repeating-linear-gradient(
-        #fff4b0 1px var(--paper-line),
-        blue var(--paper-line-height)
-      );
+    width: 100%;
+    background-image: var(--paper-texture), repeating-linear-gradient(#fff4b0 1px var(--paper-line), blue var(--paper-line-height));
   }
 
   .content {
@@ -1237,7 +1264,7 @@ label.MuiFormLabel-root {
   }
 
   h1.date {
-    font-size: 1.9rem;
+    font-size: 1.6rem;
   }
 
   h1.profile-heading {
