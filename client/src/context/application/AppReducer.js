@@ -1,4 +1,4 @@
-import { REMOVE_ITEM, SET_ITEM, SET_LOADING } from "../types/types"
+import { SET_ITEM, SET_LOADING } from "../types/types"
 
 //eslint-disable-next-line
 export default (state, action) => {
@@ -10,17 +10,10 @@ export default (state, action) => {
         items: action.payload.items,
         date: action.payload.list,
       }
-    case SET_ITEM:
+    case "SET_ITEM":
       return {
         ...state,
         items: action.payload.items,
-      }
-    case REMOVE_ITEM:
-      const filteredItems = state.items.filter(({ _id }) => _id !== action.payload)
-
-      return {
-        ...state,
-        items: filteredItems,
       }
     case SET_LOADING:
       return {

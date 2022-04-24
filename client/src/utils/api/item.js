@@ -2,6 +2,16 @@ import axios from "axios"
 
 import { setAlert } from "../alert"
 
+export const setItem = (item, dispatch, monthlyLists) => {
+  axios
+    .post(`/item/${item.id ? "edit" : "new"}`, item)
+    .then(res => {
+      dispatch({ type: "SET_ITEM", payload: res.data })
+      refreshMonth(res.data, monthlyLists, dispatch)
+    })
+    .catch(console.error)
+}
+
 export const crossOffItem = (item, dispatch, monthlyLists) => {
   axios
     .post("/item/crossoff", { item })
@@ -54,7 +64,7 @@ export const deleteListItem = (item, dispatch, monthlyLists, authDispatch) => {
 }
 
 export const refreshMonth = (list, monthlyLists, dispatch) => {
-  if (monthlyLists.length) {
+  if (monthlyLists?.length) {
     dispatch({ type: "UPDATE_MONTH", payload: list })
   } else {
     axios

@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react"
 import AppContext from "../../../context/application/AppContext"
 import playAudio from "../../../utils/playAudio"
+import { setItem } from "../../../utils/api/item"
 
 import AddIcon from "@material-ui/icons/Add"
 import Fab from "@material-ui/core/Fab"
@@ -8,14 +9,14 @@ import Fab from "@material-ui/core/Fab"
 import { CSSTransition } from "react-transition-group"
 
 const Input = ({ content = "", id = "", undoEdit }) => {
-  const appContext = useContext(AppContext)
-  const { list, setItem } = appContext
+  const {
+    state: { list },
+    dispatch,
+  } = useContext(AppContext)
 
   const [inputText, setInputText] = useState("")
 
-  useEffect(() => {
-    setInputText(content)
-  }, [content])
+  useEffect(() => setInputText(content), [content])
 
   const typing = e => setInputText(e.target.value)
 
@@ -23,7 +24,7 @@ const Input = ({ content = "", id = "", undoEdit }) => {
     e.preventDefault()
     const item = { list, inputText, id }
     if (inputText) {
-      setItem(item)
+      setItem(item, dispatch)
       setInputText("")
       playAudio("write")
       undoEdit && undoEdit()
