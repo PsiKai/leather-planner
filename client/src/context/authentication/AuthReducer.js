@@ -1,11 +1,9 @@
-//eslint-disable-next-line
-export default (state, action) => {
+const AuthReducer = (state, action) => {
   switch (action.type) {
     case "USER_LOADED":
       return {
         ...state,
         isAuthenticated: true,
-        loading: false,
         user: action.payload,
         isAdmin: action.payload.admin,
       }
@@ -15,7 +13,6 @@ export default (state, action) => {
         ...state,
         ...action.payload,
         isAuthenticated: true,
-        loading: false,
       }
     case "LOG_OUT":
       localStorage.removeItem("token")
@@ -24,7 +21,6 @@ export default (state, action) => {
         token: null,
         isAuthenticated: false,
         user: null,
-        loading: false,
       }
     case "SET_ALERT":
       return {
@@ -40,3 +36,5 @@ export default (state, action) => {
       return state
   }
 }
+
+export default AuthReducer

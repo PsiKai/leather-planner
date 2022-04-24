@@ -1,6 +1,7 @@
 import axios from "axios"
 
 import { setAlert } from "../alert"
+import { syncMonthlyLists } from "../stateHelpers"
 
 export const setItem = (item, dispatch, monthlyLists) => {
   axios
@@ -65,7 +66,8 @@ export const deleteListItem = (item, dispatch, monthlyLists, authDispatch) => {
 
 export const refreshMonth = (list, monthlyLists, dispatch) => {
   if (monthlyLists?.length) {
-    dispatch({ type: "UPDATE_MONTH", payload: list })
+    const newMonth = syncMonthlyLists([...monthlyLists], list)
+    dispatch({ type: "SET_MONTH", payload: newMonth })
   } else {
     axios
       .get(`/list/month/${list.name}`)

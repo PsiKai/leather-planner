@@ -1,43 +1,19 @@
-import { SET_ITEM, SET_LOADING } from "../types/types"
-
-//eslint-disable-next-line
-export default (state, action) => {
-  switch (action.type) {
+const AppReducer = (state, { type, payload }) => {
+  switch (type) {
     case "GET_LIST":
       return {
         ...state,
-        list: action.payload.list,
-        items: action.payload.items,
-        date: action.payload.list,
+        ...payload,
       }
     case "SET_ITEM":
       return {
         ...state,
-        items: action.payload.items,
-      }
-    case SET_LOADING:
-      return {
-        ...state,
-        loading: action.payload,
+        items: payload.items,
       }
     case "SET_MONTH":
       return {
         ...state,
-        monthlyLists: action.payload,
-      }
-    case "UPDATE_MONTH":
-      let monthlyLists = [...state.monthlyLists]
-      const existingListIndex = monthlyLists.findIndex(list => action.payload.name === list.name)
-      if (existingListIndex >= 0) {
-        let existingList = monthlyLists[existingListIndex]
-        existingList = Object.assign(existingList, action.payload)
-        monthlyLists[existingListIndex] = existingList
-      } else {
-        monthlyLists = [...monthlyLists, action.payload].sort((a, b) => new Date(a.name) - new Date(b.createdAt))
-      }
-      return {
-        ...state,
-        monthlyLists,
+        monthlyLists: payload,
       }
     case "CLEAR_MONTH":
       return {
@@ -48,3 +24,5 @@ export default (state, action) => {
       return state
   }
 }
+
+export default AppReducer

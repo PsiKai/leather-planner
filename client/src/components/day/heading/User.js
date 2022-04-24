@@ -6,17 +6,19 @@ import PersonOutlineRoundedIcon from "@material-ui/icons/PersonOutlineRounded"
 import ExitToAppIcon from "@material-ui/icons/ExitToApp"
 import Button from "@material-ui/core/Button"
 import FormLabel from "@material-ui/core/FormLabel"
+import { createList } from "../../../utils/api/list"
+import { getFormattedDate } from "../../../utils/dates"
 
 const User = () => {
   const {
     state: { user },
-    dispatch,
+    dispatch: authDispatch,
   } = useContext(AuthContext)
-  const { resetDate } = useContext(AppContext)
+  const { dispatch } = useContext(AppContext)
 
   const logoff = () => {
-    dispatch({ type: "LOG_OUT" })
-    resetDate()
+    authDispatch({ type: "LOG_OUT" })
+    createList(getFormattedDate(), dispatch)
   }
 
   return (
