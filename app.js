@@ -44,6 +44,7 @@ app.use("/item/notes", require("./routes/item/notes"))
 
 // Admin Requests
 app.use("/admin/users", require("./routes/analytics/user/users"))
+app.use("/admin/admin", require("./routes/analytics/user/admin"))
 
 //Service Requests
 app.use("/services/weather", require("./routes/services/weather"))

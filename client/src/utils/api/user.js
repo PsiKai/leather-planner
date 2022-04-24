@@ -75,3 +75,13 @@ export const updatePassword = (payload, dispatch) => {
       setAlert({ status, msg }, dispatch)
     })
 }
+
+export const userIsAdmin = async () => {
+  try {
+    const res = await axios.get("/admin/admin")
+    return res.data
+  } catch (error) {
+    console.error(error)
+    return false
+  }
+}
