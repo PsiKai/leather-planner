@@ -1,9 +1,7 @@
-import { LOG_OUT, USER_LOADED, SET_ALERT, REMOVE_ALERT } from "../types/types"
-
 //eslint-disable-next-line
 export default (state, action) => {
   switch (action.type) {
-    case USER_LOADED:
+    case "USER_LOADED":
       return {
         ...state,
         isAuthenticated: true,
@@ -19,7 +17,7 @@ export default (state, action) => {
         isAuthenticated: true,
         loading: false,
       }
-    case LOG_OUT:
+    case "LOG_OUT":
       localStorage.removeItem("token")
       return {
         ...state,
@@ -28,12 +26,12 @@ export default (state, action) => {
         user: null,
         loading: false,
       }
-    case SET_ALERT:
+    case "SET_ALERT":
       return {
         ...state,
         alerts: [...state.alerts, action.payload],
       }
-    case REMOVE_ALERT:
+    case "REMOVE_ALERT":
       return {
         ...state,
         alerts: state.alerts.filter(alert => alert.id !== action.payload),

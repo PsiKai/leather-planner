@@ -14,10 +14,11 @@ import NotesIcon from "@material-ui/icons/Notes"
 import MoreVertIcon from "@material-ui/icons/MoreVert"
 
 import { CSSTransition } from "react-transition-group"
+import { setAlert } from "../../../utils/alert"
 
 const List = ({ list, id, moved, style, item, notes }) => {
   const { crossOff, dispatch, updateMonth } = useContext(AppContext)
-  const { setAlert } = useContext(AuthContext)
+  const { dispatch: authDispatch } = useContext(AuthContext)
 
   const [menu, setMenu] = useState(false)
   const [edit, setEdit] = useState(false)
@@ -50,13 +51,13 @@ const List = ({ list, id, moved, style, item, notes }) => {
         status,
       } = res
       updateMonth(newList)
-      setAlert({ msg, status })
+      setAlert({ msg, status }, authDispatch)
     } catch (error) {
       const {
         data: { msg },
         status,
       } = error.response
-      setAlert({ msg, status })
+      setAlert({ msg, status }, authDispatch)
     }
   }
 
@@ -70,13 +71,13 @@ const List = ({ list, id, moved, style, item, notes }) => {
       } = res
       dispatch({ type: "SET_ITEM", payload: newList })
       updateMonth(newList)
-      setAlert({ msg, status })
+      setAlert({ msg, status }, authDispatch)
     } catch (err) {
       const {
         data: { msg },
         status,
       } = err.response
-      setAlert({ msg, status })
+      setAlert({ msg, status }, authDispatch)
     }
   }
 

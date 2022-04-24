@@ -9,7 +9,10 @@ import EditIcon from "@material-ui/icons/Edit"
 import Fab from "@material-ui/core/Fab"
 
 const EditInfo = () => {
-  const { user, dispatch } = useContext(AuthContext)
+  const {
+    state: { user },
+    dispatch,
+  } = useContext(AuthContext)
   const { name, email } = user ?? {}
 
   const [editName, setEditName] = useState(false)

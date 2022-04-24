@@ -14,7 +14,10 @@ import playAudio from "../../utils/playAudio"
 import { getUser } from "../../utils/api/user"
 
 const EditProfile = () => {
-  const { dispatch, isAdmin } = useContext(AuthContext)
+  const {
+    dispatch,
+    state: { isAdmin },
+  } = useContext(AuthContext)
 
   useEffect(() => {
     getUser(dispatch)

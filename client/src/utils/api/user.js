@@ -53,3 +53,5 @@ export const login = (formData, dispatch, route) => {
       dispatch({ type: "LOG_OUT" })
     })
 }
+
+export const logOut = dispatch => dispatch({ type: "LOG_OUT" })
