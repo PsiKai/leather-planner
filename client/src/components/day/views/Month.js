@@ -1,5 +1,4 @@
 import React, { useCallback, useContext, useEffect, useLayoutEffect, useState } from "react"
-import axios from "axios"
 import { CSSTransition } from "react-transition-group"
 import AppContext from "../../../context/application/AppContext"
 
@@ -7,6 +6,7 @@ import { CircularProgress } from "@material-ui/core"
 
 import { getFormattedDate, shortWeekdays, getDaysInMonth, getFirstDay } from "../../../utils/dates"
 import playAudio from "../../../utils/playAudio"
+import { updateMonth, createList } from "../../../utils/api/list"
 
 import "../../../styles/monthly.css"
 import { NavLink } from "react-router-dom"
@@ -42,10 +42,7 @@ const Month = () => {
   useLayoutEffect(() => {
     setLoading(true)
     if (!monthlyLists.length || splitListName(monthlyLists[0].name).month !== splitListName(list).month) {
-      axios
-        .get(`/list/month/${list}`)
-        .then(res => dispatch({ type: "SET_MONTH", payload: res.data.lists }))
-        .catch(console.error)
+      updateMonth(list, dispatch)
     }
     buildNewMonth()
     setLoading(false)
@@ -67,12 +64,7 @@ const Month = () => {
       const { name, items } = newList
       dispatch({ type: "GET_LIST", payload: { list: name, items } })
     } else {
-      try {
-        const res = await axios.get(`/list/new/${listName}`)
-        dispatch({ type: "GET_LIST", payload: res.data })
-      } catch (error) {
-        console.log(error)
-      }
+      createList(listName, dispatch)
     }
     setLoading(false)
   }

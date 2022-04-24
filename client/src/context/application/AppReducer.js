@@ -1,9 +1,9 @@
-import { GET_LIST, REMOVE_ITEM, SET_ITEM, SET_LOADING } from "../types/types"
+import { REMOVE_ITEM, SET_ITEM, SET_LOADING } from "../types/types"
 
 //eslint-disable-next-line
 export default (state, action) => {
   switch (action.type) {
-    case GET_LIST:
+    case "GET_LIST":
       return {
         ...state,
         list: action.payload.list,

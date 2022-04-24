@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from "react"
 import AppContext from "../../../context/application/AppContext"
-import axios from "axios"
 import TodayOutlinedIcon from "@material-ui/icons/TodayOutlined"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import "../../../styles/date-picker.css"
 import { getFormattedDate } from "../../../utils/dates"
+import { createList } from "../../../utils/api/list"
 
 const Datepicker = () => {
   const {
@@ -18,11 +18,10 @@ const Datepicker = () => {
 
   const newDay = async e => {
     setDate(e)
+    const selectedDate = getFormattedDate(e)
     try {
-      const res = await axios.get(`/list/new/${getFormattedDate(e)}`)
-      dispatch({ type: "GET_LIST", payload: res.data })
+      createList(selectedDate, dispatch)
     } catch (error) {
-      console.log(error)
       setDate(new Date(list))
     }
   }

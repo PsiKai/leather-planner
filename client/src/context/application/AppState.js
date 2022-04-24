@@ -2,8 +2,9 @@ import React, { useReducer } from "react"
 import axios from "axios"
 import AppContext from "./AppContext"
 import AppReducer from "./AppReducer"
-import { GET_LIST, SET_ITEM, REMOVE_ITEM, SET_LOADING } from "../types/types"
+import { SET_ITEM, REMOVE_ITEM, SET_LOADING } from "../types/types"
 import { getFormattedDate } from "../../utils/dates"
+import { createList } from "../../utils/api/list"
 
 const AppState = props => {
   var resultDate = getFormattedDate()
@@ -22,16 +23,7 @@ const AppState = props => {
 
   //reset date to day after logout
   const resetDate = () => {
-    getList(resultDate)
-  }
-
-  //get list
-  const getList = async listName => {
-    const res = await axios.get(`/list/new/${listName}`, reqHeaders)
-    dispatch({
-      type: GET_LIST,
-      payload: res.data,
-    })
+    createList(resultDate, dispatch)
   }
 
   const setItem = async ({ list, inputText, id }) => {
@@ -104,7 +96,6 @@ const AppState = props => {
         loading: state.loading,
         setLoading,
         removeItem,
-        getList,
         setItem,
         crossOff,
         resetDate,
