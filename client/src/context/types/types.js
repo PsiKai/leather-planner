@@ -6,7 +6,6 @@ export const SET_STYLE = "SET_STYLE"
 export const SET_LOADING = "SET_LOADING"
 export const REMOVE_ITEM = "REMOVE_ITEM"
 
-export const REGISTER_SUCCESS = "REGISTER_SUCCESS"
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
 export const USER_LOADED = "USER_LOADED"
 export const LOG_OUT = "LOG_OUT"

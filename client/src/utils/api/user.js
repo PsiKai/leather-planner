@@ -39,3 +39,17 @@ export const updateUser = (payload, dispatch) => {
       setAlert({ status, msg }, dispatch)
     })
 }
+
+export const login = (formData, dispatch, route) => {
+  axios
+    .post(`/user/${route}`, formData)
+    .then(res => dispatch({ type: "LOGIN_SUCCESS", payload: res.data }))
+    .catch(err => {
+      const {
+        data: { msg },
+        status,
+      } = err.response
+      setAlert({ msg, status }, dispatch)
+      dispatch({ type: "LOG_OUT" })
+    })
+}
