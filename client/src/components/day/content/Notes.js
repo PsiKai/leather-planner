@@ -1,13 +1,13 @@
 import React, { useState, useContext } from "react"
 import AppContext from "../../../context/application/AppContext"
+import { notesApi } from "../../../utils/api/note"
 import Note from "./Note"
 import Menu from "./Menu"
 import AddIcon from "@material-ui/icons/Add"
 import Fab from "@material-ui/core/Fab"
 
 const Notes = ({ notes, openMenu, list, id, ...rest }) => {
-  const appContext = useContext(AppContext)
-  const { createNote } = appContext
+  const { dispatch } = useContext(AppContext)
 
   const [newNote, setNewNote] = useState("")
 
@@ -17,7 +17,7 @@ const Notes = ({ notes, openMenu, list, id, ...rest }) => {
       return
     }
     const notePayload = { newNote, list, id }
-    createNote(notePayload)
+    notesApi.create(notePayload, dispatch)
     setNewNote("")
   }
 
