@@ -16,13 +16,13 @@ import { getUser } from "../../utils/api/user"
 const EditProfile = () => {
   const {
     dispatch,
-    state: { isAdmin },
+    state: { isAdmin, user },
   } = useContext(AuthContext)
 
   useEffect(() => {
-    getUser(dispatch)
+    if (!user) getUser(dispatch)
     playAudio("page")
-  }, [dispatch])
+  }, [user, dispatch])
 
   return (
     <div className="position-div inside-cover">

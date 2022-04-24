@@ -15,9 +15,14 @@ import { getUser } from "../../utils/api/user"
 import AuthContext from "../../context/authentication/AuthContext"
 
 const Planner = props => {
-  const { dispatch } = useContext(AuthContext)
+  const {
+    state: { user },
+    dispatch,
+  } = useContext(AuthContext)
 
-  useEffect(() => getUser(dispatch), [dispatch])
+  useEffect(() => {
+    if (!user) getUser(dispatch)
+  }, [user, dispatch])
 
   return (
     <Fragment>

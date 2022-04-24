@@ -6,7 +6,6 @@ import PersonOutlineRoundedIcon from "@material-ui/icons/PersonOutlineRounded"
 import ExitToAppIcon from "@material-ui/icons/ExitToApp"
 import Button from "@material-ui/core/Button"
 import FormLabel from "@material-ui/core/FormLabel"
-import { logOut } from "../../../utils/api/user"
 
 const User = () => {
   const {
@@ -16,7 +15,7 @@ const User = () => {
   const { resetDate } = useContext(AppContext)
 
   const logoff = () => {
-    logOut(dispatch)
+    dispatch({ type: "LOG_OUT" })
     resetDate()
   }
 
