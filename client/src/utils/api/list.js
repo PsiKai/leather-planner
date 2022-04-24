@@ -8,7 +8,6 @@ export const updateMonth = (list, dispatch) => {
 }
 
 export const createList = (list, dispatch) => {
-  console.log("create list")
   axios
     .get(`/list/new/${list}`)
     .then(res => dispatch({ type: "GET_LIST", payload: res.data }))

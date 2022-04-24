@@ -23,7 +23,6 @@ const Month = () => {
   useEffect(() => playAudio("page"), [])
 
   const buildNewMonth = useCallback(() => {
-    console.log("building month")
     const date = new Date(list)
     const days = getDaysInMonth(date.getFullYear(), date.getMonth() + 1)
     setCurrent({ month: date.getMonth(), year: date.getFullYear(), day: date.getDate() })
