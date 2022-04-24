@@ -3,11 +3,13 @@ import AppContext from "../../../context/application/AppContext"
 import { getWeekday, getPrintedDate } from "../../../utils/dates"
 
 const Day = () => {
-  const { date } = useContext(AppContext)
+  const {
+    state: { list },
+  } = useContext(AppContext)
 
   return (
     <h1 className="date">
-      {getWeekday(date)} <span>{getPrintedDate(date)}</span>
+      {getWeekday(list)} <span>{getPrintedDate(list)}</span>
     </h1>
   )
 }

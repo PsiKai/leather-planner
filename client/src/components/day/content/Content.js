@@ -3,16 +3,18 @@ import Input from "./Input"
 import List from "./List"
 import AppContext from "../../../context/application/AppContext"
 import playAudio from "../../../utils/playAudio"
+import { createList } from "../../../utils/api/list"
 
 const Content = () => {
-  const appContext = useContext(AppContext)
-  const { list, items, getList } = appContext
+  const {
+    state: { list, items },
+    dispatch,
+  } = useContext(AppContext)
 
   useEffect(() => {
     playAudio("page")
-    getList(list)
-    //eslint-disable-next-line
-  }, [list])
+    createList(list, dispatch)
+  }, [list, dispatch])
 
   return (
     <div className="content">

@@ -11,16 +11,18 @@ import PersonIcon from "@material-ui/icons/Person"
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount"
 
 import playAudio from "../../utils/playAudio"
+import { getUser } from "../../utils/api/user"
 
-const EditProfile = props => {
-  const authContext = useContext(AuthContext)
+const EditProfile = () => {
+  const {
+    dispatch,
+    state: { isAdmin, user },
+  } = useContext(AuthContext)
 
   useEffect(() => {
-    authContext.getUser()
+    if (!user) getUser(dispatch)
     playAudio("page")
-    console.log(props.history)
-    //eslint-disable-next-line
-  }, [])
+  }, [user, dispatch])
 
   return (
     <div className="position-div inside-cover">
@@ -31,7 +33,7 @@ const EditProfile = props => {
               <ArrowBackIosIcon />
               Back
             </Link>
-            {authContext.isAdmin && (
+            {isAdmin && (
               <Link className="profile-nav admin" to="/admin">
                 Admin
                 <SupervisorAccountIcon />

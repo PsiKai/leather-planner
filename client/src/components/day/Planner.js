@@ -10,16 +10,19 @@ import Daily from "./views/Daily"
 import Month from "./views/Month"
 import Alert from "../Alert"
 
+import { getUser } from "../../utils/api/user"
+
 import AuthContext from "../../context/authentication/AuthContext"
 
 const Planner = props => {
-  const authContext = useContext(AuthContext)
-  const { getUser } = authContext
+  const {
+    state: { user },
+    dispatch,
+  } = useContext(AuthContext)
 
   useEffect(() => {
-    getUser()
-    //eslint-disable-next-line
-  }, [])
+    if (!user) getUser(dispatch)
+  }, [user, dispatch])
 
   return (
     <Fragment>

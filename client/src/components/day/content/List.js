@@ -4,9 +4,8 @@ import AuthContext from "../../../context/authentication/AuthContext"
 import Input from "./Input"
 import Notes from "./Notes"
 
-import axios from "axios"
-
 import playAudio from "../../../utils/playAudio"
+import { copyItem, crossOffItem, deleteListItem } from "../../../utils/api/item"
 
 import TurnedInNotIcon from "@material-ui/icons/TurnedInNot"
 import TurnedInIcon from "@material-ui/icons/TurnedIn"
@@ -16,8 +15,11 @@ import MoreVertIcon from "@material-ui/icons/MoreVert"
 import { CSSTransition } from "react-transition-group"
 
 const List = ({ list, id, moved, style, item, notes }) => {
-  const { crossOff, dispatch, updateMonth } = useContext(AppContext)
-  const { setAlert } = useContext(AuthContext)
+  const {
+    dispatch,
+    state: { monthlyLists },
+  } = useContext(AppContext)
+  const { dispatch: authDispatch } = useContext(AuthContext)
 
   const [menu, setMenu] = useState(false)
   const [edit, setEdit] = useState(false)
@@ -31,53 +33,24 @@ const List = ({ list, id, moved, style, item, notes }) => {
     strike.value && playAudio("cross")
     const item = { list, id, style }
     setItemStyle(strike.value)
-    crossOff(item)
+    crossOffItem(item, dispatch, monthlyLists)
   }
 
   const undoEdit = () => {
     setEdit(false)
   }
 
-  const carryOver = async () => {
+  const carryOver = () => {
     const {
       classList: [value],
     } = listItemText.current
     var itemToMove = { list, style: value, item, notes }
-    try {
-      const res = await axios.post("/item/move", itemToMove)
-      const {
-        data: { msg, newList },
-        status,
-      } = res
-      updateMonth(newList)
-      setAlert({ msg, status })
-    } catch (error) {
-      const {
-        data: { msg },
-        status,
-      } = error.response
-      setAlert({ msg, status })
-    }
+    copyItem(itemToMove, dispatch, monthlyLists, authDispatch)
   }
 
-  const deleteItem = async () => {
+  const deleteItem = () => {
     const itemToDelete = { list, id, item }
-    try {
-      const res = await axios.delete("/item/delete", { data: itemToDelete })
-      const {
-        data: { msg, newList },
-        status,
-      } = res
-      dispatch({ type: "SET_ITEM", payload: newList })
-      updateMonth(newList)
-      setAlert({ msg, status })
-    } catch (err) {
-      const {
-        data: { msg },
-        status,
-      } = err.response
-      setAlert({ msg, status })
-    }
+    deleteListItem(itemToDelete, dispatch, monthlyLists, authDispatch)
   }
 
   const openMenu = e => {
