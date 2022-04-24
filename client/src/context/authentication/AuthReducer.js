@@ -8,11 +8,13 @@ const AuthReducer = (state, action) => {
         isAdmin: action.payload.admin,
       }
     case "LOGIN_SUCCESS":
+      console.log(action.payload)
       localStorage.setItem("token", action.payload.token)
       return {
         ...state,
         ...action.payload,
         isAuthenticated: true,
+        isAdmin: action.payload.user.admin,
       }
     case "LOG_OUT":
       localStorage.removeItem("token")

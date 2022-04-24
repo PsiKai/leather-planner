@@ -43,7 +43,10 @@ export const updateUser = (payload, dispatch) => {
 export const login = (formData, dispatch, route) => {
   axios
     .post(`/user/${route}`, formData)
-    .then(res => dispatch({ type: "LOGIN_SUCCESS", payload: res.data }))
+    .then(res => {
+      setAuthToken(res.data.token)
+      dispatch({ type: "LOGIN_SUCCESS", payload: res.data })
+    })
     .catch(err => {
       const {
         data: { msg },
