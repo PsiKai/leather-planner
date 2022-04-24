@@ -1,8 +1,8 @@
 import React, { useState, useContext, useRef } from "react"
 import authContext from "../../context/authentication/AuthContext"
-import axios from "axios"
 
 import { setAlert } from "../../utils/alert"
+import { updatePassword } from "../../utils/api/user"
 
 import VisibilityIcon from "@material-ui/icons/Visibility"
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff"
@@ -12,7 +12,7 @@ const PasswordField = () => {
     state: { user },
     dispatch,
   } = useContext(authContext)
-  const [password, setPassword] = useState({})
+  const [password, setPassword] = useState({ oldPass: "", newPass: "" })
 
   const [showPassword, setShowPassword] = useState(false)
   const passwordInput = useRef()
@@ -22,28 +22,15 @@ const PasswordField = () => {
   const submitPassword = async e => {
     e.preventDefault()
     if (password.oldPass && password.newPass) {
-      try {
-        const res = await axios.patch("/user/password", { ...password, user })
-        const {
-          data: { msg },
-          status,
-        } = res
-        setAlert({ status, msg }, dispatch)
-      } catch (error) {
-        const {
-          status,
-          data: { msg },
-        } = error.response
-        setAlert({ status, msg }, dispatch)
-      }
+      updatePassword({ ...password, user }, dispatch)
+      setPassword({ oldPass: "", newPass: "" })
+      setShowPassword(false)
+      setShowPasswordTwo(false)
+      passwordInput.current.type = "password"
+      passwordInputTwo.current.type = "password"
     } else {
       setAlert({ status: 400, msg: "Please enter both password fields" }, dispatch)
     }
-    setPassword({ oldPass: "", newPass: "" })
-    setShowPassword(false)
-    setShowPasswordTwo(false)
-    passwordInput.current.type = "password"
-    passwordInputTwo.current.type = "password"
   }
 
   const editPassword = e => {

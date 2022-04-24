@@ -53,3 +53,22 @@ export const login = (formData, dispatch, route) => {
       dispatch({ type: "LOG_OUT" })
     })
 }
+
+export const updatePassword = (payload, dispatch) => {
+  axios
+    .patch("/user/password", payload)
+    .then(res => {
+      const {
+        data: { msg },
+        status,
+      } = res
+      setAlert({ status, msg }, dispatch)
+    })
+    .catch(error => {
+      const {
+        status,
+        data: { msg },
+      } = error.response
+      setAlert({ status, msg }, dispatch)
+    })
+}

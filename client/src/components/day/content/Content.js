@@ -6,8 +6,10 @@ import playAudio from "../../../utils/playAudio"
 import { createList } from "../../../utils/api/list"
 
 const Content = () => {
-  const appContext = useContext(AppContext)
-  const { list, items, dispatch } = appContext
+  const {
+    state: { list, items },
+    dispatch,
+  } = useContext(AppContext)
 
   useEffect(() => {
     playAudio("page")
