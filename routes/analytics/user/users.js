@@ -6,26 +6,21 @@ const User = require("../../../db/models/user")
 const UserSnapshot = require("../../../db/models/userSnapshot")
 
 const { getLatestSnapshot } = require("../../../db/migrations/userData")
-const { documentSort } = require("../../../utils/sorting")
 
 router.get("/", async (req, res) => {
-    try {
-      let usersWithLists = []
-      let users = await User.find({ }).lean()
-      const lastSnapshot = await getLatestSnapshot()
-      users.forEach(async (user) => {
-        const lists = await List.where("user").equals(user._id)
-        usersWithLists.push({...user, lists})
-        if (usersWithLists.length === users.length) {
-          documentSort(usersWithLists)
-          documentSort(lastSnapshot.userData)
-          res.json({usersWithLists, lastSnapshot})
-        }
-      })
-    } catch (err) {
-      console.error(err.message)
-      res.status(500).json({ msg: err.message })
-    }
+  try {
+    let users = await User.find({}).sort({ createdAt: 1 }).lean()
+    const lastSnapshot = await getLatestSnapshot()
+    const addListsToUsers = users.map(async user => {
+      const lists = await List.aggregate([{ $match: { user: user._id } }, { $project: { _id: 0, name: 1, length: { $size: "$items" } } }])
+      return { ...user, lists }
+    })
+    const usersWithLists = await Promise.all(addListsToUsers)
+    res.json({ usersWithLists, lastSnapshot })
+  } catch (err) {
+    console.error(err.message)
+    res.status(500).json({ msg: err.message })
+  }
 })
 
 router.post("/", async (req, res) => {

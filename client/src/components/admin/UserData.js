@@ -25,7 +25,7 @@ const UserData = () => {
   }, [users, loading])
 
   const listAverage = lists => {
-    const total = lists.reduce((length, list) => (length += list.items.length), 0)
+    const total = lists.reduce((length, list) => (length += list.length), 0)
     const average = total ? (total / lists.length).toFixed(1) : "---"
     return <td className="number">{average}</td>
   }
