@@ -1,9 +1,11 @@
-import { CircularProgress } from "@material-ui/core"
-import React, { useContext, useEffect, useState } from "react"
-
+import React, { useContext, useEffect, useCallback } from "react"
 import AnalyticsContext from "../../context/analytics/AnalyticsContext"
+
 import { createUserSnapshot, getAllUsers, sumUsers } from "../../utils/api/analytics"
 import { getLocaleDate } from "../../utils/dates"
+
+import { CircularProgress } from "@material-ui/core"
+import PageNav from "../layout/PageNav"
 
 const UserData = () => {
   const analyticsContext = useContext(AnalyticsContext)
@@ -12,15 +14,17 @@ const UserData = () => {
     dispatch,
   } = analyticsContext
 
-  const [page, setPage] = useState(0)
   var resultsPerPage = 10
 
   useEffect(() => sumUsers(dispatch), [dispatch])
 
-  useEffect(() => {
-    dispatch({ type: "SET_LOADING" })
-    getAllUsers(page, dispatch)
-  }, [dispatch, page])
+  const changePages = useCallback(
+    page => {
+      dispatch({ type: "SET_LOADING" })
+      getAllUsers(page, resultsPerPage, dispatch)
+    },
+    [dispatch, resultsPerPage]
+  )
 
   useEffect(() => {
     if (!loading) {
@@ -52,26 +56,22 @@ const UserData = () => {
   const isUpdated = (key, value, i) => (latestSnapshot.userData[i]?.[key] === value ? "" : "updated")
   const isNewUser = i => (latestSnapshot.userData[i] ? "" : "updated")
 
-  const changePages = e => {
-    setPage(prev => prev + +e.target.value)
-  }
-
   return (
     <div>
-      {!loading ? (
-        <table className="user-dashboard">
-          <thead>
-            <tr>
-              <th className="string">User Name</th>
-              <th className="date-of">Created</th>
-              <th className="date-of">Last Login</th>
-              <th className="number">Logins</th>
-              <th className="number">Lists</th>
-              <th className="number">Avg List</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users?.map((user, i) => (
+      <table className="user-dashboard">
+        <thead>
+          <tr>
+            <th className="string">User Name</th>
+            <th className="date-of">Created</th>
+            <th className="date-of">Last Login</th>
+            <th className="number">Logins</th>
+            <th className="number">Lists</th>
+            <th className="number">Avg List</th>
+          </tr>
+        </thead>
+        <tbody>
+          {!loading ? (
+            users?.map((user, i) => (
               <tr key={user._id}>
                 {tableData("name", user.name, i)}
                 {dateComparison("createdAt", user.createdAt, i)}
@@ -80,21 +80,17 @@ const UserData = () => {
                 {tableData("totalLists", user.lists.length, i)}
                 {listAverage(user.lists)}
               </tr>
-            ))}
-          </tbody>
-        </table>
-      ) : (
-        <div className="loading">
-          <CircularProgress />
-        </div>
-      )}
-      <button onClick={changePages} value={-1 * resultsPerPage} disabled={loading || page === 0}>
-        prev
-      </button>
-      <button onClick={changePages} value={resultsPerPage} disabled={loading || page + resultsPerPage > totalUsers}>
-        next
-      </button>
-      <span>{`showing ${page + 1}-${page + resultsPerPage > totalUsers ? totalUsers : page + resultsPerPage} of ${totalUsers}`}</span>
+            ))
+          ) : (
+            <tr className="loading">
+              <td>
+                <CircularProgress />
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+      <PageNav loading={loading} resultsPerPage={resultsPerPage} totalRecords={totalUsers} changePages={changePages} />
     </div>
   )
 }

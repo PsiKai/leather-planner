@@ -16,12 +16,12 @@ router.get("/total", async (req, res) => {
   }
 })
 
-router.get("/:results", async (req, res) => {
+router.get("/:skip/:limit", async (req, res) => {
   try {
     let users = await User.find({})
       .sort({ createdAt: 1 })
-      .limit(10)
-      .skip(+req.params.results)
+      .limit(+req.params.limit)
+      .skip(+req.params.skip)
       .lean()
     const lastSnapshot = await getLatestSnapshot()
     const addListsToUsers = users.map(async user => {

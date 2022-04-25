@@ -1,8 +1,8 @@
 import axios from "axios"
 
-export const getAllUsers = (skip, dispatch) => {
+export const getAllUsers = (skip, limit, dispatch) => {
   axios
-    .get(`/admin/users/${skip}`)
+    .get(`/admin/users/${skip}/${limit}`)
     .then(res => dispatch({ type: "GET_USERS", payload: res.data }))
     .catch(console.error)
 }

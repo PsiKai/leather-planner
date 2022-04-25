@@ -5,12 +5,12 @@
 
 .user-dashboard {
   width: 100%;
-  margin-top: 2rem;
+  margin-top: 1rem;
   table-layout: fixed;
   font-family: monospace;
   overflow-y: auto;
-  /* height: 85%; */
-  min-height: 300px;
+  height: 300px;
+  max-height: 100%;
 }
 
 .user-dashboard th {
@@ -37,7 +37,7 @@
   width: 100%;
 }
 
-.user-dashboard > tbody > tr:nth-child(odd) {
+.user-dashboard > tbody > tr:nth-child(odd):not(.loading) {
   background-color: rgba(0, 0, 0, 0.05);
 }
 
@@ -46,9 +46,14 @@
   white-space: nowrap;
 }
 
-.loading {
-  margin-top: 2rem;
-  height: 300px;
+tr.loading {
+  height: 85%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading td {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -79,5 +84,10 @@
 @media (max-width: 450px) {
   .user-dashboard {
     font-size: 0.75rem;
+    height: 325px;
+  }
+
+  .user-dashboard tr {
+    min-height: 2rem;
   }
 }

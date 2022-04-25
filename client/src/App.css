@@ -1102,7 +1102,7 @@ label.MuiFormLabel-root {
   .heading.month,
   .heading.day,
   .heading {
-    height: 130px;
+    height: 115px;
   }
 
   .heading.month .date > span {
