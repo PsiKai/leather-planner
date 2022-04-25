@@ -7,9 +7,22 @@ const UserSnapshot = require("../../../db/models/userSnapshot")
 
 const { getLatestSnapshot } = require("../../../db/migrations/userData")
 
-router.get("/", async (req, res) => {
+router.get("/total", async (req, res) => {
   try {
-    let users = await User.find({}).sort({ createdAt: 1 }).lean()
+    const total = await User.countDocuments()
+    res.json({ total })
+  } catch (error) {
+    console.error(error)
+  }
+})
+
+router.get("/:results", async (req, res) => {
+  try {
+    let users = await User.find({})
+      .sort({ createdAt: 1 })
+      .limit(10)
+      .skip(+req.params.results)
+      .lean()
     const lastSnapshot = await getLatestSnapshot()
     const addListsToUsers = users.map(async user => {
       const lists = await List.aggregate([{ $match: { user: user._id } }, { $project: { _id: 0, name: 1, length: { $size: "$items" } } }])

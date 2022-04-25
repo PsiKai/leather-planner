@@ -9,7 +9,8 @@
   table-layout: fixed;
   font-family: monospace;
   overflow-y: auto;
-  height: 85%;
+  /* height: 85%; */
+  min-height: 300px;
 }
 
 .user-dashboard th {
