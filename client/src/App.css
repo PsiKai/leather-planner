@@ -52,22 +52,26 @@ li {
 }
 
 .position-div {
-  width: 700px;
+  /* width: 700px; */
+  width: fit-content;
   margin: 40px auto auto;
 }
 
 .inside-cover {
   display: grid;
   grid-template-columns: 25px;
-  grid-template-rows: 80px 340px 300px;
+  grid-template-rows: 110px 380px 300px;
+  /* grid-template-rows: 80px 340px 300px; */
 }
 
 .grid-div {
   grid-column-start: 2;
   background-color: var(--leather-color);
   background-image: var(--leather-texture);
-  width: 680px;
-  height: 780px;
+  width: 780px;
+  /* width: 680px; */
+  height: 880px;
+  /* height: 780px; */
   border-radius: 0.5% 2% 2% 0.5%;
   box-shadow: 8px 4px 8px var(--leather-color), 0px 0px 10px 2px var(--leather-color);
   display: grid;
@@ -271,15 +275,17 @@ button.password--submit {
 
 .watermark {
   position: absolute;
-  opacity: 0.1;
+  /* opacity: 0.1; */
+  opacity: 0.15;
   right: 0;
-  top: 50px;
+  bottom: 50px;
+  /* top: 50px; */
 }
 
 .page {
   background-image: var(--paper-texture);
-  width: 650px;
-  height: 751px;
+  width: 750px;
+  height: 851px;
   margin: 12px auto;
   background-color: var(--paper-color);
   box-shadow: 1px 1px 1px 1px #381a1480, 2px 1px 0 0 var(--paper-color), 3px 2px 1px 1px #381a1480, 4px 2px 0 0 var(--paper-color),
@@ -807,8 +813,8 @@ label.MuiFormLabel-root {
 .center-div {
   background-color: var(--leather-color);
   background-image: var(--leather-texture);
-  height: 780px;
-  width: 680px;
+  height: 880px;
+  width: 780px;
   margin: 40px auto auto;
   display: grid;
   text-align: center;
@@ -891,7 +897,7 @@ label.MuiFormLabel-root {
   opacity: 0;
 }
 
-.modal-content-enter > div {
+.modal-content-enter > .modal {
   transform: scale(0.8) translateY(50px);
 }
 
@@ -900,7 +906,7 @@ label.MuiFormLabel-root {
   transition: opacity 200ms ease;
 }
 
-.modal-content-enter-active > div {
+.modal-content-enter-active > .modal {
   transform: scale(1) translateY(100px);
   transition: all 400ms ease;
 }
@@ -909,7 +915,7 @@ label.MuiFormLabel-root {
   opacity: 1;
 }
 
-.modal-content-enter-done > div {
+.modal-content-enter-done > .modal {
   transform: scale(1) translateY(100px);
 }
 
@@ -917,7 +923,7 @@ label.MuiFormLabel-root {
   opacity: 1;
 }
 
-.modal-content-exit > div {
+.modal-content-exit > .modal {
   transform: scale(1) translateY(100px);
 }
 
@@ -926,7 +932,7 @@ label.MuiFormLabel-root {
   transition: opacity 200ms ease;
 }
 
-.modal-content-exit-active > div {
+.modal-content-exit-active > .modal {
   transform: scale(0.8) translateY(50px);
   transition: all 200ms ease;
 }
@@ -935,7 +941,7 @@ label.MuiFormLabel-root {
   opacity: 0;
 }
 
-.modal-content-exit-done > div {
+.modal-content-exit-done > .modal {
   transform: scale(0.8) translateY(50px);
 }
 
@@ -1032,7 +1038,7 @@ label.MuiFormLabel-root {
   .watermark {
     width: 400px;
     right: 5%;
-    top: 10%;
+    bottom: 10%;
   }
 
   .center-div {
@@ -1260,7 +1266,7 @@ label.MuiFormLabel-root {
   .watermark {
     width: 250px;
     right: 1%;
-    top: 10%;
+    bottom: 10%;
   }
 
   h1.date {

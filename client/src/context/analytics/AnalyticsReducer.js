@@ -1,6 +1,7 @@
 const AnalyticsReducer = (state, { type, payload }) => {
   switch (type) {
     case "GET_USERS":
+      console.log(payload.usersWithLists)
       return {
         ...state,
         users: payload.usersWithLists,

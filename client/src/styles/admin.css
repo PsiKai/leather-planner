@@ -3,13 +3,19 @@
   left: unset;
 }
 
+.analytics-content {
+  display: grid;
+  grid-template-rows: max-content auto;
+}
+
 .user-dashboard {
   width: 100%;
-  margin-top: 1rem;
+  margin-block: 1rem;
   table-layout: fixed;
   font-family: monospace;
   overflow-y: auto;
-  height: 300px;
+  /* height: 300px; */
+  height: calc(10 * 2rem);
   max-height: 100%;
 }
 
@@ -28,7 +34,7 @@
 .user-dashboard > tbody {
   display: block;
   overflow-y: scroll;
-  height: 85%;
+  /* height: 85%; */
 }
 
 .user-dashboard tr {
@@ -37,13 +43,22 @@
   width: 100%;
 }
 
-.user-dashboard > tbody > tr:nth-child(odd):not(.loading) {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
 .user-dashboard > tbody td {
   overflow: scroll;
   white-space: nowrap;
+}
+
+tr.table-user {
+  cursor: pointer;
+  transition: background-color 50ms ease;
+}
+
+tr.table-user:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+tr.table-user:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 tr.loading {
@@ -79,6 +94,55 @@ tr.loading {
 .number {
   width: 12%;
   text-align: right;
+}
+
+.user-action__container {
+  background: var(--leather-color) var(--leather-texture);
+  box-shadow: 5px 5px 10px rgb(0 0 0 / 40%);
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  margin-block: 0.5rem;
+}
+
+.user-action {
+  background: var(--paper-color) var(--paper-texture);
+  box-shadow: 1px 1px 1px 1px #381a1480, 2px 1px 0 0 var(--paper-color), 3px 2px 1px 1px #381a1480;
+  /* display: flex;
+  flex-direction: column; */
+  padding: 1rem;
+  height: 100%;
+  position: relative;
+}
+
+.user-action h2 {
+  margin-block: 0.25rem;
+}
+
+.user-action p {
+  margin-block: 0.25rem;
+  font-family: var(--serif-font);
+}
+
+.user-activity {
+  font-size: 0.875rem;
+}
+
+.user-action .badge {
+  border: 1px solid black;
+  border-radius: 0.25rem;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+.close-user-popup {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 @media (max-width: 450px) {

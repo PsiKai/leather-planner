@@ -19,7 +19,7 @@ router.get("/total", async (req, res) => {
 router.get("/:skip/:limit", async (req, res) => {
   try {
     let users = await User.find({})
-      .sort({ createdAt: 1 })
+      .sort({ lastLogin: -1 })
       .limit(+req.params.limit)
       .skip(+req.params.skip)
       .lean()
