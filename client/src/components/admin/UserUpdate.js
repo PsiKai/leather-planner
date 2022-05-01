@@ -10,7 +10,7 @@ const UserUpdate = ({ setUserPopup, currentUser }) => {
   useEffect(() => {
     if (currentUser) setNewUserData({ admin: currentUser.admin })
     else setUserPopup(false)
-  }, [currentUser])
+  }, [currentUser, setUserPopup])
 
   const updateUserInfo = e => {
     const { name, value } = e.target
@@ -41,7 +41,6 @@ const UserUpdate = ({ setUserPopup, currentUser }) => {
         <div className="user-action--user">
           <h2>{currentUser?.name}</h2>
           <p>{currentUser?.email}</p>
-          {/* <p>{currentUser?.lists.length}</p> */}
           <p className="user-activity">
             Last login: {`${Math.floor((new Date() - new Date(currentUser?.lastLogin)) / 1000 / 60 / 60 / 24)}`} days ago
           </p>
