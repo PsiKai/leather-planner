@@ -24,3 +24,10 @@ export const submitUserInfoUpdates = (user, dispatch) => {
     .then(res => dispatch({ type: "UPDATE_USER", payload: res.data.user }))
     .catch(err => console.log(err.response.data.msg))
 }
+
+export const deleteUser = _id => {
+  axios
+    .delete(`/admin/users/user/${_id}`)
+    .then(res => console.log(res))
+    .catch(console.error)
+}

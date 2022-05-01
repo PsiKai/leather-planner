@@ -1,14 +1,19 @@
 import React, { useEffect, useContext, useState } from "react"
-import { submitUserInfoUpdates } from "../../utils/api/analytics"
+import AnalyticsContext from "../../context/analytics/AnalyticsContext"
+
+import { deleteUser, submitUserInfoUpdates } from "../../utils/api/analytics"
+
 import CloseOutlinedIcon from "@material-ui/icons/CloseOutlined"
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount"
 import PersonIcon from "@material-ui/icons/Person"
 import CheckBoxOutlineBlankOutlinedIcon from "@material-ui/icons/CheckBoxOutlineBlankOutlined"
 import CheckBoxOutlinedIcon from "@material-ui/icons/CheckBoxOutlined"
-import AnalyticsContext from "../../context/analytics/AnalyticsContext"
+
+import { CSSTransition } from "react-transition-group"
 
 const UserUpdate = ({ setUserPopup, currentUser }) => {
   const [newUserData, setNewUserData] = useState({})
+  const [confirmationModal, setConfirmationModal] = useState(false)
   const { dispatch } = useContext(AnalyticsContext)
 
   useEffect(() => {
@@ -37,6 +42,11 @@ const UserUpdate = ({ setUserPopup, currentUser }) => {
     e.preventDefault()
     submitUserInfoUpdates({ updates: newUserData, _id: currentUser._id }, dispatch)
     setNewUserData({})
+  }
+
+  const deleteCurrentUser = () => {
+    console.log(currentUser._id)
+    deleteUser(currentUser._id)
   }
 
   return (
@@ -77,8 +87,27 @@ const UserUpdate = ({ setUserPopup, currentUser }) => {
           <button className="btn" type="submit">
             Update User
           </button>
+          <button type="button" className="btn user-delete" onClick={() => setConfirmationModal(true)}>
+            Delete User
+          </button>
         </form>
       </div>
+      <CSSTransition in={confirmationModal} classNames="modal-content" timeout={400} unmountOnExit>
+        <div className="modal-backdrop" onClick={() => setConfirmationModal(false)}>
+          <div className="confirmation-modal modal">
+            <h1>Are you sure you want to delete {currentUser?.name}?</h1>
+            <p className="confirmation-text">Please confirm you want to delete this user and all associated lists</p>
+            <div className="button-container">
+              <button className="btn btn-secondary" onClick={() => setConfirmationModal(false)}>
+                Cancel
+              </button>
+              <button className="btn" onClick={deleteCurrentUser}>
+                Confirm Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </CSSTransition>
     </div>
   )
 }

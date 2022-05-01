@@ -874,6 +874,16 @@ label.MuiFormLabel-root {
   color: #371a12 !important;
 }
 
+.btn-secondary {
+  background-color: #d4caa3 !important;
+  color: #371a12 !important;
+}
+
+.btn-secondary:hover {
+  color: #d4caa3 !important;
+  background-color: #371a12 !important;
+}
+
 .modal-backdrop {
   position: fixed;
   display: flex;
@@ -881,6 +891,7 @@ label.MuiFormLabel-root {
   align-items: flex-start;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
 }
 
 .modal {
@@ -1241,7 +1252,8 @@ label.MuiFormLabel-root {
 
   .pattern {
     width: 100%;
-    background-image: var(--paper-texture), repeating-linear-gradient(#fff4b0 1px var(--paper-line), blue var(--paper-line-height));
+    background-image: var(--paper-texture),
+      repeating-linear-gradient(#fff4b0 1px var(--paper-line), blue var(--paper-line-height));
   }
 
   .content {

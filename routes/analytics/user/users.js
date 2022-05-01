@@ -19,6 +19,7 @@ router.get("/total", async (req, res) => {
 
 router.patch("/user", auth, async (req, res) => {
   const { _id, updates } = req.body
+  console.log("update")
   if (updates.password) updates.password = await encryptPassword(updates.password)
   if (req.user.admin) {
     try {
@@ -31,6 +32,15 @@ router.patch("/user", auth, async (req, res) => {
   } else {
     res.status(401)
   }
+})
+
+router.delete("/user/:_id", auth, async (req, res) => {
+  if (req.user.admin) {
+    const lists = await List.find({ user: req.params._id })
+    const user = await User.findById(req.params._id)
+    console.log(user, lists)
+  }
+  res.end()
 })
 
 router.get("/:skip/:limit", async (req, res) => {

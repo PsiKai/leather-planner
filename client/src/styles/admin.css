@@ -195,6 +195,27 @@ tr.loading {
   margin: 0 auto;
 }
 
+.user-update-form .user-delete {
+  margin-top: 2rem;
+}
+
+.modal .button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.confirmation-modal button {
+  width: unset;
+  margin: 2rem 0 0;
+  flex-grow: 0;
+}
+
+.confirmation-modal .confirmation-text {
+  font-family: var(--serif-font);
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+}
+
 @media (max-width: 500px) {
   .user-dashboard {
     font-size: 0.75rem;
@@ -205,19 +226,17 @@ tr.loading {
     min-height: 2rem;
   }
 
-  .user-action__container {
-    position: fixed;
-    inset: 1rem;
-    z-index: 3;
+  .modal .button-container {
+    flex-direction: column;
+    margin-bottom: 1rem;
   }
 
-  .user-action {
-    justify-content: center;
-    align-content: space-evenly;
+  .confirmation-modal .btn {
+    margin: 2rem 0 0;
   }
 }
 
-@media (max-height: 750px) {
+@media (max-height: 750px), (max-width: 500px) {
   .user-action__container {
     position: fixed;
     inset: 1rem;
