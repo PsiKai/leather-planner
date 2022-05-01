@@ -17,3 +17,10 @@ export const sumUsers = dispatch => {
     .then(res => dispatch({ type: "SET_TOTAL_USERS", payload: res.data.total }))
     .catch(console.error)
 }
+
+export const submitUserInfoUpdates = (user, dispatch) => {
+  axios
+    .patch("/admin/users/user", user)
+    .then(res => dispatch({ type: "UPDATE_USER", payload: res.data.user }))
+    .catch(err => console.log(err.response.data.msg))
+}

@@ -10,7 +10,7 @@
 
 .user-dashboard {
   width: 100%;
-  margin-block: 1rem;
+  margin-top: 1rem;
   table-layout: fixed;
   font-family: monospace;
   overflow-y: auto;
@@ -34,7 +34,7 @@
 .user-dashboard > tbody {
   display: block;
   overflow-y: scroll;
-  /* height: 85%; */
+  height: 100%;
 }
 
 .user-dashboard tr {
@@ -112,9 +112,12 @@ tr.loading {
   padding: 1rem;
   height: 100%;
   position: relative;
+  display: flex;
+  justify-content: space-between;
 }
 
-.user-action h2 {
+.user-action h2,
+.user-action h3 {
   margin-block: 0.25rem;
 }
 
@@ -130,7 +133,7 @@ tr.loading {
 .user-action .badge {
   border: 1px solid black;
   border-radius: 0.25rem;
-  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);
+  /* box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3); */
   display: inline-block;
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
@@ -143,6 +146,19 @@ tr.loading {
   background: transparent;
   border: none;
   cursor: pointer;
+}
+
+.user-update-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.user-update-form > label {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  /* flex-direction: ; */
 }
 
 @media (max-width: 450px) {

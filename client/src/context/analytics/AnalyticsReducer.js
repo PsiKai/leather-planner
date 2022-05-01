@@ -1,7 +1,6 @@
 const AnalyticsReducer = (state, { type, payload }) => {
   switch (type) {
     case "GET_USERS":
-      console.log(payload.usersWithLists)
       return {
         ...state,
         users: payload.usersWithLists,
@@ -18,6 +17,14 @@ const AnalyticsReducer = (state, { type, payload }) => {
       return {
         ...state,
         totalUsers: payload,
+      }
+    case "UPDATE_USER":
+      const users = [...state.users]
+      const foundUser = users.findIndex(user => user._id === payload._id)
+      users[foundUser] = Object.assign(users[foundUser], payload)
+      return {
+        ...state,
+        users,
       }
     default:
       return state

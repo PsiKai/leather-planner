@@ -16,6 +16,17 @@ router.get("/total", async (req, res) => {
   }
 })
 
+router.patch("/user", async (req, res) => {
+  const { _id, updates } = req.body
+  try {
+    const user = await User.findOneAndUpdate({ _id }, updates, { new: true }).lean()
+    res.json({ user })
+  } catch (error) {
+    console.error(error)
+    res.status(400).json({ msg: error.message })
+  }
+})
+
 router.get("/:skip/:limit", async (req, res) => {
   try {
     let users = await User.find({})
@@ -25,7 +36,10 @@ router.get("/:skip/:limit", async (req, res) => {
       .lean()
     const lastSnapshot = await getLatestSnapshot()
     const addListsToUsers = users.map(async user => {
-      const lists = await List.aggregate([{ $match: { user: user._id } }, { $project: { _id: 0, name: 1, length: { $size: "$items" } } }])
+      const lists = await List.aggregate([
+        { $match: { user: user._id } },
+        { $project: { _id: 0, name: 1, length: { $size: "$items" } } },
+      ])
       return { ...user, lists }
     })
     const usersWithLists = await Promise.all(addListsToUsers)

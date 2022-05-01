@@ -493,7 +493,7 @@ button.password--submit {
 
 .revealnotes-enter-active > .notes-container,
 .revealnotes-exit-active > .notes-container {
-  transition: opacity 200ms ease;
+  transition: opacity 300ms ease;
 }
 
 .revealnotes-enter-active {

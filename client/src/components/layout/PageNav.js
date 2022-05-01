@@ -27,6 +27,9 @@ const PageNav = ({ changePages, totalRecords, resultsPerPage, loading }) => {
   }
   return (
     <div className="page-nav--container">
+      <span className="page-nav--totals">{`showing ${page + 1}-${
+        page + resultsPerPage > totalRecords ? totalRecords : page + resultsPerPage
+      } of ${totalRecords}`}</span>
       <div className="page-nav--navbar">
         <button className="page-nav--button" onClick={incerementPage} value={-1 * resultsPerPage} disabled={loading || page === 0}>
           <ArrowBackIosOutlinedIcon />
@@ -41,9 +44,6 @@ const PageNav = ({ changePages, totalRecords, resultsPerPage, loading }) => {
           <ArrowForwardIosOutlinedIcon />
         </button>
       </div>
-      <span className="page-nav--totals">{`showing ${page + 1}-${
-        page + resultsPerPage > totalRecords ? totalRecords : page + resultsPerPage
-      } of ${totalRecords}`}</span>
     </div>
   )
 }
