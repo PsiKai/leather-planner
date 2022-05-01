@@ -114,11 +114,22 @@ tr.loading {
   position: relative;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.user-action > * {
+  flex-basis: clamp(300px, 50%, 100%);
 }
 
 .user-action h2,
 .user-action h3 {
   margin-block: 0.25rem;
+}
+
+.user-action--info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .user-action p {
@@ -151,7 +162,7 @@ tr.loading {
 .user-update-form {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 .user-update-form > label {
@@ -161,7 +172,54 @@ tr.loading {
   /* flex-direction: ; */
 }
 
-@media (max-width: 450px) {
+.user-update-form input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(0 0 0 / 40%);
+}
+
+.user-update-form input:focus {
+  outline: none;
+  box-shadow: 0px 2px rgb(0 0 0 / 40%);
+}
+
+.user-action input[type="checkbox"] {
+  width: 0.0001px;
+}
+
+.user-action input[type="checkbox"] + svg {
+}
+
+.user-action input[type="checkbox"]:focus + svg {
+  box-shadow: 0 0 0 2px rgb(0 0 0 / 40%);
+}
+
+.user-update--admin-label,
+.user-update--admin-label > label {
+  cursor: pointer;
+}
+
+.user-update-form .btn {
+  margin: 0 auto;
+}
+
+/* .user-update-form button {
+  cursor: pointer;
+  width: 85%;
+  margin: 0 auto;
+  background-color: #371a12;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  color: #d4caa3;
+}
+
+.user-update-form button:hover {
+  background-color: #d4caa3;
+  color: #371a12;
+} */
+
+@media (max-width: 500px) {
   .user-dashboard {
     font-size: 0.75rem;
     height: 325px;
@@ -169,5 +227,29 @@ tr.loading {
 
   .user-dashboard tr {
     min-height: 2rem;
+  }
+
+  .user-action__container {
+    position: fixed;
+    inset: 1rem;
+    z-index: 3;
+  }
+
+  .user-action {
+    justify-content: center;
+    align-content: space-evenly;
+  }
+}
+
+@media (max-height: 750px) {
+  .user-action__container {
+    position: fixed;
+    inset: 1rem;
+    z-index: 3;
+  }
+
+  .user-action {
+    justify-content: center;
+    align-content: space-evenly;
   }
 }
