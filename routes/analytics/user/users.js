@@ -6,6 +6,7 @@ const User = require("../../../db/models/user")
 const UserSnapshot = require("../../../db/models/userSnapshot")
 
 const { getLatestSnapshot } = require("../../../db/migrations/userData")
+const auth = require("../../../middleware/auth")
 
 router.get("/total", async (req, res) => {
   try {
@@ -16,14 +17,18 @@ router.get("/total", async (req, res) => {
   }
 })
 
-router.patch("/user", async (req, res) => {
+router.patch("/user", auth, async (req, res) => {
   const { _id, updates } = req.body
-  try {
-    const user = await User.findOneAndUpdate({ _id }, updates, { new: true }).lean()
-    res.json({ user })
-  } catch (error) {
-    console.error(error)
-    res.status(400).json({ msg: error.message })
+  if (req.user.admin) {
+    try {
+      const user = await User.findOneAndUpdate({ _id }, updates, { new: true }).lean()
+      res.json({ user })
+    } catch (error) {
+      console.error(error)
+      res.status(400).json({ msg: error.message })
+    }
+  } else {
+    res.status(401)
   }
 })
 
