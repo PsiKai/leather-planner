@@ -14,7 +14,7 @@ const UserUpdate = ({ setUserPopup, currentUser }) => {
   useEffect(() => {
     if (currentUser) setNewUserData({ admin: currentUser.admin })
     else setUserPopup(false)
-  }, [currentUser, setUserPopup, currentUser.admin])
+  }, [currentUser, setUserPopup, currentUser?.admin])
 
   const updateUserInfo = e => {
     const { name, value } = e.target
@@ -44,7 +44,7 @@ const UserUpdate = ({ setUserPopup, currentUser }) => {
       <div className="user-action">
         <div className="user-action--user">
           <h2 className="user-action--info">
-            {currentUser.admin ? <SupervisorAccountIcon /> : <PersonIcon />} {currentUser?.name}
+            {currentUser?.admin ? <SupervisorAccountIcon /> : <PersonIcon />} {currentUser?.name}
           </h2>
           <p>{currentUser?.email}</p>
           <p className="user-activity">

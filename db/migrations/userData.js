@@ -3,6 +3,7 @@ const { Item } = require("../models/items")
 const User = require("../models/user")
 const ObjectId = require("bson-objectid")
 const UserSnapshot = require("../models/userSnapshot")
+const bcrypt = require("bcrypt")
 
 const userData = {
   // Get all users
@@ -129,6 +130,12 @@ const userData = {
     } catch (error) {
       console.log(error.message)
     }
+  },
+
+  encryptPassword: async password => {
+    const salt = await bcrypt.genSalt(10)
+    password = await bcrypt.hash(password, salt)
+    return password
   },
 }
 

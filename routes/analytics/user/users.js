@@ -5,7 +5,7 @@ const List = require("../../../db/models/list")
 const User = require("../../../db/models/user")
 const UserSnapshot = require("../../../db/models/userSnapshot")
 
-const { getLatestSnapshot } = require("../../../db/migrations/userData")
+const { getLatestSnapshot, encryptPassword } = require("../../../db/migrations/userData")
 const auth = require("../../../middleware/auth")
 
 router.get("/total", async (req, res) => {
@@ -19,6 +19,7 @@ router.get("/total", async (req, res) => {
 
 router.patch("/user", auth, async (req, res) => {
   const { _id, updates } = req.body
+  if (updates.password) updates.password = await encryptPassword(updates.password)
   if (req.user.admin) {
     try {
       const user = await User.findOneAndUpdate({ _id }, updates, { new: true }).lean()
