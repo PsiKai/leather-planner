@@ -19,7 +19,6 @@ router.get("/total", async (req, res) => {
 
 router.patch("/user", auth, async (req, res) => {
   const { _id, updates } = req.body
-  console.log("update")
   if (updates.password) updates.password = await encryptPassword(updates.password)
   if (req.user.admin) {
     try {
@@ -38,27 +37,28 @@ router.delete("/user/:_id", auth, async (req, res) => {
   if (req.user.admin) {
     const lists = await List.find({ user: req.params._id })
     const user = await User.findById(req.params._id)
-    console.log(user, lists)
+    // console.log(user, lists)
   }
   res.end()
 })
 
 router.get("/:skip/:limit", async (req, res) => {
   try {
-    let users = await User.find({})
-      .sort({ lastLogin: -1 })
-      .limit(+req.params.limit)
-      .skip(+req.params.skip)
-      .lean()
+    let usersWithLists = await User.aggregate([
+      { $sort: { lastLogin: -1 } },
+      { $skip: +req.params.skip },
+      { $limit: +req.params.limit },
+      {
+        $lookup: {
+          from: "lists",
+          localField: "_id",
+          foreignField: "user",
+          as: "lists",
+          pipeline: [{ $project: { _id: 0, name: 1, length: { $size: "$items" } } }],
+        },
+      },
+    ])
     const lastSnapshot = await getLatestSnapshot()
-    const addListsToUsers = users.map(async user => {
-      const lists = await List.aggregate([
-        { $match: { user: user._id } },
-        { $project: { _id: 0, name: 1, length: { $size: "$items" } } },
-      ])
-      return { ...user, lists }
-    })
-    const usersWithLists = await Promise.all(addListsToUsers)
     res.json({ usersWithLists, lastSnapshot })
   } catch (err) {
     console.error(err.message)
