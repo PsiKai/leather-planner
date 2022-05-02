@@ -26,6 +26,11 @@ const AnalyticsReducer = (state, { type, payload }) => {
         ...state,
         users,
       }
+    case "REMOVE_DELETED":
+      return {
+        ...state,
+        loading: false,
+      }
     default:
       return state
   }

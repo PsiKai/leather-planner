@@ -214,6 +214,26 @@ tr.loading {
   font-family: var(--serif-font);
   font-size: 1.1rem;
   line-height: 1.5rem;
+  margin: revert;
+  letter-spacing: revert;
+}
+
+.confirmation-modal label {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-family: var(--serif-font);
+}
+
+.confirmation-modal label span {
+  font-weight: 700;
+}
+
+.confirmation-modal input[type="checkbox"].confirmation-checkbox {
+  height: unset;
+  width: 0.0001px;
+  display: inline-block;
 }
 
 @media (max-width: 500px) {

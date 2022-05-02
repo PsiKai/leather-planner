@@ -25,9 +25,17 @@ export const submitUserInfoUpdates = (user, dispatch) => {
     .catch(err => console.log(err.response.data.msg))
 }
 
-export const deleteUser = _id => {
-  axios
-    .delete(`/admin/users/user/${_id}`)
-    .then(res => console.log(res))
-    .catch(console.error)
+export const deleteUser = async (_id, dispatch) => {
+  try {
+    const res = await axios.delete(`/admin/users/user/${_id}`)
+    // console.log(res)
+    dispatch({ type: "REMOVE_DELETED" })
+    return res.statusText === "OK"
+  } catch (error) {
+    console.error(error)
+  }
+  // axios
+  //   .delete(`/admin/users/user/${_id}`)
+  //   .then(res => console.log(res))
+  //   .catch(console.error)
 }

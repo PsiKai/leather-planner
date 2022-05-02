@@ -1,5 +1,6 @@
 import React, { useEffect, useContext, useState } from "react"
 import AnalyticsContext from "../../context/analytics/AnalyticsContext"
+import authContext from "../../context/authentication/AuthContext"
 
 import { deleteUser, submitUserInfoUpdates } from "../../utils/api/analytics"
 
@@ -10,11 +11,18 @@ import CheckBoxOutlineBlankOutlinedIcon from "@material-ui/icons/CheckBoxOutline
 import CheckBoxOutlinedIcon from "@material-ui/icons/CheckBoxOutlined"
 
 import { CSSTransition } from "react-transition-group"
+import ConfirmationModal from "./ConfirmationModal"
 
 const UserUpdate = ({ setUserPopup, currentUser }) => {
   const [newUserData, setNewUserData] = useState({})
   const [confirmationModal, setConfirmationModal] = useState(false)
-  const { dispatch } = useContext(AnalyticsContext)
+  const {
+    dispatch,
+    state: { loading },
+  } = useContext(AnalyticsContext)
+  const {
+    state: { user },
+  } = useContext(authContext)
 
   useEffect(() => {
     if (currentUser) setNewUserData({ admin: currentUser.admin })
@@ -44,9 +52,10 @@ const UserUpdate = ({ setUserPopup, currentUser }) => {
     setNewUserData({})
   }
 
-  const deleteCurrentUser = () => {
-    console.log(currentUser._id)
-    deleteUser(currentUser._id)
+  const deleteCurrentUser = async () => {
+    dispatch({ type: "SET_LOADING" })
+    const confirmedDeletion = await deleteUser(currentUser._id, dispatch)
+    setConfirmationModal(!confirmedDeletion)
   }
 
   return (
@@ -81,32 +90,36 @@ const UserUpdate = ({ setUserPopup, currentUser }) => {
           </label>
           <label className="user-update--admin-label">
             Admin Access:
-            <input id="admin-checkbox" type="checkbox" onChange={toggleAdmin} checked={newUserData.admin || false} name="admin" />
+            <input
+              id="admin-checkbox"
+              type="checkbox"
+              onChange={toggleAdmin}
+              checked={newUserData.admin || false}
+              name="admin"
+              disabled={currentUser?._id === user._id}
+            />
             {newUserData.admin ? <CheckBoxOutlinedIcon /> : <CheckBoxOutlineBlankOutlinedIcon />}
           </label>
           <button className="btn" type="submit">
             Update User
           </button>
-          <button type="button" className="btn user-delete" onClick={() => setConfirmationModal(true)}>
+          <button
+            type="button"
+            className="btn user-delete"
+            onClick={() => setConfirmationModal(true)}
+            disabled={currentUser?._id === user._id}
+          >
             Delete User
           </button>
         </form>
       </div>
       <CSSTransition in={confirmationModal} classNames="modal-content" timeout={400} unmountOnExit>
-        <div className="modal-backdrop" onClick={() => setConfirmationModal(false)}>
-          <div className="confirmation-modal modal">
-            <h1>Are you sure you want to delete {currentUser?.name}?</h1>
-            <p className="confirmation-text">Please confirm you want to delete this user and all associated lists</p>
-            <div className="button-container">
-              <button className="btn btn-secondary" onClick={() => setConfirmationModal(false)}>
-                Cancel
-              </button>
-              <button className="btn" onClick={deleteCurrentUser}>
-                Confirm Delete
-              </button>
-            </div>
-          </div>
-        </div>
+        <ConfirmationModal
+          modalOpen={setConfirmationModal}
+          confirmAction={deleteCurrentUser}
+          currentUser={currentUser}
+          pending={loading}
+        />
       </CSSTransition>
     </div>
   )

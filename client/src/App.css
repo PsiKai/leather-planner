@@ -884,6 +884,12 @@ label.MuiFormLabel-root {
   background-color: #371a12 !important;
 }
 
+.btn:disabled {
+  pointer-events: none;
+  opacity: 0.8;
+  box-shadow: none;
+}
+
 .modal-backdrop {
   position: fixed;
   display: flex;
@@ -902,6 +908,7 @@ label.MuiFormLabel-root {
   height: fit-content !important;
   padding: 2% 5% !important;
   border-radius: 0.25rem;
+  box-shadow: 3px 3px 12px 2px rgb(0 0 0 / 40%);
 }
 
 .modal-content-enter {
