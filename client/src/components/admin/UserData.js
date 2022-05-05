@@ -9,6 +9,7 @@ import { getLocaleDate } from "../../utils/dates"
 import { CircularProgress } from "@material-ui/core"
 import PageNav from "../layout/PageNav"
 import UserUpdate from "./UserUpdate"
+import UserSearchbar from "./UserSearchbar"
 
 const UserData = () => {
   const analyticsContext = useContext(AnalyticsContext)
@@ -72,6 +73,7 @@ const UserData = () => {
   return (
     <div className="analytics-content">
       <div>
+        <UserSearchbar />
         <table className="user-dashboard">
           <thead>
             <tr>

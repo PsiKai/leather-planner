@@ -29,7 +29,7 @@ const ConfirmationModal = ({ modalOpen, confirmAction, currentUser, pending }) =
           <button className="btn btn-secondary" onClick={() => modalOpen(false)}>
             Cancel
           </button>
-          <button className="btn" onClick={confirmAction} disabled={!confirmed}>
+          <button className="btn" onClick={confirmAction} disabled={!confirmed || pending}>
             {pending ? "Deleting..." : "Confirm Delete"}
           </button>
         </div>

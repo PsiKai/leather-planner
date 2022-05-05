@@ -39,3 +39,12 @@ export const deleteUser = async (_id, dispatch) => {
   //   .then(res => console.log(res))
   //   .catch(console.error)
 }
+
+export const searchForUser = (searchTerm, dispatch) => {
+  axios
+    .get(`admin/users/${searchTerm}`)
+    .then(res => {
+      console.log(res.data)
+    })
+    .catch(console.error)
+}

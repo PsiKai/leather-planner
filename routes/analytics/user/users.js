@@ -42,6 +42,17 @@ router.delete("/user/:_id", auth, async (req, res) => {
   res.end()
 })
 
+router.get("/:username", async (req, res) => {
+  const nameMatch = new RegExp(`(${req.params.username})`, "i")
+  try {
+    const matchedUsers = await User.aggregate([{ $match: { name: nameMatch } }, { $limit: 10 }])
+    res.status(200).json({ users: matchedUsers })
+  } catch (error) {
+    console.error(error.message)
+    res.status(500)
+  }
+})
+
 router.get("/:skip/:limit", async (req, res) => {
   try {
     let usersWithLists = await User.aggregate([
