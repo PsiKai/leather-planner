@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useCallback, useState } from "react"
+import React, { useContext, useEffect, useCallback, useState, useRef } from "react"
 import AnalyticsContext from "../../context/analytics/AnalyticsContext"
 
 import { CSSTransition } from "react-transition-group"
 
-import { createUserSnapshot, getAllUsers, sumUsers } from "../../utils/api/analytics"
+import { createUserSnapshot, getAllUsers } from "../../utils/api/analytics"
 import { getLocaleDate } from "../../utils/dates"
 
 import { CircularProgress } from "@material-ui/core"
@@ -20,19 +20,27 @@ const UserData = () => {
 
   const [currentUser, setCurrentUser] = useState()
   const [userPopup, setUserPopup] = useState(false)
+  const [searchTerm, setSearchTerm] = useState("")
+  const previousSearchTerm = useRef("")
+
+  const [page, setPage] = useState(0)
 
   var resultsPerPage = 10
 
-  useEffect(() => sumUsers(dispatch), [dispatch])
+  const changePages = useCallback(() => {
+    dispatch({ type: "SET_LOADING" })
+    let newPage = page
+    if (previousSearchTerm.current !== searchTerm) {
+      previousSearchTerm.current = searchTerm
+      newPage = 0
+    }
+    getAllUsers(newPage, resultsPerPage, dispatch, searchTerm || ".*")
+    setCurrentUser()
+  }, [dispatch, resultsPerPage, searchTerm, page])
 
-  const changePages = useCallback(
-    page => {
-      dispatch({ type: "SET_LOADING" })
-      getAllUsers(page, resultsPerPage, dispatch)
-      setCurrentUser()
-    },
-    [dispatch, resultsPerPage]
-  )
+  // useEffect(() => setPage(0), [searchTerm])
+
+  useEffect(() => changePages(page), [page, changePages])
 
   useEffect(() => {
     if (!loading) {
@@ -73,7 +81,7 @@ const UserData = () => {
   return (
     <div className="analytics-content">
       <div>
-        <UserSearchbar />
+        <UserSearchbar searchForUser={setSearchTerm} />
         <table className="user-dashboard">
           <thead>
             <tr>
@@ -87,16 +95,24 @@ const UserData = () => {
           </thead>
           <tbody>
             {!loading ? (
-              users?.map((user, i) => (
-                <tr key={user._id} data-user={user._id} onClick={openUserAction} className="table-user">
-                  {tableData("name", user.name, i)}
-                  {dateComparison("createdAt", user.createdAt, i)}
-                  {dateComparison("lastLogin", user.lastLogin, i)}
-                  {tableData("logins", user.logins, i)}
-                  {tableData("totalLists", user.lists.length, i)}
-                  {listAverage(user.lists)}
+              totalUsers !== 0 ? (
+                users?.map((user, i) => (
+                  <tr key={user._id} data-user={user._id} onClick={openUserAction} className="table-user">
+                    {tableData("name", user.name, i)}
+                    {dateComparison("createdAt", user.createdAt, i)}
+                    {dateComparison("lastLogin", user.lastLogin, i)}
+                    {tableData("logins", user.logins, i)}
+                    {tableData("totalLists", user.lists.length, i)}
+                    {listAverage(user.lists)}
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td>
+                    <h2>No Records Found</h2>
+                  </td>
                 </tr>
-              ))
+              )
             ) : (
               <tr className="loading">
                 <td>
@@ -106,7 +122,7 @@ const UserData = () => {
             )}
           </tbody>
         </table>
-        <PageNav loading={loading} resultsPerPage={resultsPerPage} totalRecords={totalUsers} changePages={changePages} />
+        <PageNav loading={loading} resultsPerPage={resultsPerPage} totalRecords={totalUsers} setPage={setPage} page={page} />
       </div>
       <CSSTransition in={userPopup} classNames="modal-content" timeout={150} unmountOnExit>
         <UserUpdate setUserPopup={setUserPopup} currentUser={currentUser} />

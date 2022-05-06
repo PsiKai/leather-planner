@@ -3,11 +3,18 @@ const AnalyticsReducer = (state, { type, payload }) => {
     case "GET_USERS":
       return {
         ...state,
-        users: payload.usersWithLists,
+        users: payload.users,
         latestSnapshot: payload.lastSnapshot,
+        totalUsers: payload.totalResults[0]?.count || 0,
         loading: false,
       }
-
+    case "SET_USER_FILTER":
+      return {
+        ...state,
+        users: payload.users,
+        totalUsers: payload.totalResults[0]?.count || 0,
+        loading: false,
+      }
     case "SET_LOADING":
       return {
         ...state,

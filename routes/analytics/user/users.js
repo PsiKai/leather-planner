@@ -8,14 +8,14 @@ const UserSnapshot = require("../../../db/models/userSnapshot")
 const { getLatestSnapshot, encryptPassword } = require("../../../db/migrations/userData")
 const auth = require("../../../middleware/auth")
 
-router.get("/total", async (req, res) => {
-  try {
-    const total = await User.countDocuments()
-    res.json({ total })
-  } catch (error) {
-    console.error(error)
-  }
-})
+// router.get("/total", async (req, res) => {
+//   try {
+//     const total = await User.countDocuments()
+//     res.json({ total })
+//   } catch (error) {
+//     console.error(error)
+//   }
+// })
 
 router.patch("/user", auth, async (req, res) => {
   const { _id, updates } = req.body
@@ -42,23 +42,42 @@ router.delete("/user/:_id", auth, async (req, res) => {
   res.end()
 })
 
-router.get("/:username", async (req, res) => {
-  const nameMatch = new RegExp(`(${req.params.username})`, "i")
-  try {
-    const matchedUsers = await User.aggregate([{ $match: { name: nameMatch } }, { $limit: 10 }])
-    res.status(200).json({ users: matchedUsers })
-  } catch (error) {
-    console.error(error.message)
-    res.status(500)
-  }
-})
+// router.get("/search/:searchParams", async (req, res) => {
+//   const nameMatch = new RegExp(`(${req.params.searchParams})`, "i")
+//   console.log(nameMatch)
+//   try {
+//     const matchedUsers = await User.aggregate([
+//       { $match: { name: nameMatch } },
+//       {
+//         $lookup: {
+//           from: "lists",
+//           localField: "_id",
+//           foreignField: "user",
+//           as: "lists",
+//           pipeline: [{ $project: { _id: 0, name: 1, length: { $size: "$items" } } }],
+//         },
+//       },
+//       {
+//         $facet: {
+//           users: [{ $limit: 10 }],
+//           totalResults: [{ $count: "count" }],
+//         },
+//       },
+//     ])
+//     res.status(200).json(...matchedUsers)
+//   } catch (error) {
+//     console.error(error.message)
+//     res.status(500)
+//   }
+// })
 
-router.get("/:skip/:limit", async (req, res) => {
+router.get("/:skip/:limit/:query", async (req, res) => {
+  console.log(req.params)
+
+  const nameMatch = new RegExp(`(${req.params.query})`, "i")
   try {
     let usersWithLists = await User.aggregate([
-      { $sort: { lastLogin: -1 } },
-      { $skip: +req.params.skip },
-      { $limit: +req.params.limit },
+      { $match: { name: nameMatch } },
       {
         $lookup: {
           from: "lists",
@@ -68,9 +87,15 @@ router.get("/:skip/:limit", async (req, res) => {
           pipeline: [{ $project: { _id: 0, name: 1, length: { $size: "$items" } } }],
         },
       },
+      {
+        $facet: {
+          users: [{ $sort: { lastLogin: -1 } }, { $skip: +req.params.skip }, { $limit: +req.params.limit }],
+          totalResults: [{ $count: "count" }],
+        },
+      },
     ])
     const lastSnapshot = await getLatestSnapshot()
-    res.json({ usersWithLists, lastSnapshot })
+    res.json({ ...usersWithLists[0], lastSnapshot })
   } catch (err) {
     console.error(err.message)
     res.status(500).json({ msg: err.message })

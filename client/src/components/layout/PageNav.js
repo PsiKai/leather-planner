@@ -3,15 +3,13 @@ import ArrowBackIosOutlinedIcon from "@material-ui/icons/ArrowBackIosOutlined"
 import ArrowForwardIosOutlinedIcon from "@material-ui/icons/ArrowForwardIosOutlined"
 import "../../styles/page-nav.css"
 
-const PageNav = ({ changePages, totalRecords, resultsPerPage, loading }) => {
-  const [page, setPage] = useState(0)
-
-  useEffect(() => changePages(page), [page, changePages])
-
+const PageNav = ({ totalRecords, resultsPerPage, loading, setPage, page }) => {
   const incerementPage = e => {
     const incerement = +e.currentTarget.value
     setPage(prev => prev + incerement)
   }
+
+  const [visibility, setVisbility] = useState(totalRecords > resultsPerPage ? { opacity: "1" } : { opacity: "0" })
 
   const mapPages = () => {
     let totalPages = []
@@ -25,13 +23,23 @@ const PageNav = ({ changePages, totalRecords, resultsPerPage, loading }) => {
       </span>
     ))
   }
+
+  useEffect(() => {
+    setVisbility(totalRecords > resultsPerPage ? { opacity: "1" } : { opacity: "0" })
+  }, [resultsPerPage, totalRecords])
+
   return (
-    <div className="page-nav--container">
+    <div className="page-nav--container" style={visibility}>
       <span className="page-nav--totals">{`showing ${page + 1}-${
         page + resultsPerPage > totalRecords ? totalRecords : page + resultsPerPage
       } of ${totalRecords}`}</span>
       <div className="page-nav--navbar">
-        <button className="page-nav--button" onClick={incerementPage} value={-1 * resultsPerPage} disabled={loading || page === 0}>
+        <button
+          className="page-nav--button"
+          onClick={incerementPage}
+          value={-1 * resultsPerPage}
+          disabled={loading || page === 0}
+        >
           <ArrowBackIosOutlinedIcon />
         </button>
         <div className="page-nav--pages">{mapPages()}</div>

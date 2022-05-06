@@ -1,8 +1,8 @@
 import axios from "axios"
 
-export const getAllUsers = (skip, limit, dispatch) => {
+export const getAllUsers = (skip, limit, dispatch, query) => {
   axios
-    .get(`/admin/users/${skip}/${limit}`)
+    .get(`/admin/users/${skip}/${limit}/${query}`)
     .then(res => dispatch({ type: "GET_USERS", payload: res.data }))
     .catch(console.error)
 }
@@ -11,12 +11,12 @@ export const createUserSnapshot = userData => {
   axios.post("/admin/users", userData).catch(console.error)
 }
 
-export const sumUsers = dispatch => {
-  axios
-    .get("/admin/users/total")
-    .then(res => dispatch({ type: "SET_TOTAL_USERS", payload: res.data.total }))
-    .catch(console.error)
-}
+// export const sumUsers = dispatch => {
+//   axios
+//     .get("/admin/users/total")
+//     .then(res => dispatch({ type: "SET_TOTAL_USERS", payload: res.data.total }))
+//     .catch(console.error)
+// }
 
 export const submitUserInfoUpdates = (user, dispatch) => {
   axios
@@ -40,11 +40,11 @@ export const deleteUser = async (_id, dispatch) => {
   //   .catch(console.error)
 }
 
-export const searchForUser = (searchTerm, dispatch) => {
-  axios
-    .get(`admin/users/${searchTerm}`)
-    .then(res => {
-      console.log(res.data)
-    })
-    .catch(console.error)
-}
+// export const searchForUser = (searchTerm, dispatch) => {
+//   axios
+//     .get(`admin/users/search/${searchTerm}`)
+//     .then(res => {
+//       dispatch({ type: "SET_USER_FILTER", payload: res.data })
+//     })
+//     .catch(console.error)
+// }
