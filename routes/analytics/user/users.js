@@ -53,9 +53,10 @@ router.get("/:skip/:limit/:query", async (req, res) => {
           totalResults: [{ $count: "count" }],
         },
       },
+      { $unwind: "$totalResults" },
+      { $project: { users: "$users", totalResults: "$totalResults.count" } },
     ])
-
-    res.json({ ...usersWithLists[0] })
+    res.json(usersWithLists[0])
   } catch (err) {
     console.error(err.message)
     res.status(500).json({ msg: err.message })

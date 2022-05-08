@@ -21,7 +21,14 @@ const UserSearchbar = ({ searchForUser }) => {
 
   return (
     <div className="searchbar--container">
-      <input className="searchbar" type="text" placeholder="Search for user" value={searchTerm} onChange={updateSearch} />
+      <input
+        className="searchbar"
+        type="text"
+        placeholder="Search for user"
+        value={searchTerm}
+        onChange={updateSearch}
+        autoCorrect="false"
+      />
       <SearchIcon />
     </div>
   )

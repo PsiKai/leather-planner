@@ -4,14 +4,14 @@ const AnalyticsReducer = (state, { type, payload }) => {
       return {
         ...state,
         users: payload.users,
-        totalUsers: payload.totalResults[0]?.count || 0,
+        totalUsers: payload.totalResults || 0,
         loading: false,
       }
     case "SET_USER_FILTER":
       return {
         ...state,
         users: payload.users,
-        totalUsers: payload.totalResults[0]?.count || 0,
+        totalUsers: payload.totalResults || 0,
         loading: false,
       }
     case "SET_LOADING":
