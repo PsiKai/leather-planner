@@ -52,7 +52,6 @@ li {
 }
 
 .position-div {
-  /* width: 700px; */
   width: fit-content;
   margin: 40px auto auto;
 }
@@ -61,7 +60,6 @@ li {
   display: grid;
   grid-template-columns: 25px;
   grid-template-rows: 110px 380px 300px;
-  /* grid-template-rows: 80px 340px 300px; */
 }
 
 .grid-div {
@@ -69,9 +67,7 @@ li {
   background-color: var(--leather-color);
   background-image: var(--leather-texture);
   width: 780px;
-  /* width: 680px; */
   height: 880px;
-  /* height: 780px; */
   border-radius: 0.5% 2% 2% 0.5%;
   box-shadow: 8px 4px 8px var(--leather-color), 0px 0px 10px 2px var(--leather-color);
   display: grid;
@@ -118,7 +114,6 @@ li {
   margin: 0;
   font-family: var(--serif-font);
   font-weight: 700;
-  /* background: var(--paper-color) var(--paper-texture); */
   line-height: 110%;
 }
 
@@ -275,11 +270,9 @@ button.password--submit {
 
 .watermark {
   position: absolute;
-  /* opacity: 0.1; */
   opacity: 0.15;
   right: 0;
   bottom: 50px;
-  /* top: 50px; */
 }
 
 .page {

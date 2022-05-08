@@ -34,7 +34,6 @@
   border-radius: 0.25rem;
   background-color: transparent;
   transition: background-color 150ms ease;
-  /* flex-grow: 0.5; */
 }
 
 .page-nav--button:hover:not(:disabled) {
@@ -47,7 +46,6 @@
 }
 
 .page-nav--totals {
-  /* position: absolute; */
   font-size: 0.875rem;
 }
 

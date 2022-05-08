@@ -39,7 +39,7 @@ const UserData = () => {
     setCurrentUser()
   }, [dispatch, resultsPerPage, page, searchTerm])
 
-  useEffect(() => changePages(page, searchTerm), [page, changePages, searchTerm])
+  useEffect(() => changePages(), [page, changePages])
 
   useEffect(() => createUserSnapshot(), [])
 
