@@ -29,11 +29,11 @@ const PageNav = ({ totalRecords, resultsPerPage, loading, setPage, page }) => {
   }, [resultsPerPage, totalRecords])
 
   return (
-    <div className="page-nav--container" style={visibility}>
-      <span className="page-nav--totals">{`showing ${page + 1}-${
+    <div className="page-nav--container">
+      <span className="page-nav--totals" style={!totalRecords ? visibility : {}}>{`showing ${page + 1}-${
         page + resultsPerPage > totalRecords ? totalRecords : page + resultsPerPage
       } of ${totalRecords}`}</span>
-      <div className="page-nav--navbar">
+      <div className="page-nav--navbar" style={visibility}>
         <button
           className="page-nav--button"
           onClick={incerementPage}
