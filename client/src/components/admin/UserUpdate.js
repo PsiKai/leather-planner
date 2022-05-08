@@ -48,6 +48,7 @@ const UserUpdate = ({ setUserPopup, currentUser }) => {
 
   const submitUserInfo = e => {
     e.preventDefault()
+    dispatch({ type: "SET_LOADING" })
     submitUserInfoUpdates({ updates: newUserData, _id: currentUser._id }, dispatch)
     setNewUserData({})
   }
@@ -100,8 +101,8 @@ const UserUpdate = ({ setUserPopup, currentUser }) => {
             />
             {newUserData.admin ? <CheckBoxOutlinedIcon /> : <CheckBoxOutlineBlankOutlinedIcon />}
           </label>
-          <button className="btn btn-secondary" type="submit">
-            Update User
+          <button className="btn btn-secondary" type="submit" disabled={loading}>
+            {loading ? "Updating..." : "Update User"}
           </button>
           <button
             type="button"
