@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
       return res.status(400).json({ msg: "Email or password is incorrect" })
     }
 
-    const payload = { user: { id: user.id } }
+    const payload = { user: { id: user.id, admin: user.admin } }
 
     jwt.sign(payload, process.env.SECRET, { expiresIn: 360000 }, async (err, token) => {
       if (err) throw errors

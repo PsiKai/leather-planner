@@ -5,7 +5,7 @@ import AnalyticsReducer from "./AnalyticsReducer"
 const AnalyticsState = props => {
   const intitialState = {
     users: [],
-    lastestSnapshot: {},
+    totalUsers: 0,
     loading: true,
   }
   const [state, dispatch] = useReducer(AnalyticsReducer, intitialState)

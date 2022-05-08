@@ -52,22 +52,22 @@ li {
 }
 
 .position-div {
-  width: 700px;
+  width: fit-content;
   margin: 40px auto auto;
 }
 
 .inside-cover {
   display: grid;
   grid-template-columns: 25px;
-  grid-template-rows: 80px 340px 300px;
+  grid-template-rows: 110px 380px 300px;
 }
 
 .grid-div {
   grid-column-start: 2;
   background-color: var(--leather-color);
   background-image: var(--leather-texture);
-  width: 680px;
-  height: 780px;
+  width: 780px;
+  height: 880px;
   border-radius: 0.5% 2% 2% 0.5%;
   box-shadow: 8px 4px 8px var(--leather-color), 0px 0px 10px 2px var(--leather-color);
   display: grid;
@@ -114,7 +114,6 @@ li {
   margin: 0;
   font-family: var(--serif-font);
   font-weight: 700;
-  /* background: var(--paper-color) var(--paper-texture); */
   line-height: 110%;
 }
 
@@ -271,15 +270,15 @@ button.password--submit {
 
 .watermark {
   position: absolute;
-  opacity: 0.1;
+  opacity: 0.15;
   right: 0;
-  top: 50px;
+  bottom: 50px;
 }
 
 .page {
   background-image: var(--paper-texture);
-  width: 650px;
-  height: 751px;
+  width: 750px;
+  height: 851px;
   margin: 12px auto;
   background-color: var(--paper-color);
   box-shadow: 1px 1px 1px 1px #381a1480, 2px 1px 0 0 var(--paper-color), 3px 2px 1px 1px #381a1480, 4px 2px 0 0 var(--paper-color),
@@ -487,7 +486,7 @@ button.password--submit {
 
 .revealnotes-enter-active > .notes-container,
 .revealnotes-exit-active > .notes-container {
-  transition: opacity 200ms ease;
+  transition: opacity 300ms ease;
 }
 
 .revealnotes-enter-active {
@@ -807,8 +806,8 @@ label.MuiFormLabel-root {
 .center-div {
   background-color: var(--leather-color);
   background-image: var(--leather-texture);
-  height: 780px;
-  width: 680px;
+  height: 880px;
+  width: 780px;
   margin: 40px auto auto;
   display: grid;
   text-align: center;
@@ -868,6 +867,22 @@ label.MuiFormLabel-root {
   color: #371a12 !important;
 }
 
+.btn-secondary {
+  background-color: #d4caa3 !important;
+  color: #371a12 !important;
+}
+
+.btn-secondary:hover {
+  color: #d4caa3 !important;
+  background-color: #371a12 !important;
+}
+
+.btn:disabled {
+  pointer-events: none;
+  opacity: 0.8;
+  box-shadow: none;
+}
+
 .modal-backdrop {
   position: fixed;
   display: flex;
@@ -875,6 +890,7 @@ label.MuiFormLabel-root {
   align-items: flex-start;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
 }
 
 .modal {
@@ -885,13 +901,14 @@ label.MuiFormLabel-root {
   height: fit-content !important;
   padding: 2% 5% !important;
   border-radius: 0.25rem;
+  box-shadow: 3px 3px 12px 2px rgb(0 0 0 / 40%);
 }
 
 .modal-content-enter {
   opacity: 0;
 }
 
-.modal-content-enter > div {
+.modal-content-enter > .modal {
   transform: scale(0.8) translateY(50px);
 }
 
@@ -900,7 +917,7 @@ label.MuiFormLabel-root {
   transition: opacity 200ms ease;
 }
 
-.modal-content-enter-active > div {
+.modal-content-enter-active > .modal {
   transform: scale(1) translateY(100px);
   transition: all 400ms ease;
 }
@@ -909,7 +926,7 @@ label.MuiFormLabel-root {
   opacity: 1;
 }
 
-.modal-content-enter-done > div {
+.modal-content-enter-done > .modal {
   transform: scale(1) translateY(100px);
 }
 
@@ -917,7 +934,7 @@ label.MuiFormLabel-root {
   opacity: 1;
 }
 
-.modal-content-exit > div {
+.modal-content-exit > .modal {
   transform: scale(1) translateY(100px);
 }
 
@@ -926,7 +943,7 @@ label.MuiFormLabel-root {
   transition: opacity 200ms ease;
 }
 
-.modal-content-exit-active > div {
+.modal-content-exit-active > .modal {
   transform: scale(0.8) translateY(50px);
   transition: all 200ms ease;
 }
@@ -935,7 +952,7 @@ label.MuiFormLabel-root {
   opacity: 0;
 }
 
-.modal-content-exit-done > div {
+.modal-content-exit-done > .modal {
   transform: scale(0.8) translateY(50px);
 }
 
@@ -1032,7 +1049,7 @@ label.MuiFormLabel-root {
   .watermark {
     width: 400px;
     right: 5%;
-    top: 10%;
+    bottom: 10%;
   }
 
   .center-div {
@@ -1102,7 +1119,7 @@ label.MuiFormLabel-root {
   .heading.month,
   .heading.day,
   .heading {
-    height: 130px;
+    height: 115px;
   }
 
   .heading.month .date > span {
@@ -1235,7 +1252,8 @@ label.MuiFormLabel-root {
 
   .pattern {
     width: 100%;
-    background-image: var(--paper-texture), repeating-linear-gradient(#fff4b0 1px var(--paper-line), blue var(--paper-line-height));
+    background-image: var(--paper-texture),
+      repeating-linear-gradient(#fff4b0 1px var(--paper-line), blue var(--paper-line-height));
   }
 
   .content {
@@ -1260,7 +1278,8 @@ label.MuiFormLabel-root {
   .watermark {
     width: 250px;
     right: 1%;
-    top: 10%;
+    bottom: 10%;
+    opacity: 0.1;
   }
 
   h1.date {
