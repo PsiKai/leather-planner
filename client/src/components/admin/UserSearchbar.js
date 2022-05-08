@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useContext } from "react"
 import AnalyticsContext from "../../context/analytics/AnalyticsContext"
-// import { searchForUser } from "../../utils/api/analytics"
+import SearchIcon from "@material-ui/icons/Search"
 
 const UserSearchbar = ({ searchForUser }) => {
   const [searchTerm, setSearchTerm] = useState("")

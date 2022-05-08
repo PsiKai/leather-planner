@@ -8,6 +8,30 @@
   grid-template-rows: max-content auto;
 }
 
+.searchbar--container {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1rem 0;
+}
+
+.searchbar {
+  background-color: transparent;
+  font-family: var(--serif-font);
+  line-height: 1.5rem;
+  border: none;
+  border-bottom: 1px solid rgba(0 0 0 / 40%);
+  padding-right: 1.5rem;
+}
+
+.searchbar--container svg {
+  position: absolute;
+}
+
+.analytics-content .searchbar::placeholder {
+  font-family: inherit;
+  font-size: inherit;
+}
+
 .user-dashboard {
   width: 100%;
   margin-top: 1rem;
@@ -195,10 +219,6 @@ tr.loading {
   margin: 0 auto;
 }
 
-.user-update-form .user-delete {
-  margin-top: 2rem;
-}
-
 .modal .button-container {
   display: flex;
   justify-content: space-between;
@@ -240,6 +260,12 @@ tr.loading {
   .user-dashboard {
     font-size: 0.75rem;
     height: 325px;
+  }
+
+  .searchbar,
+  .searchbar--container .searchbar:focus {
+    width: 100%;
+    max-width: unset;
   }
 
   .user-dashboard tr {

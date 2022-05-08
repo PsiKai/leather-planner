@@ -100,7 +100,7 @@ const UserUpdate = ({ setUserPopup, currentUser }) => {
             />
             {newUserData.admin ? <CheckBoxOutlinedIcon /> : <CheckBoxOutlineBlankOutlinedIcon />}
           </label>
-          <button className="btn" type="submit">
+          <button className="btn btn-secondary" type="submit">
             Update User
           </button>
           <button
