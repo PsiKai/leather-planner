@@ -4,7 +4,6 @@ const AnalyticsReducer = (state, { type, payload }) => {
       return {
         ...state,
         users: payload.users,
-        latestSnapshot: payload.lastSnapshot,
         totalUsers: payload.totalResults[0]?.count || 0,
         loading: false,
       }

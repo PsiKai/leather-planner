@@ -33,7 +33,7 @@ router.delete("/user/:_id", auth, async (req, res) => {
 })
 
 router.get("/:skip/:limit/:query", async (req, res) => {
-  console.log(req.params)
+  // console.log(req.params)
 
   const nameMatch = new RegExp(`(${req.params.query})`, "i")
   try {
@@ -55,8 +55,9 @@ router.get("/:skip/:limit/:query", async (req, res) => {
         },
       },
     ])
-    const lastSnapshot = await getLatestSnapshot()
-    res.json({ ...usersWithLists[0], lastSnapshot })
+    // const lastSnapshot = await getLatestSnapshot()
+    // res.json({ ...usersWithLists[0], lastSnapshot })
+    res.json({ ...usersWithLists[0] })
   } catch (err) {
     console.error(err.message)
     res.status(500).json({ msg: err.message })
@@ -66,8 +67,30 @@ router.get("/:skip/:limit/:query", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const existingSnapshot = await UserSnapshot.find({ date: new Date().toLocaleDateString() })
-    if (!existingSnapshot.length) {
-      const snapShot = new UserSnapshot({ userData: req.body, date: new Date().toLocaleDateString() })
+    if (!existingSnapshot) {
+      let userData = await User.aggregate([
+        { $sort: { createdAt: 1 } },
+        {
+          $project: {
+            name: 1,
+            logins: 1,
+            lastLogin: 1,
+          },
+        },
+        {
+          $lookup: {
+            from: "lists",
+            localField: "_id",
+            foreignField: "user",
+            as: "totalLists",
+            pipeline: [{ $count: "totalLists" }],
+          },
+        },
+        { $unwind: "$totalLists" },
+        { $addFields: { totaLists: "$totalLists.totalLists" } },
+        { $unset: "totalLists" },
+      ])
+      const snapShot = new UserSnapshot({ userData, date: new Date().toLocaleDateString() })
       await snapShot.save()
       res.status(201).json({ msg: "Snapshot created" })
     } else {

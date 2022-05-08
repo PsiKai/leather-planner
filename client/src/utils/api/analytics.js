@@ -7,8 +7,11 @@ export const getAllUsers = (skip, limit, dispatch, query) => {
     .catch(console.error)
 }
 
-export const createUserSnapshot = userData => {
-  axios.post("/admin/users", userData).catch(console.error)
+export const createUserSnapshot = () => {
+  axios
+    .post("/admin/users")
+    .then(res => console.info(res.data.msg))
+    .catch(console.error)
 }
 
 export const submitUserInfoUpdates = (user, dispatch) => {
