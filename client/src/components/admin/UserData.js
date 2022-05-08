@@ -21,26 +21,27 @@ const UserData = () => {
   const [currentUser, setCurrentUser] = useState()
   const [userPopup, setUserPopup] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
-  const previousSearchTerm = useRef("")
 
   const [page, setPage] = useState(0)
 
   var resultsPerPage = 10
+  const prevSearchTerm = useRef()
 
   const changePages = useCallback(() => {
-    dispatch({ type: "SET_LOADING" })
     let newPage = page
-    if (previousSearchTerm.current !== searchTerm) {
-      previousSearchTerm.current = searchTerm
+    if (prevSearchTerm.current !== searchTerm) {
+      prevSearchTerm.current = searchTerm
       newPage = 0
+      setPage(0)
     }
+    dispatch({ type: "SET_LOADING" })
     getAllUsers(newPage, resultsPerPage, dispatch, searchTerm || ".*")
     setCurrentUser()
-  }, [dispatch, resultsPerPage, searchTerm, page])
+  }, [dispatch, resultsPerPage, page, searchTerm])
 
   // useEffect(() => setPage(0), [searchTerm])
 
-  useEffect(() => changePages(page), [page, changePages])
+  useEffect(() => changePages(page, searchTerm), [page, changePages, searchTerm])
 
   useEffect(() => {
     if (!loading) {

@@ -11,13 +11,6 @@ export const createUserSnapshot = userData => {
   axios.post("/admin/users", userData).catch(console.error)
 }
 
-// export const sumUsers = dispatch => {
-//   axios
-//     .get("/admin/users/total")
-//     .then(res => dispatch({ type: "SET_TOTAL_USERS", payload: res.data.total }))
-//     .catch(console.error)
-// }
-
 export const submitUserInfoUpdates = (user, dispatch) => {
   axios
     .patch("/admin/users/user", user)
@@ -28,23 +21,9 @@ export const submitUserInfoUpdates = (user, dispatch) => {
 export const deleteUser = async (_id, dispatch) => {
   try {
     const res = await axios.delete(`/admin/users/user/${_id}`)
-    // console.log(res)
     dispatch({ type: "REMOVE_DELETED" })
     return res.statusText === "OK"
   } catch (error) {
     console.error(error)
   }
-  // axios
-  //   .delete(`/admin/users/user/${_id}`)
-  //   .then(res => console.log(res))
-  //   .catch(console.error)
 }
-
-// export const searchForUser = (searchTerm, dispatch) => {
-//   axios
-//     .get(`admin/users/search/${searchTerm}`)
-//     .then(res => {
-//       dispatch({ type: "SET_USER_FILTER", payload: res.data })
-//     })
-//     .catch(console.error)
-// }

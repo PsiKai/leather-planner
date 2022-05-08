@@ -9,20 +9,20 @@ const UserSearchbar = ({ searchForUser }) => {
 
   const updateSearch = ({ target: { value } }) => {
     setSearchTerm(value)
-    // value ? searchForUser(value) : console.log("no search term")
   }
 
   useEffect(() => {
-    clearTimeout(debounceTimer?.current)
+    clearTimeout(debounceTimer.current)
     dispatch({ type: "SET_LOADING" })
     debounceTimer.current = setTimeout(() => searchForUser(searchTerm), 1000)
   }, [searchTerm, dispatch, searchForUser])
 
-  useEffect(() => clearTimeout(debounceTimer?.current), [])
+  useEffect(() => clearTimeout(debounceTimer.current), [])
 
   return (
-    <div>
-      <input type="text" placeholder="Search for user" value={searchTerm} onChange={updateSearch} />
+    <div className="searchbar--container">
+      <input className="searchbar" type="text" placeholder="Search for user" value={searchTerm} onChange={updateSearch} />
+      <SearchIcon />
     </div>
   )
 }
