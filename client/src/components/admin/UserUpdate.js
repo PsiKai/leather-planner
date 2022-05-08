@@ -79,15 +79,21 @@ const UserUpdate = ({ setUserPopup, currentUser }) => {
           <h3>Update user info</h3>
           <label>
             New Name:
-            <input type="text" value={newUserData.name || ""} onChange={updateUserInfo} name="name" />
+            <input type="text" value={newUserData.name || ""} onChange={updateUserInfo} name="name" autoComplete="off" />
           </label>
           <label>
             New Email:
-            <input type="email" value={newUserData.email || ""} onChange={updateUserInfo} name="email" />
+            <input type="email" value={newUserData.email || ""} onChange={updateUserInfo} name="email" autoComplete="off" />
           </label>
           <label>
             New Password:
-            <input type="password" value={newUserData.password || ""} onChange={updateUserInfo} name="password" />
+            <input
+              type="password"
+              value={newUserData.password || ""}
+              onChange={updateUserInfo}
+              name="password"
+              autoComplete="off"
+            />
           </label>
           <label className="user-update--admin-label">
             Admin Access:
