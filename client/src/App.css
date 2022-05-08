@@ -1279,6 +1279,7 @@ label.MuiFormLabel-root {
     width: 250px;
     right: 1%;
     bottom: 10%;
+    opacity: 0.1;
   }
 
   h1.date {

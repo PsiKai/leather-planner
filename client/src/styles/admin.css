@@ -6,6 +6,15 @@
 .analytics-content {
   display: grid;
   grid-template-rows: max-content auto;
+  position: relative;
+}
+
+.analytics-content .watermark {
+  z-index: 0;
+}
+
+.user-dashboard--container {
+  z-index: 1;
 }
 
 .searchbar--container {

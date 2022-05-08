@@ -63,7 +63,8 @@ const UserData = () => {
 
   return (
     <div className="analytics-content">
-      <div>
+      <img src="./images/Bald-Eagle.webp" className="watermark" alt="watermark" />
+      <div className="user-dashboard--container">
         <UserSearchbar searchForUser={setSearchTerm} />
         <table className="user-dashboard">
           <thead>
