@@ -94,22 +94,23 @@
 .month__date.today {
   color: var(--paper-color);
   z-index: 1;
-  aspect-ratio: 1 / 1;
+  /* aspect-ratio: 1 / 1;
   display: inline-block;
-  height: 100%;
+  height: 100%; */
 }
 
 .month__date.today::before {
   content: "";
   background-color: var(--leather-color);
-  width: calc(75% + 0.5rem);
-  height: calc(75% + 0.5rem);
+  /* width: calc(75% + 0.5rem);
+  height: calc(75% + 0.5rem); */
   position: absolute;
   z-index: -1;
   border-radius: 50%;
-  top: 0.5rem;
-  left: 0.5rem;
-  transform: translate(-75%, -75%);
+  /* top: 0.5rem;
+  left: 0.5rem; */
+  transform: translate(calc(-50% - 0.5rem), calc(-50% - 0.5rem));
+  padding: 2rem;
 }
 
 .weekday-label {
