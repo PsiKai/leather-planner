@@ -1,11 +1,12 @@
 .monthly-viewer {
   position: relative;
   width: 98%;
+  height: 100%;
 }
 
 .month-navigation {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
 }
 
@@ -33,6 +34,12 @@
   font-size: 1.5rem;
   line-height: 1.5rem;
   font-weight: 400;
+  position: relative;
+  flex-basis: 250px;
+}
+
+.current-month:focus-within {
+  outline: 2px black;
 }
 
 .month__wrapper {
@@ -47,8 +54,9 @@
 }
 
 .monthly-viewer .content {
-  padding-block: 0;
+  padding: 1rem 0 0;
   letter-spacing: unset;
+  height: 100%;
 }
 
 .month__cell {
@@ -138,6 +146,7 @@
   box-shadow: 5px 5px 10px rgb(0, 0, 0, 0.4);
   border-radius: 0.25rem;
   height: 100%;
+  z-index: 1;
 }
 
 .items__preview--list {
@@ -170,6 +179,15 @@
 }
 
 @media (max-width: 500px) {
+  .monthly-viewer .content {
+    padding-top: 0;
+  }
+
+  .current-month {
+    font-size: 1.25rem;
+    line-height: 1.25rem;
+  }
+
   .weekday-label {
     font-size: 0.875rem;
   }

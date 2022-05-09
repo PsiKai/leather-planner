@@ -5,6 +5,10 @@ import AppContext from "../../../context/application/AppContext"
 import { CircularProgress } from "@material-ui/core"
 import ArrowBackIosOutlinedIcon from "@material-ui/icons/ArrowBackIosOutlined"
 import ArrowForwardIosOutlinedIcon from "@material-ui/icons/ArrowForwardIosOutlined"
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown"
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
+import "../../../styles/date-picker.css"
 
 import { getFormattedDate, shortWeekdays, getDaysInMonth, getFirstDay, months } from "../../../utils/dates"
 import playAudio from "../../../utils/playAudio"
@@ -111,15 +115,30 @@ const Month = () => {
     createList(getFormattedDate(newMonth), dispatch)
   }
 
+  const selectMonth = date => {
+    setLoading(true)
+    createList(getFormattedDate(date), dispatch)
+  }
+
   return (
     <div className="monthly-viewer">
       <div className="content">
+        <img src="../../images/Bald-Eagle.webp" className="watermark" alt="watermark" />
         <nav className="month-navigation">
           <button className="month-navigation--button" value="-1" onClick={navigateMonths}>
             <ArrowBackIosOutlinedIcon />
           </button>
-          <h2 className="current-month">
+          <h2 className="current-month month-label">
             {months[current?.month]}, {current?.year}
+            <ArrowDropDownIcon />
+            <DatePicker
+              selected={new Date(list)}
+              onChange={selectMonth}
+              dateFormat="MM/yyyy"
+              showMonthYearPicker
+              showPopperArrow={false}
+              // showFullMonthYearPicker
+            />
           </h2>
           <button className="month-navigation--button" value="1" onClick={navigateMonths}>
             <ArrowForwardIosOutlinedIcon />

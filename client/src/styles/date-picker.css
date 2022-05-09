@@ -5,12 +5,17 @@
   min-width: 90px;
 }
 
+.month-label svg {
+  font-size: 1.5rem;
+}
+
 .date-picker {
   font-family: var(--serif-font);
   font-weight: 700;
 }
 
-.date-label input {
+.date-label input,
+.month-label input {
   width: 100%;
   opacity: 0;
   cursor: pointer;
@@ -22,9 +27,20 @@
   transform: none !important;
 }
 
+.month-label .react-datepicker-popper {
+  width: 100%;
+  z-index: 2;
+}
+
 .react-datepicker-wrapper {
   position: absolute;
   max-width: 90px;
+}
+
+.month-label .react-datepicker-wrapper {
+  max-width: 100%;
+  left: 0;
+  bottom: 0;
 }
 
 .react-datepicker {
@@ -34,6 +50,11 @@
   box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.5);
   transform-origin: top right;
   animation: open-calendar 200ms ease forwards;
+}
+
+.month-label .react-datepicker {
+  transform-origin: top center;
+  width: 100%;
 }
 
 @keyframes open-calendar {
@@ -61,21 +82,27 @@
   font-size: 1rem;
 }
 
-.react-datepicker__day:hover {
+.react-datepicker__day:hover,
+.react-datepicker__month-text:hover {
   background-color: rgba(0, 0, 0, 0.08);
 }
 
-.react-datepicker__day--selected {
+.react-datepicker__day--selected,
+.react-datepicker__month--selected,
+.react-datepicker__month-text--keyboard-selected {
   background-color: var(--brown-color);
   color: #fff7d9;
 }
 
-.react-datepicker__day--selected:hover {
+.react-datepicker__day--selected:hover,
+.month-label .react-datepicker__month--selected:hover,
+.react-datepicker__month-text--keyboard-selected:hover {
   background-color: var(--leather-color);
 }
 
 .react-datepicker__day-name,
-.react-datepicker__current-month {
+.react-datepicker__current-month,
+.react-datepicker__header {
   color: #fff7d9;
 }
 
@@ -126,6 +153,22 @@
   margin: 0.3rem;
 }
 
+.month-label .react-datepicker__month-text {
+  /* width: calc(100% / 4); */
+  aspect-ratio: 3 / 2;
+  display: grid;
+  place-items: center;
+}
+
+.month-label .react-datepicker__month-container {
+  width: 100%;
+}
+
+.react-datepicker__month-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+}
+
 @media (max-width: 500px) {
   .date-label {
     flex-direction: column-reverse;
@@ -148,5 +191,9 @@
 
   .react-datepicker {
     top: 20px;
+  }
+
+  .month-label .react-datepicker {
+    top: 0.5rem;
   }
 }
