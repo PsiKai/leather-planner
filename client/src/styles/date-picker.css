@@ -164,7 +164,6 @@
 }
 
 .month-label .react-datepicker__month-text {
-  /* width: calc(100% / 4); */
   aspect-ratio: 3 / 2;
   display: grid;
   place-items: center;
