@@ -32,6 +32,11 @@
   z-index: 2;
 }
 
+.month-label .react-datepicker-popper > div {
+  transition: transform 200ms ease, opacity 200ms ease;
+  transform-origin: top;
+}
+
 .react-datepicker-wrapper {
   position: absolute;
   max-width: 90px;
@@ -50,18 +55,23 @@
   box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.5);
   transform-origin: top right;
   animation: open-calendar 200ms ease forwards;
+  --open-calendar: scale(0);
+  transition: transform 200ms ease;
 }
 
 .month-label .react-datepicker {
   transform-origin: top center;
   width: 100%;
+  --open-calendar: scaleY(0);
 }
 
 @keyframes open-calendar {
   from {
-    transform: scale(0);
+    opacity: 0;
+    transform: var(--open-calendar);
   }
   to {
+    opacity: 1;
     transform: scale(1);
   }
 }
@@ -191,6 +201,7 @@
 
   .react-datepicker {
     top: 20px;
+    --open-calendar: scaleY(0);
   }
 
   .month-label .react-datepicker {

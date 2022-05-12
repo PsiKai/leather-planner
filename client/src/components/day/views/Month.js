@@ -51,7 +51,6 @@ const Month = () => {
       updateMonth(list, dispatch)
     }
     buildNewMonth()
-    // setLoading(false)
   }, [list, dispatch, monthlyLists, buildNewMonth])
 
   function splitListName(name) {
@@ -137,7 +136,6 @@ const Month = () => {
               dateFormat="MM/yyyy"
               showMonthYearPicker
               showPopperArrow={false}
-              // showFullMonthYearPicker
             />
           </h2>
           <button className="month-navigation--button" value="1" onClick={navigateMonths}>
