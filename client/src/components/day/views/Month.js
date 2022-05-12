@@ -3,8 +3,14 @@ import { CSSTransition } from "react-transition-group"
 import AppContext from "../../../context/application/AppContext"
 
 import { CircularProgress } from "@material-ui/core"
+import ArrowBackIosOutlinedIcon from "@material-ui/icons/ArrowBackIosOutlined"
+import ArrowForwardIosOutlinedIcon from "@material-ui/icons/ArrowForwardIosOutlined"
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown"
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
+import "../../../styles/date-picker.css"
 
-import { getFormattedDate, shortWeekdays, getDaysInMonth, getFirstDay } from "../../../utils/dates"
+import { getFormattedDate, shortWeekdays, getDaysInMonth, getFirstDay, months } from "../../../utils/dates"
 import playAudio from "../../../utils/playAudio"
 import { updateMonth, createList } from "../../../utils/api/list"
 
@@ -36,6 +42,7 @@ const Month = () => {
     }
 
     setDaysInMonth(month)
+    setLoading(false)
   }, [monthlyLists, list])
 
   useLayoutEffect(() => {
@@ -44,7 +51,6 @@ const Month = () => {
       updateMonth(list, dispatch)
     }
     buildNewMonth()
-    setLoading(false)
   }, [list, dispatch, monthlyLists, buildNewMonth])
 
   function splitListName(name) {
@@ -100,9 +106,42 @@ const Month = () => {
       </div>
     ))
 
+  const navigateMonths = e => {
+    setLoading(true)
+    let increment = +e.currentTarget.value
+    let thisMonth = new Date(current.year, current.month, 1)
+    let newMonth = new Date(thisMonth.setMonth(current.month + increment))
+    createList(getFormattedDate(newMonth), dispatch)
+  }
+
+  const selectMonth = date => {
+    setLoading(true)
+    createList(getFormattedDate(date), dispatch)
+  }
+
   return (
     <div className="monthly-viewer">
       <div className="content">
+        <img src="../../images/Bald-Eagle.webp" className="watermark" alt="watermark" />
+        <nav className="month-navigation">
+          <button className="month-navigation--button" value="-1" onClick={navigateMonths}>
+            <ArrowBackIosOutlinedIcon />
+          </button>
+          <h2 className="current-month month-label">
+            {months[current?.month]}, {current?.year}
+            <ArrowDropDownIcon />
+            <DatePicker
+              selected={new Date(list)}
+              onChange={selectMonth}
+              dateFormat="MM/yyyy"
+              showMonthYearPicker
+              showPopperArrow={false}
+            />
+          </h2>
+          <button className="month-navigation--button" value="1" onClick={navigateMonths}>
+            <ArrowForwardIosOutlinedIcon />
+          </button>
+        </nav>
         {daysInMonth.length ? (
           <div className="month__wrapper">
             {mapWeekdays()}
