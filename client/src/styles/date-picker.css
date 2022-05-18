@@ -207,3 +207,11 @@
     top: 0.5rem;
   }
 }
+
+.hidden-button {
+  position: absolute;
+  inset: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}

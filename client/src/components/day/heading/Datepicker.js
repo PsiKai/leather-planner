@@ -26,6 +26,8 @@ const Datepicker = () => {
     }
   }
 
+  const [hiddenButton, setHiddenButton] = useState(false)
+
   return (
     <div className="date-label" aria-label="Select a new date">
       <label htmlFor="date-picker" className="date-picker">
@@ -37,11 +39,20 @@ const Datepicker = () => {
         selected={date}
         onChange={newDay}
         className={"browser-default"}
-        onFocus={e => e.target.blur()}
         aria-label="Select a new date"
         showPopperArrow={false}
         todayButton="Go To Today"
+        onFocus={() => setHiddenButton(true)}
+        onBlur={() => setHiddenButton(false)}
       />
+      {hiddenButton && (
+        <button
+          className="hidden-button"
+          onClick={() => {
+            setHiddenButton(false)
+          }}
+        ></button>
+      )}
     </div>
   )
 }

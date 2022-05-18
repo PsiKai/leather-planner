@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useLayoutEffect, useState } from "react"
+import React, { useCallback, useContext, useEffect, useLayoutEffect, useState, useRef } from "react"
 import { CSSTransition } from "react-transition-group"
 import AppContext from "../../../context/application/AppContext"
 
@@ -119,6 +119,8 @@ const Month = () => {
     createList(getFormattedDate(date), dispatch)
   }
 
+  const [hiddenButton, setHiddenButton] = useState(false)
+
   return (
     <div className="monthly-viewer">
       <div className="content">
@@ -136,7 +138,17 @@ const Month = () => {
               dateFormat="MM/yyyy"
               showMonthYearPicker
               showPopperArrow={false}
+              onFocus={() => setHiddenButton(true)}
+              onBlur={() => setHiddenButton(false)}
             />
+            {hiddenButton && (
+              <button
+                className="hidden-button"
+                onClick={() => {
+                  setHiddenButton(false)
+                }}
+              ></button>
+            )}
           </h2>
           <button className="month-navigation--button" value="1" onClick={navigateMonths}>
             <ArrowForwardIosOutlinedIcon />
