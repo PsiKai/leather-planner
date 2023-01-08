@@ -12,7 +12,7 @@ I built this app as a pet project. I took the requisite to-do app that many budd
 - React.js
 - Node.js
 - JSON Web Token
-- Heroku
+- Render
 
 ## Description
 
@@ -47,4 +47,4 @@ Users can login or register their account (for free!), and will then be redirect
 
 ### Hosting
 
-The current version of this application is live and can be found at https://leather-journal.herokuapp.com
+The current version of this application is live and can be found at https://leather-journal.onrender.com/
