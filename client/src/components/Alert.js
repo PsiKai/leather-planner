@@ -14,17 +14,21 @@ const Alert = () => {
 
   return (
     <TransitionGroup className="alert-wrapper">
-      {alerts.length > 0 &&
-        alerts.map(({ msg, id, status = 200 }) => (
-          <CSSTransition timeout={400} classNames="fadein" key={id}>
-            <div className="alert-border">
-              <div key={id} className="alert">
-                {status.toString().includes(2) ? <CheckCircleIcon /> : <ErrorIcon />}
-                <span>{msg}</span>
-              </div>
-            </div>
-          </CSSTransition>
-        ))}
+      {alerts.length > 0
+        ? alerts.map(({ msg, id, status = 200 }) => {
+            const errorState = !status.toString().includes(2)
+            return (
+              <CSSTransition timeout={400} classNames="fadein" key={id}>
+                <div className="alert-border">
+                  <div key={id} className="alert">
+                    {errorState ? <ErrorIcon /> : <CheckCircleIcon />}
+                    <span className={errorState ? "error" : ""}>{msg}</span>
+                  </div>
+                </div>
+              </CSSTransition>
+            )
+          })
+        : null}
     </TransitionGroup>
   )
 }

@@ -36,6 +36,10 @@
   overflow: hidden;
 }
 
+.alert span.error {
+  white-space: pre-line;
+}
+
 .fadein-enter {
   transform: scaleY(0);
   transform-origin: bottom;

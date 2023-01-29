@@ -1,14 +1,13 @@
-import React, { useContext, useState, useRef } from "react"
+import React, { useContext, useState } from "react"
 import AuthContext from "../../context/authentication/AuthContext"
 import { setAlert } from "../../utils/alert"
 import { login } from "../../utils/api/user"
+import Modal from "../Modal"
+import PasswordInput from "../PasswordInput"
 
-import VisibilityIcon from "@material-ui/icons/Visibility"
-import VisibilityOffIcon from "@material-ui/icons/VisibilityOff"
-
-const RegisterModal = ({ openRegister }) => {
+const RegisterModal = props => {
+  const { onDismiss } = props
   const { dispatch } = useContext(AuthContext)
-  // const {register, setAlert} = authContext;
 
   const [user, setUser] = useState({
     name: "",
@@ -18,95 +17,80 @@ const RegisterModal = ({ openRegister }) => {
   })
   const { email, password, name, passwordTwo } = user
 
-  const [showPassword, setShowPassword] = useState(false)
-  const passwordInput = useRef()
-  const [showPasswordTwo, setShowPasswordTwo] = useState(false)
-  const passwordInputTwo = useRef()
+  const [loading, setLoading] = useState(false)
 
   const onChange = e => setUser({ ...user, [e.target.name]: e.target.value })
 
-  const validationType = msg => setAlert({ status: 400, msg }, dispatch)
+  const popValidationToast = msg => setAlert({ status: 400, msg }, dispatch)
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault()
-    let validated = true
-    if (name.length === 0) {
-      validationType("Name is required")
-      validated = false
-    }
+    let errors = []
+    if (name.length === 0) errors.push("Name is required")
     if (email.length === 0 || !email.includes("@")) {
-      validationType("Valid email is required")
-      validated = false
+      errors.push("Valid email is required")
     }
-    if (password.length < 6) {
-      validationType("Password must be 6 or more characters")
-      validated = false
+    if (password.length < 6) errors.push("Password must be 6 or more characters")
+    if (password !== passwordTwo) errors.push("Passwords must match")
+    if (errors.length) {
+      popValidationToast(errors.join("\r\n"))
+      return
     }
-    if (password !== passwordTwo) {
-      validationType("Passwords must match")
-      validated = false
-    }
-    if (validated) {
-      login({ name, email, password }, dispatch, "register")
+
+    setLoading(true)
+    const registerSuccess = await login({ name, email, password }, dispatch, "register")
+    if (registerSuccess) {
       setUser({
         name: "",
         email: "",
         password: "",
         passwordTwo: "",
       })
-      openRegister(false)
+      onDismiss()
     }
-  }
-
-  const closeModal = e => {
-    console.log(e.target.className)
-    if (e.target.classList.contains("modal-backdrop")) {
-      openRegister(false)
-    }
-  }
-
-  const revealPassword = type => {
-    setShowPassword(!showPassword)
-    passwordInput.current.type = type
-  }
-
-  const revealPasswordTwo = type => {
-    setShowPasswordTwo(!showPasswordTwo)
-    passwordInputTwo.current.type = type
+    setLoading(false)
   }
 
   return (
-    <div className="modal-backdrop" onClick={closeModal}>
-      <div id="registerModal" className="modal">
-        <form onSubmit={onSubmit}>
-          <p>Name</p>
-          <input type="text" name="name" value={name} onChange={onChange} autoComplete="off" />
-          <p>Email</p>
-          <input type="email" name="email" value={email} onChange={onChange} autoComplete="off" />
-          <p>Password</p>
-          <div className="password-input">
-            <input type="password" name="password" value={password} onChange={onChange} autoComplete="off" ref={passwordInput} />
-            {showPassword ? (
-              <VisibilityIcon onClick={() => revealPassword("password")} />
-            ) : (
-              <VisibilityOffIcon onClick={() => revealPassword("text")} />
-            )}
-          </div>
-          <p>Confirm Password</p>
-          <div className="password-input">
-            <input type="password" name="passwordTwo" value={passwordTwo} onChange={onChange} autoComplete="off" ref={passwordInputTwo} />
-            {showPasswordTwo ? (
-              <VisibilityIcon onClick={() => revealPasswordTwo("password")} />
-            ) : (
-              <VisibilityOffIcon onClick={() => revealPasswordTwo("text")} />
-            )}
-          </div>
-          <button type="submit" className="btn">
-            Register
-          </button>
-        </form>
-      </div>
-    </div>
+    <Modal {...props}>
+      <h2 className="modal-title">Register your account</h2>
+      <form onSubmit={onSubmit}>
+        <label htmlFor="name-register">
+          <p>Name:</p>
+        </label>
+        <input
+          id="name-register"
+          type="text"
+          name="name"
+          value={name}
+          onChange={onChange}
+          autoComplete="off"
+          autoFocus
+        />
+        <label htmlFor="email-register">
+          <p>Email:</p>
+        </label>
+        <input
+          id="email-register"
+          type="email"
+          name="email"
+          value={email}
+          onChange={onChange}
+          autoComplete="off"
+        />
+        <PasswordInput passwordValue={password} onChange={onChange} />
+        <PasswordInput
+          passwordValue={passwordTwo}
+          onChange={onChange}
+          id="confirm-password"
+          label="Confirm Password"
+          name="passwordTwo"
+        />
+        <button type="submit" className="btn modal-action" disabled={loading}>
+          {loading ? "Registering..." : "Register"}
+        </button>
+      </form>
+    </Modal>
   )
 }
 

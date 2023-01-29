@@ -40,21 +40,21 @@ export const updateUser = (payload, dispatch) => {
     })
 }
 
-export const login = (formData, dispatch, route) => {
-  axios
-    .post(`/user/${route}`, formData)
-    .then(res => {
-      setAuthToken(res.data.token)
-      dispatch({ type: "LOGIN_SUCCESS", payload: res.data })
-    })
-    .catch(err => {
-      const {
-        data: { msg },
-        status,
-      } = err.response
-      setAlert({ msg, status }, dispatch)
-      dispatch({ type: "LOG_OUT" })
-    })
+export const login = async (formData, dispatch, route) => {
+  try {
+    const res = await axios.post(`/user/${route}`, formData)
+    setAuthToken(res.data.token)
+    dispatch({ type: "LOGIN_SUCCESS", payload: res.data })
+    return true
+  } catch (error) {
+    const {
+      data: { msg },
+      status,
+    } = error.response
+    setAlert({ msg, status }, dispatch)
+    dispatch({ type: "LOG_OUT" })
+    return false
+  }
 }
 
 export const updatePassword = (payload, dispatch) => {
