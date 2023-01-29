@@ -66,6 +66,7 @@ const RegisterModal = props => {
           onChange={onChange}
           autoComplete="off"
           autoFocus
+          spellCheck="false"
         />
         <label htmlFor="email-register">
           <p>Email:</p>
