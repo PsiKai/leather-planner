@@ -1,78 +1,58 @@
-import React, { useContext, useState, useRef } from "react"
+import React, { useContext, useState } from "react"
 import AuthContext from "../../context/authentication/AuthContext"
 import { setAlert } from "../../utils/alert"
 import { login } from "../../utils/api/user"
+import Modal from "../Modal"
+import PasswordInput from "../PasswordInput"
 
-import VisibilityIcon from "@material-ui/icons/Visibility"
-import VisibilityOffIcon from "@material-ui/icons/VisibilityOff"
-
-const LoginModal = ({ openLogin }) => {
+const LoginModal = props => {
+  const { onDismiss } = props
   const { dispatch } = useContext(AuthContext)
 
   const [user, setUser] = useState({ email: "", password: "" })
   const { email, password } = user
 
-  const [showPassword, setShowPassword] = useState(false)
-  const passwordInput = useRef()
+  const [loading, setLoading] = useState(false)
 
   const onChange = e => setUser({ ...user, [e.target.name]: e.target.value })
 
-  const validationType = msg => setAlert({ status: 400, msg }, dispatch)
+  const popValidationToast = msg => setAlert({ status: 400, msg }, dispatch)
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault()
-    let validated = true
+    let errors = []
     if (email.length === 0 || !email.includes("@")) {
-      validationType("Valid email is required")
-      validated = false
+      errors.push("Valid email is required")
     }
-    if (password.length === 0) {
-      validationType("Please enter your password")
-      validated = false
+    if (password.length === 0) errors.push("Please enter your password")
+    if (errors.length) {
+      popValidationToast(errors.join("\r\n"))
+      return
     }
-    if (validated) {
-      login({ email, password }, dispatch, "login")
+
+    setLoading(true)
+    const loginSuccess = await login({ email, password }, dispatch, "login")
+    if (loginSuccess) {
       setUser({ email: "", password: "" })
-      openLogin(false)
-      setShowPassword(false)
-      passwordInput.current.type = "password"
+      onDismiss()
     }
-  }
-
-  const closeModal = e => {
-    if (e.target.classList.contains("modal-backdrop")) {
-      openLogin(false)
-      setShowPassword(false)
-      passwordInput.current.type = "password"
-    }
-  }
-
-  const revealPassword = type => {
-    setShowPassword(!showPassword)
-    passwordInput.current.type = type
+    setLoading(false)
   }
 
   return (
-    <div className="modal-backdrop" onClick={closeModal}>
-      <div id="loginModal" className="modal">
-        <form onSubmit={onSubmit}>
-          <p>Email</p>
-          <input type="email" name="email" value={email} onChange={onChange} />
-          <p>Password</p>
-          <div className="password-input">
-            <input type="password" name="password" value={password} onChange={onChange} ref={passwordInput} />
-            {showPassword ? (
-              <VisibilityIcon onClick={() => revealPassword("password")} />
-            ) : (
-              <VisibilityOffIcon onClick={() => revealPassword("text")} />
-            )}
-          </div>
-          <button type="submit" className="btn">
-            Login
-          </button>
-        </form>
-      </div>
-    </div>
+    <Modal {...props}>
+      <h2 className="modal-title">Login to your account</h2>
+      <form onSubmit={onSubmit}>
+        <label htmlFor="email-login">
+          <p>Email:</p>
+        </label>
+        <input type="email" name="email" id="email-login" value={email} onChange={onChange} autoFocus />
+        <PasswordInput onChange={onChange} passwordValue={password} label={"Password"} />
+        <button type="submit" className="btn modal-action" disabled={loading}>
+          {loading ? "Logging in..." : "Login"}
+        </button>
+      </form>
+    </Modal>
   )
 }
 
