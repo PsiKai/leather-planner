@@ -69,12 +69,18 @@ const List = ({ list, id, moved, style, item, notes }) => {
   ) : (
     <li onClick={openMenu} className={moved ? "no-bullet-point" : ""}>
       <div className="list-wrapper">
-        {moved && itemStyle ? <TurnedInIcon style={{ ...flagStyle, opacity: "0.6" }} /> : moved && <TurnedInNotIcon style={flagStyle} />}
+        {moved && itemStyle ? (
+          <TurnedInIcon style={{ ...flagStyle, opacity: "0.6" }} />
+        ) : (
+          moved && <TurnedInNotIcon style={flagStyle} />
+        )}
 
         <span ref={listItemText} className={style}>
           {item}
         </span>
-        {notes?.length ? <NotesIcon /> : <MoreVertIcon />}
+        <button className="expand-item" aria-label="expand item">
+          {notes?.length ? <NotesIcon /> : <MoreVertIcon />}
+        </button>
         <CSSTransition in={menu} timeout={300} classNames="revealnotes" unmountOnExit>
           <Notes
             notes={notes}

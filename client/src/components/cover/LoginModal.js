@@ -47,7 +47,7 @@ const LoginModal = props => {
           <p>Email:</p>
         </label>
         <input type="email" name="email" id="email-login" value={email} onChange={onChange} autoFocus />
-        <PasswordInput onChange={onChange} passwordValue={password} />
+        <PasswordInput onChange={onChange} passwordValue={password} label={"Password"} />
         <button type="submit" className="btn modal-action" disabled={loading}>
           {loading ? "Logging in..." : "Login"}
         </button>

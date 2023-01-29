@@ -57,23 +57,23 @@ export const login = async (formData, dispatch, route) => {
   }
 }
 
-export const updatePassword = (payload, dispatch) => {
-  axios
-    .patch("/user/password", payload)
-    .then(res => {
-      const {
-        data: { msg },
-        status,
-      } = res
-      setAlert({ status, msg }, dispatch)
-    })
-    .catch(error => {
-      const {
-        status,
-        data: { msg },
-      } = error.response
-      setAlert({ status, msg }, dispatch)
-    })
+export const updatePassword = async (payload, dispatch) => {
+  try {
+    const res = await axios.patch("/user/password", payload)
+    const {
+      data: { msg },
+      status,
+    } = res
+    setAlert({ status, msg }, dispatch)
+    return true
+  } catch (error) {
+    const {
+      status,
+      data: { msg },
+    } = error.response
+    setAlert({ status, msg }, dispatch)
+    return false
+  }
 }
 
 export const userIsAdmin = async () => {

@@ -79,7 +79,7 @@ const RegisterModal = props => {
           onChange={onChange}
           autoComplete="off"
         />
-        <PasswordInput passwordValue={password} onChange={onChange} />
+        <PasswordInput passwordValue={password} onChange={onChange} label="Password" />
         <PasswordInput
           passwordValue={passwordTwo}
           onChange={onChange}

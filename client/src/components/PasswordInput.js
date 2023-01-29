@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import VisibilityIcon from "@material-ui/icons/Visibility"
 import VisibilityOffIcon from "@material-ui/icons/VisibilityOff"
 
-const PasswordInput = ({ onChange, passwordValue, id = null, label, name }) => {
+const PasswordInput = ({ onChange, passwordValue, id = null, label, name, ...props }) => {
   const [showPassword, setShowPassword] = useState(false)
 
   const revealPassword = () => {
@@ -12,11 +12,14 @@ const PasswordInput = ({ onChange, passwordValue, id = null, label, name }) => {
 
   return (
     <>
-      <label htmlFor={id || "password-login"}>
-        <p>{label || "Password"}:</p>
-      </label>
+      {label ? (
+        <label htmlFor={id || "password-login"}>
+          <p>{label}:</p>
+        </label>
+      ) : null}
       <div className="password-input">
         <input
+          {...props}
           id={id || "password-login"}
           type={showPassword ? "text" : "password"}
           name={name || "password"}

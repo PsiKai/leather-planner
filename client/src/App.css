@@ -112,6 +112,7 @@ li {
 .date {
   font-size: 2.7rem;
   margin: 0;
+  margin-bottom: -0.1em;
   font-family: var(--serif-font);
   font-weight: 700;
   line-height: 110%;
@@ -333,7 +334,7 @@ button.password--submit {
 .list-wrapper {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .list-wrapper span {
@@ -342,15 +343,21 @@ button.password--submit {
   word-break: break-word;
 }
 
-.list-wrapper > span + svg {
-  position: relative;
-  top: 4px;
-  font-size: 1.875rem;
-  transition: opacity 200ms ease;
+.list-wrapper .expand-item {
+  background: none;
+  border: none;
+  cursor: pointer;
   opacity: 0;
+  padding: 0.125rem 0.25rem;
+  display: flex;
+  transition: opacity 200ms ease;
 }
 
-.list > li:hover > .list-wrapper > span + svg {
+.list-wrapper .expand-item:focus {
+  outline: auto;
+}
+
+li:where(:hover, :focus-within) .list-wrapper .expand-item {
   opacity: 0.5;
 }
 
@@ -987,15 +994,6 @@ label.MuiFormLabel-root {
   opacity: 0;
   transition: all 200ms ease-out;
 }
-
-/* .modal-content-exit-done {
-  opacity: 0;
-}
-
-.modal-content-exit-done > .modal {
-  top: 30%;
-  transform: scale(0.8) translateY(-40%);
-} */
 
 .modal input:not([type="submit"]),
 .modal input:focus {
