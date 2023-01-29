@@ -12,9 +12,10 @@ const Datepicker = () => {
     state: { list },
     dispatch,
   } = useContext(AppContext)
-  const [date, setDate] = useState(new Date(list))
 
-  useEffect(() => setDate(new Date(list)), [list])
+  const [date, setDate] = useState(new Date(list.replace(/-/g, " ")))
+
+  useEffect(() => setDate(new Date(list.replace(/-/g, " "))), [list])
 
   const newDay = async e => {
     setDate(e)
@@ -22,7 +23,7 @@ const Datepicker = () => {
     try {
       createList(selectedDate, dispatch)
     } catch (error) {
-      setDate(new Date(list))
+      setDate(new Date(list.replace(/-/g, " ")))
     }
   }
 

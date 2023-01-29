@@ -29,7 +29,7 @@ const Month = () => {
   useEffect(() => playAudio("page"), [])
 
   const buildNewMonth = useCallback(() => {
-    const date = new Date(list)
+    const date = new Date(list.replace(/-/g, " "))
     const days = getDaysInMonth(date.getFullYear(), date.getMonth() + 1)
     setCurrent({ month: date.getMonth(), year: date.getFullYear(), day: date.getDate() })
     let month = []
@@ -131,7 +131,7 @@ const Month = () => {
             {months[current?.month]}, {current?.year}
             <ArrowDropDownIcon />
             <DatePicker
-              selected={new Date(list)}
+              selected={new Date(list.replace(/-/g, " "))}
               onChange={selectMonth}
               dateFormat="MM/yyyy"
               showMonthYearPicker
@@ -146,7 +146,12 @@ const Month = () => {
           <div className="month__wrapper">
             {mapWeekdays()}
             {mapMonth()}
-            <CSSTransition in={!!items.length && !loading} timeout={200} classNames="modal-content" unmountOnExit>
+            <CSSTransition
+              in={!!items.length && !loading}
+              timeout={200}
+              classNames="modal-content"
+              unmountOnExit
+            >
               <div className="month__cell--preview">
                 <ul className="items__preview--list">
                   <NavLink to="/planner/day">

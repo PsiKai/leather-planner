@@ -9,7 +9,7 @@ const Day = () => {
 
   return (
     <h1 className="date">
-      {getWeekday(list)} <span>{getPrintedDate(list)}</span>
+      {getWeekday(list.replace(/-/g, " "))} <span>{getPrintedDate(list.replace(/-/g, " "))}</span>
     </h1>
   )
 }
