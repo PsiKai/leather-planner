@@ -41,7 +41,7 @@ const Datepicker = () => {
         onFocus={e => e.target.blur()}
         aria-label="Select a new date"
         showPopperArrow={false}
-        todayButton="Go To Today"
+        todayButton={<button>Go To Today</button>}
       />
     </div>
   )
