@@ -12,28 +12,53 @@ const Menu = ({ cross, setEdit, carryOver, deleteItem, style }) => {
       <ul className="menu-action-list">
         <li>
           {style === "strikethrough" ? (
-            <button type="button" className="menu-action-button" onClick={cross}>
-              <UndoIcon aria-label="Mark as incomplete" />
+            <button
+              aria-label="Mark as incomplete"
+              type="button"
+              className="menu-action-button"
+              onClick={cross}
+            >
+              <UndoIcon />
             </button>
           ) : (
-            <button type="button" className="menu-action-button" onClick={cross}>
-              <StrikethroughSIcon aria-label="Mark as complete" />
+            <button
+              aria-label="Mark as complete"
+              type="button"
+              className="menu-action-button"
+              onClick={cross}
+            >
+              <StrikethroughSIcon />
             </button>
           )}
         </li>
         <li>
-          <button type="button" className="menu-action-button" onClick={() => setEdit(true)}>
-            <EditIcon aria-label="Edit list item" />
+          <button
+            aria-label="Edit list item"
+            type="button"
+            className="menu-action-button"
+            onClick={() => setEdit(true)}
+          >
+            <EditIcon />
           </button>
         </li>
         <li>
-          <button type="button" className="menu-action-button" onClick={carryOver}>
-            <ForwardIcon aria-label="Move list item to next day" />
+          <button
+            aria-label="Move list item to next day"
+            type="button"
+            className="menu-action-button"
+            onClick={carryOver}
+          >
+            <ForwardIcon />
           </button>
         </li>
         <li>
-          <button type="button" className="menu-action-button" onClick={deleteItem}>
-            <DeleteIcon aria-label="Delete list item" />
+          <button
+            aria-label="Delete list item"
+            type="button"
+            className="menu-action-button"
+            onClick={deleteItem}
+          >
+            <DeleteIcon />
           </button>
         </li>
       </ul>

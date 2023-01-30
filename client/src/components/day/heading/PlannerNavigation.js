@@ -27,7 +27,11 @@ const PlannerNavigation = props => {
 
   return (
     <div className="planner-toggle__wrapper">
-      <NavLink activeClassName="planner-toggle" to={`/planner/${navSetting?.path}`}>
+      <NavLink
+        activeClassName="planner-toggle"
+        to={`/planner/${navSetting?.path}`}
+        aria-label="to explore entire month."
+      >
         {navSetting?.component}
       </NavLink>
     </div>

@@ -122,9 +122,14 @@ const Month = () => {
   return (
     <div className="monthly-viewer">
       <div className="content">
-        <img src="../../images/Bald-Eagle.webp" className="watermark" alt="watermark" />
+        <img src="../../images/Bald-Eagle.webp" className="watermark" alt="watermark" aria-hidden="true" />
         <nav className="month-navigation">
-          <button className="month-navigation--button" value="-1" onClick={navigateMonths}>
+          <button
+            className="month-navigation--button"
+            value="-1"
+            onClick={navigateMonths}
+            aria-label="go to previous month"
+          >
             <ArrowBackIosOutlinedIcon />
           </button>
           <h2 className="current-month month-label">
@@ -138,7 +143,12 @@ const Month = () => {
               showPopperArrow={false}
             />
           </h2>
-          <button className="month-navigation--button" value="1" onClick={navigateMonths}>
+          <button
+            className="month-navigation--button"
+            value="1"
+            onClick={navigateMonths}
+            aria-label="go to next month"
+          >
             <ArrowForwardIosOutlinedIcon />
           </button>
         </nav>
@@ -152,7 +162,7 @@ const Month = () => {
               classNames="modal-content"
               unmountOnExit
             >
-              <div className="month__cell--preview">
+              <dialog open className="month__cell--preview">
                 <ul className="items__preview--list">
                   <NavLink to="/planner/day">
                     <h3>{list}</h3>
@@ -163,7 +173,7 @@ const Month = () => {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </dialog>
             </CSSTransition>
           </div>
         ) : (

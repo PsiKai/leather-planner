@@ -4,8 +4,6 @@ import AuthContext from "../../../context/authentication/AuthContext"
 import AppContext from "../../../context/application/AppContext"
 import PersonOutlineRoundedIcon from "@material-ui/icons/PersonOutlineRounded"
 import ExitToAppIcon from "@material-ui/icons/ExitToApp"
-import Button from "@material-ui/core/Button"
-import FormLabel from "@material-ui/core/FormLabel"
 import { createList } from "../../../utils/api/list"
 import { getFormattedDate } from "../../../utils/dates"
 
@@ -23,16 +21,16 @@ const User = () => {
 
   return (
     <React.Fragment>
-      <FormLabel className="user-nav">
-        <Link to="/profile">
+      <label className="user-nav">
+        <Link to="/profile" aria-label="Got to your profile settings">
           <span>{user?.name}</span>
           <PersonOutlineRoundedIcon />
         </Link>
-      </FormLabel>
-      <Button size="small" onClick={logoff}>
+      </label>
+      <button size="small" onClick={logoff} className="logout-button">
         Logout
         <ExitToAppIcon></ExitToAppIcon>
-      </Button>
+      </button>
     </React.Fragment>
   )
 }

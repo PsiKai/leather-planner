@@ -30,12 +30,12 @@ const Planner = props => {
         <div className="grid-div">
           <div className="page">
             <div className={`heading ${props.location.pathname.split("/")[2]}`}>
+              <Day />
               <div className="widget">
                 <Datepicker />
                 <User />
                 <Weather />
               </div>
-              <Day />
               <PlannerNavigation {...props} />
             </div>
             <div className="pattern__wrapper" style={{ overflowY: "auto", overflowX: "visible" }}>
@@ -44,8 +44,18 @@ const Planner = props => {
             </div>
           </div>
         </div>
-        <img className="binder-rings" src="../images/binder-rings.webp" alt="binder rings" />
-        <img className="binder-rings-two" src="../images/binder-rings.webp" alt="binder rings" />
+        <img
+          className="binder-rings"
+          src="../images/binder-rings.webp"
+          alt="binder rings"
+          aria-hidden="true"
+        />
+        <img
+          className="binder-rings-two"
+          src="../images/binder-rings.webp"
+          alt="binder rings"
+          aria-hidden="true"
+        />
         <Alert />
       </div>
     </Fragment>

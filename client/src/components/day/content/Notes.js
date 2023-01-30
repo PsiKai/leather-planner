@@ -40,10 +40,10 @@ const Notes = ({ notes, openMenu, list, id, ...rest }) => {
               type="text"
               onChange={e => setNewNote(e.target.value)}
               value={newNote}
-              placeholder="Add a note ..."
+              placeholder="Write a note ..."
               autoFocus
             />
-            <Fab type="submit" className="add-note--button">
+            <Fab type="submit" className="add-note--button" aria-label="add note">
               <AddIcon />
             </Fab>
           </form>

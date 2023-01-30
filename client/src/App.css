@@ -80,7 +80,7 @@ li {
   background: var(--paper-color) var(--paper-texture);
   position: relative;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
   height: 115px;
@@ -92,7 +92,7 @@ li {
 
 .heading.month {
   height: auto;
-  flex-direction: column;
+  flex-direction: column-reverse;
   gap: 0.5rem;
   z-index: 2;
   background: var(--paper-texture), linear-gradient(var(--paper-color) calc(100% - 1px), blue);
@@ -163,10 +163,15 @@ li {
   background-color: rgba(0, 0, 0, 0.04);
 }
 
+.date-label:focus-within {
+  outline: auto;
+}
+
 .user-nav a {
   height: 24px;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
 }
 
 .user-nav a span {
@@ -738,6 +743,16 @@ textarea {
   margin: 4px;
 }
 
+.change-city-button {
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.125rem 0.25rem;
+  border-radius: 2px;
+}
+
 .get-weather {
   background: inherit;
   padding: 0;
@@ -791,6 +806,7 @@ textarea {
   background: inherit;
   border: none;
   cursor: pointer;
+  display: flex;
 }
 
 .weather-input__wrapper button:hover {
@@ -799,6 +815,11 @@ textarea {
 
 .weather-input__wrapper button:focus {
   background: inherit;
+}
+
+/* OWFont override */
+.owf-2x {
+  font-size: 24px;
 }
 
 .widget {
@@ -811,6 +832,13 @@ textarea {
 
 .widget > * {
   height: 24px;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.widget > *:focus,
+.widget > *:focus-within {
+  outline-offset: 2px;
 }
 
 .temp {
@@ -821,29 +849,32 @@ textarea {
   line-height: 110%;
 }
 
-label.MuiFormLabel-root {
+/* label.MuiFormLabel-root, */
+label.user-nav {
   font-family: var(--serif-font);
   font-weight: 700;
   color: black;
 }
 
-.widget button.MuiButtonBase-root {
+/* .widget button.MuiButtonBase-root, */
+.widget button.logout-button {
   padding: 0;
   font-family: var(--serif-font);
   font-weight: 700;
-}
-
-/* Logout button */
-.widget .MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textSizeSmall.MuiButton-sizeSmall {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 0 2px;
   font-size: 1rem;
   line-height: 1.15;
   text-transform: none;
   letter-spacing: initial;
 }
 
-.MuiButton-label {
+/* .MuiButton-label {
   gap: 0 2px;
-}
+} */
 
 .planner-toggle__wrapper {
   position: absolute;
@@ -1207,7 +1238,7 @@ label.MuiFormLabel-root {
 
   .heading {
     padding-right: 0;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: flex-start;
   }
 
@@ -1251,10 +1282,6 @@ label.MuiFormLabel-root {
   .widget svg {
     font-size: 24px;
     color: var(--faded);
-  }
-
-  .owf-2x {
-    font-size: 24px;
   }
 
   .weather-input__wrapper,
@@ -1315,14 +1342,16 @@ label.MuiFormLabel-root {
   }
 
   .user-nav a,
-  button.MuiButtonBase-root span {
+  /* button.MuiButtonBase-root span, */
+  .widget > button.logout-button {
     flex-direction: column-reverse;
     text-align: center;
     line-height: 1;
     font-size: 0.875rem;
   }
 
-  .widget > button.MuiButtonBase-root {
+  /* .widget > button.MuiButtonBase-root, */
+  .widget > button.logout-button {
     color: inherit;
   }
 

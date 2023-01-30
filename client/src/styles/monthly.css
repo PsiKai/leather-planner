@@ -141,6 +141,9 @@
   border-radius: 0.25rem;
   height: 100%;
   z-index: 1;
+  position: relative;
+  width: 100%;
+  border: none;
 }
 
 .items__preview--list {
