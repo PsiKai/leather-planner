@@ -1,15 +1,24 @@
-import React, { useState, useContext } from "react"
+import React, { useState, useContext, useEffect } from "react"
 import AppContext from "../../../context/application/AppContext"
 import { notesApi } from "../../../utils/api/note"
 import Note from "./Note"
 import Menu from "./Menu"
 import AddIcon from "@material-ui/icons/Add"
 import Fab from "@material-ui/core/Fab"
+import CloseOutlined from "@material-ui/icons/CloseOutlined"
 
 const Notes = ({ notes, openMenu, list, id, ...rest }) => {
   const { dispatch } = useContext(AppContext)
 
   const [newNote, setNewNote] = useState("")
+
+  useEffect(() => {
+    const handleKeyboardDismiss = e => {
+      if (e.key === "Escape") openMenu(e)
+    }
+    window.addEventListener("keydown", handleKeyboardDismiss)
+    return () => window.removeEventListener("keydown", handleKeyboardDismiss)
+  }, [openMenu])
 
   const submitNote = e => {
     e.preventDefault()
@@ -27,7 +36,13 @@ const Notes = ({ notes, openMenu, list, id, ...rest }) => {
         <div className="notes-container">
           <Menu {...rest} />
           <form onSubmit={submitNote}>
-            <input type="text" onChange={e => setNewNote(e.target.value)} value={newNote} placeholder="Add a note ..." />
+            <input
+              type="text"
+              onChange={e => setNewNote(e.target.value)}
+              value={newNote}
+              placeholder="Add a note ..."
+              autoFocus
+            />
             <Fab type="submit" className="add-note--button">
               <AddIcon />
             </Fab>
@@ -42,6 +57,9 @@ const Notes = ({ notes, openMenu, list, id, ...rest }) => {
             )}
           </ul>
         </div>
+        <button className="modal-close-button" onClick={e => openMenu(e)} aria-label="close menu">
+          <CloseOutlined />
+        </button>
       </div>
       <div className="menu-backdrop" onClick={e => openMenu(e)}></div>
     </>

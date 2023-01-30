@@ -9,26 +9,34 @@ import DeleteIcon from "@material-ui/icons/Delete"
 const Menu = ({ cross, setEdit, carryOver, deleteItem, style }) => {
   return (
     <div className="menu">
-      <div>
-        {style === "strikethrough" ? (
-          <button type="button" className="menu-action-button" onClick={cross}>
-            <UndoIcon aria-label="Mark as incomplete" />
+      <ul className="menu-action-list">
+        <li>
+          {style === "strikethrough" ? (
+            <button type="button" className="menu-action-button" onClick={cross}>
+              <UndoIcon aria-label="Mark as incomplete" />
+            </button>
+          ) : (
+            <button type="button" className="menu-action-button" onClick={cross}>
+              <StrikethroughSIcon aria-label="Mark as complete" />
+            </button>
+          )}
+        </li>
+        <li>
+          <button type="button" className="menu-action-button" onClick={() => setEdit(true)}>
+            <EditIcon aria-label="Edit list item" />
           </button>
-        ) : (
-          <button type="button" className="menu-action-button" onClick={cross}>
-            <StrikethroughSIcon aria-label="Mark as complete" />
+        </li>
+        <li>
+          <button type="button" className="menu-action-button" onClick={carryOver}>
+            <ForwardIcon aria-label="Move list item to next day" />
           </button>
-        )}
-        <button type="button" className="menu-action-button" onClick={() => setEdit(true)}>
-          <EditIcon aria-label="Edit list item" />
-        </button>
-        <button type="button" className="menu-action-button" onClick={carryOver}>
-          <ForwardIcon aria-label="Move list item to next day" />
-        </button>
-        <button type="button" className="menu-action-button" onClick={deleteItem}>
-          <DeleteIcon aria-label="Delete list item" />
-        </button>
-      </div>
+        </li>
+        <li>
+          <button type="button" className="menu-action-button" onClick={deleteItem}>
+            <DeleteIcon aria-label="Delete list item" />
+          </button>
+        </li>
+      </ul>
     </div>
   )
 }
