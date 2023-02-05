@@ -12,11 +12,13 @@ const PlannerNavigation = props => {
         return {
           component: <CalendarViewDayOutlinedIcon />,
           path: "month",
+          label: "to entire month",
         }
       case "/planner/month":
         return {
           component: <ViewDayOutlinedIcon />,
           path: "day",
+          label: "to selected date",
         }
       default:
         return
@@ -26,15 +28,14 @@ const PlannerNavigation = props => {
   useEffect(() => setNavSetting(renderNavIcons()), [props.location, renderNavIcons])
 
   return (
-    <div className="planner-toggle__wrapper">
-      <NavLink
-        activeClassName="planner-toggle"
-        to={`/planner/${navSetting?.path}`}
-        aria-label="to explore entire month."
-      >
-        {navSetting?.component}
-      </NavLink>
-    </div>
+    <NavLink
+      activeClassName="planner-toggle"
+      className="planner-toggle__wrapper"
+      to={`/planner/${navSetting?.path}`}
+      aria-label={navSetting?.label}
+    >
+      {navSetting?.component}
+    </NavLink>
   )
 }
 

@@ -163,10 +163,6 @@ li {
   background-color: rgba(0, 0, 0, 0.04);
 }
 
-.date-label:focus-within {
-  outline: auto;
-}
-
 .user-nav a {
   height: 24px;
   display: flex;
@@ -648,13 +644,14 @@ input:-webkit-autofill:active {
 
 input[type="text"].new-item,
 .password-reset input {
-  width: 85%;
+  width: 100%;
   height: 29px;
   font-size: 20px;
   max-width: 75%;
   background-color: transparent;
   font-family: var(--script-font);
   text-indent: 4px;
+  text-overflow: ellipsis;
   margin: 0;
   padding: 0;
   border: none;
@@ -698,18 +695,23 @@ textarea {
   background-color: transparent;
 }
 
-.button button {
+.list-item-form {
+  display: flex;
+  gap: 1rem;
+}
+
+.list-item-form button {
   background-color: #d4caa3;
   border: 1px solid var(--leather-color);
 }
 
-.button button:hover {
+.list-item-form button:hover {
   background-color: var(--leather-color);
   color: #d4caa3;
   cursor: pointer;
 }
 
-.button span svg {
+.list-item-form span svg {
   font-size: 1.1rem;
 }
 
@@ -830,14 +832,15 @@ textarea {
   justify-content: space-between;
 }
 
-.widget > * {
+.widget > *,
+.date-picker {
   height: 24px;
-  width: 100%;
   justify-content: flex-end;
 }
 
 .widget > *:focus,
-.widget > *:focus-within {
+.widget > *:focus-within,
+.user-nav a:focus {
   outline-offset: 2px;
 }
 
@@ -849,14 +852,12 @@ textarea {
   line-height: 110%;
 }
 
-/* label.MuiFormLabel-root, */
 label.user-nav {
   font-family: var(--serif-font);
   font-weight: 700;
   color: black;
 }
 
-/* .widget button.MuiButtonBase-root, */
 .widget button.logout-button {
   padding: 0;
   font-family: var(--serif-font);
@@ -870,16 +871,22 @@ label.user-nav {
   line-height: 1.15;
   text-transform: none;
   letter-spacing: initial;
+  cursor: pointer;
 }
 
-/* .MuiButton-label {
-  gap: 0 2px;
-} */
+.widget button.logout-button:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
 
 .planner-toggle__wrapper {
+  display: flex;
   position: absolute;
   left: 0;
   top: 0;
+}
+
+.planner-toggle__wrapper:focus-visible {
+  outline: auto;
 }
 
 /* cover */
@@ -1205,6 +1212,10 @@ label.user-nav {
     padding-right: 0.875rem;
   }
 
+  .list-wrapper .expand-item {
+    opacity: 0.5;
+  }
+
   .profile--wrapper {
     display: block;
   }
@@ -1342,7 +1353,6 @@ label.user-nav {
   }
 
   .user-nav a,
-  /* button.MuiButtonBase-root span, */
   .widget > button.logout-button {
     flex-direction: column-reverse;
     text-align: center;
@@ -1350,7 +1360,6 @@ label.user-nav {
     font-size: 0.875rem;
   }
 
-  /* .widget > button.MuiButtonBase-root, */
   .widget > button.logout-button {
     color: inherit;
   }

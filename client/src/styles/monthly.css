@@ -29,17 +29,17 @@
 
 .current-month {
   text-align: center;
-  margin-block: 1.5rem;
+  margin-block: 1rem;
   font-family: var(--serif-font);
   font-size: 1.5rem;
-  line-height: 1.5rem;
   font-weight: 400;
   position: relative;
   flex-basis: 250px;
 }
 
-.current-month:focus-within {
-  outline: 2px black;
+.current-month:where(:focus-within, :focus) {
+  outline: auto;
+  outline-offset: 2px;
 }
 
 .month__wrapper {
@@ -53,8 +53,12 @@
   margin: 0 auto;
 }
 
+.month__wrapper:where(:focus, :focus-visible, :focus-within) {
+  outline: none;
+}
+
 .monthly-viewer .content {
-  padding: 1rem 0 0;
+  padding: 0;
   letter-spacing: unset;
   height: 100%;
 }
@@ -73,6 +77,15 @@
   scrollbar-width: none;
   cursor: pointer;
   padding: 1rem;
+  transition: background-color 75ms ease;
+}
+
+.month__cell:hover {
+  background-color: rgb(0, 0, 0, 0.04);
+}
+
+.month__cell:focus {
+  box-shadow: 0px 0px 4px 1px rgb(0, 0, 0, 0.4);
 }
 
 .month__cell::-webkit-scrollbar {
@@ -92,11 +105,12 @@
   top: 0.5rem;
   left: 0.5rem;
   font-size: 0.75rem;
+  isolation: isolate;
 }
 
 .month__date::before {
   content: "";
-  transition: background-color 150ms ease;
+  transition: background-color 150ms ease, border 75ms ease, box-shadow 75ms ease;
 }
 
 .month__date.today {
@@ -113,6 +127,19 @@
   --translate: calc(-50% - 0.5rem);
   transform: translate(var(--translate), var(--translate));
   padding: 2rem;
+  box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.4);
+}
+
+.month__cell:where(:focus, :focus-visible) .month__date::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  --translate: calc(-50% - 0.5rem);
+  transform: translate(var(--translate), var(--translate));
+  padding: 2rem;
+  border: 1px solid black;
+  box-shadow: 2px 2px 8px rgb(0, 0, 0, 0.4);
 }
 
 .weekday-label {
@@ -146,15 +173,31 @@
   border: none;
 }
 
-.items__preview--list {
+.items__preview--wrapper {
   overflow: auto;
-  background: var(--paper-color) var(--paper-texture);
-  margin: 0;
   padding-inline-start: 2rem;
   height: 100%;
+  background: var(--paper-color) var(--paper-texture);
   scrollbar-width: thin;
   scrollbar-color: var(--leather-color) #c9c39f;
   box-shadow: 1px 1px 1px 1px #381a1480, 2px 1px 0 0 var(--paper-color), 3px 2px 1px 1px #381a1480;
+}
+
+.items__preview--wrapper a:hover {
+  background-color: rgb(0, 0, 0, 0.04);
+}
+
+.items__preview--wrapper a:focus {
+  outline-offset: 2px;
+}
+
+.items__preview--wrapper h3 {
+  display: inline-block;
+}
+
+.items__preview--list {
+  margin: 0;
+  padding-inline-start: 0 rem;
 }
 
 .items__preview--list li {
@@ -163,15 +206,15 @@
   margin: 0.375rem;
 }
 
-.items__preview--list::-webkit-scrollbar {
+.items__preview--wrapper::-webkit-scrollbar {
   width: 4px;
 }
 
-.items__preview--list::-webkit-scrollbar-track {
+.items__preview--wrapper::-webkit-scrollbar-track {
   background: var(--paper-color) var(--paper-texture);
 }
 
-.items__preview--list::-webkit-scrollbar-thumb {
+.items__preview--wrapper::-webkit-scrollbar-thumb {
   background: var(--leather-color) var(--leather-texture);
 }
 
@@ -183,13 +226,8 @@
 }
 
 @media (max-width: 500px) {
-  .monthly-viewer .content {
-    padding-top: 0;
-  }
-
   .current-month {
     font-size: 1.25rem;
-    line-height: 1.25rem;
   }
 
   .weekday-label {

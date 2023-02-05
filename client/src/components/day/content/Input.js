@@ -8,7 +8,7 @@ import Fab from "@material-ui/core/Fab"
 
 import { CSSTransition } from "react-transition-group"
 
-const Input = ({ content = "", id = "", undoEdit }) => {
+const Input = ({ content = "", id = "", undoEdit, autoFocus = false }) => {
   const {
     state: { list },
     dispatch,
@@ -39,17 +39,18 @@ const Input = ({ content = "", id = "", undoEdit }) => {
   }
 
   return (
-    <li className="browser-default">
-      <form className="button" onSubmit={create}>
+    <li>
+      <form className="list-item-form" onSubmit={create}>
         <input
           name="newItem"
-          className="new-item browser-default"
+          className="new-item"
           type="text"
           placeholder="Plan your day ..."
           autoComplete="off"
           value={inputText}
           onChange={typing}
           aria-label="Create list item"
+          autoFocus
         />
         <CSSTransition in={!!inputText} classNames="button-appear" timeout={150} unmountOnExit>
           <Fab type="submit" style={submitButtonStyle}>
