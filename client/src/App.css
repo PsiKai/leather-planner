@@ -1034,6 +1034,10 @@ label.user-nav {
   padding: 0;
 }
 
+.modal-close-button svg {
+  color: black;
+}
+
 .modal-title {
   font-family: var(--serif-font);
 }
@@ -1149,6 +1153,10 @@ label.user-nav {
 .password-visibility:focus {
   outline: auto;
   outline-offset: 2px;
+}
+
+.password-visibility svg {
+  color: black;
 }
 
 /* Tablet size */

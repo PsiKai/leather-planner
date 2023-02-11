@@ -25,6 +25,7 @@
 
 .month-navigation--button > svg {
   vertical-align: middle;
+  color: black;
 }
 
 .current-month {
