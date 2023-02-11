@@ -172,6 +172,9 @@ li {
 
 .user-nav a span {
   white-space: nowrap;
+  max-width: 12ch;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .profile--wrapper {
@@ -182,35 +185,50 @@ li {
   align-items: baseline;
 }
 
-.profile--wrapper p {
-  cursor: pointer;
-}
-
 .profile--wrapper > * {
   margin-bottom: 35px;
 }
 
-.profile--wrapper button {
-  color: inherit;
-  background: inherit;
-  outline: none;
-  border: none;
-  box-shadow: none;
-  line-height: 1;
-  padding: 0;
-  font-size: 0;
-  position: relative;
-  top: -4px;
-  margin-right: 1rem;
+.edit-info--form {
+  display: flex;
+  align-items: center;
 }
 
-.profile--wrapper button:hover {
-  background-color: #fff4b080;
+.edit-info--form input[type="text"] {
+  width: auto !important;
+}
+
+.edit-info-form-action {
+  color: inherit;
+  border: none;
+  border-radius: 2px;
+  background: none;
+  padding: 0.125rem 0.25rem;
+  display: flex;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: background-color 75ms ease;
+}
+
+.edit-info-form-action:focus {
+  outline: auto;
+}
+
+.edit-info-form-action:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.edit-info-button-group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: fit-content;
 }
 
 .profile--wrapper input[type="text"],
 .password-reset input {
   display: block;
+  display: flex;
   font-family: var(--serif-font) !important;
   font-weight: 400 !important;
   font-size: 18px !important;
@@ -234,6 +252,10 @@ li {
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.profile--info p {
+  margin: 0;
 }
 
 .profile--label,
@@ -397,7 +419,6 @@ li:where(:hover, :focus-within) .list-wrapper .expand-item {
   text-indent: 1rem;
   font-family: var(--script-font);
   font-size: 1.5rem;
-  -webkit-appearance: none;
 }
 
 .notes-container input[type="text"]:focus {
@@ -1349,7 +1370,7 @@ label.user-nav {
   }
 
   .user-nav a span {
-    white-space: initial;
+    max-width: 8ch;
   }
 
   .user-nav a,
