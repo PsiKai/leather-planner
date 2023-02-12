@@ -95,7 +95,6 @@ li {
   flex-direction: column-reverse;
   gap: 0.5rem;
   z-index: 2;
-  /* background: var(--paper-texture), linear-gradient(var(--paper-color) calc(100% - 1px), blue); */
 }
 
 .heading.month .widget {
@@ -124,7 +123,6 @@ li {
   font-size: 2.7rem;
   font-family: var(--serif-font);
   font-weight: 700;
-  /* background: var(--paper-color) var(--paper-texture); */
   bottom: 0;
   margin: 0;
   margin-bottom: -0.1em;
@@ -157,8 +155,6 @@ li {
 .date-label,
 .profile-nav {
   transition: background-color 75ms ease;
-  /* transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; */
 }
 
 .profile-nav:hover,
