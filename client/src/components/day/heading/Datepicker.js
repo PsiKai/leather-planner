@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react"
 import AppContext from "../../../context/application/AppContext"
+import DateLabel from "../../layout/DateLabel"
 import TodayOutlinedIcon from "@material-ui/icons/TodayOutlined"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
-import "../../../styles/date-picker.css"
-import { getFormattedDate } from "../../../utils/dates"
+import { getFormattedDate, getPrintedDate, getShortFormDate } from "../../../utils/dates"
 import { createList } from "../../../utils/api/list"
+import "../../../styles/date-picker.css"
 
 const Datepicker = () => {
   const {
@@ -29,19 +30,20 @@ const Datepicker = () => {
 
   return (
     <div className="date-label" aria-label="Select a new date">
-      <label htmlFor="date-picker" className="date-picker">
-        {date.toLocaleDateString("en-US", { day: "numeric", month: "numeric", year: "2-digit" })}
-      </label>
-      <TodayOutlinedIcon />
       <DatePicker
         id={"date-picker"}
         selected={date}
         onChange={newDay}
-        className={"browser-default"}
-        onFocus={e => e.target.blur()}
         aria-label="Select a new date"
         showPopperArrow={false}
-        todayButton="Go To Today"
+        popperPlacement="bottom-end"
+        todayButton={<button>Go To Today</button>}
+        customInput={
+          <DateLabel className="date-picker" currentValue={getPrintedDate(date)}>
+            {getShortFormDate(date)}
+            <TodayOutlinedIcon />
+          </DateLabel>
+        }
       />
     </div>
   )

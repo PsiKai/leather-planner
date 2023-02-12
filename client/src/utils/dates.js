@@ -7,7 +7,20 @@ const dateHelpers = {
 
   shortWeekdays: ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"],
 
-  months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+  months: [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ],
 
   getDaysInMonth: (year, month) => {
     return new Date(year, month, 0).getDate()
@@ -20,6 +33,11 @@ const dateHelpers = {
 
   getPrintedDate: date => {
     var dateOptions = { month: "long", day: "numeric", year: "numeric" }
+    return dateHelpers.getLocaleDate(date, dateOptions)
+  },
+
+  getShortFormDate: date => {
+    var dateOptions = { day: "numeric", month: "numeric", year: "2-digit" }
     return dateHelpers.getLocaleDate(date, dateOptions)
   },
 

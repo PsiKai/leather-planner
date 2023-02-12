@@ -2,10 +2,9 @@ import React, { useState, useContext } from "react"
 import AppContext from "../../../context/application/AppContext"
 import { notesApi } from "../../../utils/api/note"
 
-import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline"
-import CancelOutlinedIcon from "@material-ui/icons/CancelOutlined"
+import CheckIcon from "@material-ui/icons/Check"
+import BlockIcon from "@material-ui/icons/Block"
 import EditIcon from "@material-ui/icons/Edit"
-import Fab from "@material-ui/core/Fab"
 
 const Note = ({ note, list, id }) => {
   const { dispatch } = useContext(AppContext)
@@ -19,31 +18,37 @@ const Note = ({ note, list, id }) => {
     setEditingNote(false)
   }
 
-  const fabStyle = {
-    maxHeight: "36px",
-    minHeight: "36px",
-    minWidth: "36px",
-    maxWidth: "36px",
-  }
-
   const changeEditing = e => {
     setEditingNote(!editingNote)
   }
 
   return editingNote ? (
-    <form onSubmit={confirmNoteEdit}>
-      <input type="text" value={newNoteText} onChange={e => setNewNoteText(e.target.value)} className="edit-note" autoFocus />
-      <Fab style={fabStyle} type="submit">
-        <CheckCircleOutlineIcon />
-      </Fab>
-      <Fab style={fabStyle} onClick={changeEditing} aria-label="Cancel">
-        <CancelOutlinedIcon />
-      </Fab>
-    </form>
+    <li>
+      <form onSubmit={confirmNoteEdit}>
+        <input
+          type="text"
+          value={newNoteText}
+          onChange={e => setNewNoteText(e.target.value)}
+          className="edit-note"
+          autoFocus
+          aria-label="List item note"
+        />
+        <div className="edit-note-button-group">
+          <button aria-label="Confirm edit." type="submit" className="edit-note-form-action">
+            <CheckIcon />
+          </button>
+          <button onClick={changeEditing} aria-label="Cancel edit." className="edit-note-form-action">
+            <BlockIcon />
+          </button>
+        </div>
+      </form>
+    </li>
   ) : (
     <li onClick={changeEditing}>
       {note}
-      <EditIcon />
+      <button className="edit-note-button" aria-label="edit note">
+        <EditIcon />
+      </button>
     </li>
   )
 }

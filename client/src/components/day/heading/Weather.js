@@ -46,11 +46,11 @@ const Weather = () => {
     try {
       const res = await axios.post("/services/weather", { city })
       const {
-        weather: [{ icon, id }],
+        weather: [{ icon, id, description }],
         main: { temp },
       } = res.data.weather
       var suffix = icon.slice(2)
-      setWeather(Math.round(temp))
+      setWeather({ temp: Math.round(temp), description })
       setIcon(id + "-" + suffix)
       setLoading(false)
       weatherInterval = setInterval(() => getWeather(city), 300000)
@@ -71,10 +71,16 @@ const Weather = () => {
 
   if (weather !== null) {
     return (
-      <div className="weather" onClick={resetWeatherSearch} aria-label="Current weather">
-        <h6 className="temp">{weather}°</h6>
+      <button
+        className="weather change-city-button"
+        onClick={resetWeatherSearch}
+        aria-label={`Change location from ${location.replace(/\+/g, " ")}. The current weather is ${
+          weather.description
+        } and the temperature is ${weather.temp} degrees.`}
+      >
+        <h6 className="temp">{weather.temp}°</h6>
         <i className={`weather-icon owf owf-${icon} owf-2x`}></i>
-      </div>
+      </button>
     )
   }
 
@@ -101,6 +107,7 @@ const Weather = () => {
         rows="3"
         spellCheck="false"
         aria-label="Enter your city to get the weather"
+        autoFocus
       ></textarea>
       <button type="submit">
         <CheckIcon />

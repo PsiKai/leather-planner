@@ -3,10 +3,9 @@ import React, { useEffect, useContext, useState } from "react"
 import AuthContext from "../../context/authentication/AuthContext"
 import { updateUser } from "../../utils/api/user"
 
-import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline"
-import CancelOutlinedIcon from "@material-ui/icons/CancelOutlined"
+import CheckIcon from "@material-ui/icons/Check"
+import BlockIcon from "@material-ui/icons/Block"
 import EditIcon from "@material-ui/icons/Edit"
-import Fab from "@material-ui/core/Fab"
 
 const EditInfo = () => {
   const {
@@ -36,54 +35,87 @@ const EditInfo = () => {
     name === "name" ? setEditName(false) : setEditEmail(false)
   }
 
-  const fabStyle = {
-    maxHeight: "36px",
-    minHeight: "36px",
-    minWidth: "36px",
-    maxWidth: "36px",
-  }
-
   return (
     <div className="profile--wrapper">
       <label className="profile--label" htmlFor="username">
         Username:
       </label>
       {editName ? (
-        <form onSubmit={submitInfo}>
-          <input className="new-item browser-default" name="name" type="text" onChange={editInfo} value={info.name} autoFocus />
-          <div style={{ position: "absolute" }}>
-            <Fab style={fabStyle} type="submit">
-              <CheckCircleOutlineIcon />
-            </Fab>
-            <Fab style={fabStyle} onClick={() => setEditName(false)} aria-label="Cancel">
-              <CancelOutlinedIcon />
-            </Fab>
+        <form onSubmit={submitInfo} className="edit-info--form">
+          <input
+            id="username"
+            className="new-item browser-default"
+            name="name"
+            type="text"
+            onChange={editInfo}
+            value={info.name}
+            autoFocus
+          />
+          <div className="edit-info-button-group">
+            <button className="edit-info-form-action" type="submit" aria-label="Submit username changes">
+              <CheckIcon />
+            </button>
+            <button
+              className="edit-info-form-action"
+              type="button"
+              onClick={() => setEditName(false)}
+              aria-label="Cancel username changes"
+            >
+              <BlockIcon />
+            </button>
           </div>
         </form>
       ) : (
-        <p id="username" className="profile--info" onClick={() => setEditName(true)}>
-          {name} <EditIcon aria-label="Edit username" />
-        </p>
+        <div className="profile--info">
+          <p id="username">{name}</p>
+          <button
+            className="edit-info-form-action"
+            aria-label="Edit username"
+            onClick={() => setEditName(true)}
+          >
+            <EditIcon />
+          </button>
+        </div>
       )}
       <label className="profile--label" htmlFor="email">
         Email:
       </label>
       {editEmail ? (
-        <form onSubmit={submitInfo}>
-          <input className="new-item browser-default" name="email" type="text" onChange={editInfo} value={info.email} autoFocus />
-          <div style={{ position: "absolute" }}>
-            <Fab style={fabStyle} type="submit">
-              <CheckCircleOutlineIcon />
-            </Fab>
-            <Fab style={fabStyle} onClick={() => setEditEmail(false)} aria-label="Cancel">
-              <CancelOutlinedIcon />
-            </Fab>
+        <form onSubmit={submitInfo} className="edit-info--form">
+          <input
+            id="email"
+            className="new-item browser-default"
+            name="email"
+            type="text"
+            onChange={editInfo}
+            value={info.email}
+            autoFocus
+          />
+          <div className="edit-info-button-group">
+            <button className="edit-info-form-action" type="submit" aria-label="Submit email changes">
+              <CheckIcon />
+            </button>
+            <button
+              className="edit-info-form-action"
+              type="button"
+              onClick={() => setEditEmail(false)}
+              aria-label="Cancel email changes"
+            >
+              <BlockIcon />
+            </button>
           </div>
         </form>
       ) : (
-        <p id="email" className="profile--info" onClick={() => setEditEmail(true)}>
-          {email} <EditIcon aria-label="Edit email" />
-        </p>
+        <div className="profile--info">
+          <p id="email">{email}</p>
+          <button
+            className="edit-info-form-action"
+            aria-label="Edit email"
+            onClick={() => setEditEmail(true)}
+          >
+            <EditIcon />
+          </button>
+        </div>
       )}
     </div>
   )

@@ -65,7 +65,7 @@ const List = ({ list, id, moved, style, item, notes }) => {
   }
 
   return edit ? (
-    <Input content={item} undoEdit={undoEdit} id={id} aria-label="Editing list item" />
+    <Input content={item} undoEdit={undoEdit} id={id} aria-label="Editing list item" autoFocus />
   ) : (
     <li onClick={openMenu} className={moved ? "no-bullet-point" : ""}>
       <div className="list-wrapper">
@@ -78,7 +78,7 @@ const List = ({ list, id, moved, style, item, notes }) => {
         <span ref={listItemText} className={style}>
           {item}
         </span>
-        <button className="expand-item" aria-label="expand item">
+        <button aria-label={`expand-item: ${item}`} className="expand-item">
           {notes?.length ? <NotesIcon /> : <MoreVertIcon />}
         </button>
         <CSSTransition in={menu} timeout={300} classNames="revealnotes" unmountOnExit>

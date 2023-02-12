@@ -16,6 +16,8 @@ import { updateMonth, createList } from "../../../utils/api/list"
 
 import "../../../styles/monthly.css"
 import { NavLink } from "react-router-dom"
+import DateLabel from "../../layout/DateLabel"
+import useArrowNavigation from "../../../hooks/useArrowNavigation"
 
 const Month = () => {
   const {
@@ -25,6 +27,12 @@ const Month = () => {
   const [daysInMonth, setDaysInMonth] = useState([])
   const [current, setCurrent] = useState()
   const [loading, setLoading] = useState(true)
+
+  const {
+    elementRefs: dateRefs,
+    handleKeyDown,
+    setInitialChildFocus,
+  } = useArrowNavigation({ intitalFocus: current?.day })
 
   useEffect(() => playAudio("page"), [])
 
@@ -74,10 +82,19 @@ const Month = () => {
     setLoading(false)
   }
 
+  const keyBoardSelection = e => {
+    if (e.code === "Space") {
+      goToSelectedDate(e)
+    }
+  }
+
   const renderItems = items => {
     let completeItems = items?.filter(item => item.style === "strikethrough")
     return items?.length ? (
-      <div className="month__cell--items">
+      <div
+        className="month__cell--items"
+        aria-label={`${completeItems.length} items completed out of ${items.length} total.`}
+      >
         <span>
           {completeItems.length}/{items.length}
         </span>
@@ -96,10 +113,17 @@ const Month = () => {
     daysInMonth.map((day, i) => (
       <div
         className="month__cell"
+        tabIndex="-1"
         data-date={day.name || String(day)}
         key={day._id || day}
         style={i === 0 ? { "--start": `${getFirstDay(current.year, current.month)}` } : {}}
         onClick={goToSelectedDate}
+        aria-label={`${new Date(
+          day.name?.replace(/-/g, "/") || `${current.month + 1} ${day} ${current.year}`
+        ).toDateString()}`}
+        role="button"
+        ref={el => (dateRefs.current[i] = el)}
+        onKeyDown={keyBoardSelection}
       >
         <span className={`month__date ${i + 1 === current.day && !loading ? "today" : ""}`}>{i + 1}</span>
         {renderItems(day.items)}
@@ -122,28 +146,53 @@ const Month = () => {
   return (
     <div className="monthly-viewer">
       <div className="content">
-        <img src="../../images/Bald-Eagle.webp" className="watermark" alt="watermark" />
+        <img src="../../images/Bald-Eagle.webp" className="watermark" alt="watermark" aria-hidden="true" />
         <nav className="month-navigation">
-          <button className="month-navigation--button" value="-1" onClick={navigateMonths}>
+          <button
+            className="month-navigation--button"
+            value="-1"
+            onClick={navigateMonths}
+            aria-label="go to previous month"
+          >
             <ArrowBackIosOutlinedIcon />
           </button>
-          <h2 className="current-month month-label">
-            {months[current?.month]}, {current?.year}
-            <ArrowDropDownIcon />
+          <div>
             <DatePicker
               selected={new Date(list.replace(/-/g, " "))}
               onChange={selectMonth}
               dateFormat="MM/yyyy"
               showMonthYearPicker
               showPopperArrow={false}
+              popperPlacement="bottom"
+              customInput={
+                <DateLabel
+                  className="current-month month-label"
+                  currentValue={`${months[current?.month]}, ${current?.year}`}
+                >
+                  {months[current?.month]}, {current?.year}
+                  <ArrowDropDownIcon />
+                </DateLabel>
+              }
             />
-          </h2>
-          <button className="month-navigation--button" value="1" onClick={navigateMonths}>
+          </div>
+
+          <button
+            className="month-navigation--button"
+            value="1"
+            onClick={navigateMonths}
+            aria-label="go to next month"
+          >
             <ArrowForwardIosOutlinedIcon />
           </button>
         </nav>
         {daysInMonth.length ? (
-          <div className="month__wrapper">
+          <div
+            className="month__wrapper"
+            role="grid"
+            tabIndex="0"
+            onFocus={setInitialChildFocus}
+            onKeyDown={handleKeyDown}
+          >
             {mapWeekdays()}
             {mapMonth()}
             <CSSTransition
@@ -152,18 +201,20 @@ const Month = () => {
               classNames="modal-content"
               unmountOnExit
             >
-              <div className="month__cell--preview">
-                <ul className="items__preview--list">
+              <dialog open className="month__cell--preview">
+                <div className="items__preview--wrapper">
                   <NavLink to="/planner/day">
                     <h3>{list}</h3>
                   </NavLink>
-                  {items.map(item => (
-                    <li className={item.style} key={item._id}>
-                      {item.item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                  <ul className="items__preview--list">
+                    {items.map(item => (
+                      <li className={item.style} key={item._id}>
+                        {item.item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </dialog>
             </CSSTransition>
           </div>
         ) : (

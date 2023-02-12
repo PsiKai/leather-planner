@@ -183,9 +183,20 @@ tr.loading {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
-  background: transparent;
+  background: none;
   border: none;
+  border-radius: 2px;
   cursor: pointer;
+  padding: 0.125rem 0.25rem;
+  display: flex;
+}
+
+.close-user-popup:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.close-user-popup svg {
+  color: black;
 }
 
 .user-update-form {

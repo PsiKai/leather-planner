@@ -63,7 +63,7 @@ const UserData = () => {
 
   return (
     <div className="analytics-content">
-      <img src="./images/Bald-Eagle.webp" className="watermark" alt="watermark" />
+      <img src="./images/Bald-Eagle.webp" className="watermark" alt="watermark" aria-hidden="true" />
       <div className="user-dashboard--container">
         <UserSearchbar searchForUser={setSearchTerm} />
         <table className="user-dashboard">
@@ -106,7 +106,13 @@ const UserData = () => {
             )}
           </tbody>
         </table>
-        <PageNav loading={loading} resultsPerPage={resultsPerPage} totalRecords={totalUsers} setPage={setPage} page={page} />
+        <PageNav
+          loading={loading}
+          resultsPerPage={resultsPerPage}
+          totalRecords={totalUsers}
+          setPage={setPage}
+          page={page}
+        />
       </div>
       <CSSTransition in={userPopup} classNames="modal-content" timeout={150} unmountOnExit>
         <UserUpdate setUserPopup={setUserPopup} currentUser={currentUser} />
