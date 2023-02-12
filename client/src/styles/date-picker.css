@@ -2,7 +2,6 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  min-width: 90px;
 }
 
 .date-label:focus-within {
@@ -59,9 +58,9 @@
   padding-top: 0;
 }
 
-.react-datepicker-wrapper {
+/* .react-datepicker-wrapper {
   width: auto;
-}
+} */
 
 .month-label .react-datepicker-wrapper {
   max-width: 100%;
@@ -108,6 +107,10 @@
   background-color: var(--leather-color);
   background-image: var(--leather-texture);
   border-bottom: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-bottom: 2px;
 }
 
 .month-navigation .react-datepicker__header {
@@ -126,12 +129,15 @@
   justify-content: center;
   align-items: center;
   font-size: 1rem;
+  line-height: 1;
   border-radius: 6px;
+  transition: background-color 75ms ease;
 }
 
 .react-datepicker__day:hover,
 .react-datepicker__month-text:hover {
   background-color: rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
 }
 
 .react-datepicker__day:focus.react-datepicker__day--keyboard-selected,
@@ -144,10 +150,11 @@
 .react-datepicker__month--selected {
   background-color: var(--brown-color);
   color: #fff7d9;
+  border-radius: 6px;
 }
 
 .react-datepicker__day--selected:hover,
-.month-label .react-datepicker__month--selected:hover {
+.react-datepicker__month-text.react-datepicker__month--selected:hover {
   background-color: var(--leather-color);
 }
 
@@ -179,8 +186,12 @@
 }
 
 .react-datepicker__navigation {
-  border-radius: 0.3rem;
   height: 28px;
+  transition: background-color 75ms ease;
+}
+
+.react-datepicker__navigation:hover span::before {
+  border-color: #fff7d9;
 }
 
 .react-datepicker__navigation span::before {
@@ -188,10 +199,6 @@
 }
 
 .react-datepicker__navigation:hover {
-  color: #cec6aa;
-}
-
-.react-datepicker__navigation:focus {
   background-color: var(--brown-color);
 }
 
@@ -220,11 +227,16 @@
   cursor: pointer;
   font-family: var(--serif-font);
   padding: 0.5rem;
+  transition: background-color 75ms ease;
 }
 
 .react-datepicker__today-button > button:focus {
   outline: auto;
   outline-color: var(--brown-color);
+}
+
+.react-datepicker__today-button > button:hover {
+  background-color: rgba(0, 0, 0, 0.04);
 }
 
 .month-label .react-datepicker__month-text {
@@ -245,11 +257,6 @@
 @media (max-width: 500px) {
   .date-label {
     flex-direction: column-reverse;
-    min-width: auto;
-  }
-
-  .date-label input {
-    height: 36px;
   }
 
   .date-label svg {
@@ -262,10 +269,11 @@
     line-height: 1;
     flex-direction: column-reverse;
     color: var(--faded);
+    height: auto !important;
+    width: 100%;
   }
 
   .react-datepicker {
-    top: 20px;
     --open-calendar: scaleY(0);
   }
 

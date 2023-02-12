@@ -144,8 +144,10 @@
 }
 
 .weekday-label {
-  text-align: center;
   height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .month__cell--items {
@@ -198,7 +200,7 @@
 
 .items__preview--list {
   margin: 0;
-  padding-inline-start: 0 rem;
+  padding-inline-start: 0rem;
 }
 
 .items__preview--list li {

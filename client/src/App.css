@@ -95,7 +95,7 @@ li {
   flex-direction: column-reverse;
   gap: 0.5rem;
   z-index: 2;
-  background: var(--paper-texture), linear-gradient(var(--paper-color) calc(100% - 1px), blue);
+  /* background: var(--paper-texture), linear-gradient(var(--paper-color) calc(100% - 1px), blue); */
 }
 
 .heading.month .widget {
@@ -107,6 +107,8 @@ li {
 .heading.month .date {
   font-size: 1.2rem;
   align-self: flex-start;
+  background: var(--paper-texture), linear-gradient(var(--paper-color) calc(100% - 1px), blue);
+  width: 100%;
 }
 
 .date {
@@ -122,9 +124,10 @@ li {
   font-size: 2.7rem;
   font-family: var(--serif-font);
   font-weight: 700;
-  background: var(--paper-color) var(--paper-texture);
+  /* background: var(--paper-color) var(--paper-texture); */
   bottom: 0;
   margin: 0;
+  margin-bottom: -0.1em;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -136,7 +139,7 @@ li {
 .profile-heading svg {
   font-size: 5rem;
   position: relative;
-  bottom: -0.5rem;
+  bottom: -0.1em;
 }
 
 .profile-nav {
@@ -153,8 +156,9 @@ li {
 .user-nav,
 .date-label,
 .profile-nav {
-  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 75ms ease;
+  /* transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; */
 }
 
 .profile-nav:hover,
@@ -357,7 +361,8 @@ button.password--submit {
 .list-wrapper {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  padding-right: 1px;
 }
 
 .list-wrapper span {
@@ -374,6 +379,8 @@ button.password--submit {
   padding: 0.125rem 0.25rem;
   display: flex;
   transition: opacity 200ms ease;
+  position: relative;
+  top: 4px;
 }
 
 .list-wrapper .expand-item:focus {
@@ -785,6 +792,11 @@ textarea {
   display: flex;
   align-items: center;
   cursor: pointer;
+  transition: background-color 75ms ease;
+}
+
+.get-weather:hover {
+  background-color: rgba(0, 0, 0, 0.04);
 }
 
 .get-weather span {
@@ -863,6 +875,7 @@ textarea {
 .widget > *:focus-within,
 .user-nav a:focus {
   outline-offset: 2px;
+  outline-color: currentColor;
 }
 
 .temp {
@@ -900,10 +913,20 @@ label.user-nav {
 }
 
 .planner-toggle__wrapper {
-  display: flex;
   position: absolute;
   left: 0;
   top: 0;
+  background: none;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  padding: 0.125rem 0.25rem;
+  display: flex;
+  transition: background-color 75ms ease;
+}
+
+.planner-toggle__wrapper:hover {
+  background-color: rgba(0, 0, 0, 0.04);
 }
 
 .planner-toggle__wrapper:focus-visible {
@@ -1166,6 +1189,10 @@ label.user-nav {
     font-size: 2.3rem;
   }
 
+  .widget {
+    padding-right: 0.875rem;
+  }
+
   ul.list {
     padding-left: 22px;
   }
@@ -1238,7 +1265,6 @@ label.user-nav {
   }
 
   .heading {
-    padding-right: 0.875rem;
   }
 
   .list-wrapper .expand-item {
@@ -1304,10 +1330,11 @@ label.user-nav {
     align-items: flex-start;
     flex-direction: row-reverse;
     color: var(--faded);
+    padding-right: 0;
   }
 
   .widget > * {
-    height: auto;
+    height: 37px;
     flex-basis: 25%;
   }
 

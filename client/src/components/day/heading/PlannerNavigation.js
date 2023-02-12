@@ -12,13 +12,13 @@ const PlannerNavigation = props => {
         return {
           component: <CalendarViewDayOutlinedIcon />,
           path: "month",
-          label: "to entire month",
+          label: "to monthly planner",
         }
       case "/planner/month":
         return {
           component: <ViewDayOutlinedIcon />,
           path: "day",
-          label: "to selected date",
+          label: "to daily planner",
         }
       default:
         return
