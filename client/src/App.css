@@ -25,10 +25,16 @@ html {
 }
 
 body {
+  margin: 0;
+  background-color: var(--brown-color);
+}
+
+#root {
   background-color: var(--wood-color);
   background-image: var(--wood-texture);
   background-blend-mode: color-burn;
-  margin: 0;
+  height: 100svh;
+  display: flex;
 }
 
 a {
@@ -371,6 +377,7 @@ button.password--submit {
   background: none;
   border: none;
   cursor: pointer;
+  color: black;
   opacity: 0;
   padding: 0.125rem 0.25rem;
   display: flex;
@@ -438,8 +445,8 @@ li:where(:hover, :focus-within) .list-wrapper .expand-item {
 
 .notes-container .add-note--button {
   position: absolute;
-  right: 0.5rem;
-  top: 2.5rem;
+  /* right: 0.5rem;
+  top: 2.5rem; */
   height: 2.5rem;
   width: 2.5rem;
   background-color: #d4caa3;
@@ -481,6 +488,7 @@ li:where(:hover, :focus-within) .list-wrapper .expand-item {
   background: none;
   border: none;
   cursor: pointer;
+  color: black;
   opacity: 0;
   padding: 0.125rem 0.25rem;
   display: flex;
@@ -524,6 +532,10 @@ li:where(:hover, :focus-within) .list-wrapper .expand-item {
 .notes-list .eedit-note-form-action:focus {
   background-color: rgba(0, 0, 0, 0.1);
   color: unset;
+}
+
+.edit-note-form-action svg {
+  color: black;
 }
 
 .notes-list > form > .edit-note-form-action:first-of-type {
@@ -605,6 +617,7 @@ li:where(:hover, :focus-within) .list-wrapper .expand-item {
 .menu-action-button {
   padding: 0;
   background: transparent;
+  color: black;
   border: none;
   display: flex;
   cursor: pointer;
@@ -669,12 +682,12 @@ input:-webkit-autofill:active {
 input[type="text"].new-item,
 .password-reset input {
   width: 100%;
-  height: 29px;
+  line-height: calc(var(--paper-line-height) - 2px);
   font-size: 20px;
   max-width: 75%;
   background-color: transparent;
   font-family: var(--script-font);
-  text-indent: 4px;
+  text-indent: 30px;
   text-overflow: ellipsis;
   margin: 0;
   padding: 0;
@@ -709,6 +722,7 @@ input[type="text"]::placeholder,
   font-family: var(--script-font);
   font-size: 20px;
   color: grey;
+  line-height: calc(var(--paper-line-height) - 2px);
 }
 
 textarea {
@@ -719,14 +733,24 @@ textarea {
   background-color: transparent;
 }
 
+.list-inline-edit input[type="text"].new-item {
+  text-indent: 4px;
+}
+
 .list-item-form {
   display: flex;
   gap: 1rem;
+  align-items: center;
+  width: calc(100% - 2px);
 }
 
 .list-item-form button {
   background-color: #d4caa3;
   border: 1px solid var(--leather-color);
+  height: calc(var(--paper-line-height) - 2px);
+  min-height: initial;
+  width: initial;
+  min-width: calc(var(--paper-line-height) - 2px);
 }
 
 .list-item-form button:hover {
@@ -743,12 +767,14 @@ textarea {
   transform: scale(0) !important;
 }
 
-.button-appear-enter-active {
+.button-appear-enter-active,
+.button-appear-enter-done {
   transform: scale(1) !important;
   transition: transform 150ms cubic-bezier(0.44, 1.65, 0.69, 0.815) !important;
 }
 
-.button-appear-exit-active {
+.button-appear-exit-active,
+.button-appear-exit-done {
   transform: rotateZ(360deg) scale(0) !important;
   transition: transform 350ms ease !important;
 }
@@ -865,13 +891,15 @@ textarea {
 .date-picker {
   height: 24px;
   justify-content: flex-end;
+  color: black;
 }
 
-.widget > *:focus,
+/* .widget > *:focus, */
 .widget > *:focus-within,
 .user-nav a:focus {
+  outline: auto;
   outline-offset: 2px;
-  outline-color: currentColor;
+  outline-color: black;
 }
 
 .temp {
@@ -1181,6 +1209,13 @@ label.user-nav {
 /* Tablet size */
 
 @media (max-width: 850px) {
+  body,
+  html,
+  #root,
+  .position-div {
+    overscroll-behavior: none;
+  }
+
   .heading h1 {
     font-size: 2.3rem;
   }
@@ -1196,9 +1231,9 @@ label.user-nav {
   .position-div {
     display: block;
     width: 100%;
-    margin: auto;
-    height: 100vh;
-    max-height: 1150px;
+    margin: 0;
+    height: 100svh;
+    /* max-height: 1150px; */
   }
 
   .page {
@@ -1235,6 +1270,7 @@ label.user-nav {
     width: 400px;
     right: 5%;
     bottom: 10%;
+    position: fixed;
   }
 
   .center-div {
@@ -1273,6 +1309,10 @@ label.user-nav {
 
   .profile--wrapper > * {
     margin-bottom: 33px;
+  }
+
+  input[type="text"].new-item {
+    text-indent: 22px;
   }
 
   .profile--wrapper input[type="text"].new-item {
@@ -1332,6 +1372,11 @@ label.user-nav {
   .widget > * {
     height: 37px;
     flex-basis: 25%;
+  }
+
+  .widget > *,
+  .date-picker {
+    color: var(--faded);
   }
 
   .widget input,
@@ -1481,8 +1526,6 @@ label.user-nav {
   input[type="text"].new-item {
     max-width: none;
     font-size: 18px !important;
-    height: 25px;
-    text-indent: 0;
   }
 
   input[type="text"]::placeholder {

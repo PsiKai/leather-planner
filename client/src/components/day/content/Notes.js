@@ -41,7 +41,6 @@ const Notes = ({ notes, openMenu, list, id, ...rest }) => {
               onChange={e => setNewNote(e.target.value)}
               value={newNote}
               placeholder="Write a note ..."
-              autoFocus
             />
             <Fab type="submit" className="add-note--button" aria-label="add note">
               <AddIcon />
@@ -50,7 +49,7 @@ const Notes = ({ notes, openMenu, list, id, ...rest }) => {
           <ul className="notes-list">
             {notes.length ? (
               notes.map((note, i) => {
-                return <Note key={i} note={note} id={id} list={list} />
+                return <Note key={id} note={note} id={id} list={list} />
               })
             ) : (
               <li></li>

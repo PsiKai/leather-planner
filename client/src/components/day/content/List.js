@@ -65,7 +65,9 @@ const List = ({ list, id, moved, style, item, notes }) => {
   }
 
   return edit ? (
-    <Input content={item} undoEdit={undoEdit} id={id} aria-label="Editing list item" autoFocus />
+    <li className="list-inline-edit">
+      <Input content={item} undoEdit={undoEdit} id={id} aria-label="Editing list item" autoFocus />
+    </li>
   ) : (
     <li onClick={openMenu} className={moved ? "no-bullet-point" : ""}>
       <div className="list-wrapper">

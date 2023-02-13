@@ -5,8 +5,7 @@
 }
 
 .date-label:focus-within {
-  outline-offset: 2px;
-  outline: auto;
+  outline: none !important;
 }
 
 .month-label {
@@ -34,7 +33,9 @@
 }
 
 .date-picker:focus {
-  outline: none;
+  outline: auto;
+  outline-color: black;
+  outline-offset: 2px;
 }
 
 .date-label input,
@@ -140,11 +141,12 @@
 .react-datepicker__day--keyboard-selected {
   outline: auto;
   outline-color: var(--brown-color);
+  /* outline-offset: 10px; */
 }
 
 .react-datepicker__day--selected,
 .react-datepicker__month--selected {
-  background-color: var(--brown-color);
+  background-color: var(--brown-color) !important;
   color: #fff7d9;
   border-radius: 6px;
 }
@@ -164,6 +166,7 @@
   border: 4px solid #d4caa3;
   outline: auto;
   outline-color: var(--brown-color);
+  /* outline-color: black; */
 }
 
 .react-datepicker__day-name {
@@ -221,8 +224,10 @@
   background: none;
   border: none;
   cursor: pointer;
+  color: black;
   font-family: var(--serif-font);
-  padding: 0.5rem;
+  font-size: 1.15rem;
+  padding: 0.25rem;
   transition: background-color 75ms ease;
 }
 
@@ -252,6 +257,7 @@
 
 @media (max-width: 500px) {
   .date-label {
+    color: var(--faded) !important;
     flex-direction: column-reverse;
   }
 

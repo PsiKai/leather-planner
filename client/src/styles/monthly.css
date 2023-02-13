@@ -34,6 +34,7 @@
   font-family: var(--serif-font);
   font-size: 1.5rem;
   font-weight: 400;
+  color: black;
   position: relative;
   flex-basis: 250px;
 }
@@ -251,8 +252,9 @@
   }
 
   .month__cell--preview {
-    grid-row: 8;
+    grid-row: 8 / span 1;
     grid-column: 1 / span 7;
     aspect-ratio: unset;
+    margin-inline: 0;
   }
 }

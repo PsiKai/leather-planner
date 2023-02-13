@@ -32,33 +32,31 @@ const Input = ({ content = "", id = "", undoEdit, autoFocus = false }) => {
   }
 
   const submitButtonStyle = {
-    maxHeight: "30px",
-    minHeight: "30px",
-    minWidth: "30px",
-    maxWidth: "30px",
+    // maxHeight: "30px",
+    // minHeight: "30px",
+    // minWidth: "30px",
+    // maxWidth: "30px",
   }
 
   return (
-    <li>
-      <form className="list-item-form" onSubmit={create}>
-        <input
-          name="newItem"
-          className="new-item"
-          type="text"
-          placeholder="Plan your day ..."
-          autoComplete="off"
-          value={inputText}
-          onChange={typing}
-          aria-label="Create list item"
-          autoFocus
-        />
-        <CSSTransition in={!!inputText} classNames="button-appear" timeout={150} unmountOnExit>
-          <Fab type="submit" style={submitButtonStyle}>
-            <AddIcon />
-          </Fab>
-        </CSSTransition>
-      </form>
-    </li>
+    <form className="list-item-form" onSubmit={create}>
+      <input
+        name="newItem"
+        className="new-item"
+        type="text"
+        placeholder="Plan your day ..."
+        autoComplete="off"
+        value={inputText}
+        onChange={typing}
+        aria-label="Create list item"
+        autoFocus={autoFocus}
+      />
+      <CSSTransition in={!!inputText} classNames="button-appear" timeout={150}>
+        <Fab type="submit" style={submitButtonStyle}>
+          <AddIcon />
+        </Fab>
+      </CSSTransition>
+    </form>
   )
 }
 

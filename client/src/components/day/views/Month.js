@@ -70,7 +70,7 @@ const Month = () => {
     setLoading(true)
     const selectedSquare = e.currentTarget.getAttribute("data-date")
     const day = splitListName(selectedSquare).day || selectedSquare
-    const dateConstruct = `${current.year} ${current.month + 1} ${day.padStart(2, "0")}`
+    const dateConstruct = `${current.month + 1}/${day.padStart(2, "0")}/${current.year}`
     const listName = getFormattedDate(new Date(dateConstruct))
     const newList = monthlyLists.find(list => list.name === listName)
     if (newList) {
