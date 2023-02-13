@@ -40,7 +40,7 @@ const Datepicker = () => {
         todayButton={<button>Go To Today</button>}
         customInput={
           <DateLabel className="date-picker" currentValue={getPrintedDate(date)}>
-            {getShortFormDate(date)}
+            <span>{getShortFormDate(date)}</span>
             <TodayOutlinedIcon />
           </DateLabel>
         }

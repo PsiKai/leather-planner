@@ -244,7 +244,6 @@ li {
 .profile--wrapper input[type="text"],
 .password-reset input {
   display: block;
-  display: flex;
   font-family: var(--serif-font) !important;
   font-weight: 400 !important;
   font-size: 18px !important;
@@ -708,10 +707,7 @@ input[type="text"].new-item,
 
 .password-reset input[type="password"],
 .password-reset input[type="text"] {
-  margin-left: 1rem;
-  height: 34px;
-  margin-bottom: 1px;
-  padding-top: 6px;
+  text-indent: 1rem !important;
   font-family: var(--serif-font);
   font-size: 1rem;
   max-width: 200px;
@@ -844,8 +840,15 @@ button.button-appear-exit-done {
   display: flex;
   align-items: center;
   cursor: pointer;
-  padding: 0.125rem 0.25rem;
+  /* padding: 0.125rem 0.25rem; */
+  padding: 0;
   border-radius: 2px;
+}
+
+.change-city-button:focus {
+  outline: auto;
+  outline-offset: 2px;
+  outline-color: black;
 }
 
 .get-weather {
@@ -915,6 +918,8 @@ button.button-appear-exit-done {
 
 .weather-input__wrapper button:focus {
   background: inherit;
+  outline: auto;
+  outline-color: black;
 }
 
 /* OWFont override */
@@ -931,18 +936,20 @@ button.button-appear-exit-done {
 }
 
 .widget > *,
-.date-picker {
+.date-picker,
+.user-nav a {
   height: 24px;
   justify-content: flex-end;
   color: black;
 }
 
 /* .widget > *:focus, */
-.widget > *:focus-within,
+/* .widget > *:focus-within, */
 .user-nav a:focus {
   outline: auto;
   outline-offset: 2px;
   outline-color: black;
+  outline-style: auto;
 }
 
 .temp {
@@ -977,6 +984,12 @@ label.user-nav {
 
 .widget button.logout-button:hover {
   background-color: rgba(0, 0, 0, 0.04);
+}
+
+.widget button.logout-button:focus {
+  outline-offset: 2px;
+  outline-color: black;
+  outline: auto;
 }
 
 .planner-toggle__wrapper {
@@ -1226,7 +1239,6 @@ label.user-nav {
 
 .password-input .password-visibility {
   position: absolute;
-  right: 1rem;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -1238,11 +1250,15 @@ label.user-nav {
   background: none;
   display: flex;
   cursor: pointer;
+  inset: 1px 0 1px auto;
+  height: calc(100% - 2px);
+  aspect-ratio: 1 / 1;
+  align-items: center;
+  justify-content: center;
 }
 
 .password-visibility:focus {
   outline: auto;
-  outline-offset: 2px;
 }
 
 .password-visibility svg {
@@ -1415,9 +1431,12 @@ label.user-nav {
     flex-direction: row-reverse;
     color: var(--faded);
     padding-right: 0;
+    gap: 6px;
   }
 
-  .widget > * {
+  .widget > *,
+  .date-picker,
+  .user-nav a {
     height: 37px;
     flex-basis: 25%;
   }
@@ -1483,10 +1502,6 @@ label.user-nav {
 
   .user-nav {
     justify-self: center;
-  }
-
-  .user-nav a {
-    height: auto;
   }
 
   .user-nav a * {
@@ -1618,10 +1633,11 @@ label.user-nav {
   .password-reset {
     position: relative;
     top: 32px;
+    top: var(--paper-line-height);
   }
 
   .password-reset input {
-    height: 32px !important;
+    height: calc(var(--paper-line-height) - 1px);
   }
 
   .password-reset input::placeholder {

@@ -32,6 +32,10 @@
   padding: 0;
 }
 
+.date-picker span {
+  line-height: 1;
+}
+
 .date-picker:focus {
   outline: auto;
   outline-color: black;
@@ -261,17 +265,12 @@
     flex-direction: column-reverse;
   }
 
-  .date-label svg {
-    transform: scale(0.8);
-  }
-
   .date-picker {
     font-size: 0.875rem;
     margin-right: 0;
     line-height: 1;
     flex-direction: column-reverse;
     color: var(--faded);
-    height: auto !important;
     width: 100%;
   }
 
