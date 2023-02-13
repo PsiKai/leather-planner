@@ -22,8 +22,8 @@ const Content = () => {
         {items.map(({ item, _id, style, moved, notes }) => {
           return <List key={_id} id={_id} item={item} list={list} style={style} moved={moved} notes={notes} />
         })}
-        <Input />
       </ul>
+      <Input />
     </div>
   )
 }

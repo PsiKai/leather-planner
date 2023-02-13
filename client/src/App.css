@@ -25,10 +25,16 @@ html {
 }
 
 body {
+  margin: 0;
+  background-color: var(--brown-color);
+}
+
+#root {
   background-color: var(--wood-color);
   background-image: var(--wood-texture);
   background-blend-mode: color-burn;
-  margin: 0;
+  height: 100svh;
+  display: flex;
 }
 
 a {
@@ -49,6 +55,16 @@ li {
 
 .no-bullet-point {
   list-style: none;
+}
+
+.list-marker {
+  position: absolute;
+  top: 6px;
+  left: -28px;
+}
+
+.list-marker.complete {
+  opacity: 0.6;
 }
 
 .position-div {
@@ -228,7 +244,6 @@ li {
 .profile--wrapper input[type="text"],
 .password-reset input {
   display: block;
-  display: flex;
   font-family: var(--serif-font) !important;
   font-weight: 400 !important;
   font-size: 18px !important;
@@ -371,6 +386,7 @@ button.password--submit {
   background: none;
   border: none;
   cursor: pointer;
+  color: black;
   opacity: 0;
   padding: 0.125rem 0.25rem;
   display: flex;
@@ -389,9 +405,7 @@ li:where(:hover, :focus-within) .list-wrapper .expand-item {
 
 .notes-border {
   position: absolute;
-  width: calc(100% + 2rem);
-  top: calc(100% + 1px);
-  left: -2rem;
+  inset: calc(100% + 1px) 0 auto -2rem;
   z-index: 3;
   background: var(--leather-color) var(--leather-texture);
   padding: 0.4rem 0.5rem 0.5rem 0.4rem;
@@ -424,6 +438,10 @@ li:where(:hover, :focus-within) .list-wrapper .expand-item {
   font-size: 1.5rem;
 }
 
+.notes-container input:not(.edit-note) {
+  line-height: calc(var(--paper-line-height) - 1px);
+}
+
 .notes-container input[type="text"]:focus {
   max-width: 100%;
 }
@@ -438,8 +456,8 @@ li:where(:hover, :focus-within) .list-wrapper .expand-item {
 
 .notes-container .add-note--button {
   position: absolute;
-  right: 0.5rem;
-  top: 2.5rem;
+  /* right: 0.5rem;
+  top: 2.5rem; */
   height: 2.5rem;
   width: 2.5rem;
   background-color: #d4caa3;
@@ -481,6 +499,7 @@ li:where(:hover, :focus-within) .list-wrapper .expand-item {
   background: none;
   border: none;
   cursor: pointer;
+  color: black;
   opacity: 0;
   padding: 0.125rem 0.25rem;
   display: flex;
@@ -524,6 +543,10 @@ li:where(:hover, :focus-within) .list-wrapper .expand-item {
 .notes-list .eedit-note-form-action:focus {
   background-color: rgba(0, 0, 0, 0.1);
   color: unset;
+}
+
+.edit-note-form-action svg {
+  color: black;
 }
 
 .notes-list > form > .edit-note-form-action:first-of-type {
@@ -592,7 +615,6 @@ li:where(:hover, :focus-within) .list-wrapper .expand-item {
 }
 
 .menu-action-list {
-  background: var(--paper-color) var(--paper-texture);
   display: flex;
   align-items: center;
   gap: 2px;
@@ -605,11 +627,13 @@ li:where(:hover, :focus-within) .list-wrapper .expand-item {
 .menu-action-button {
   padding: 0;
   background: transparent;
+  color: black;
   border: none;
   display: flex;
   cursor: pointer;
   padding: 0.125rem 0.25rem;
   border-radius: 2px;
+  transition: background-color 75ms ease;
 }
 
 .menu svg {
@@ -617,7 +641,7 @@ li:where(:hover, :focus-within) .list-wrapper .expand-item {
 }
 
 .menu-action-button:hover {
-  background: #ccc38c var(--paper-texture);
+  background-color: rgba(0, 0, 0, 0.04);
   outline: none;
 }
 
@@ -669,12 +693,12 @@ input:-webkit-autofill:active {
 input[type="text"].new-item,
 .password-reset input {
   width: 100%;
-  height: 29px;
+  line-height: calc(var(--paper-line-height) - 1px);
   font-size: 20px;
   max-width: 75%;
   background-color: transparent;
   font-family: var(--script-font);
-  text-indent: 4px;
+  text-indent: 30px;
   text-overflow: ellipsis;
   margin: 0;
   padding: 0;
@@ -683,10 +707,7 @@ input[type="text"].new-item,
 
 .password-reset input[type="password"],
 .password-reset input[type="text"] {
-  margin-left: 1rem;
-  height: 34px;
-  margin-bottom: 1px;
-  padding-top: 6px;
+  text-indent: 1rem !important;
   font-family: var(--serif-font);
   font-size: 1rem;
   max-width: 200px;
@@ -709,6 +730,7 @@ input[type="text"]::placeholder,
   font-family: var(--script-font);
   font-size: 20px;
   color: grey;
+  line-height: calc(var(--paper-line-height) - 1px);
 }
 
 textarea {
@@ -719,17 +741,58 @@ textarea {
   background-color: transparent;
 }
 
+.list-inline-edit {
+  line-height: normal;
+}
+
+.list-inline-edit::before {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  inset: 0 0 0 -2rem;
+  border-radius: 0.5rem;
+  outline: 2px solid var(--brown-color);
+  background: none;
+}
+
+.list-inline-edit input[type="text"].new-item {
+  text-indent: 0px;
+  font-size: inherit !important;
+  /* line-height: inherit; */
+  letter-spacing: 1.5px;
+  word-spacing: 3px;
+  max-width: initial;
+}
+
 .list-item-form {
   display: flex;
   gap: 1rem;
+  align-items: center;
+  width: calc(100% - 2px);
+  z-index: 3;
 }
 
-.list-item-form button {
+.list-item-form button.new-item-submit {
   background-color: #d4caa3;
   border: 1px solid var(--leather-color);
+  height: calc(var(--paper-line-height) - 2px);
+  min-height: initial;
+  width: initial;
+  min-width: calc(var(--paper-line-height) - 2px);
 }
 
-.list-item-form button:hover {
+.list-item-form
+  button.new-item-submit:not(
+    .button-appear-exit,
+    .button-appear-enter,
+    .button-appear-exit-active,
+    .button-appear-enter-active,
+    .button-appear-enter-done
+  ) {
+  transform: scale(0);
+}
+
+.list-item-form button.new-item-submit:hover {
   background-color: var(--leather-color);
   color: #d4caa3;
   cursor: pointer;
@@ -739,18 +802,20 @@ textarea {
   font-size: 1.1rem;
 }
 
-.button-appear-enter {
-  transform: scale(0) !important;
+button.button-appear-enter {
+  transform: scale(0);
 }
 
-.button-appear-enter-active {
-  transform: scale(1) !important;
-  transition: transform 150ms cubic-bezier(0.44, 1.65, 0.69, 0.815) !important;
+button.button-appear-enter-active,
+button.button-appear-enter-done {
+  transform: scale(1);
+  transition: transform 150ms cubic-bezier(0.44, 1.65, 0.69, 0.815);
 }
 
-.button-appear-exit-active {
-  transform: rotateZ(360deg) scale(0) !important;
-  transition: transform 350ms ease !important;
+button.button-appear-exit-active.button-appear-exit,
+button.button-appear-exit-done {
+  transition: transform 350ms ease;
+  transform: rotateZ(360deg) scale(0);
 }
 
 /* user and weather widget */
@@ -775,8 +840,15 @@ textarea {
   display: flex;
   align-items: center;
   cursor: pointer;
-  padding: 0.125rem 0.25rem;
+  /* padding: 0.125rem 0.25rem; */
+  padding: 0;
   border-radius: 2px;
+}
+
+.change-city-button:focus {
+  outline: auto;
+  outline-offset: 2px;
+  outline-color: black;
 }
 
 .get-weather {
@@ -846,6 +918,8 @@ textarea {
 
 .weather-input__wrapper button:focus {
   background: inherit;
+  outline: auto;
+  outline-color: black;
 }
 
 /* OWFont override */
@@ -862,16 +936,20 @@ textarea {
 }
 
 .widget > *,
-.date-picker {
+.date-picker,
+.user-nav a {
   height: 24px;
   justify-content: flex-end;
+  color: black;
 }
 
-.widget > *:focus,
-.widget > *:focus-within,
+/* .widget > *:focus, */
+/* .widget > *:focus-within, */
 .user-nav a:focus {
+  outline: auto;
   outline-offset: 2px;
-  outline-color: currentColor;
+  outline-color: black;
+  outline-style: auto;
 }
 
 .temp {
@@ -906,6 +984,12 @@ label.user-nav {
 
 .widget button.logout-button:hover {
   background-color: rgba(0, 0, 0, 0.04);
+}
+
+.widget button.logout-button:focus {
+  outline-offset: 2px;
+  outline-color: black;
+  outline: auto;
 }
 
 .planner-toggle__wrapper {
@@ -1155,7 +1239,6 @@ label.user-nav {
 
 .password-input .password-visibility {
   position: absolute;
-  right: 1rem;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -1167,11 +1250,15 @@ label.user-nav {
   background: none;
   display: flex;
   cursor: pointer;
+  inset: 1px 0 1px auto;
+  height: calc(100% - 2px);
+  aspect-ratio: 1 / 1;
+  align-items: center;
+  justify-content: center;
 }
 
 .password-visibility:focus {
   outline: auto;
-  outline-offset: 2px;
 }
 
 .password-visibility svg {
@@ -1181,6 +1268,13 @@ label.user-nav {
 /* Tablet size */
 
 @media (max-width: 850px) {
+  body,
+  html,
+  #root,
+  .position-div {
+    overscroll-behavior: none;
+  }
+
   .heading h1 {
     font-size: 2.3rem;
   }
@@ -1190,22 +1284,31 @@ label.user-nav {
   }
 
   ul.list {
-    padding-left: 22px;
+    padding-left: 25px;
+  }
+
+  .list-marker {
+    left: -26px;
+  }
+
+  .list-inline-edit::before {
+    inset: 0 0.125rem 0 -1.6rem;
   }
 
   .position-div {
     display: block;
     width: 100%;
-    margin: auto;
-    height: 100vh;
-    max-height: 1150px;
+    margin: 0;
+    height: 100svh;
+    /* max-height: 1150px; */
   }
 
   .page {
     width: 97%;
     margin: 2% auto;
-    padding: 10px 5px 2px 20px;
+    padding: 10px 5px 2px 15px;
     height: 96%;
+    overflow: visible;
   }
 
   .grid-div {
@@ -1221,7 +1324,6 @@ label.user-nav {
 
   .notes-border {
     left: -1.5rem;
-    width: calc(100% + 1.5rem);
   }
 
   .binder-rings,
@@ -1235,6 +1337,7 @@ label.user-nav {
     width: 400px;
     right: 5%;
     bottom: 10%;
+    position: fixed;
   }
 
   .center-div {
@@ -1260,9 +1363,6 @@ label.user-nav {
     margin-bottom: 50px;
   }
 
-  .heading {
-  }
-
   .list-wrapper .expand-item {
     opacity: 0.5;
   }
@@ -1273,6 +1373,10 @@ label.user-nav {
 
   .profile--wrapper > * {
     margin-bottom: 33px;
+  }
+
+  input[type="text"].new-item {
+    text-indent: 22px;
   }
 
   .profile--wrapper input[type="text"].new-item {
@@ -1290,8 +1394,8 @@ label.user-nav {
   :root {
     --faded: rgba(2, 2, 2, 0.664);
     --paper-line-height: 34px;
-    --paper-line: 33px;
-    --paper-font-size: 24px;
+    --paper-line: 1px 33px;
+    --paper-font-size: 20px;
   }
 
   html {
@@ -1327,11 +1431,19 @@ label.user-nav {
     flex-direction: row-reverse;
     color: var(--faded);
     padding-right: 0;
+    gap: 6px;
   }
 
-  .widget > * {
+  .widget > *,
+  .date-picker,
+  .user-nav a {
     height: 37px;
     flex-basis: 25%;
+  }
+
+  .widget > *,
+  .date-picker {
+    color: var(--faded);
   }
 
   .widget input,
@@ -1392,10 +1504,6 @@ label.user-nav {
     justify-self: center;
   }
 
-  .user-nav a {
-    height: auto;
-  }
-
   .user-nav a * {
     color: var(--faded);
   }
@@ -1437,14 +1545,11 @@ label.user-nav {
 
   .pattern {
     width: 100%;
-    background-image: var(--paper-texture),
-      repeating-linear-gradient(#fff4b0 1px var(--paper-line), blue var(--paper-line-height));
   }
 
   .content {
-    line-height: var(--paper-line);
-    font-size: 22px;
-    padding-top: var(--paper-line-height);
+    line-height: calc(var(--paper-line-height) - 1px);
+    word-spacing: initial;
   }
 
   .list li {
@@ -1453,6 +1558,14 @@ label.user-nav {
 
   li::marker {
     font-size: 1rem;
+  }
+
+  .list-marker {
+    left: -23px;
+  }
+
+  .list-inline-edit::before {
+    inset: 0 0.125rem 0 -1.45rem;
   }
 
   .menu-action-list {
@@ -1481,12 +1594,14 @@ label.user-nav {
   input[type="text"].new-item {
     max-width: none;
     font-size: 18px !important;
-    height: 25px;
-    text-indent: 0;
   }
 
   input[type="text"]::placeholder {
     font-size: 18px;
+  }
+
+  .list-wrapper .expand-item {
+    top: 2px;
   }
 
   .notes-container input {
@@ -1518,10 +1633,11 @@ label.user-nav {
   .password-reset {
     position: relative;
     top: 32px;
+    top: var(--paper-line-height);
   }
 
   .password-reset input {
-    height: 32px !important;
+    height: calc(var(--paper-line-height) - 1px);
   }
 
   .password-reset input::placeholder {

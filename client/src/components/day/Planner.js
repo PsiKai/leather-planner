@@ -38,7 +38,7 @@ const Planner = props => {
               </div>
               <PlannerNavigation {...props} />
             </div>
-            <div className="pattern__wrapper" style={{ overflowY: "auto", overflowX: "visible" }}>
+            <div className="pattern__wrapper">
               <Route path="/planner/day" component={Daily} />
               <Route path="/planner/month" component={Month} />
             </div>

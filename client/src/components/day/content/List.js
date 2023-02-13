@@ -28,6 +28,7 @@ const List = ({ list, id, moved, style, item, notes }) => {
   const listItemText = useRef()
 
   const cross = () => {
+    if (!listItemText.current) return
     const strike = listItemText.current.classList
     strike.toggle("strikethrough")
     strike.value && playAudio("cross")
@@ -58,43 +59,50 @@ const List = ({ list, id, moved, style, item, notes }) => {
     setMenu(!menu)
   }
 
-  let flagStyle = {
-    position: "absolute",
-    top: "6px",
-    left: "-26px",
-  }
+  const listItemClassNames = [moved ? "no-bullet-point" : "", edit ? "list-inline-edit" : ""].join(" ")
 
-  return edit ? (
-    <Input content={item} undoEdit={undoEdit} id={id} aria-label="Editing list item" autoFocus />
-  ) : (
-    <li onClick={openMenu} className={moved ? "no-bullet-point" : ""}>
+  return (
+    <li onClick={edit ? null : openMenu} className={listItemClassNames}>
       <div className="list-wrapper">
         {moved && itemStyle ? (
-          <TurnedInIcon style={{ ...flagStyle, opacity: "0.6" }} />
+          <TurnedInIcon className="list-marker complete" />
         ) : (
-          moved && <TurnedInNotIcon style={flagStyle} />
+          moved && <TurnedInNotIcon className="list-marker" />
         )}
 
-        <span ref={listItemText} className={style}>
-          {item}
-        </span>
-        <button aria-label={`expand-item: ${item}`} className="expand-item">
-          {notes?.length ? <NotesIcon /> : <MoreVertIcon />}
-        </button>
-        <CSSTransition in={menu} timeout={300} classNames="revealnotes" unmountOnExit>
-          <Notes
-            notes={notes}
-            openMenu={openMenu}
-            list={list}
+        {edit ? (
+          <Input
+            content={item}
+            edit={edit}
+            undoEdit={undoEdit}
             id={id}
-            carryOver={carryOver}
-            style={itemStyle}
-            cross={cross}
-            deleteItem={deleteItem}
-            setEdit={setEdit}
+            aria-label="Editing list item"
+            autoFocus
           />
-        </CSSTransition>
+        ) : (
+          <>
+            <span ref={listItemText} className={style}>
+              {item}
+            </span>
+            <button aria-label={`expand-item: ${item}`} className="expand-item">
+              {notes?.length ? <NotesIcon /> : <MoreVertIcon />}
+            </button>
+          </>
+        )}
       </div>
+      <CSSTransition in={menu} timeout={300} classNames="revealnotes" unmountOnExit>
+        <Notes
+          notes={notes}
+          openMenu={openMenu}
+          list={list}
+          id={id}
+          carryOver={carryOver}
+          style={itemStyle}
+          cross={cross}
+          deleteItem={deleteItem}
+          setEdit={setEdit}
+        />
+      </CSSTransition>
     </li>
   )
 }

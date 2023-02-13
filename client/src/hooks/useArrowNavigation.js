@@ -68,7 +68,7 @@ const useArrowNavigation = ({ intitalFocus }) => {
   }
 
   const setInitialChildFocus = e => {
-    if (e.target.className.match(/wrapper/)) {
+    if (e.target?.className?.match(/wrapper/)) {
       setFocusedDate(prev => {
         elementRefs.current[prev - 1].focus()
         return prev

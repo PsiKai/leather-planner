@@ -30,7 +30,6 @@ const Note = ({ note, list, id }) => {
           value={newNoteText}
           onChange={e => setNewNoteText(e.target.value)}
           className="edit-note"
-          autoFocus
           aria-label="List item note"
         />
         <div className="edit-note-button-group">
