@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react"
+import React, { useState, useContext, useLayoutEffect } from "react"
 import AppContext from "../../../context/application/AppContext"
 import playAudio from "../../../utils/playAudio"
 import { setItem } from "../../../utils/api/item"
@@ -18,7 +18,7 @@ const Input = ({ content = "", id = "", undoEdit, edit = null, autoFocus = false
 
   const [inputText, setInputText] = useState("")
 
-  useEffect(() => setInputText(content), [content])
+  useLayoutEffect(() => setInputText(content), [content])
 
   const typing = e => setInputText(e.target.value)
 

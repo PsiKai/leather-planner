@@ -406,9 +406,6 @@ li:where(:hover, :focus-within) .list-wrapper .expand-item {
 
 .notes-border {
   position: absolute;
-  width: calc(100% + 2rem);
-  /* top: calc(100% + 1px);
-  left: -2rem; */
   inset: calc(100% + 1px) 0 auto -2rem;
   z-index: 3;
   background: var(--leather-color) var(--leather-texture);
@@ -440,6 +437,10 @@ li:where(:hover, :focus-within) .list-wrapper .expand-item {
   text-indent: 1rem;
   font-family: var(--script-font);
   font-size: 1.5rem;
+}
+
+.notes-container input:not(.edit-note) {
+  line-height: calc(var(--paper-line-height) - 1px);
 }
 
 .notes-container input[type="text"]:focus {
@@ -1307,7 +1308,6 @@ label.user-nav {
 
   .notes-border {
     left: -1.5rem;
-    width: calc(100% + 1.5rem);
   }
 
   .binder-rings,
