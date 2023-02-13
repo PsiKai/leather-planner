@@ -48,8 +48,8 @@ const Notes = ({ notes, openMenu, list, id, ...rest }) => {
           </form>
           <ul className="notes-list">
             {notes.length ? (
-              notes.map((note, i) => {
-                return <Note key={id} note={note} id={id} list={list} />
+              notes.map(note => {
+                return <Note key={crypto.randomUUID()} note={note} id={id} list={list} />
               })
             ) : (
               <li></li>

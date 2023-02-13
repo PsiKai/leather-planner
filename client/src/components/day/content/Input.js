@@ -31,15 +31,6 @@ const Input = ({ content = "", id = "", undoEdit, autoFocus = false }) => {
     }
   }
 
-  const submitButtonStyle = {
-    // maxHeight: "30px",
-    // minHeight: "30px",
-    // minWidth: "30px",
-    // maxWidth: "30px",
-  }
-
-  console.log(!!inputText)
-
   return (
     <form className="list-item-form" onSubmit={create}>
       <input
@@ -54,7 +45,7 @@ const Input = ({ content = "", id = "", undoEdit, autoFocus = false }) => {
         autoFocus={autoFocus}
       />
       <CSSTransition in={!!inputText} classNames="button-appear" timeout={150}>
-        <Fab type="submit" style={submitButtonStyle}>
+        <Fab type="submit">
           <AddIcon />
         </Fab>
       </CSSTransition>
