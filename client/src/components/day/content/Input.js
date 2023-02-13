@@ -4,11 +4,13 @@ import playAudio from "../../../utils/playAudio"
 import { setItem } from "../../../utils/api/item"
 
 import AddIcon from "@material-ui/icons/Add"
+import CheckIcon from "@material-ui/icons/Check"
+import BlockIcon from "@material-ui/icons/Block"
 import Fab from "@material-ui/core/Fab"
 
 import { CSSTransition } from "react-transition-group"
 
-const Input = ({ content = "", id = "", undoEdit, autoFocus = false }) => {
+const Input = ({ content = "", id = "", undoEdit, edit = null, autoFocus = false }) => {
   const {
     state: { list },
     dispatch,
@@ -44,11 +46,27 @@ const Input = ({ content = "", id = "", undoEdit, autoFocus = false }) => {
         aria-label="Create list item"
         autoFocus={autoFocus}
       />
-      <CSSTransition in={!!inputText} classNames="button-appear" timeout={150}>
-        <Fab type="submit">
-          <AddIcon />
-        </Fab>
-      </CSSTransition>
+      {edit ? (
+        <div className="edit-info-button-group">
+          <button className="edit-info-form-action" type="submit" aria-label="Submit list item changes">
+            <CheckIcon />
+          </button>
+          <button
+            className="edit-info-form-action"
+            type="button"
+            onClick={() => undoEdit()}
+            aria-label="Cancel list item changes"
+          >
+            <BlockIcon />
+          </button>
+        </div>
+      ) : (
+        <CSSTransition in={!!inputText} classNames="button-appear" timeout={150}>
+          <Fab type="submit" className="new-item-submit">
+            <AddIcon />
+          </Fab>
+        </CSSTransition>
+      )}
     </form>
   )
 }
