@@ -24,8 +24,6 @@ const Planner = props => {
     if (!user) getUser(dispatch)
   }, [user, dispatch])
 
-  // style={{ overflowY: "auto", overflowX: "visible" }}
-
   return (
     <Fragment>
       <div className="position-div inside-cover">

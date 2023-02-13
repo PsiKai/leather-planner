@@ -145,7 +145,6 @@
 .react-datepicker__day--keyboard-selected {
   outline: auto;
   outline-color: var(--brown-color);
-  /* outline-offset: 10px; */
 }
 
 .react-datepicker__day--selected,
@@ -170,7 +169,6 @@
   border: 4px solid #d4caa3;
   outline: auto;
   outline-color: var(--brown-color);
-  /* outline-color: black; */
 }
 
 .react-datepicker__day-name {
