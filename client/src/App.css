@@ -753,6 +753,17 @@ textarea {
   min-width: calc(var(--paper-line-height) - 2px);
 }
 
+.list-item-form
+  button:not(
+    .button-appear-exit,
+    .button-appear-enter,
+    .button-appear-exit-active,
+    .button-appear-enter-active,
+    .button-appear-enter-done
+  ) {
+  transform: scale(0);
+}
+
 .list-item-form button:hover {
   background-color: var(--leather-color);
   color: #d4caa3;
@@ -763,20 +774,20 @@ textarea {
   font-size: 1.1rem;
 }
 
-.button-appear-enter {
-  transform: scale(0) !important;
+button.button-appear-enter {
+  transform: scale(0);
 }
 
-.button-appear-enter-active,
-.button-appear-enter-done {
-  transform: scale(1) !important;
-  transition: transform 150ms cubic-bezier(0.44, 1.65, 0.69, 0.815) !important;
+button.button-appear-enter-active,
+button.button-appear-enter-done {
+  transform: scale(1);
+  transition: transform 150ms cubic-bezier(0.44, 1.65, 0.69, 0.815);
 }
 
-.button-appear-exit-active,
-.button-appear-exit-done {
-  transform: rotateZ(360deg) scale(0) !important;
-  transition: transform 350ms ease !important;
+button.button-appear-exit-active.button-appear-exit,
+button.button-appear-exit-done {
+  transition: transform 350ms ease;
+  transform: rotateZ(360deg) scale(0);
 }
 
 /* user and weather widget */
@@ -1294,9 +1305,6 @@ label.user-nav {
   #line-two {
     padding-top: 0;
     margin-bottom: 50px;
-  }
-
-  .heading {
   }
 
   .list-wrapper .expand-item {

@@ -38,6 +38,8 @@ const Input = ({ content = "", id = "", undoEdit, autoFocus = false }) => {
     // maxWidth: "30px",
   }
 
+  console.log(!!inputText)
+
   return (
     <form className="list-item-form" onSubmit={create}>
       <input
