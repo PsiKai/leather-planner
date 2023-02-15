@@ -50,6 +50,7 @@ const EditInfo = () => {
             onChange={editInfo}
             value={info.name}
             autoFocus
+            spellCheck={false}
           />
           <div className="edit-info-button-group">
             <button className="edit-info-form-action" type="submit" aria-label="Submit username changes">

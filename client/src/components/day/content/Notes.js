@@ -41,6 +41,7 @@ const Notes = ({ notes, openMenu, list, id, ...rest }) => {
               onChange={e => setNewNote(e.target.value)}
               value={newNote}
               placeholder="Write a note ..."
+              className="new-note"
             />
             <Fab type="submit" className="add-note--button" aria-label="add note">
               <AddIcon />
