@@ -1017,6 +1017,10 @@ label.user-nav {
 
 /* cover */
 
+.cover {
+  width: 100%;
+}
+
 .center-div {
   background-color: var(--leather-color);
   background-image: var(--leather-texture);
@@ -1347,8 +1351,7 @@ label.user-nav {
     display: block;
     margin: 3% auto;
     height: 96vh;
-    width: 93%;
-    max-width: 700px;
+    width: 95%;
     padding-top: 170px;
   }
 
