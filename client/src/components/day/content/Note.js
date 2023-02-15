@@ -31,6 +31,7 @@ const Note = ({ note, list, id }) => {
           onChange={e => setNewNoteText(e.target.value)}
           className="edit-note"
           aria-label="List item note"
+          autoFocus
         />
         <div className="edit-note-button-group">
           <button aria-label="Confirm edit." type="submit" className="edit-note-form-action">
@@ -44,10 +45,12 @@ const Note = ({ note, list, id }) => {
     </li>
   ) : (
     <li onClick={changeEditing}>
-      {note}
-      <button className="edit-note-button" aria-label="edit note">
-        <EditIcon />
-      </button>
+      <div className="note-container">
+        <span className="note-text">{note}</span>
+        <button className="edit-note-button" aria-label="edit note">
+          <EditIcon />
+        </button>
+      </div>
     </li>
   )
 }
