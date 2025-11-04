@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
-import ArrowBackIosOutlinedIcon from "@material-ui/icons/ArrowBackIosOutlined"
-import ArrowForwardIosOutlinedIcon from "@material-ui/icons/ArrowForwardIosOutlined"
+import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined"
+import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined"
 import "../../styles/page-nav.css"
 
 const PageNav = ({ totalRecords, resultsPerPage, loading, setPage, page }) => {
@@ -9,7 +9,9 @@ const PageNav = ({ totalRecords, resultsPerPage, loading, setPage, page }) => {
     setPage(prev => prev + incerement)
   }
 
-  const [visibility, setVisbility] = useState(totalRecords > resultsPerPage ? { opacity: "1" } : { opacity: "0" })
+  const [visibility, setVisbility] = useState(
+    totalRecords > resultsPerPage ? { opacity: "1" } : { opacity: "0" },
+  )
 
   const mapPages = () => {
     let totalPages = []
@@ -18,7 +20,10 @@ const PageNav = ({ totalRecords, resultsPerPage, loading, setPage, page }) => {
       totalPages.push(i + 1)
     }
     return totalPages.map(v => (
-      <span className={`page-nav--page-num ${page / resultsPerPage === +v - 1 ? "page-nav--page-active" : ""}`} key={v}>
+      <span
+        className={`page-nav--page-num ${page / resultsPerPage === +v - 1 ? "page-nav--page-active" : ""}`}
+        key={v}
+      >
         {v}
       </span>
     ))
@@ -30,7 +35,10 @@ const PageNav = ({ totalRecords, resultsPerPage, loading, setPage, page }) => {
 
   return (
     <div className="page-nav--container">
-      <span className="page-nav--totals" style={!totalRecords ? visibility : {}}>{`showing ${page + 1}-${
+      <span
+        className="page-nav--totals"
+        style={!totalRecords ? visibility : {}}
+      >{`showing ${page + 1}-${
         page + resultsPerPage > totalRecords ? totalRecords : page + resultsPerPage
       } of ${totalRecords}`}</span>
       <div className="page-nav--navbar" style={visibility}>

@@ -3,9 +3,9 @@ import AppContext from "../../../context/application/AppContext"
 import { notesApi } from "../../../utils/api/note"
 import Note from "./Note"
 import Menu from "./Menu"
-import AddIcon from "@material-ui/icons/Add"
-import Fab from "@material-ui/core/Fab"
-import CloseOutlined from "@material-ui/icons/CloseOutlined"
+import AddIcon from "@mui/icons-material/Add"
+import Fab from "@mui/material/Fab"
+import CloseOutlined from "@mui/icons-material/CloseOutlined"
 
 const Notes = ({ notes, openMenu, list, id, ...rest }) => {
   const { dispatch } = useContext(AppContext)

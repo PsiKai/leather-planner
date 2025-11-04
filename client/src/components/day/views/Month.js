@@ -2,15 +2,21 @@ import React, { useCallback, useContext, useEffect, useLayoutEffect, useState } 
 import { CSSTransition } from "react-transition-group"
 import AppContext from "../../../context/application/AppContext"
 
-import { CircularProgress } from "@material-ui/core"
-import ArrowBackIosOutlinedIcon from "@material-ui/icons/ArrowBackIosOutlined"
-import ArrowForwardIosOutlinedIcon from "@material-ui/icons/ArrowForwardIosOutlined"
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown"
+import CircularProgress from "@mui/material/CircularProgress"
+import ArrowBackIosOutlinedIcon from "@mui/icons-material/ArrowBackIosOutlined"
+import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined"
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import "../../../styles/date-picker.css"
 
-import { getFormattedDate, shortWeekdays, getDaysInMonth, getFirstDay, months } from "../../../utils/dates"
+import {
+  getFormattedDate,
+  shortWeekdays,
+  getDaysInMonth,
+  getFirstDay,
+  months,
+} from "../../../utils/dates"
 import playAudio from "../../../utils/playAudio"
 import { updateMonth, createList } from "../../../utils/api/list"
 
@@ -55,7 +61,10 @@ const Month = () => {
 
   useLayoutEffect(() => {
     setLoading(true)
-    if (!monthlyLists.length || splitListName(monthlyLists[0].name).month !== splitListName(list).month) {
+    if (
+      !monthlyLists.length ||
+      splitListName(monthlyLists[0].name).month !== splitListName(list).month
+    ) {
       updateMonth(list, dispatch)
     }
     buildNewMonth()
@@ -119,13 +128,15 @@ const Month = () => {
         style={i === 0 ? { "--start": `${getFirstDay(current.year, current.month)}` } : {}}
         onClick={goToSelectedDate}
         aria-label={`${new Date(
-          day.name?.replace(/-/g, "/") || `${current.month + 1} ${day} ${current.year}`
+          day.name?.replace(/-/g, "/") || `${current.month + 1} ${day} ${current.year}`,
         ).toDateString()}`}
         role="button"
         ref={el => (dateRefs.current[i] = el)}
         onKeyDown={keyBoardSelection}
       >
-        <span className={`month__date ${i + 1 === current.day && !loading ? "today" : ""}`}>{i + 1}</span>
+        <span className={`month__date ${i + 1 === current.day && !loading ? "today" : ""}`}>
+          {i + 1}
+        </span>
         {renderItems(day.items)}
       </div>
     ))
@@ -146,7 +157,12 @@ const Month = () => {
   return (
     <div className="monthly-viewer">
       <div className="content">
-        <img src="../../images/Bald-Eagle.webp" className="watermark" alt="watermark" aria-hidden="true" />
+        <img
+          src="../../images/Bald-Eagle.webp"
+          className="watermark"
+          alt="watermark"
+          aria-hidden="true"
+        />
         <nav className="month-navigation">
           <button
             className="month-navigation--button"

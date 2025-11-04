@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import AppContext from "../../../context/application/AppContext"
 import DateLabel from "../../layout/DateLabel"
-import TodayOutlinedIcon from "@material-ui/icons/TodayOutlined"
+import TodayOutlinedIcon from "@mui/icons-material/TodayOutlined"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import { getFormattedDate, getPrintedDate, getShortFormDate } from "../../../utils/dates"

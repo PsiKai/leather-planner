@@ -7,10 +7,10 @@ import Notes from "./Notes"
 import playAudio from "../../../utils/playAudio"
 import { copyItem, crossOffItem, deleteListItem } from "../../../utils/api/item"
 
-import TurnedInNotIcon from "@material-ui/icons/TurnedInNot"
-import TurnedInIcon from "@material-ui/icons/TurnedIn"
-import NotesIcon from "@material-ui/icons/Notes"
-import MoreVertIcon from "@material-ui/icons/MoreVert"
+import TurnedInNotIcon from "@mui/icons-material/TurnedInNot"
+import TurnedInIcon from "@mui/icons-material/TurnedIn"
+import NotesIcon from "@mui/icons-material/Notes"
+import MoreVertIcon from "@mui/icons-material/MoreVert"
 
 import { CSSTransition } from "react-transition-group"
 

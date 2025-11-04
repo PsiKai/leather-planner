@@ -8,8 +8,8 @@ import AnalyticsState from "../../context/analytics/AnalyticsState"
 import Alert from "../Alert"
 import UserData from "./UserData"
 
-import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount"
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos"
+import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount"
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos"
 
 import "../../styles/admin.css"
 

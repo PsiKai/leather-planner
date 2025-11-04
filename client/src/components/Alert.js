@@ -4,8 +4,8 @@ import { CSSTransition, TransitionGroup } from "react-transition-group"
 import "../styles/alerts.css"
 import AuthContext from "../context/authentication/AuthContext"
 
-import ErrorIcon from "@material-ui/icons/Error"
-import CheckCircleIcon from "@material-ui/icons/CheckCircle"
+import ErrorIcon from "@mui/icons-material/Error"
+import CheckCircleIcon from "@mui/icons-material/CheckCircle"
 
 const Alert = () => {
   const {

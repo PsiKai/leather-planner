@@ -3,9 +3,9 @@ import React, { useEffect, useContext, useState } from "react"
 import AuthContext from "../../context/authentication/AuthContext"
 import { updateUser } from "../../utils/api/user"
 
-import CheckIcon from "@material-ui/icons/Check"
-import BlockIcon from "@material-ui/icons/Block"
-import EditIcon from "@material-ui/icons/Edit"
+import CheckIcon from "@mui/icons-material/Check"
+import BlockIcon from "@mui/icons-material/Block"
+import EditIcon from "@mui/icons-material/Edit"
 
 const EditInfo = () => {
   const {
@@ -53,7 +53,11 @@ const EditInfo = () => {
             spellCheck={false}
           />
           <div className="edit-info-button-group">
-            <button className="edit-info-form-action" type="submit" aria-label="Submit username changes">
+            <button
+              className="edit-info-form-action"
+              type="submit"
+              aria-label="Submit username changes"
+            >
               <CheckIcon />
             </button>
             <button
@@ -93,7 +97,11 @@ const EditInfo = () => {
             autoFocus
           />
           <div className="edit-info-button-group">
-            <button className="edit-info-form-action" type="submit" aria-label="Submit email changes">
+            <button
+              className="edit-info-form-action"
+              type="submit"
+              aria-label="Submit email changes"
+            >
               <CheckIcon />
             </button>
             <button

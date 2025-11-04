@@ -4,9 +4,9 @@ import AuthContext from "../../../context/authentication/AuthContext"
 
 import axios from "axios"
 
-import CheckIcon from "@material-ui/icons/Check"
-import SearchIcon from "@material-ui/icons/Search"
-import CircularProgress from "@material-ui/core/CircularProgress"
+import CheckIcon from "@mui/icons-material/Check"
+import SearchIcon from "@mui/icons-material/Search"
+import CircularProgress from "@mui/material/CircularProgress"
 import { setAlert } from "../../../utils/alert"
 
 let weatherInterval
@@ -114,7 +114,11 @@ const Weather = () => {
       </button>
     </form>
   ) : (
-    <button className="get-weather" onClick={resetWeatherSearch} aria-label="Get your local weather">
+    <button
+      className="get-weather"
+      onClick={resetWeatherSearch}
+      aria-label="Get your local weather"
+    >
       <span>Weather</span> <SearchIcon />
     </button>
   )

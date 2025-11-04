@@ -2,9 +2,9 @@ import React, { useState, useContext } from "react"
 import AppContext from "../../../context/application/AppContext"
 import { notesApi } from "../../../utils/api/note"
 
-import CheckIcon from "@material-ui/icons/Check"
-import BlockIcon from "@material-ui/icons/Block"
-import EditIcon from "@material-ui/icons/Edit"
+import CheckIcon from "@mui/icons-material/Check"
+import BlockIcon from "@mui/icons-material/Block"
+import EditIcon from "@mui/icons-material/Edit"
 
 const Note = ({ note, list, id }) => {
   const { dispatch } = useContext(AppContext)

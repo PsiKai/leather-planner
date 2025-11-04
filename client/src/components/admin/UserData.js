@@ -6,7 +6,7 @@ import { CSSTransition } from "react-transition-group"
 import { createUserSnapshot, getAllUsers } from "../../utils/api/analytics"
 import { getLocaleDate } from "../../utils/dates"
 
-import { CircularProgress } from "@material-ui/core"
+import CircularProgress from "@mui/material/CircularProgress"
 import PageNav from "../layout/PageNav"
 import UserUpdate from "./UserUpdate"
 import UserSearchbar from "./UserSearchbar"
@@ -63,7 +63,12 @@ const UserData = () => {
 
   return (
     <div className="analytics-content">
-      <img src="./images/Bald-Eagle.webp" className="watermark" alt="watermark" aria-hidden="true" />
+      <img
+        src="./images/Bald-Eagle.webp"
+        className="watermark"
+        alt="watermark"
+        aria-hidden="true"
+      />
       <div className="user-dashboard--container">
         <UserSearchbar searchForUser={setSearchTerm} />
         <table className="user-dashboard">
@@ -81,7 +86,12 @@ const UserData = () => {
             {!loading ? (
               totalUsers !== 0 ? (
                 users?.map(user => (
-                  <tr key={user._id} data-user={user._id} onClick={openUserAction} className="table-user">
+                  <tr
+                    key={user._id}
+                    data-user={user._id}
+                    onClick={openUserAction}
+                    className="table-user"
+                  >
                     {tableData(user.name)}
                     {dateCell(user.createdAt)}
                     {dateCell(user.lastLogin)}

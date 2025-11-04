@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import CloseOutlinedIcon from "@material-ui/icons/CloseOutlined"
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 import { CSSTransition } from "react-transition-group"
 
 const Modal = ({ children, onDismiss, show }) => {

@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 
-import CheckBoxOutlineBlankOutlinedIcon from "@material-ui/icons/CheckBoxOutlineBlankOutlined"
-import CheckBoxOutlinedIcon from "@material-ui/icons/CheckBoxOutlined"
+import CheckBoxOutlineBlankOutlinedIcon from "@mui/icons-material/CheckBoxOutlineBlankOutlined"
+import CheckBoxOutlinedIcon from "@mui/icons-material/CheckBoxOutlined"
 
 const ConfirmationModal = ({ modalOpen, confirmAction, currentUser, pending }) => {
   const [confirmed, setConfirmed] = useState(false)
@@ -14,7 +14,9 @@ const ConfirmationModal = ({ modalOpen, confirmAction, currentUser, pending }) =
     >
       <div className="confirmation-modal modal">
         <h1>Are you sure you want to delete {currentUser?.name}?</h1>
-        <p className="confirmation-text">Please confirm you want to delete this user and all associated lists</p>
+        <p className="confirmation-text">
+          Please confirm you want to delete this user and all associated lists
+        </p>
         <label>
           delete<span>{currentUser?.name}</span>
           <input

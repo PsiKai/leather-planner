@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react"
 import { NavLink } from "react-router-dom"
-import CalendarViewDayOutlinedIcon from "@material-ui/icons/CalendarViewDayOutlined"
-import ViewDayOutlinedIcon from "@material-ui/icons/ViewDayOutlined"
+import CalendarViewDayOutlinedIcon from "@mui/icons-material/CalendarViewDayOutlined"
+import ViewDayOutlinedIcon from "@mui/icons-material/ViewDayOutlined"
 
 const PlannerNavigation = props => {
   const [navSetting, setNavSetting] = useState()
