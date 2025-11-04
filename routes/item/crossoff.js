@@ -14,7 +14,6 @@ router.post("/", auth, async (req, res) => {
     user,
   } = req
   var newStyle = style ? "" : "strikethrough"
-  console.log("Updating item style:", { list, id, newStyle })
 
   try {
     const newList = await List.findOneAndUpdate(

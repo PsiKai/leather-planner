@@ -8,8 +8,6 @@
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
     "axios": "^1.13.1",
-    "cors": "^2.8.5",
-    "day-planner": "file:..",
     "react": "^19.2.0",
     "react-datepicker": "^8.8.0",
     "react-dom": "^19.2.0",
