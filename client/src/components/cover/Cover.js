@@ -18,7 +18,7 @@ const Cover = props => {
   useEffect(() => {
     if (token) navigate("/planner/day")
     else dispatch({ type: "LOG_OUT" })
-  }, [props.history, dispatch, token])
+  }, [navigate, dispatch, token])
 
   return (
     <Fragment>

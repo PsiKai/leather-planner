@@ -21,7 +21,7 @@ const Alert = () => {
     <TransitionGroup className="alert-wrapper">
       {alerts.length > 0
         ? alerts.map(({ msg, id, status = 200 }) => {
-            const errorState = status >= 400
+            const errorState = !status || status >= 400
             return (
               <CSSTransition
                 nodeRef={alertDomElements.current[id]}

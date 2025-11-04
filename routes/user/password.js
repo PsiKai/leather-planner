@@ -21,7 +21,7 @@ router.patch("/", auth, async (req, res) => {
       res.status(200).json({ msg: "Password successfully updated" })
     } catch (error) {
       console.error(`${dbUser.name} failed to update password field with error: ${error}`)
-      res.status(500).json({ msg: "There was an error updating you password" })
+      res.status(500).json({ msg: "There was an error updating your password" })
     }
   } else {
     res.status(400).json({ msg: "Old password does not match" })

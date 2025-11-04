@@ -17,7 +17,7 @@ export const crossOffItem = (item, dispatch, monthlyLists) => {
   axios
     .post("/item/crossoff", { item })
     .then(res => {
-      if (!res.status >= 400) throw new Error("Error crossing off item")
+      if (res.status >= 400) throw new Error("Error crossing off item")
       dispatch({ type: "SET_ITEM", payload: res.data })
       refreshMonth(res.data, monthlyLists, dispatch)
     })

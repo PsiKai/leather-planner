@@ -30,7 +30,7 @@ function App() {
                 <Route path="/planner/month" element={<Month />} />
               </Route>
             </Route>
-            <Route component={<PrivateRoute />}>
+            <Route element={<PrivateRoute />}>
               <Route path="/profile" exact element={<EditProfile />} />
             </Route>
             <Route element={<AdminRoute />}>
