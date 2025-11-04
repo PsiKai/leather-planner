@@ -15,9 +15,9 @@ const UserSearchbar = ({ searchForUser }) => {
     clearTimeout(debounceTimer.current)
     dispatch({ type: "SET_LOADING" })
     debounceTimer.current = setTimeout(() => searchForUser(searchTerm), 1000)
-  }, [searchTerm, dispatch, searchForUser])
 
-  useEffect(() => clearTimeout(debounceTimer.current), [])
+    return () => clearTimeout(debounceTimer.current)
+  }, [searchTerm, dispatch, searchForUser])
 
   return (
     <div className="searchbar--container">

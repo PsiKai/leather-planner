@@ -18,7 +18,6 @@ const Planner = props => {
     dispatch,
   } = useContext(AuthContext)
   const location = useLocation()
-  console.log("Current location:", location?.pathname)
 
   useEffect(() => {
     if (!user) getUser(dispatch)

@@ -46,7 +46,12 @@ const EditProfile = () => {
           </div>
           <div className="pattern__wrapper" style={{ overflowY: "auto", overflowX: "visible" }}>
             <div className="pattern">
-              <img src="./images/Bald-Eagle.webp" className="watermark" alt="watermark" aria-hidden="true" />
+              <img
+                src="./images/Bald-Eagle.webp"
+                className="watermark"
+                alt="watermark"
+                aria-hidden="true"
+              />
               <div className="content">
                 <EditInfo />
                 <PasswordField />

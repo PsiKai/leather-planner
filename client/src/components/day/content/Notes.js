@@ -7,7 +7,7 @@ import AddIcon from "@mui/icons-material/Add"
 import Fab from "@mui/material/Fab"
 import CloseOutlined from "@mui/icons-material/CloseOutlined"
 
-const Notes = ({ notes, openMenu, list, id, ...rest }) => {
+const Notes = ({ notes, openMenu, list, id, nodeRef, ...rest }) => {
   const { dispatch } = useContext(AppContext)
 
   const [newNote, setNewNote] = useState("")
@@ -32,7 +32,7 @@ const Notes = ({ notes, openMenu, list, id, ...rest }) => {
 
   return (
     <>
-      <div className="notes-border" onClick={e => e.stopPropagation()}>
+      <div ref={nodeRef} className="notes-border" onClick={e => e.stopPropagation()}>
         <div className="notes-container">
           <Menu {...rest} />
           <form onSubmit={submitNote}>

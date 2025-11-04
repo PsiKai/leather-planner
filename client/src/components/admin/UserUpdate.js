@@ -13,7 +13,7 @@ import CheckBoxOutlinedIcon from "@mui/icons-material/CheckBoxOutlined"
 import { CSSTransition } from "react-transition-group"
 import ConfirmationModal from "./ConfirmationModal"
 
-const UserUpdate = ({ setUserPopup, currentUser }) => {
+const UserUpdate = ({ nodeRef, setUserPopup, currentUser }) => {
   const modalDomElement = useRef()
   const [newUserData, setNewUserData] = useState({})
   const [confirmationModal, setConfirmationModal] = useState(false)
@@ -61,7 +61,7 @@ const UserUpdate = ({ setUserPopup, currentUser }) => {
   }
 
   return (
-    <div className="user-action__container">
+    <div ref={nodeRef} className="user-action__container">
       <div className="user-action">
         <div className="user-action--user">
           <h2 className="user-action--info">

@@ -3,10 +3,11 @@ import React, { useState } from "react"
 import CheckBoxOutlineBlankOutlinedIcon from "@mui/icons-material/CheckBoxOutlineBlankOutlined"
 import CheckBoxOutlinedIcon from "@mui/icons-material/CheckBoxOutlined"
 
-const ConfirmationModal = ({ modalOpen, confirmAction, currentUser, pending }) => {
+const ConfirmationModal = ({ nodeRef, modalOpen, confirmAction, currentUser, pending }) => {
   const [confirmed, setConfirmed] = useState(false)
   return (
     <div
+      ref={nodeRef}
       className="modal-backdrop"
       onClick={e => {
         if (e.target === e.currentTarget) modalOpen(false)

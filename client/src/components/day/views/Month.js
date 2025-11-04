@@ -41,7 +41,9 @@ const Month = () => {
     setInitialChildFocus,
   } = useArrowNavigation({ intitalFocus: current?.day })
 
-  useEffect(() => playAudio("page"), [])
+  useEffect(() => {
+    playAudio("page")
+  }, [])
 
   const buildNewMonth = useCallback(() => {
     const date = new Date(list.replace(/-/g, " "))

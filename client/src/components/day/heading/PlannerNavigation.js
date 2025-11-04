@@ -26,7 +26,9 @@ const PlannerNavigation = props => {
     }
   }, [location.pathname])
 
-  useEffect(() => setNavSetting(renderNavIcons()), [props.location, renderNavIcons])
+  useEffect(() => {
+    setNavSetting(renderNavIcons())
+  }, [props.location, renderNavIcons])
 
   return (
     <NavLink

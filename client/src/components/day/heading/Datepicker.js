@@ -16,7 +16,9 @@ const Datepicker = () => {
 
   const [date, setDate] = useState(new Date(list.replace(/-/g, " ")))
 
-  useEffect(() => setDate(new Date(list.replace(/-/g, " "))), [list])
+  useEffect(() => {
+    setDate(new Date(list.replace(/-/g, " ")))
+  }, [list])
 
   const newDay = async e => {
     setDate(e)

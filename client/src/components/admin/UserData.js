@@ -40,9 +40,13 @@ const UserData = () => {
     setCurrentUser()
   }, [dispatch, resultsPerPage, page, searchTerm])
 
-  useEffect(() => changePages(), [page, changePages])
+  useEffect(() => {
+    changePages()
+  }, [page, changePages])
 
-  useEffect(() => createUserSnapshot(), [])
+  useEffect(() => {
+    createUserSnapshot()
+  }, [])
 
   const listAverage = lists => {
     const total = lists.reduce((length, list) => (length += list.length), 0)
@@ -132,7 +136,11 @@ const UserData = () => {
         timeout={150}
         unmountOnExit
       >
-        <UserUpdate ref={userUpdateNode} setUserPopup={setUserPopup} currentUser={currentUser} />
+        <UserUpdate
+          nodeRef={userUpdateNode}
+          setUserPopup={setUserPopup}
+          currentUser={currentUser}
+        />
       </CSSTransition>
     </div>
   )

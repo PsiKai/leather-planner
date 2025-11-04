@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useRef } from "react"
 import { CSSTransition, TransitionGroup } from "react-transition-group"
 
 import "../styles/alerts.css"
@@ -11,15 +11,25 @@ const Alert = () => {
   const {
     state: { alerts },
   } = useContext(AuthContext)
+  const alertDomElements = useRef({})
+
+  alertDomElements.current = Object.fromEntries(
+    (alerts || []).map(({ id }) => [id, React.createRef()]),
+  )
 
   return (
     <TransitionGroup className="alert-wrapper">
       {alerts.length > 0
         ? alerts.map(({ msg, id, status = 200 }) => {
-            const errorState = !status.toString().includes(2)
+            const errorState = status >= 400
             return (
-              <CSSTransition timeout={400} classNames="fadein" key={id}>
-                <div className="alert-border">
+              <CSSTransition
+                nodeRef={alertDomElements.current[id]}
+                timeout={400}
+                classNames="fadein"
+                key={id}
+              >
+                <div ref={alertDomElements.current[id]} className="alert-border">
                   <div key={id} className="alert">
                     {errorState ? <ErrorIcon /> : <CheckCircleIcon />}
                     <span className={errorState ? "error" : ""}>{msg}</span>

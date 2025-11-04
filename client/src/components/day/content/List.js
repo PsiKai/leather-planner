@@ -101,7 +101,7 @@ const List = ({ list, id, moved, style, item, notes }) => {
         unmountOnExit
       >
         <Notes
-          ref={notesDomElement}
+          nodeRef={notesDomElement}
           notes={notes}
           openMenu={openMenu}
           list={list}
