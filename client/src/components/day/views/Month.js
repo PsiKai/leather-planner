@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useLayoutEffect, useState } from "react"
+import React, { useCallback, useRef, useContext, useEffect, useLayoutEffect, useState } from "react"
 import { CSSTransition } from "react-transition-group"
 import AppContext from "../../../context/application/AppContext"
 
@@ -33,6 +33,7 @@ const Month = () => {
   const [daysInMonth, setDaysInMonth] = useState([])
   const [current, setCurrent] = useState()
   const [loading, setLoading] = useState(true)
+  const dialogDomElement = useRef(null)
 
   const {
     elementRefs: dateRefs,
@@ -216,8 +217,9 @@ const Month = () => {
               timeout={200}
               classNames="modal-content"
               unmountOnExit
+              nodeRef={dialogDomElement}
             >
-              <dialog open className="month__cell--preview">
+              <dialog ref={dialogDomElement} open className="month__cell--preview">
                 <div className="items__preview--wrapper">
                   <NavLink to="/planner/day">
                     <h3>{list}</h3>

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useLayoutEffect } from "react"
+import React, { useState, useContext, useLayoutEffect, useRef } from "react"
 import AppContext from "../../../context/application/AppContext"
 import playAudio from "../../../utils/playAudio"
 import { setItem } from "../../../utils/api/item"
@@ -17,6 +17,7 @@ const Input = ({ content = "", id = "", undoEdit, edit = null, autoFocus = false
   } = useContext(AppContext)
 
   const [inputText, setInputText] = useState("")
+  const fabDomElement = useRef()
 
   useLayoutEffect(() => setInputText(content), [content])
 
@@ -65,8 +66,13 @@ const Input = ({ content = "", id = "", undoEdit, edit = null, autoFocus = false
           </button>
         </div>
       ) : (
-        <CSSTransition in={!!inputText} classNames="button-appear" timeout={150}>
-          <Fab type="submit" className="new-item-submit">
+        <CSSTransition
+          nodeRef={fabDomElement}
+          in={!!inputText}
+          classNames="button-appear"
+          timeout={150}
+        >
+          <Fab ref={fabDomElement} type="submit" className="new-item-submit">
             <AddIcon />
           </Fab>
         </CSSTransition>

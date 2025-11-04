@@ -10,6 +10,8 @@ import setAuthToken from "./utils/setAuthToken"
 import PrivateRoute from "./components/routing/PrivateRoute"
 import "./App.css"
 import AdminRoute from "./components/routing/AdminRoute"
+import Daily from "./components/day/views/Daily"
+import Month from "./components/day/views/Month"
 
 if (localStorage.token) {
   setAuthToken(localStorage.token)
@@ -23,7 +25,10 @@ function App() {
           <Routes>
             <Route path="/" exact element={<Cover />} />
             <Route element={<PrivateRoute />}>
-              <Route path="/planner" exact element={<Planner />} />
+              <Route path="/planner" element={<Planner />}>
+                <Route path="/planner/day" element={<Daily />} />
+                <Route path="/planner/month" element={<Month />} />
+              </Route>
             </Route>
             <Route component={<PrivateRoute />}>
               <Route path="/profile" exact element={<EditProfile />} />

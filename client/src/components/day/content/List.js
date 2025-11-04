@@ -20,6 +20,7 @@ const List = ({ list, id, moved, style, item, notes }) => {
     state: { monthlyLists },
   } = useContext(AppContext)
   const { dispatch: authDispatch } = useContext(AuthContext)
+  const notesDomElement = useRef(null)
 
   const [menu, setMenu] = useState(false)
   const [edit, setEdit] = useState(false)
@@ -59,7 +60,9 @@ const List = ({ list, id, moved, style, item, notes }) => {
     setMenu(!menu)
   }
 
-  const listItemClassNames = [moved ? "no-bullet-point" : "", edit ? "list-inline-edit" : ""].join(" ")
+  const listItemClassNames = [moved ? "no-bullet-point" : "", edit ? "list-inline-edit" : ""].join(
+    " ",
+  )
 
   return (
     <li onClick={edit ? null : openMenu} className={listItemClassNames}>
@@ -90,8 +93,15 @@ const List = ({ list, id, moved, style, item, notes }) => {
           </>
         )}
       </div>
-      <CSSTransition in={menu} timeout={300} classNames="revealnotes" unmountOnExit>
+      <CSSTransition
+        nodeRef={notesDomElement}
+        in={menu}
+        timeout={300}
+        classNames="revealnotes"
+        unmountOnExit
+      >
         <Notes
+          ref={notesDomElement}
           notes={notes}
           openMenu={openMenu}
           list={list}

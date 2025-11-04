@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react"
+import React, { useEffect, useRef, useContext, useState } from "react"
 import AnalyticsContext from "../../context/analytics/AnalyticsContext"
 import authContext from "../../context/authentication/AuthContext"
 
@@ -14,6 +14,7 @@ import { CSSTransition } from "react-transition-group"
 import ConfirmationModal from "./ConfirmationModal"
 
 const UserUpdate = ({ setUserPopup, currentUser }) => {
+  const modalDomElement = useRef()
   const [newUserData, setNewUserData] = useState({})
   const [confirmationModal, setConfirmationModal] = useState(false)
   const {
@@ -134,8 +135,15 @@ const UserUpdate = ({ setUserPopup, currentUser }) => {
           </button>
         </form>
       </div>
-      <CSSTransition in={confirmationModal} classNames="modal-content" timeout={400} unmountOnExit>
+      <CSSTransition
+        nodeRef={modalDomElement}
+        in={confirmationModal}
+        classNames="modal-content"
+        timeout={400}
+        unmountOnExit
+      >
         <ConfirmationModal
+          ref={modalDomElement}
           modalOpen={setConfirmationModal}
           confirmAction={deleteCurrentUser}
           currentUser={currentUser}

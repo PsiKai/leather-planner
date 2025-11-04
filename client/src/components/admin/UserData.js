@@ -21,6 +21,7 @@ const UserData = () => {
   const [currentUser, setCurrentUser] = useState()
   const [userPopup, setUserPopup] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
+  const userUpdateNode = useRef()
 
   const [page, setPage] = useState(0)
 
@@ -124,8 +125,14 @@ const UserData = () => {
           page={page}
         />
       </div>
-      <CSSTransition in={userPopup} classNames="modal-content" timeout={150} unmountOnExit>
-        <UserUpdate setUserPopup={setUserPopup} currentUser={currentUser} />
+      <CSSTransition
+        nodeRef={userUpdateNode}
+        in={userPopup}
+        classNames="modal-content"
+        timeout={150}
+        unmountOnExit
+      >
+        <UserUpdate ref={userUpdateNode} setUserPopup={setUserPopup} currentUser={currentUser} />
       </CSSTransition>
     </div>
   )
