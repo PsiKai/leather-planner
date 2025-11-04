@@ -1,5 +1,5 @@
 import React from "react"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import Planner from "./components/day/Planner"
 import Cover from "./components/cover/Cover"
 import EditProfile from "./components/profile/EditProfile"
@@ -20,12 +20,18 @@ function App() {
     <AuthState>
       <AppState>
         <Router>
-          <Switch>
-            <PrivateRoute path="/planner" component={Planner} />
-            <Route exact path="/" component={Cover} />
-            <PrivateRoute exact path="/profile" component={EditProfile} />
-            <AdminRoute exact path="/admin" component={UserAnalytics} />
-          </Switch>
+          <Routes>
+            <Route path="/" exact element={<Cover />} />
+            <Route element={<PrivateRoute />}>
+              <Route path="/planner" exact element={<Planner />} />
+            </Route>
+            <Route component={<PrivateRoute />}>
+              <Route path="/profile" exact element={<EditProfile />} />
+            </Route>
+            <Route element={<AdminRoute />}>
+              <Route path="/admin" exact element={<UserAnalytics />} />
+            </Route>
+          </Routes>
         </Router>
       </AppState>
     </AuthState>
