@@ -1,7 +1,7 @@
 const List = require("../models/list")
 const { Item } = require("../models/items")
 const User = require("../models/user")
-const ObjectId = require("bson-objectid")
+const ObjectId = require("mongoose").Types.ObjectId
 const UserSnapshot = require("../models/userSnapshot")
 const bcrypt = require("bcrypt")
 
@@ -42,7 +42,7 @@ const userData = {
   // Make one user an admin
   makeAdmin: async id => {
     try {
-      const user = await User.findOne({ _id: ObjectId(id) })
+      const user = await User.findOne({ _id: new ObjectId(id) })
       user.admin = true
       user.save()
       console.log(user)
@@ -66,7 +66,7 @@ const userData = {
 
   addSingleLogin: async () => {
     try {
-      const user = await User.findOne({ _id: ObjectId("") })
+      const user = await User.findOne({ _id: new ObjectId("") })
       user.logins = 43
       user.save()
     } catch (error) {
@@ -90,12 +90,12 @@ const userData = {
   deleteSnaphots: async () => {
     try {
       await UserSnapshot.deleteMany({})
-    } catch (error) {}
+    } catch (error) { }
   },
 
   createLastLogin: async id => {
     try {
-      const user = await User.findOne({ _id: ObjectId(id) })
+      const user = await User.findOne({ _id: new ObjectId(id) })
       if (user.logins === 1) {
         user.lastLogin = user.createdAt
       } else {
