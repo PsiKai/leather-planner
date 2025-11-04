@@ -51,9 +51,13 @@ app.use("/services/weather", require("./routes/services/weather"))
 
 //sets routes for static build in production
 if (process.env.NODE_ENV === "production") {
-  app.use(expressStaticGzip(path.resolve(__dirname, "client", "build"), { maxAge: 90 * 24 * 60 * 60 * 1000 }))
+  app.use(
+    expressStaticGzip(path.resolve(__dirname, "client", "build"), {
+      maxAge: 90 * 24 * 60 * 60 * 1000,
+    }),
+  )
 
-  app.get("*", (req, res) => {
+  app.use((req, res) => {
     res.setHeader("Cache-Control", "no-cache, max-age=0")
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
   })

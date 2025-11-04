@@ -17,7 +17,7 @@
   "dependencies": {
     "axios": "^1.13.1",
     "bcrypt": "^6.0.0",
-    "dotenv": "^8.2.0",
+    "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "express-static-gzip": "^3.0.0",
     "jsonwebtoken": "^9.0.2",
@@ -27,5 +27,8 @@
   "devDependencies": {
     "concurrently": "^9.2.1",
     "nodemon": "^3.1.10"
+  },
+  "engines": {
+    "node": "20.x"
   }
 }
