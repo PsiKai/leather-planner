@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router()
-const ObjectId = require("bson-objectid")
+const ObjectId = require("mongoose").Types.ObjectId
 
 const auth = require("../../middleware/auth")
 
@@ -17,14 +17,14 @@ router.post("/", auth, async (req, res) => {
 
   try {
     const newList = await List.findOneAndUpdate(
-      { user: user.id, name: list, "items._id": ObjectId(id) },
+      { user: user.id, name: list, "items._id": new ObjectId(id) },
       { $set: { "items.$.style": newStyle } },
-      { new: true }
+      { new: true },
     )
-    res.send(newList)
+    res.status(200).send(newList)
   } catch (error) {
     console.error(error)
-    res.json({ msg: "Something went wrong updating list item" })
+    res.status(500).json({ msg: "Something went wrong updating list item" })
   }
 })
 

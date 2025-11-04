@@ -86,7 +86,9 @@ li {
   width: 780px;
   height: 880px;
   border-radius: 0.5% 2% 2% 0.5%;
-  box-shadow: 8px 4px 8px var(--leather-color), 0px 0px 10px 2px var(--leather-color);
+  box-shadow:
+    8px 4px 8px var(--leather-color),
+    0px 0px 10px 2px var(--leather-color);
   display: grid;
   grid-template-columns: 10px 25px;
   grid-template-rows: 60px 20px 320px;
@@ -142,7 +144,6 @@ li {
   font-weight: 700;
   bottom: 0;
   margin: 0;
-  margin-bottom: -0.1em;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -321,8 +322,13 @@ button.password--submit {
   height: 851px;
   margin: 12px auto;
   background-color: var(--paper-color);
-  box-shadow: 1px 1px 1px 1px #381a1480, 2px 1px 0 0 var(--paper-color), 3px 2px 1px 1px #381a1480,
-    4px 2px 0 0 var(--paper-color), 5px 4px 1px 1px #381a1480, 6px 4px 0 0 var(--paper-color),
+  box-shadow:
+    1px 1px 1px 1px #381a1480,
+    2px 1px 0 0 var(--paper-color),
+    3px 2px 1px 1px #381a1480,
+    4px 2px 0 0 var(--paper-color),
+    5px 4px 1px 1px #381a1480,
+    6px 4px 0 0 var(--paper-color),
     2px 2px 16px 8px #381a1480;
   padding: 15px 15px 5px 35px;
   grid-column-start: 2;
@@ -418,7 +424,9 @@ li:where(:hover, :focus-within) .list-wrapper .expand-item {
   padding: 1rem;
   padding-top: 0.5rem;
   background: var(--paper-color) var(--paper-texture);
-  box-shadow: 1px 1px 1px 1px #381a1480, 2px 1px 0 0 var(--paper-color);
+  box-shadow:
+    1px 1px 1px 1px #381a1480,
+    2px 1px 0 0 var(--paper-color);
   position: relative;
 }
 
@@ -507,7 +515,9 @@ li:where(:hover, :focus-within) .list-wrapper .expand-item {
   color: black;
   padding: 0.125rem 0.25rem;
   display: flex;
-  transition: opacity 200ms ease, ouline 200ms ease;
+  transition:
+    opacity 200ms ease,
+    ouline 200ms ease;
 }
 
 .notes-list li .edit-note-button {
@@ -685,7 +695,9 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  transition: color 5000s ease-in-out 0s, background-color 5000s ease-in-out 0s !important;
+  transition:
+    color 5000s ease-in-out 0s,
+    background-color 5000s ease-in-out 0s !important;
   -webkit-text-fill-color: inherit !important;
 }
 
@@ -1031,7 +1043,9 @@ label.user-nav {
   text-align: center;
   grid-template-rows: 100px 300px;
   border-radius: 0.5% 2% 2% 0.5%;
-  box-shadow: 8px 4px 8px var(--leather-color), 0px 0px 10px 4px var(--leather-color);
+  box-shadow:
+    8px 4px 8px var(--leather-color),
+    0px 0px 10px 4px var(--leather-color);
 }
 
 .cover-title {
@@ -1073,13 +1087,17 @@ label.user-nav {
   border-radius: 0.25rem;
   font-family: var(--button-font);
   color: #d4caa3 !important;
-  transition: color 300ms ease, background-color 300ms ease;
+  transition:
+    color 300ms ease,
+    background-color 300ms ease;
   text-transform: uppercase;
   font-size: 1rem;
   line-height: 1;
   cursor: pointer;
   letter-spacing: 0.5px;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12),
+  box-shadow:
+    0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12),
     0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
 

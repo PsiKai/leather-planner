@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useContext, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import LoginModal from "./LoginModal"
 import RegisterModal from "./RegisterModal"
 import AuthContext from "../../context/authentication/AuthContext"
@@ -12,11 +13,12 @@ const Cover = props => {
   } = authContext
   const [login, setLogin] = useState(false)
   const [register, setRegister] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
-    if (token) props.history.push("/planner/day")
+    if (token) navigate("/planner/day")
     else dispatch({ type: "LOG_OUT" })
-  }, [props.history, dispatch, token])
+  }, [navigate, dispatch, token])
 
   return (
     <Fragment>

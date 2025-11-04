@@ -1,8 +1,10 @@
-import React, { useEffect } from "react"
-import CloseOutlinedIcon from "@material-ui/icons/CloseOutlined"
+import React, { useEffect, useRef } from "react"
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
 import { CSSTransition } from "react-transition-group"
 
 const Modal = ({ children, onDismiss, show }) => {
+  const modalDomElement = useRef()
+
   useEffect(() => {
     const handleKeyboardDismiss = e => {
       if (e.key === "Escape") onDismiss()
@@ -18,8 +20,14 @@ const Modal = ({ children, onDismiss, show }) => {
   }
 
   return (
-    <CSSTransition timeout={400} classNames="modal-content" in={show} unmountOnExit>
-      <div className="modal-backdrop" onClick={handleLightDismiss}>
+    <CSSTransition
+      nodeRef={modalDomElement}
+      timeout={400}
+      classNames="modal-content"
+      in={show}
+      unmountOnExit
+    >
+      <div ref={modalDomElement} className="modal-backdrop" onClick={handleLightDismiss}>
         <div className="modal">
           <button className="modal-close-button" onClick={onDismiss}>
             <CloseOutlinedIcon />

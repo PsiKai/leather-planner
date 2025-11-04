@@ -1,12 +1,12 @@
-import React, { useState, useContext, useLayoutEffect } from "react"
+import React, { useState, useContext, useLayoutEffect, useRef } from "react"
 import AppContext from "../../../context/application/AppContext"
 import playAudio from "../../../utils/playAudio"
 import { setItem } from "../../../utils/api/item"
 
-import AddIcon from "@material-ui/icons/Add"
-import CheckIcon from "@material-ui/icons/Check"
-import BlockIcon from "@material-ui/icons/Block"
-import Fab from "@material-ui/core/Fab"
+import AddIcon from "@mui/icons-material/Add"
+import CheckIcon from "@mui/icons-material/Check"
+import BlockIcon from "@mui/icons-material/Block"
+import Fab from "@mui/material/Fab"
 
 import { CSSTransition } from "react-transition-group"
 
@@ -17,6 +17,7 @@ const Input = ({ content = "", id = "", undoEdit, edit = null, autoFocus = false
   } = useContext(AppContext)
 
   const [inputText, setInputText] = useState("")
+  const fabDomElement = useRef()
 
   useLayoutEffect(() => setInputText(content), [content])
 
@@ -48,7 +49,11 @@ const Input = ({ content = "", id = "", undoEdit, edit = null, autoFocus = false
       />
       {edit ? (
         <div className="edit-info-button-group">
-          <button className="edit-info-form-action" type="submit" aria-label="Submit list item changes">
+          <button
+            className="edit-info-form-action"
+            type="submit"
+            aria-label="Submit list item changes"
+          >
             <CheckIcon />
           </button>
           <button
@@ -61,8 +66,13 @@ const Input = ({ content = "", id = "", undoEdit, edit = null, autoFocus = false
           </button>
         </div>
       ) : (
-        <CSSTransition in={!!inputText} classNames="button-appear" timeout={150}>
-          <Fab type="submit" className="new-item-submit">
+        <CSSTransition
+          nodeRef={fabDomElement}
+          in={!!inputText}
+          classNames="button-appear"
+          timeout={150}
+        >
+          <Fab ref={fabDomElement} type="submit" className="new-item-submit">
             <AddIcon />
           </Fab>
         </CSSTransition>

@@ -1,10 +1,10 @@
 import React from "react"
 
-import EditIcon from "@material-ui/icons/Edit"
-import ForwardIcon from "@material-ui/icons/Forward"
-import StrikethroughSIcon from "@material-ui/icons/StrikethroughS"
-import UndoIcon from "@material-ui/icons/Undo"
-import DeleteIcon from "@material-ui/icons/Delete"
+import EditIcon from "@mui/icons-material/Edit"
+import ForwardIcon from "@mui/icons-material/Forward"
+import StrikethroughSIcon from "@mui/icons-material/StrikethroughS"
+import UndoIcon from "@mui/icons-material/Undo"
+import DeleteIcon from "@mui/icons-material/Delete"
 
 const Menu = ({ cross, setEdit, carryOver, deleteItem, style }) => {
   return (

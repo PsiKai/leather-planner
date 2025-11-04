@@ -1,64 +1,62 @@
 const express = require("express")
 const router = express.Router()
-const ObjectId = require("bson-objectid")
+const ObjectId = require("mongoose").Types.ObjectId
 
 const auth = require("../../middleware/auth")
 
 const List = require("../../db/models/list")
 
-router.post("/", auth, (req, res) => {
+router.post("/", auth, async (req, res) => {
   const {
     note: { newNote, list, id },
   } = req.body
-  List.findOneAndUpdate(
-    { user: req.user.id, name: list, "items._id": ObjectId(id) },
-    { $push: { "items.$.notes": newNote } },
-    { new: true },
-    (err, newList) => {
-      if (err) {
-        console.log(err)
-        res.status(500).json({ msg: "Error adding note to list item" })
-      }
-      res.status(201).send(newList)
-    }
-  )
+  try {
+    const newList = await List.findOneAndUpdate(
+      { user: req.user.id, name: list, "items._id": new ObjectId(id) },
+      { $push: { "items.$.notes": newNote } },
+      { new: true },
+    )
+    res.status(201).send(newList)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json({ msg: "Error adding note to list item" })
+  }
 })
 
-router.patch("/", auth, (req, res) => {
+router.patch("/", auth, async (req, res) => {
   const {
     note: { newNoteText, list, id, note },
   } = req.body
-  List.findOneAndUpdate(
-    { user: req.user.id, name: list, "items._id": ObjectId(id) },
-    { $set: { "items.$.notes.$[note]": newNoteText } },
-    {
-      arrayFilters: [{ note: note }],
-      new: true,
-    },
-    (err, newList) => {
-      if (err) {
-        console.log(err)
-        res.status(500).json({ msg: "Error editing note on list item" })
-      }
-      res.status(201).send(newList)
-    }
-  )
+  try {
+    const newList = await List.findOneAndUpdate(
+      { user: req.user.id, name: list, "items._id": new ObjectId(id) },
+      { $set: { "items.$.notes.$[note]": newNoteText } },
+      {
+        arrayFilters: [{ note: note }],
+        new: true,
+      },
+    )
+    res.status(201).send(newList)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json({ msg: "Error editing note on list item" })
+  }
 })
 
-router.delete("/", auth, (req, res) => {
+router.delete("/", auth, async (req, res) => {
   const { note, list, id } = req.body
-  List.findOneAndUpdate(
-    { user: req.user.id, name: list, "items._id": ObjectId(id) },
-    { $pull: { "items.$.notes": note } },
-    { new: true },
-    (err, newList) => {
-      if (err) {
-        console.log(err)
-        res.status(500).json({ msg: "Error deleting note from list item" })
-      }
-      res.status(201).send(newList)
-    }
-  )
+
+  try {
+    const newList = await List.findOneAndUpdate(
+      { user: req.user.id, name: list, "items._id": new ObjectId(id) },
+      { $pull: { "items.$.notes": note } },
+      { new: true },
+    )
+    res.status(201).send(newList)
+  } catch (err) {
+    console.log(err)
+    res.status(500).json({ msg: "Error deleting note from list item" })
+  }
 })
 
 module.exports = router

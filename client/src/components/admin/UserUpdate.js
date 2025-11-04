@@ -1,19 +1,20 @@
-import React, { useEffect, useContext, useState } from "react"
+import React, { useEffect, useRef, useContext, useState } from "react"
 import AnalyticsContext from "../../context/analytics/AnalyticsContext"
 import authContext from "../../context/authentication/AuthContext"
 
 import { deleteUser, submitUserInfoUpdates } from "../../utils/api/analytics"
 
-import CloseOutlinedIcon from "@material-ui/icons/CloseOutlined"
-import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount"
-import PersonIcon from "@material-ui/icons/Person"
-import CheckBoxOutlineBlankOutlinedIcon from "@material-ui/icons/CheckBoxOutlineBlankOutlined"
-import CheckBoxOutlinedIcon from "@material-ui/icons/CheckBoxOutlined"
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined"
+import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount"
+import PersonIcon from "@mui/icons-material/Person"
+import CheckBoxOutlineBlankOutlinedIcon from "@mui/icons-material/CheckBoxOutlineBlankOutlined"
+import CheckBoxOutlinedIcon from "@mui/icons-material/CheckBoxOutlined"
 
 import { CSSTransition } from "react-transition-group"
 import ConfirmationModal from "./ConfirmationModal"
 
-const UserUpdate = ({ setUserPopup, currentUser }) => {
+const UserUpdate = ({ nodeRef, setUserPopup, currentUser }) => {
+  const modalDomElement = useRef()
   const [newUserData, setNewUserData] = useState({})
   const [confirmationModal, setConfirmationModal] = useState(false)
   const {
@@ -60,7 +61,7 @@ const UserUpdate = ({ setUserPopup, currentUser }) => {
   }
 
   return (
-    <div className="user-action__container">
+    <div ref={nodeRef} className="user-action__container">
       <div className="user-action">
         <div className="user-action--user">
           <h2 className="user-action--info">
@@ -68,7 +69,9 @@ const UserUpdate = ({ setUserPopup, currentUser }) => {
           </h2>
           <p>{currentUser?.email}</p>
           <p className="user-activity">
-            Last login: {`${Math.floor((new Date() - new Date(currentUser?.lastLogin)) / 1000 / 60 / 60 / 24)}`} days ago
+            Last login:{" "}
+            {`${Math.floor((new Date() - new Date(currentUser?.lastLogin)) / 1000 / 60 / 60 / 24)}`}{" "}
+            days ago
           </p>
           <p className="badge">{currentUser?.admin ? "Admin" : "User"}</p>
           <button className="close-user-popup" onClick={() => setUserPopup(false)}>
@@ -79,11 +82,23 @@ const UserUpdate = ({ setUserPopup, currentUser }) => {
           <h3>Update user info</h3>
           <label>
             New Name:
-            <input type="text" value={newUserData.name || ""} onChange={updateUserInfo} name="name" autoComplete="off" />
+            <input
+              type="text"
+              value={newUserData.name || ""}
+              onChange={updateUserInfo}
+              name="name"
+              autoComplete="off"
+            />
           </label>
           <label>
             New Email:
-            <input type="email" value={newUserData.email || ""} onChange={updateUserInfo} name="email" autoComplete="off" />
+            <input
+              type="email"
+              value={newUserData.email || ""}
+              onChange={updateUserInfo}
+              name="email"
+              autoComplete="off"
+            />
           </label>
           <label>
             New Password:
@@ -120,8 +135,15 @@ const UserUpdate = ({ setUserPopup, currentUser }) => {
           </button>
         </form>
       </div>
-      <CSSTransition in={confirmationModal} classNames="modal-content" timeout={400} unmountOnExit>
+      <CSSTransition
+        nodeRef={modalDomElement}
+        in={confirmationModal}
+        classNames="modal-content"
+        timeout={400}
+        unmountOnExit
+      >
         <ConfirmationModal
+          ref={modalDomElement}
           modalOpen={setConfirmationModal}
           confirmAction={deleteCurrentUser}
           currentUser={currentUser}

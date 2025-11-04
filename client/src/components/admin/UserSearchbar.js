@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useContext } from "react"
 import AnalyticsContext from "../../context/analytics/AnalyticsContext"
-import SearchIcon from "@material-ui/icons/Search"
+import SearchIcon from "@mui/icons-material/Search"
 
 const UserSearchbar = ({ searchForUser }) => {
   const [searchTerm, setSearchTerm] = useState("")
@@ -15,9 +15,9 @@ const UserSearchbar = ({ searchForUser }) => {
     clearTimeout(debounceTimer.current)
     dispatch({ type: "SET_LOADING" })
     debounceTimer.current = setTimeout(() => searchForUser(searchTerm), 1000)
-  }, [searchTerm, dispatch, searchForUser])
 
-  useEffect(() => clearTimeout(debounceTimer.current), [])
+    return () => clearTimeout(debounceTimer.current)
+  }, [searchTerm, dispatch, searchForUser])
 
   return (
     <div className="searchbar--container">

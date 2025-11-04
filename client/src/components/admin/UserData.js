@@ -6,7 +6,7 @@ import { CSSTransition } from "react-transition-group"
 import { createUserSnapshot, getAllUsers } from "../../utils/api/analytics"
 import { getLocaleDate } from "../../utils/dates"
 
-import { CircularProgress } from "@material-ui/core"
+import CircularProgress from "@mui/material/CircularProgress"
 import PageNav from "../layout/PageNav"
 import UserUpdate from "./UserUpdate"
 import UserSearchbar from "./UserSearchbar"
@@ -21,6 +21,7 @@ const UserData = () => {
   const [currentUser, setCurrentUser] = useState()
   const [userPopup, setUserPopup] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
+  const userUpdateNode = useRef()
 
   const [page, setPage] = useState(0)
 
@@ -39,9 +40,13 @@ const UserData = () => {
     setCurrentUser()
   }, [dispatch, resultsPerPage, page, searchTerm])
 
-  useEffect(() => changePages(), [page, changePages])
+  useEffect(() => {
+    changePages()
+  }, [page, changePages])
 
-  useEffect(() => createUserSnapshot(), [])
+  useEffect(() => {
+    createUserSnapshot()
+  }, [])
 
   const listAverage = lists => {
     const total = lists.reduce((length, list) => (length += list.length), 0)
@@ -63,7 +68,12 @@ const UserData = () => {
 
   return (
     <div className="analytics-content">
-      <img src="./images/Bald-Eagle.webp" className="watermark" alt="watermark" aria-hidden="true" />
+      <img
+        src="./images/Bald-Eagle.webp"
+        className="watermark"
+        alt="watermark"
+        aria-hidden="true"
+      />
       <div className="user-dashboard--container">
         <UserSearchbar searchForUser={setSearchTerm} />
         <table className="user-dashboard">
@@ -81,7 +91,12 @@ const UserData = () => {
             {!loading ? (
               totalUsers !== 0 ? (
                 users?.map(user => (
-                  <tr key={user._id} data-user={user._id} onClick={openUserAction} className="table-user">
+                  <tr
+                    key={user._id}
+                    data-user={user._id}
+                    onClick={openUserAction}
+                    className="table-user"
+                  >
                     {tableData(user.name)}
                     {dateCell(user.createdAt)}
                     {dateCell(user.lastLogin)}
@@ -114,8 +129,18 @@ const UserData = () => {
           page={page}
         />
       </div>
-      <CSSTransition in={userPopup} classNames="modal-content" timeout={150} unmountOnExit>
-        <UserUpdate setUserPopup={setUserPopup} currentUser={currentUser} />
+      <CSSTransition
+        nodeRef={userUpdateNode}
+        in={userPopup}
+        classNames="modal-content"
+        timeout={150}
+        unmountOnExit
+      >
+        <UserUpdate
+          nodeRef={userUpdateNode}
+          setUserPopup={setUserPopup}
+          currentUser={currentUser}
+        />
       </CSSTransition>
     </div>
   )

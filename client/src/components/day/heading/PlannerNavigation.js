@@ -1,13 +1,14 @@
 import React, { useCallback, useEffect, useState } from "react"
-import { NavLink } from "react-router-dom"
-import CalendarViewDayOutlinedIcon from "@material-ui/icons/CalendarViewDayOutlined"
-import ViewDayOutlinedIcon from "@material-ui/icons/ViewDayOutlined"
+import { NavLink, useLocation } from "react-router-dom"
+import CalendarViewDayOutlinedIcon from "@mui/icons-material/CalendarViewDayOutlined"
+import ViewDayOutlinedIcon from "@mui/icons-material/ViewDayOutlined"
 
 const PlannerNavigation = props => {
   const [navSetting, setNavSetting] = useState()
+  const location = useLocation()
 
   const renderNavIcons = useCallback(() => {
-    switch (props.location.pathname) {
+    switch (location.pathname) {
       case "/planner/day":
         return {
           component: <CalendarViewDayOutlinedIcon />,
@@ -23,14 +24,15 @@ const PlannerNavigation = props => {
       default:
         return
     }
-  }, [props.location.pathname])
+  }, [location.pathname])
 
-  useEffect(() => setNavSetting(renderNavIcons()), [props.location, renderNavIcons])
+  useEffect(() => {
+    setNavSetting(renderNavIcons())
+  }, [props.location, renderNavIcons])
 
   return (
     <NavLink
-      activeClassName="planner-toggle"
-      className="planner-toggle__wrapper"
+      className={({ active }) => `${active ? "planner-toggle" : ""} planner-toggle__wrapper`}
       to={`/planner/${navSetting?.path}`}
       aria-label={navSetting?.label}
     >

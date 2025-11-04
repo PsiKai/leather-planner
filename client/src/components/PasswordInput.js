@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 
-import VisibilityIcon from "@material-ui/icons/Visibility"
-import VisibilityOffIcon from "@material-ui/icons/VisibilityOff"
+import VisibilityIcon from "@mui/icons-material/Visibility"
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff"
 
 const PasswordInput = ({ onChange, passwordValue, id = null, label, name, ...props }) => {
   const [showPassword, setShowPassword] = useState(false)

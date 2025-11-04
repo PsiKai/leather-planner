@@ -6,9 +6,9 @@ import Alert from "../Alert"
 import PasswordField from "./PasswordField"
 import EditInfo from "./EditInfo"
 
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos"
-import PersonIcon from "@material-ui/icons/Person"
-import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount"
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos"
+import PersonIcon from "@mui/icons-material/Person"
+import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount"
 
 import playAudio from "../../utils/playAudio"
 import { getUser } from "../../utils/api/user"
@@ -46,7 +46,12 @@ const EditProfile = () => {
           </div>
           <div className="pattern__wrapper" style={{ overflowY: "auto", overflowX: "visible" }}>
             <div className="pattern">
-              <img src="./images/Bald-Eagle.webp" className="watermark" alt="watermark" aria-hidden="true" />
+              <img
+                src="./images/Bald-Eagle.webp"
+                className="watermark"
+                alt="watermark"
+                aria-hidden="true"
+              />
               <div className="content">
                 <EditInfo />
                 <PasswordField />
