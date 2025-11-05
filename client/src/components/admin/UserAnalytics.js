@@ -28,11 +28,13 @@ const UserAnalytics = () => {
       <div className="position-div inside-cover">
         <div className="grid-div">
           <div className="page">
-            <div className="heading">
-              <Link to="/profile" className="profile-nav">
-                <ArrowBackIosIcon />
-                Back
-              </Link>
+            <div className="heading profile">
+              <div className="profile-nav-links">
+                <Link to="/profile" className="profile-nav">
+                  <ArrowBackIosIcon />
+                  Back
+                </Link>
+              </div>
               <h1 className="profile-heading">
                 User Data
                 <SupervisorAccountIcon />

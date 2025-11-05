@@ -1,6 +1,6 @@
 .monthly-viewer {
+  background: var(--paper-texture), linear-gradient(blue, var(--paper-color) 1px);
   position: relative;
-  width: 98%;
   height: 100%;
 }
 
@@ -112,7 +112,10 @@
 
 .month__date::before {
   content: "";
-  transition: background-color 150ms ease, border 75ms ease, box-shadow 75ms ease;
+  transition:
+    background-color 150ms ease,
+    border 75ms ease,
+    box-shadow 75ms ease;
 }
 
 .month__date.today {
@@ -184,7 +187,10 @@
   background: var(--paper-color) var(--paper-texture);
   scrollbar-width: thin;
   scrollbar-color: var(--leather-color) #c9c39f;
-  box-shadow: 1px 1px 1px 1px #381a1480, 2px 1px 0 0 var(--paper-color), 3px 2px 1px 1px #381a1480;
+  box-shadow:
+    1px 1px 1px 1px #381a1480,
+    2px 1px 0 0 var(--paper-color),
+    3px 2px 1px 1px #381a1480;
 }
 
 .items__preview--wrapper a:hover {

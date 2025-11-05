@@ -28,17 +28,19 @@ const EditProfile = () => {
     <div className="position-div inside-cover">
       <div className="grid-div">
         <div className="page">
-          <div className="heading">
-            <Link className="profile-nav" to="/planner/day">
-              <ArrowBackIosIcon />
-              Back
-            </Link>
-            {isAdmin && (
-              <Link className="profile-nav admin" to="/admin">
-                Admin
-                <SupervisorAccountIcon />
+          <div className="heading profile">
+            <div className="profile-nav-links">
+              <Link className="profile-nav" to="/planner/day">
+                <ArrowBackIosIcon />
+                Back
               </Link>
-            )}
+              {isAdmin && (
+                <Link className="profile-nav admin" to="/admin">
+                  Admin
+                  <SupervisorAccountIcon />
+                </Link>
+              )}
+            </div>
             <h1 className="profile-heading">
               Profile Settings
               <PersonIcon />

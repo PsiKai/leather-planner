@@ -30,6 +30,8 @@
   font-weight: 700;
   font-size: 1rem;
   padding: 0;
+  gap: 0.25rem;
+  align-items: center;
 }
 
 .date-picker span {
@@ -276,6 +278,7 @@
     flex-direction: column-reverse;
     color: var(--faded);
     width: 100%;
+    gap: 0;
   }
 
   .react-datepicker {

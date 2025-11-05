@@ -29,13 +29,15 @@ const Planner = props => {
         <div className="grid-div">
           <div className="page">
             <div className={`heading ${location?.pathname.split("/")[2]}`}>
-              <Day />
+              <div className="heading-title">
+                <PlannerNavigation {...props} />
+                <Day />
+              </div>
               <div className="widget">
                 <Datepicker />
                 <User />
                 <Weather />
               </div>
-              <PlannerNavigation {...props} />
             </div>
             <div className="pattern__wrapper">
               <Outlet />
