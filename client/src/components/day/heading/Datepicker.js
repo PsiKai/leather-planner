@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import AppContext from "../../../context/application/AppContext"
 import DateLabel from "../../layout/DateLabel"
 import TodayOutlinedIcon from "@mui/icons-material/TodayOutlined"
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import { getFormattedDate, getPrintedDate, getShortFormDate } from "../../../utils/dates"
@@ -42,7 +43,9 @@ const Datepicker = () => {
         todayButton={<button>Go To Today</button>}
         customInput={
           <DateLabel className="date-picker" currentValue={getPrintedDate(date)}>
-            <span>{getShortFormDate(date)}</span>
+            <span>
+              <ArrowDropDownIcon /> {getShortFormDate(date)}
+            </span>
             <TodayOutlinedIcon />
           </DateLabel>
         }

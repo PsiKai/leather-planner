@@ -70,7 +70,7 @@ li {
 
 .position-div {
   width: fit-content;
-  margin: 40px auto auto;
+  margin: 40px auto 0;
 }
 
 .inside-cover {
@@ -104,10 +104,6 @@ li {
   align-items: flex-end;
 }
 
-.heading.day .date > span {
-  display: block;
-}
-
 .heading.month {
   height: auto;
   flex-direction: row;
@@ -138,12 +134,18 @@ li {
 }
 
 .date {
-  font-size: 2.7rem;
+  font-size: 2rem;
   margin: 0;
   margin-bottom: -0.1em;
   font-family: var(--serif-font);
   font-weight: 700;
   line-height: 110%;
+  display: flex;
+  flex-direction: column;
+}
+
+.date .weekday {
+  font-size: 1.8rem;
 }
 
 .profile.heading {
@@ -152,7 +154,7 @@ li {
 }
 
 .profile-heading {
-  font-size: 2.7rem;
+  font-size: 2rem;
   font-family: var(--serif-font);
   font-weight: 700;
   bottom: 0;
@@ -1021,6 +1023,12 @@ label.user-nav {
 }
 
 .planner-toggle__wrapper {
+  display: flex;
+  gap: 0.25rem;
+  align-self: flex-start;
+}
+
+.planner-toggle__wrapper > a {
   width: fit-content;
   background: none;
   border: none;
@@ -1029,15 +1037,18 @@ label.user-nav {
   padding: 0.125rem 0.25rem;
   display: flex;
   transition: background-color 75ms ease;
-  align-self: flex-start;
 }
 
-.planner-toggle__wrapper:hover {
-  background-color: rgba(0, 0, 0, 0.04);
+.planner-toggle__wrapper > a:hover {
+  background-color: rgba(0, 0, 0, 0.08);
 }
 
-.planner-toggle__wrapper:focus-visible {
+.planner-toggle__wrapper > a:focus-visible {
   outline: auto;
+}
+
+.planner-toggle__wrapper .active-planner-toggle {
+  border-bottom: 2px solid black;
 }
 
 /* cover */
@@ -1447,6 +1458,14 @@ label.user-nav {
     gap: 0.5rem;
   }
 
+  .planner-toggle__wrapper > a {
+    color: var(--faded);
+  }
+
+  .planner-toggle__wrapper > .active-planner-toggle {
+    border-bottom: 2px solid var(--faded);
+  }
+
   .heading.month .date > span {
     display: block;
   }
@@ -1631,6 +1650,10 @@ label.user-nav {
 
   h1.date {
     font-size: 1.6rem;
+  }
+
+  .date .weekday {
+    font-size: 1.5rem;
   }
 
   h1.profile-heading {

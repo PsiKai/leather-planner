@@ -30,7 +30,7 @@
 
 .current-month {
   text-align: center;
-  margin-block: 1rem;
+  margin-block: 0.5rem;
   font-family: var(--serif-font);
   font-size: 1.5rem;
   font-weight: 400;
@@ -87,7 +87,7 @@
 }
 
 .month__cell:focus {
-  box-shadow: 0px 0px 4px 1px rgb(0, 0, 0, 0.4);
+  box-shadow: 0px 0px 4px 2px rgb(0, 0, 0, 0.8);
 }
 
 .month__cell::-webkit-scrollbar {
@@ -120,7 +120,6 @@
 
 .month__date.today {
   color: #fff7d9;
-  z-index: 1;
 }
 
 .month__date.today::before {
@@ -169,7 +168,6 @@
   grid-column: 3 / span 5;
   padding: 0.5rem;
   aspect-ratio: 5 / 2;
-  margin: 0.5rem;
   background: var(--leather-color) var(--leather-texture);
   box-shadow: 5px 5px 10px rgb(0, 0, 0, 0.4);
   border-radius: 0.25rem;
