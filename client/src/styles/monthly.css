@@ -180,6 +180,7 @@
 
 .items__preview--wrapper {
   overflow: auto;
+  padding-block-end: 0.5rem;
   padding-inline-start: 2rem;
   height: 100%;
   background: var(--paper-color) var(--paper-texture);

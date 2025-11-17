@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import AppContext from "../../../context/application/AppContext"
 import DateLabel from "../../layout/DateLabel"
-import TodayOutlinedIcon from "@mui/icons-material/TodayOutlined"
+import EditCalendarOutlinedIcon from "@mui/icons-material/EditCalendarOutlined"
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
@@ -46,7 +46,7 @@ const Datepicker = () => {
             <span>
               <ArrowDropDownIcon /> {getShortFormDate(date)}
             </span>
-            <TodayOutlinedIcon />
+            <EditCalendarOutlinedIcon />
           </DateLabel>
         }
       />

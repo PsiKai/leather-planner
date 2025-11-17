@@ -282,7 +282,8 @@ tr.loading {
 @media (max-width: 500px) {
   .user-dashboard {
     font-size: 0.75rem;
-    height: 325px;
+    min-height: 325px;
+    height: 100%;
   }
 
   .searchbar,
