@@ -3,6 +3,7 @@ import AppContext from "../../../context/application/AppContext"
 import playAudio from "../../../utils/playAudio"
 import { setItem } from "../../../utils/api/item"
 
+import CreateIcon from "@mui/icons-material/Create"
 import AddIcon from "@mui/icons-material/Add"
 import CheckIcon from "@mui/icons-material/Check"
 import BlockIcon from "@mui/icons-material/Block"
@@ -36,6 +37,7 @@ const Input = ({ content = "", id = "", undoEdit, edit = null, autoFocus = false
 
   return (
     <form className="list-item-form" onSubmit={create}>
+      {!edit ? <CreateIcon className="new-item-marker" /> : null}
       <input
         name="newItem"
         className="new-item"

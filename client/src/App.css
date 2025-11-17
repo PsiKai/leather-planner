@@ -804,6 +804,12 @@ textarea {
   z-index: 3;
 }
 
+.list-item-form .new-item-marker {
+  position: absolute;
+  left: 5px;
+  font-size: 1rem;
+}
+
 .list-item-form button.new-item-submit {
   background-color: #d4caa3;
   border: 1px solid var(--leather-color);
