@@ -1,7 +1,7 @@
 import React from "react"
 import { NavLink } from "react-router-dom"
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth"
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday"
+import TodayIcon from "@mui/icons-material/Today"
 
 const PlannerNavigation = () => {
   return (
@@ -11,7 +11,7 @@ const PlannerNavigation = () => {
         to="/planner/day"
         aria-label={"Daily Planner"}
       >
-        <CalendarTodayIcon />
+        <TodayIcon />
       </NavLink>
       <NavLink
         className={({ isActive }) => `${isActive ? "active-planner-toggle" : ""}`}
