@@ -58,10 +58,11 @@ li {
   list-style: none;
 }
 
-.list-marker {
+.list-wrapper .list-marker {
+  font-size: 1rem;
   position: absolute;
-  top: 6px;
-  left: -28px;
+  top: 10px;
+  left: -25px;
 }
 
 .list-marker.complete {
@@ -1339,8 +1340,8 @@ label.user-nav {
     padding-left: 25px;
   }
 
-  .list-marker {
-    left: -26px;
+  .list-wrapper .list-marker {
+    left: -24px;
   }
 
   .list-inline-edit::before {
@@ -1625,8 +1626,8 @@ label.user-nav {
     font-size: 1rem;
   }
 
-  .list-marker {
-    left: -23px;
+  .list-wrapper .list-marker {
+    left: -20px;
   }
 
   .list-inline-edit::before {
