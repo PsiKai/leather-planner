@@ -1,43 +1,26 @@
-import React, { useCallback, useEffect, useState } from "react"
-import { NavLink, useLocation } from "react-router-dom"
-import CalendarViewDayOutlinedIcon from "@mui/icons-material/CalendarViewDayOutlined"
-import ViewDayOutlinedIcon from "@mui/icons-material/ViewDayOutlined"
+import React from "react"
+import { NavLink } from "react-router-dom"
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth"
+import TodayIcon from "@mui/icons-material/Today"
 
-const PlannerNavigation = props => {
-  const [navSetting, setNavSetting] = useState()
-  const location = useLocation()
-
-  const renderNavIcons = useCallback(() => {
-    switch (location.pathname) {
-      case "/planner/day":
-        return {
-          component: <CalendarViewDayOutlinedIcon />,
-          path: "month",
-          label: "to monthly planner",
-        }
-      case "/planner/month":
-        return {
-          component: <ViewDayOutlinedIcon />,
-          path: "day",
-          label: "to daily planner",
-        }
-      default:
-        return
-    }
-  }, [location.pathname])
-
-  useEffect(() => {
-    setNavSetting(renderNavIcons())
-  }, [props.location, renderNavIcons])
-
+const PlannerNavigation = () => {
   return (
-    <NavLink
-      className={({ active }) => `${active ? "planner-toggle" : ""} planner-toggle__wrapper`}
-      to={`/planner/${navSetting?.path}`}
-      aria-label={navSetting?.label}
-    >
-      {navSetting?.component}
-    </NavLink>
+    <nav className="planner-toggle__wrapper">
+      <NavLink
+        className={({ isActive }) => `${isActive ? "active-planner-toggle" : ""}`}
+        to="/planner/day"
+        aria-label={"Daily Planner"}
+      >
+        <TodayIcon />
+      </NavLink>
+      <NavLink
+        className={({ isActive }) => `${isActive ? "active-planner-toggle" : ""}`}
+        to="/planner/month"
+        aria-label={"Monthly Planner"}
+      >
+        <CalendarMonthIcon />
+      </NavLink>
+    </nav>
   )
 }
 

@@ -1,12 +1,12 @@
 .admin.profile-nav {
-  right: 0;
-  left: unset;
+  gap: 0.25rem;
 }
 
 .analytics-content {
   display: grid;
   grid-template-rows: max-content auto;
   position: relative;
+  background: var(--paper-texture), linear-gradient(blue, var(--paper-color) 1px);
 }
 
 .analytics-content .watermark {
@@ -138,7 +138,10 @@ tr.loading {
 
 .user-action {
   background: var(--paper-color) var(--paper-texture);
-  box-shadow: 1px 1px 1px 1px #381a1480, 2px 1px 0 0 var(--paper-color), 3px 2px 1px 1px #381a1480;
+  box-shadow:
+    1px 1px 1px 1px #381a1480,
+    2px 1px 0 0 var(--paper-color),
+    3px 2px 1px 1px #381a1480;
   padding: 1rem;
   height: 100%;
   position: relative;
@@ -279,7 +282,8 @@ tr.loading {
 @media (max-width: 500px) {
   .user-dashboard {
     font-size: 0.75rem;
-    height: 325px;
+    min-height: 325px;
+    height: 100%;
   }
 
   .searchbar,

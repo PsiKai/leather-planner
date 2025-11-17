@@ -38,7 +38,7 @@ const EditInfo = () => {
   return (
     <div className="profile--wrapper">
       <label className="profile--label" htmlFor="username">
-        Username:
+        <span>Username:</span>
       </label>
       {editName ? (
         <form onSubmit={submitInfo} className="edit-info--form">
@@ -83,7 +83,7 @@ const EditInfo = () => {
         </div>
       )}
       <label className="profile--label" htmlFor="email">
-        Email:
+        <span>Email:</span>
       </label>
       {editEmail ? (
         <form onSubmit={submitInfo} className="edit-info--form">
@@ -95,6 +95,7 @@ const EditInfo = () => {
             onChange={editInfo}
             value={info.email}
             autoFocus
+            spellCheck={false}
           />
           <div className="edit-info-button-group">
             <button

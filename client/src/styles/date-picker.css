@@ -30,10 +30,18 @@
   font-weight: 700;
   font-size: 1rem;
   padding: 0;
+  gap: 0.25rem;
+  align-items: center;
 }
 
 .date-picker span {
   line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.date-picker span svg {
+  font-size: 1.25rem;
 }
 
 .date-picker:focus {
@@ -276,6 +284,11 @@
     flex-direction: column-reverse;
     color: var(--faded);
     width: 100%;
+    gap: 0;
+  }
+
+  .date-picker span svg {
+    font-size: 0.875rem;
   }
 
   .react-datepicker {

@@ -39,11 +39,11 @@ const PasswordField = () => {
   }
 
   return (
-    <div className="password-reset">
-      <label htmlFor="password-reset" className="profile--label">
-        Update Password
-      </label>
-      <form onSubmit={submitPassword} id="password-reset">
+    <form onSubmit={submitPassword} id="password-reset">
+      <div className="password-reset profile--wrapper">
+        <label htmlFor="password-reset" className="profile--label">
+          <span>Update Password:</span>
+        </label>
         <PasswordInput
           onChange={editPassword}
           name="oldPass"
@@ -65,8 +65,8 @@ const PasswordField = () => {
         <button type="submit" className="btn password--submit" disabled={loading || !fieldsValid()}>
           {loading ? "Updating..." : "Update"}
         </button>
-      </form>
-    </div>
+      </div>
+    </form>
   )
 }
 

@@ -1,5 +1,5 @@
 import React, { Fragment, useContext, useEffect } from "react"
-import { useLocation, Outlet } from "react-router-dom"
+import { Outlet } from "react-router-dom"
 
 import Weather from "./heading/Weather"
 import Day from "./heading/Day"
@@ -17,7 +17,6 @@ const Planner = props => {
     state: { user },
     dispatch,
   } = useContext(AuthContext)
-  const location = useLocation()
 
   useEffect(() => {
     if (!user) getUser(dispatch)
@@ -28,14 +27,16 @@ const Planner = props => {
       <div className="position-div inside-cover">
         <div className="grid-div">
           <div className="page">
-            <div className={`heading ${location?.pathname.split("/")[2]}`}>
-              <Day />
+            <div className="heading day">
+              <div className="heading-title">
+                <PlannerNavigation {...props} />
+                <Day />
+              </div>
               <div className="widget">
                 <Datepicker />
                 <User />
                 <Weather />
               </div>
-              <PlannerNavigation {...props} />
             </div>
             <div className="pattern__wrapper">
               <Outlet />

@@ -183,6 +183,15 @@ const Month = () => {
               showMonthYearPicker
               showPopperArrow={false}
               popperPlacement="bottom"
+              popperModifiers={[
+                {
+                  name: "offset",
+                  fn(state) {
+                    state.y = state.y - 10
+                    return state
+                  },
+                },
+              ]}
               customInput={
                 <DateLabel
                   className="current-month month-label"
